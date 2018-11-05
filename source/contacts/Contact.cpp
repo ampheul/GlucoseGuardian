@@ -1,3 +1,6 @@
+#include <iostream>
+using namespace std;
+
 public class Contact {
 private:
 	string name;
