@@ -7,6 +7,9 @@
 #include "HormoneDose.h"
 #include "MedicationRecord.h"
 
+// Insulin pump will receive HormoneDoses from the artificial pancreas
+// Insulin pump may publish Medication Records after administering.
+
 class InsulinPump : Subscriber<HormoneDose>, Publisher<MedicationRecord>
 {
     public:
