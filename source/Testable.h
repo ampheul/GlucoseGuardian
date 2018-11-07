@@ -9,7 +9,7 @@ afsadsafds
 class Testable 
 {
     public:
-        static void testHarness();
-}
+        static std::string testHarness();
+};
 
 #endif
