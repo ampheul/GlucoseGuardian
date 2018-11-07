@@ -1,15 +1,15 @@
-#ifndef HORMONETYPE_H
-#define HORMONETYPE_H
+#ifndef HORMONEDOSE_H
+#define HORMONEDOSE_H
 
 #include "HormoneType.h"
 
 class HormoneDose
 {
 	private:
-		double hormoneAmount;
-		HormoneType hormoneType;
+		const double hormoneAmount;
+		const HormoneType hormoneType;
 	public:
-		HormoneDose(HormoneType hormoneType, double amount);
+		HormoneDose(const HormoneType hormoneType, const double amount);
 		const HormoneType getHormoneType() const;
 		const double getHormoneAmount() const;
 };

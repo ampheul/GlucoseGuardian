@@ -1,12 +1,16 @@
-#ifndef HORMONEDOSE_H
-#define HORMONEDOSE_H
+#ifndef INSULINPUMP_H
+#define INSULINPUMP_H
 
+
+#include "Subscriber.h"
+#include "Publisher.h"
 #include "HormoneDose.h"
+#include "MedicationRecord.h"
 
-class InsulinPump
+class InsulinPump : Subscriber<HormoneDose>, Publisher<MedicationRecord>
 {
     public:
-        void applyDose(HormoneDose);
+        void applyDose(const HormoneDose dose);
 };
 
 #endif
