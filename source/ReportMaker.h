@@ -3,6 +3,7 @@
 
 #include "GraphMaker.h"
 #include "Testable.h"
+#include "Patient.h"
 
 /** Makes Reports
 

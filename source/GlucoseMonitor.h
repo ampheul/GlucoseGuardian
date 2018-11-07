@@ -1,0 +1,7 @@
+class GlucoseMonitor
+{
+    public:
+
+    private:
+        
+}

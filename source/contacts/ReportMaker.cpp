@@ -6,12 +6,12 @@
 afsadsafds
 */
 
-ReportMaker::makeReport()
+void ReportMaker::makeReport()
 {
-    
+    return;
 }
 
-void ReportMaker::testHarness()
+static void ReportMaker::testHarness()
 {
     return;
 }

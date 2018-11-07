@@ -1,0 +1,7 @@
+class InsulinPump
+{
+    public:
+        
+    private:
+    
+}

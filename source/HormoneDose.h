@@ -1,11 +1,17 @@
+enum class HormoneType { 
+	BASAL_INSULIN, 
+	BOLUS_INSULIN, 
+	GLUCAGON 
+};
+
 class HormoneDose
 {
 private:
-	enum hormoneType { Basal_Insulin, Bolus_Insulin, Glucagon } type;
 	double hormoneAmount;
+	HormoneType hormoneType;
 	HormoneDose();
 public:
-	HormoneDose(hormoneType, double);
+	HormoneDose(HormoneType hormoneType, double amount);
 	~HormoneDose();
 	const hormoneType getHormoneType() const;
 	const double getHormoneAmount() const;
