@@ -1,3 +1,6 @@
+#ifndef HORMONETYPE_H
+#define HORMONETYPE_H
+
 #include "HormoneType.h"
 
 class HormoneDose
@@ -10,3 +13,5 @@ class HormoneDose
 		const HormoneType getHormoneType() const;
 		const double getHormoneAmount() const;
 };
+
+#endif
