@@ -1,7 +1,5 @@
 class InsulinPump
 {
     public:
-        
-    private:
-    
+        void applyDose(HormoneDose);        
 }

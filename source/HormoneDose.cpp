@@ -1,13 +1,9 @@
 #include "HormoneDose.h"
 
-HormoneDose::HormoneDose(hormoneType hormone, double amount)
+HormoneDose::HormoneDose(HormoneType hormone, double amount)
 {
-	type = hormone;
+	hormoneType = hormone;
 	hormoneAmount = amount;
-}
-
-HormoneDose::~HormoneDose()
-{
 }
 
 const HormoneDose::hormoneType HormoneDose::getHormoneType() const
@@ -18,14 +14,4 @@ const HormoneDose::hormoneType HormoneDose::getHormoneType() const
 const double HormoneDose::getHormoneAmount() const
 {
 	return hormoneAmount;
-}
-
-void HormoneDose::setHormoneType(const HormoneDose::hormoneType hormone)
-{
-	type = hormone;
-}
-
-void HormoneDose::setHormoneAmount(const double amount)
-{
-	hormoneAmount = amount;
 }
