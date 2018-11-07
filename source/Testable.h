@@ -1,7 +1,8 @@
 #ifndef TESTABLE_H
 #define TESTABLE_H
 
-
+#include "TestResult.h"
+#include <iostream>
 /** Test Harness
 
 afsadsafds
@@ -9,7 +10,7 @@ afsadsafds
 class Testable 
 {
     public:
-        static std::string testHarness();
+        static TestResult testHarness();
 };
 
 #endif
