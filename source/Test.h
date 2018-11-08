@@ -4,14 +4,14 @@
 #include "TestResult.h"
 #include <iostream>
 #include <string>
-/** Test Harness
+/** Test class
 
-afsadsafds
+Test Class is meant to be subclassed where the user overrides runTest
 */
 class Test 
 {
     public:
-        TestResult runTest();
+        virtual TestResult runTest();
         TestResult runAndPrint();
         std::string getName();
     private:
