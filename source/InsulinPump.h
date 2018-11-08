@@ -1,19 +1,7 @@
-#ifndef INSULINPUMP_H
-#define INSULINPUMP_H
+#import "HormoneDose.h"
 
-
-#include "Subscriber.h"
-#include "Publisher.h"
-#include "HormoneDose.h"
-#include "MedicationRecord.h"
-
-// Insulin pump will receive HormoneDoses from the artificial pancreas
-// Insulin pump may publish Medication Records after administering.
-
-class InsulinPump : Subscriber<HormoneDose>, Publisher<MedicationRecord>
+class InsulinPump
 {
-    public:
-        void applyDose(const HormoneDose dose);
+    protected:
+        virtual void sendInstruction(const HormoneDose *) const = 0
 };
-
-#endif
