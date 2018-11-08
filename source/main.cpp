@@ -1,8 +1,7 @@
 #include <iostream>
-#include "Account.h"
+#include "../Header Files/Account.h"
 
 using namespace std;
-private:
 
 string accountType;
 

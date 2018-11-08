@@ -1,21 +1,17 @@
 #include <iostream>
+#include "../../header files/Contacts/Contact.h"
+// #include "ContactType.h"
+
 using namespace std;
 
-public class Contact {
-private:
-	string name;
-	vector<ContactType> contactOptions;
+Contact::Contact(string name) {
+	Contact::name = name;
+}
 
-public:
-	Person(string name) {
-		this.name = name;
-	}
+string getName() {
+	return Contact::name;
+}
 
-	string getName() {
-		return name;
-	}
-
-	void setName(string name) {
-		this.name = name;
-	}
-};
+void setName(string name) {
+	Contact::name = name;
+}

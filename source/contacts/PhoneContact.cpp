@@ -1,13 +1,14 @@
 #include <iostream>
+#include "ContactType.h"
 using namespace std;
 
-public class PhoneContact implements ContactType{
+class PhoneContact : ContactType{
 private:
 	int phoneNumber;
 
 public:
 	void Notify() {
-		printf("Emergency Contact! Your patient requires help!");
+		cout << "Emergency Contact! Your patient requires help!";
 		// Go back to this later
 	}
 

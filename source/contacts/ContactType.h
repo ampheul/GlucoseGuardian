@@ -1,4 +1,5 @@
-public interface ContactType {
+class ContactType {
 	// Notifies emergency contact via preferred contact method
-	Notify();
+public:
+	virtual void Notify();
 };

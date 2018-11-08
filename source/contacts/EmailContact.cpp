@@ -1,13 +1,14 @@
 #include <iostream>
+#include "ContactType.h"
 using namespace std;
 
-public class EmailContact implements ContactType{
+class EmailContact : ContactType {
 private:
 	string email;
 
 public:
 	void Notify() {
-		printf("Emergency Contact! This is an email saying your patient requires your help!");
+		cout << "Emergency Contact! This is an email saying your patient requires your help!";
 	}
 
 	string getEmail() {
