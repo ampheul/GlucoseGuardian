@@ -1,3 +1,8 @@
+/*
+	Laptop connection header file
+	author: Graeme Brabers
+*/
+
 #include <string>
 #include <iostream>
 #include <sstream>
