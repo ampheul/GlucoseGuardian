@@ -38,10 +38,10 @@ int main()
 		string option;
 		getline(cin, option);
 		if (option.equals("1")) {
-			patient.getRecordEntries();
+			cout << patient.getRecordEntries();
 		}
 		else {
-			
+			cout << patient.monitorRecord.getReading();
 		}
 	}
 

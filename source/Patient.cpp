@@ -1,4 +1,7 @@
 #include <iostream>
+#include "DeviceRecord.h"
+#include "Patient.h"
+#include "Contact.h"
 using namespace std;
 
 public static class Patient {
@@ -8,8 +11,8 @@ private:
 	double age;
 	double bmi;
 	string sex;
-	// vector<DeviceRecord> recordEntryList;
-	// vector<Contact> emergencyContacts;
+	vector<DeviceRecord> recordEntryList;
+	vector<Contact> emergencyContacts;
 	string password;
 
 public:
@@ -49,13 +52,13 @@ public:
 		this.sex = sex;
 	}
 
-	/**vector<DeviceRecord> getRecordEntries() {
+	vector<DeviceRecord> getRecordEntries() {
 		return recordEntryList;
 	}
 
 	vector<Contact> getEmergencyContacts() {
 		return emergencyContacts;
-	}**/
+	}
 
 	string getPassword() {
 		return password;
@@ -89,7 +92,7 @@ public:
 		Contact emergContact = new Contact(emergContactName);
 	}
 
-	boolean verifyPassword(string givenPassword) {
+	bool verifyPassword(string givenPassword) {
 		return password.equals(givenPassword);
 	}
 };
