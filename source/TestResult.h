@@ -16,6 +16,4 @@ class TestResult
         const TestValue value;
 };
 
-
-
 #endif
