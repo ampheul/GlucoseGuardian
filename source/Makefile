@@ -5,8 +5,7 @@ ReportMaker: ReportMaker.h ReportMaker.cpp
 clean:
 	rm -rf latex html
 
-test: runTest
-	./runTests 
+tests: 
 
 runTest: runTest.cpp runTest.h
 	g++ -o runTests runTests.cpp 

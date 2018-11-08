@@ -1,10 +1,21 @@
 #ifndef TESTRESULT_H
 #define TESTRESULT_H
 
-enum class TestResult
+#include "TestValue.h"
+#include <stringstream>
+
+class TestResult
 {
-    FAILED,
-    SUCCEEDED
+    public:
+        TestResult(const TestValue, const std::string);
+        TestValue getValue() const;
+        std::string getMessage() const;
+        std::string toString() const;
+    private:
+        const std::string message;
+        const TestValue value;
 };
+
+
 
 #endif
