@@ -2,14 +2,13 @@
 #define REPORTMAKER_H
 
 #include "GraphMaker.h"
-#include "Testable.h"
 #include "Patient.h"
 
 /** Makes Reports
 
 afsadsafds
 */
-class ReportMaker : Testable
+class ReportMaker
 {
     public:
         static void testHarness();
@@ -17,6 +16,6 @@ class ReportMaker : Testable
     private:
         GraphMaker graphMaker;
         Patient patient;
-}
+};
 
 #endif
