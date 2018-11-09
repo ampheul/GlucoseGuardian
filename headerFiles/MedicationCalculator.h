@@ -23,39 +23,32 @@ Description: header file for MedicationCalculator class
 
 
 
-class MedicationCalculator{
-    
+class MedicationCalculator
+{    
     public:
-        //Constructor
         MedicationCalculator(double glu, double weight, int age, struct tm sleep, std::string ex, double carb, std::string ins);
-
-        //Destructor
         ~MedicationCalculator();
-
-       HormoneDose computeDosage();
+		HormoneDose computeDosage();
 
     private:
-
-        //Variables
         double gluRead;
-        double weight;
+        double weight;		
+        double carbGrams;
+        double TDD;
         int age;
         struct tm sleepStruct;
         std::string exLevel;
-        double carbGrams;
-        double TDD;
         std::string insType;
 
         void validateReading();
         double getGlucagon();
         double getHourBasal();
         double getBolus();
+        double getTDD();
         double calcSleep(double basal);
         double calcEx(double basal);
         double calcMeal();
         double calcCorrection();
-
-        double getTDD();
         int findCurrentHour();
 };
 
