@@ -1,11 +1,7 @@
 #include "Test.h"
 
-TestResult Test::runTest()
-{
-    return TestResult(TestValue::Failure, "Unimplemented");
-}
 
-TestResult Test::runAndPrint( std::string name)
+TestResult Test::runAndPrint()
 {
     TestResult tr = runTest();
     
@@ -13,4 +9,14 @@ TestResult Test::runAndPrint( std::string name)
     std::cout << tr.toString() << std::endl;
 
     return tr;
+}
+
+std::string Test::getName() const
+{
+    return this->name;
+}
+
+void Test::setName(std::string name)
+{
+    this->name = name;
 }
