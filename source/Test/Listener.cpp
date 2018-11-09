@@ -11,7 +11,7 @@ int main()
     struct sockaddr_in address; 
     int opt = 1; 
     int addrlen = sizeof(address); 
-    char buffer[1024] = {0}; 
+    char buffer[8192] = {0}; 
     char *hello = "Hello from server"; 
        
     // Creating socket file descriptor 
@@ -21,13 +21,7 @@ int main()
         exit(EXIT_FAILURE); 
     } 
        
-    // Forcefully attaching socket to the port 8080 
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, 
-                                                  &opt, sizeof(opt))) 
-    { 
-        perror("setsockopt"); 
-        exit(EXIT_FAILURE); 
-    } 
+
     address.sin_family = AF_INET; 
     address.sin_addr.s_addr = INADDR_ANY; 
     address.sin_port = htons( 3307 ); 
@@ -51,9 +45,11 @@ int main()
         exit(EXIT_FAILURE); 
     } 
 
-    while((valread = recv( new_socket , buffer, 1024, 0)) > 0)
+    int count = 0, total = 0;
+    while((count = recv(new_socket , &buffer[total], sizeof(buffer - count), 0)) > 0)
     {
         printf("%s", buffer);
+        total += count;
     }
-    return 0; 
+    return 0;
 }
