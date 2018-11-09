@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../Header Files/Account.h"
+#include "../headerFiles/Account.h"
 
 using namespace std;
 
@@ -13,14 +13,14 @@ bool Login()
 	Account account = Account (password);
 	string type = account.GetAccountType();
 	
-	if (type == GUEST){
-		accountType = "GUEST";
+	if (type == account.GUEST){
+		accountType = account.GUEST;
 	}
-	else if (type == PATIENT){
-		accountType = "PATIENT";
+	else if (type == account.PATIENT){
+		accountType = account.PATIENT;
 	}
 
-	type == PATIENT || type == GUEST ? true : false;
+	type == account.PATIENT || type == account.UNKNOWN ? true : false;
 }
 
 int main() 
@@ -30,23 +30,22 @@ int main()
 		cout << "Log in failed" << endl;
 	}
 	
-	if (accountType.equals("GUEST")) {
+	if (accountType == "GUEST") {
 		cout << "What would you like to access?";
 		cout << "1 - Medical History";
 		cout << "2 - Glucose Level";
 		string option;
 		getline(cin, option);
-		if (option.equals("1")) {
-			cout << patient.getRecordEntries();
+		if (option == "1") {
+			cout << "Patient Records Are: No Records Found";
 		}
 		else {
-			cout << patient.monitorRecord.getReading();
+			cout << "Patient's Latest Glucose Reading is: No Records Found";
 		}
 	}
 
-
 	// prompt user to input patient data
-	Patient patient = new Patient();
+	// Patient patient = new Patient();
 
 	return 0;
 }

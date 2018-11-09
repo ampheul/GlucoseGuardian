@@ -1,7 +1,13 @@
+/*
+	Laptop connection implementation
+	author: Graeme Brabers
+*/
+
 #include "LaptopOutput.h"
 
 bool LaptopOutput::connectToPump(const std::string address, const int port)
 {
+	//establish socket
 	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
 	{
 		std::cout << "Socket creation error" << std::endl;
@@ -10,36 +16,48 @@ bool LaptopOutput::connectToPump(const std::string address, const int port)
 	else
 	{
 		std::cout << "Socket created" << std::endl;
-		return true;
 	}
 
+	//clear memory for connection
 	memset(&server, '0', sizeof(server));
+	
+	//server settings
 	server.sin_family = AF_INET;
 	server.sin_port = htons(port);
-	server.sin_addr.s_addr = inet_addr(address.c_str);
+	server.sin_addr.s_addr = inet_addr(address.c_str());
 
-	
+	//connect to socket
 	if ((connectionStatus = connect(sock, (struct sockaddr *)&server, sizeof(server))) < 0)
 	{
-		std::cout << "Error connecting to pump" << std::endl;
+		std::cout << "Error connecting to socket" << std::endl;
 		close(sock);
+		return false;
+	}
+	else
+	{
+		std::cout << "Connection established" << std::endl;
+		return true;
 	}
 }
 
+//default constructor - not used
 LaptopOutput::LaptopOutput()
 {
 }
 
-LaptopOutput::LaptopOutput(const std::string ip, const int prt)
+//overloaded constructor - force connection
+LaptopOutput::LaptopOutput(const std::string hostname, const int port)
 {
-	LaptopOutput::connectToPump(ip, prt);
+	LaptopOutput::connectToPump(hostname, port);
 }
 
+//destructor
 LaptopOutput::~LaptopOutput()
 {
 	close(sock);
 }
 
+//transmit message
 void LaptopOutput::sendInstruction(const HormoneDose * hormone) const
 {
 	if (sock == -1)
@@ -54,19 +72,21 @@ void LaptopOutput::sendInstruction(const HormoneDose * hormone) const
 	{
 		switch (hormone->getHormoneType())
 		{
-		case 0:
-			type = "Basal Insulin";
+		case BASAL_INSULIN:
+			type = "BASAL_INSULIN";
 			break;
-		case 1:
-			type = "Bolus Insulin";
+		case BOLUS_INSULIN:
+			type = "BOLUS_INSULIN";
 			break;
-		case 2:
-			type = "Glucagon";
+		case GLUCAGON:
+			type = "GLUCAGON";
 			break;
 		}
 
-		message << type << "," << amount;
-		charArrayMessage = message.str().c_str;
+		amount = std::to_string(hormone->getHormoneAmount());
+		message << type << "," << amount << "\n";
+		strMessage = message.str();
+		charArrayMessage = strMessage.c_str();
 		send(sock, charArrayMessage, strlen(charArrayMessage), 0);
 	}
 }

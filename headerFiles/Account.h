@@ -17,18 +17,18 @@
 class Account
 {	
 public:	
-	static const std::string PATIENT = "patient"; 	//! id string for patient accounts
-	static const std::string GUEST = "guest";		//! id string for guest accounts
-	static const std::string UNKNOWN = "unknown";	//! id string for unknown accounts
+	const std::string PATIENT = "patient"; 	//! id string for patient accounts
+	const std::string GUEST = "guest";		//! id string for guest accounts
+	const std::string UNKNOWN = "unknown";	//! id string for unknown accounts
 
-	Account(const std::string& password);
+	Account(std::string password);
 	~Account();
 	void AccountOptions();
 	std::string GetAccountType();
 
 private:
-	static const std::string ACCOUNT_INFO_PATH = "/accountInfo/accountInfo.txt"; 	//! path to directory for storing accountInfo.txt
-	static const std::string ACCOUNT_INFO = "accountInfo.txt";						//! file name for storing account information
+	const std::string ACCOUNT_INFO_PATH = "/accountInfo/accountInfo.txt"; 	//! path to directory for storing accountInfo.txt
+	const std::string ACCOUNT_INFO = "accountInfo.txt";						//! file name for storing account information
 
 	std::string accountType;	//! the type of the account
 	DIR *accountDir;			//! pointer to accountInfo directory
