@@ -1,6 +1,6 @@
 #include "HormoneDose.h"
 
-HormoneDose(hormoneType hormone, double amount)
+HormoneDose::HormoneDose(hormoneType hormone, double amount)
 {
 	type = hormone;
 	hormoneAmount = amount;
