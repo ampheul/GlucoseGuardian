@@ -4,7 +4,7 @@
 			 may have restricted capability.
 */
 
-#include "../../header files/Account/Account.h"
+#include "../../headerFiles/Account.h"
 #include <iostream>
 
 using namespace std;

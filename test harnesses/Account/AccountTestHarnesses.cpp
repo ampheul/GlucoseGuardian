@@ -2,7 +2,7 @@
 #include <string>
 #include <sstream>
 
-#include "../../header files/Account/Account.h"
+#include "../../headerFiles/Account.h"
 
 using namespace std;
 
@@ -17,15 +17,15 @@ int main()
 	return 0;
 }
 
-bool TestPass_CorrectPassword()
+bool PatientTestPass_CorrectPassword()
 {
-	string password = "patient password";
+	const string password = "patient password";
 	Account account = Account(password);
 	string type = account.GetAccountType();
 	type == account.PATIENT ? true : false;
 };
 
-bool TestFail_IncorrectPassword()
+bool PatientTestFail_IncorrectPassword()
 {
 	const string password = "not the password";
 	Account account = Account(password);
@@ -33,7 +33,7 @@ bool TestFail_IncorrectPassword()
 	type == account.UNKNOWN ? true : false;
 }
 
-bool TestPass_CorrectPassword()
+bool GuestTestPass_CorrectPassword()
 {
 	const string password = "guest password";
 	Account account = Account(password);
@@ -41,9 +41,9 @@ bool TestPass_CorrectPassword()
 	type == account.GUEST ? true : false;
 };
 
-bool TestFail_IncorrectPassword()
+bool GuestTestFail_IncorrectPassword()
 {
-	string password = "not the guest password";
+	const string password = "not the guest password";
 	Account account = Account(password);
 	string type = account.GetAccountType();
 	type == account.UNKNOWN ? true : false;
