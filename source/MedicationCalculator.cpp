@@ -47,9 +47,9 @@ MedicationCalculator::~MedicationCalculator(){
 */
 
 HormoneDose MedicationCalculator::computeDosage(){
-	HormoneDose::hormoneType gluc = HormoneDose::Glucagon; 
-	HormoneDose::hormoneType basal = HormoneDose::Basal_Insulin; 
-	HormoneDose::hormoneType bolus = HormoneDose::Bolus_Insulin; 
+    hormoneType gluc = GLUCAGON; 
+    hormoneType basal = BASAL_INSULIN; 
+    hormoneType bolus = BOLUS_INSULIN; 
 
 	/* 
 	 * Administer glucagon if hypoglycemic. Commented out print statement for future debugging.
