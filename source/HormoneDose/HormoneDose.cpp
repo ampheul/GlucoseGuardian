@@ -1,5 +1,11 @@
 #include "HormoneDose.h"
 
+HormoneDose(hormoneType hormone, double amount)
+{
+	type = hormone;
+	hormoneAmount = amount;
+}
+
 const enum hormoneType HormoneDose::getHormoneType() const
 {
 	return type;
