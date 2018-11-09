@@ -1,16 +1,21 @@
 #include "HormoneDose.h"
-#include "HormoneType.h"
 
-HormoneDose::HormoneDose(HormoneType hormone, double amount)
-	:	hormoneType(hormone), hormoneAmount(amount)
-{}
-
-const HormoneType HormoneDose::getHormoneType() const
+const hormoneType HormoneDose::getHormoneType() const
 {
-	return this->hormoneType;
+	return type;
 }
 
 const double HormoneDose::getHormoneAmount() const
 {
-	return this->hormoneAmount;
+	return hormoneAmount;
+}
+
+void HormoneDose::setHormoneType(const hormoneType hType)
+{
+	type = hType;
+}
+
+void HormoneDose::setHormoneAmount(const double hAmount)
+{
+	hormoneAmount = hAmount;
 }
