@@ -33,6 +33,10 @@ bool LaptopOutput::connectToPump(const std::string address, const int port)
 		std::cout << "Error connecting to socket" << std::endl;
 		close(sock);
 	}
+	else
+	{
+		std::cout << "Connection established" << std::endl;
+	}
 }
 
 //default constructor - not used
