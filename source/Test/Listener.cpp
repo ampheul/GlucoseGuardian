@@ -45,7 +45,7 @@ int main()
         exit(EXIT_FAILURE);
     } 
 
-    int index = 0;
+    int index = 0, count;
     while((count = recv(new_socket, &buffer[index], 20, 0)) > 0)
     {
         printf("%s", buffer);
