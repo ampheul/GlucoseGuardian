@@ -4,7 +4,6 @@ Date: Nov 5th, 2018
 Description: tests medication calculator 
 */
 
-// Change to makefiles
 #include <ctime>
 #include <iomanip>
 #include <stdio.h>
@@ -92,4 +91,29 @@ int main(){
 
 
      return 0;
+}
+
+void TestSetup()
+{
+	vector<double> glucoseLevels = [1.7, 3.9, 5.6, 6.9, 1.6];
+	bool result;
+	
+	for (auto& level : glucoseLevels)
+	{
+		result = TestPass_Hormone(level);
+		if (!result)
+		{
+			cout << "Test failed on glucose level: " << level << endl;
+		}
+	}
+}
+
+bool TestPass_Hormone(int glucoseLevel)
+{
+	// Creates time of sleep
+	string sleepTime = "12:12:12";
+    struct tm tm;
+    strptime(sleepTime.c_str(), "%H:%M:%S", &tm);
+	
+	MedicationCalculator calc (glucoseLevel, 100, 10, tm, "Low", 0, "Basal");
 }
