@@ -30,7 +30,8 @@ g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestSleep.cpp -
 ./SleepTest
 
 # Account Tests
-The password for the accounts tests is password123
+The password for the patient account is password123
+The password for the guest account is guest123
 g++ Account.cpp AccountTestHarnesses.cpp
 
 # Output Test
