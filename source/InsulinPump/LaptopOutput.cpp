@@ -16,7 +16,6 @@ bool LaptopOutput::connectToPump(const std::string address, const int port)
 	else
 	{
 		std::cout << "Socket created" << std::endl;
-		return true;
 	}
 
 	//clear memory for connection
@@ -32,10 +31,12 @@ bool LaptopOutput::connectToPump(const std::string address, const int port)
 	{
 		std::cout << "Error connecting to socket" << std::endl;
 		close(sock);
+		return false;
 	}
 	else
 	{
 		std::cout << "Connection established" << std::endl;
+		return true;
 	}
 }
 
