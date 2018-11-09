@@ -19,16 +19,32 @@ int main()
 
 bool TestPass_CorrectPassword()
 {
-	string password = "password";
+	string password = "patient password";
 	Account account = Account(password);
-	string type = account.GetType();
-	type == PATIENT ? true : false;
+	string type = account.GetAccountType();
+	type == account.PATIENT ? true : false;
 };
 
 bool TestFail_IncorrectPassword()
 {
-	string password = "not the password";
+	const string password = "not the password";
 	Account account = Account(password);
-	string type = account.GetType();
-	type == UNKNOWN ? true : false;
+	string type = account.GetAccountType();
+	type == account.UNKNOWN ? true : false;
+}
+
+bool TestPass_CorrectPassword()
+{
+	const string password = "guest password";
+	Account account = Account(password);
+	string type = account.GetAccountType();
+	type == account.GUEST ? true : false;
+};
+
+bool TestFail_IncorrectPassword()
+{
+	string password = "not the guest password";
+	Account account = Account(password);
+	string type = account.GetAccountType();
+	type == account.UNKNOWN ? true : false;
 }

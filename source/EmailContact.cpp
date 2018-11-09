@@ -1,17 +1,20 @@
-public class EmailContact {
+#include <string>
+#include <io>
+
+class EmailContact {
 private:
-	string email;
+	std::string email;
 
 public:
 	void notify() {
-		printf("Emergency Contact! This is an email saying your patient requires your help!");
+		std::cout << "Emergency Contact! This is an email saying your patient requires your help!";
 	}
 
-	string getEmail() {
+	std::string getEmail() {
 		return email;
 	}
 
-	void setEmail(string givenEmail) {
+	void setEmail(std::string givenEmail) {
 		email = givenEmail;
 	}
 };
