@@ -53,7 +53,7 @@ int main()
 
     while(true)
     {
-        valread = read( new_socket , buffer, 1024); 
+        valread = recv( new_socket , buffer, 1024, 0; 
         printf("%s", buffer);
     }
     return 0; 
