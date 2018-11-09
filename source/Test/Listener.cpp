@@ -47,7 +47,7 @@ int main()
 
     while(true)
     {
-        valread = read( new_socket , buffer, sizeof(buffer));
+        recv( new_socket , buffer, sizeof(buffer), 0);
         printf("%s", buffer);
     }
     return 0;
