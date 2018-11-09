@@ -5,6 +5,7 @@
 */
 
 #include "../../header files/Account/Account.h"
+#include <iostream>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ using namespace std;
 	Description: constructor
 	@param string password - password that will be used to verify the identity of the user.
 */
-Account::Account(const string& password)
+Account::Account(string password)
 {
 	// check if accounts.txt file exists locally. If it does not, then the account needs to be initialized, else, continue the verification process.
 	ifstream accountStream(ACCOUNT_INFO);
@@ -25,7 +26,12 @@ Account::Account(const string& password)
 	{
 		cout << "An account has not been initialized on this machine. Performing setup..." << endl;
 		Account::InitializeAccount(password);
-		cout << "The Password you have entered has been set." << endl;
+		cout << "The password you have entered has been set." << endl;
+
+		cout << "Now that your account has been initialized, please re-enter your password: ";
+		string newPassword;
+		getline(cin, newPassword);
+		Account::VerifyPassword(accountStream, newPassword);
 	}
 };
 
@@ -74,23 +80,27 @@ string Account::GetAccountType()
 */
 void Account::VerifyPassword(ifstream& hashStream, string password)
 {
-	size_t toCompare = Account::HashPassword(password);
+	size_t hashToCheck = Account::HashPassword(password);
 
 	// retrieve the locally stored hash value and compare to the new hased value
 	string hashLine;
-	size_t hash;
+	size_t patientHash;
+	size_t guestHash;
+
+	// patient hash is on first line. guest/emergency contact hash is on second line
 
 	if (hashStream.is_open())
 	{
-		hashStream >> hash;
+		hashStream >> patientHash;
+		hashStream >> guestHash;
 	}
 
-	if (hash == toCompare)
+	if (patientHash == hashToCheck)
 	{
 		cout << "patient signed in" << endl;
 		accountType = PATIENT;
 	}
-	else if (hash == 123)
+	else if (guestHash == hashToCheck)
 	{
 		cout << "guest signed in" << endl;
 		accountType = GUEST;
@@ -122,16 +132,23 @@ size_t Account::HashPassword(string password)
 */
 void Account::InitializeAccount(string password)
 {
-	if (mkdir("accountInfo", 0777) != 0)
-	{
-		cout << "failed to make directory" << endl;
-	}
-	else
-	{
-		size_t hash = Account::HashPassword(password);
-		ofstream accountInfo(ACCOUNT_INFO);
-		accountInfo << hash << endl;
+	cout << "Would you like to use the password you entered for the main account (Y / N): ";
+	string yesOrNo = "";
+	getline(cin, yesOrNo);
 
-		accountInfo.close();
+	if (yesOrNo == "N") {
+		cout << "Please enter a password: ";
+		getline(cin, password);
 	}
+
+	size_t hash = Account::HashPassword(password);
+	ofstream accountInfo(ACCOUNT_INFO);
+	accountInfo << hash << endl;
+
+	cout << "For your own safety, please provide a password for an emergency guest account: ";
+	string guestPassword = "";
+	getline(cin, guestPassword);
+	guestPassword = "\n" + guestPassword;
+	hash = Account::HashPassword(guestPassword);
+	accountInfo << hash << endl;
 };

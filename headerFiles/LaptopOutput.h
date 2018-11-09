@@ -11,17 +11,18 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#include "HormoneDose.h"
 
-class LaptopOutput : public InsulinPump
+class LaptopOutput
 {
 private:
 	int sock, connectionStatus;
 	struct sockaddr_in server;
 	socklen_t serverSize;
 	bool connectToPump(const std::string, const int);
-	mutable std::string type, amount;
+	mutable std::string type, amount, strMessage;
 	mutable std::stringstream message;
-	mutable char* charArrayMessage;
+	mutable const char* charArrayMessage;
 	LaptopOutput();
 public:
 	LaptopOutput(const std::string, const int);
