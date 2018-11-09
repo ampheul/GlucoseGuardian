@@ -25,19 +25,6 @@ bool LaptopOutput::connectToPump(const std::string address, const int port)
 	server.sin_family = AF_INET;
 	server.sin_port = htons(port);
 	server.sin_addr.s_addr = inet_addr(address.c_str());
-
-	//connect to socket
-	if ((connectionStatus = connect(sock, (struct sockaddr *)&server, sizeof(server))) < 0)
-	{
-		std::cout << "Error connecting to socket" << std::endl;
-		close(sock);
-		return false;
-	}
-	else
-	{
-		std::cout << "Connection established" << std::endl;
-		return true;
-	}
 }
 
 //default constructor - not used
@@ -60,6 +47,19 @@ LaptopOutput::~LaptopOutput()
 //transmit message
 void LaptopOutput::sendInstruction(const HormoneDose * hormone) const
 {
+	//connect to socket
+	if ((connectionStatus = connect(sock, (struct sockaddr *)&server, sizeof(server))) < 0)
+	{
+		std::cout << "Error connecting to socket" << std::endl;
+		close(sock);
+		return false;
+	}
+	else
+	{
+		std::cout << "Connection established" << std::endl;
+		return true;
+	}
+
 	if (sock == -1)
 	{
 		std::cout << "Error: socket not established" << std::endl;
