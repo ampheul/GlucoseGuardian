@@ -25,7 +25,7 @@ bool LaptopOutput::connectToPump(const std::string address, const int port)
 	//server settings
 	server.sin_family = AF_INET;
 	server.sin_port = htons(port);
-	server.sin_addr.s_addr = inet_addr(address.c_str);
+	server.sin_addr.s_addr = inet_addr(address.c_str());
 
 	//connect to socket
 	if ((connectionStatus = connect(sock, (struct sockaddr *)&server, sizeof(server))) < 0)
@@ -79,7 +79,7 @@ void LaptopOutput::sendInstruction(const HormoneDose * hormone) const
 		}
 
 		message << type << "," << amount;
-		charArrayMessage = message.str().c_str;
+		charArrayMessage = message.str().c_str();
 		send(sock, charArrayMessage, strlen(charArrayMessage), 0);
 	}
 }
