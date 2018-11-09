@@ -12,10 +12,25 @@ For the completed tickets, here are the tests to run:
 	Nothing will be displayed if tests pass 
 	(In some cases, "Invalid glucose reading" prints as it should) 
 
-g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestAge.cpp
-g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestGluc.cpp
-g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestExercise.cpp
-g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestMeal.cpp
+# Medication  Calculator Tests
+g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestAge.cpp -o AgeTest
+./AgeTest
+
+g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestGluc.cpp -o GlucTest
+./GlucTest
+
+g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestExercise.cpp -o ExerciseTest
+./ExerciseTest
+
+g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestMeal.cpp -o MealTest
+./MealTest
 
 Please run this one at 10pm at night as it takes into consideration the current time and compares it to a user defined bed time:
-g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestSleep.cpp
+g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestSleep.cpp -o SleepTest
+./SleepTest
+
+# Account Tests
+g++ Account.cpp AccountTestHarnesses.cpp
+
+# Output Test
+
