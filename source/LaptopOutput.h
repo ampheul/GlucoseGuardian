@@ -13,6 +13,7 @@
 #include <string.h>
 
 class LaptopOutput
+{
 private:
 	int sock, connectionStatus;
 	struct sockaddr_in server;
