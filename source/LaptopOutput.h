@@ -20,7 +20,7 @@ private:
 	struct sockaddr_in server;
 	socklen_t serverSize;
 	bool connectToPump(const std::string, const int);
-	mutable std::string type, amount;
+	mutable std::string type, amount, strMessage;
 	mutable std::stringstream message;
 	mutable char* charArrayMessage;
 	LaptopOutput();
