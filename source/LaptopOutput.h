@@ -12,8 +12,7 @@
 #include <unistd.h>
 #include <string.h>
 
-class LaptopOutput : public InsulinPump
-{
+class LaptopOutput
 private:
 	int sock, connectionStatus;
 	struct sockaddr_in server;
