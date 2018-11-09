@@ -27,5 +27,5 @@ private:
 public:
 	LaptopOutput(const std::string, const int);
 	~LaptopOutput();
-	void sendInstruction(const HormoneDose *);
+	void sendInstruction(const HormoneDose *) const;
 };
