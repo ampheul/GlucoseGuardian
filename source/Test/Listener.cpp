@@ -38,16 +38,16 @@ int main()
         perror("listen"); 
         exit(EXIT_FAILURE); 
     } 
+    
+    if ((new_socket = accept(server_fd, (struct sockaddr *)&address,  
+                    (socklen_t*)&addrlen))<0) 
+    { 
+        perror("accept"); 
+        exit(EXIT_FAILURE);
+    }
 
     while(true)
     {
-        if ((new_socket = accept(server_fd, (struct sockaddr *)&address,  
-                        (socklen_t*)&addrlen))<0) 
-        { 
-            perror("accept"); 
-            exit(EXIT_FAILURE);
-        } 
-
         recv(new_socket, buffer, 20, 0);
         printf("%s", buffer);
     }
