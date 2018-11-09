@@ -8,7 +8,7 @@
 bool LaptopOutput::connectToPump(const std::string address, const int port)
 {
 	//establish socket
-	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+	if ((sock = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
 	{
 		std::cout << "Socket creation error" << std::endl;
 		return false;

@@ -42,10 +42,10 @@ int main()
                     (socklen_t*)&addrlen))<0) 
     { 
         perror("accept"); 
-        exit(EXIT_FAILURE); 
+        exit(EXIT_FAILURE);
     } 
 
-    int count = 0, total = 0;
+    int count = 0;
     while((count = recv(new_socket , &buffer, 20, 0)) > 0)
     {
         printf("%s", buffer);

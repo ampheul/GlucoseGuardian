@@ -9,7 +9,9 @@ int main(void)
 	lo->sendInstruction(h);
 
 	h = new HormoneDose(BASAL_INSULIN, 12.0);
+
 	lo->sendInstruction(h);
+	
 	delete(h);
 	delete(lo);
 }
