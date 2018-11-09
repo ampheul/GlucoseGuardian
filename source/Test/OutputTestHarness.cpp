@@ -3,7 +3,7 @@
 
 int main(void)
 {
-	HormoneDose * h = new HormoneDose(hormoneType::Glucagon, 15.0);
+	HormoneDose * h = new HormoneDose(GLUCAGON, 15.0);
 
 	LaptopOutput * lo = new LaptopOutput("127.0.0.1", 3307);
 	lo->sendInstruction(h);
