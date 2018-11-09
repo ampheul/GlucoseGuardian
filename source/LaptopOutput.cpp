@@ -53,7 +53,7 @@ LaptopOutput::~LaptopOutput()
 }
 
 //transmit message
-void LaptopOutput::sendInstruction(const HormoneDose * hormone)
+void LaptopOutput::sendInstruction(const HormoneDose * hormone) const
 {
 	if (sock == -1)
 	{
@@ -79,7 +79,7 @@ void LaptopOutput::sendInstruction(const HormoneDose * hormone)
 		}
 
 		message << type << "," << amount;
-		charArrayMessage = message.str().c_str();
+		charArrayMessage = (message.str()).c_str();
 		send(sock, charArrayMessage, strlen(charArrayMessage), 0);
 	}
 }
