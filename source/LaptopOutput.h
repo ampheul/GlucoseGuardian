@@ -22,7 +22,7 @@ private:
 	bool connectToPump(const std::string, const int);
 	mutable std::string type, amount, strMessage;
 	mutable std::stringstream message;
-	mutable char* charArrayMessage;
+	const char* charArrayMessage;
 	LaptopOutput();
 public:
 	LaptopOutput(const std::string, const int);
