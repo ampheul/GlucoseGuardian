@@ -67,14 +67,14 @@ void LaptopOutput::sendInstruction(const HormoneDose * hormone) const
 	{
 		switch (hormone->getHormoneType())
 		{
-		case 0:
-			type = BASAL_INSULIN;
+		case BASAL_INSULIN:
+			type = "BASAL_INSULIN";
 			break;
-		case 1:
-			type = BOLUS_INSULIN;
+		case BOLUS_INSULIN:
+			type = "BOLUS_INSULIN";
 			break;
-		case 2:
-			type = GLUCAGON;
+		case GLUCAGON:
+			type = "GLUCAGON";
 			break;
 		}
 
