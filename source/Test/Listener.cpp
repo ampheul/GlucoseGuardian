@@ -11,7 +11,7 @@ int main()
     struct sockaddr_in address; 
     int opt = 1; 
     int addrlen = sizeof(address); 
-    char buffer[1024] = {0}; 
+    char buffer[8192] = {0}; 
     char *hello = "Hello from server"; 
        
     // Creating socket file descriptor 
@@ -51,7 +51,7 @@ int main()
         exit(EXIT_FAILURE); 
     } 
 
-    while((valread = recv( new_socket , buffer, 1024, 0)) > 0)
+    while((valread = recv( new_socket , buffer, sizeof(buffer - valread), 0)) > 0)
     {
         printf("%s", buffer);
     }
