@@ -44,16 +44,17 @@ int main()
         perror("listen"); 
         exit(EXIT_FAILURE); 
     } 
-    if ((new_socket = accept(server_fd, (struct sockaddr *)&address,  
-                       (socklen_t*)&addrlen))<0) 
-    { 
-        perror("accept"); 
-        exit(EXIT_FAILURE); 
-    } 
-
-    int finished = 0;
+    bool finished = true;
     while(!finished)
     {
+        if ((new_socket = accept(server_fd, (struct sockaddr *)&address,  
+                        (socklen_t*)&addrlen))<0) 
+        { 
+            perror("accept"); 
+            exit(EXIT_FAILURE); 
+        } 
+
+    
         valread = recv( new_socket , buffer, 1024, 0); 
         printf("%s", buffer);
     }
