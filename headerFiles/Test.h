@@ -1,5 +1,5 @@
-#ifndef TESTABLE_H
-#define TESTABLE_H
+#ifndef TEST_H
+#define TEST_H
 
 #include "TestResult.h"
 #include <iostream>
@@ -12,9 +12,10 @@ There is a runAllTests
 class Test 
 {
     public:
-        virtual TestResult runTest();
+        virtual TestResult runTest() = 0;
         TestResult runAndPrint();
-        std::string getName();
+        std::string getName() const;
+        void setName(std::string);
     private:
         std::string name;
 };
