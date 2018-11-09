@@ -83,7 +83,7 @@ void LaptopOutput::sendInstruction(const HormoneDose * hormone) const
 			break;
 		}
 
-		message << type << "," << amount;
+		message << type << "," << amount << "\n";
 		strMessage = message.str();
 		charArrayMessage = strMessage.c_str();
 		send(sock, charArrayMessage, strlen(charArrayMessage), 0);
