@@ -16,7 +16,6 @@ bool LaptopOutput::connectToPump(const std::string address, const int port)
 	else
 	{
 		std::cout << "Socket created" << std::endl;
-		return true;
 	}
 
 	//clear memory for connection
@@ -32,6 +31,12 @@ bool LaptopOutput::connectToPump(const std::string address, const int port)
 	{
 		std::cout << "Error connecting to socket" << std::endl;
 		close(sock);
+		return false;
+	}
+	else
+	{
+		std::cout << "Connection established" << std::endl;
+		return true;
 	}
 }
 
@@ -78,7 +83,8 @@ void LaptopOutput::sendInstruction(const HormoneDose * hormone) const
 			break;
 		}
 
-		message << type << "," << amount;
+		amount = std::to_string(hormone->getHormoneAmount());
+		message << type << "," << amount << "\n";
 		strMessage = message.str();
 		charArrayMessage = strMessage.c_str();
 		send(sock, charArrayMessage, strlen(charArrayMessage), 0);
