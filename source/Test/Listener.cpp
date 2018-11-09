@@ -45,10 +45,11 @@ int main()
         exit(EXIT_FAILURE);
     } 
 
-    int count = 0;
-    while((count = recv(new_socket , &buffer, 20, 0)) > 0)
+    int count;
+    while((count = recv(new_socket , &buffer[index], 20, 0)) > 0)
     {
         printf("%s", buffer);
+        index += count;
     }
     return 0;
 }
