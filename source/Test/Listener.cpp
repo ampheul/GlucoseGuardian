@@ -11,7 +11,7 @@ int main()
     struct sockaddr_in address; 
     int opt = 1; 
     int addrlen = sizeof(address); 
-    char buffer[8192] = {0}; 
+    char buffer[20] = {0}; 
     char *hello = "Hello from server"; 
        
     // Creating socket file descriptor 
@@ -38,16 +38,17 @@ int main()
         perror("listen"); 
         exit(EXIT_FAILURE); 
     } 
-    if ((new_socket = accept(server_fd, (struct sockaddr *)&address,  
-                    (socklen_t*)&addrlen))<0) 
-    { 
-        perror("accept"); 
-        exit(EXIT_FAILURE);
-    } 
 
-    int count = 0;
-    while((count = recv(new_socket , &buffer, 20, 0)) > 0)
+    while(true)
     {
+        if ((new_socket = accept(server_fd, (struct sockaddr *)&address,  
+                        (socklen_t*)&addrlen))<0) 
+        { 
+            perror("accept"); 
+            exit(EXIT_FAILURE);
+        } 
+
+        recv(new_socket, buffer, 20, 0);
         printf("%s", buffer);
     }
     return 0;
