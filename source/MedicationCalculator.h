@@ -27,7 +27,7 @@ class MedicationCalculator{
     
     public:
         //Constructor
-        MedicationCalculator(double glu, double weight, int age, struct tm sleep, std::string ex, double carb);
+        MedicationCalculator(double glu, double weight, int age, struct tm sleep, std::string ex, double carb, std::string ins);
 
         //Destructor
         ~MedicationCalculator();
@@ -44,6 +44,7 @@ class MedicationCalculator{
         std::string exLevel;
         double carbGrams;
         double TDD;
+        std::string insType;
 
         void validateReading();
         double getGlucagon();
