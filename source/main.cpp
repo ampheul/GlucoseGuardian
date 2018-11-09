@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../Header Files/Account/Account.h"
+#include "../headerFiles/Account.h"
 
 using namespace std;
 
@@ -36,12 +36,12 @@ int main()
 		cout << "2 - Glucose Level";
 		string option;
 		getline(cin, option);
-		/**if (option.equals("1")) {
-			cout << patient.getRecordEntries();
+		if (option == "1") {
+			cout << "Patient Records Are: No Records Found";
 		}
 		else {
-			cout << patient.monitorRecord.getReading();
-		} **/
+			cout << "Patient's Latest Glucose Reading is: No Records Found";
+		}
 	}
 
 	// prompt user to input patient data
