@@ -48,7 +48,7 @@ int main()
             exit(EXIT_FAILURE);
         } 
 
-        recv(new_socket, buffer, 20, 0)
+        recv(new_socket, buffer, 20, 0);
         printf("%s", buffer);
     }
     return 0;
