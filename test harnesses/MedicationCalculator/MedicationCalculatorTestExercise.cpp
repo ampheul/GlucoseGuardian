@@ -9,26 +9,13 @@ Description: tests medication calculator
 #include <stdio.h>
 #include <string>
 #include <sstream>
+#include <vector>
 
 #include "MedicationCalculator.h"
 #include "HormoneDose.h"
 
 using namespace std;
 
-void TestSetup()
-{
-	vector<string> exerciseLevel = ["Low", "Medium", "High", "None"];
-	bool result;
-	
-	for (auto& level : exerciseLevel)
-	{
-		result = TestPass_Exercise(level);
-		if (!result)
-		{
-			cout << "Test failed on exercise level: " << level << endl;
-		}
-	}
-}
 
 bool TestPass_Exercise(string exerciseLevel)
 {
@@ -39,7 +26,7 @@ bool TestPass_Exercise(string exerciseLevel)
 	
 	MedicationCalculator calc (39, 100, 10, tm, exerciseLevel, 0, "Basal");
 	HormoneDose hormone = calc.computeDosage();
-	int amount = hormone.getHormoneAmount();
+	double amount = hormone.getHormoneAmount();
 	
 	if(amount == 0)
 	{
@@ -48,6 +35,21 @@ bool TestPass_Exercise(string exerciseLevel)
 	else
 	{
 		return true;
+	}
+}
+
+void TestSetup()
+{
+	vector<string> exerciseLevel = {"Low", "Medium", "High", "None"};
+	bool result;
+	
+	for (auto& level : exerciseLevel)
+	{
+		result = TestPass_Exercise(level);
+		if (!result)
+		{
+			cout << "Test failed on exercise level: " << level << endl;
+		}
 	}
 }
 
