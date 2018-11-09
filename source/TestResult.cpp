@@ -17,7 +17,7 @@ std::string TestResult::getMessage() const
 std::string TestResult::toString() const
 {
     std::stringstream ss;
-    ss  << this->getValue() == TestValue::Failure ? "Failure" : "Success" 
+    ss  << (this->getValue() == TestValue::Failure ? "Failure" : "Success") 
         << std::endl << this->getMessage();
-    return s.str();
+    return ss.str();
 }

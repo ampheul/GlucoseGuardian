@@ -1,17 +1,25 @@
+
 #ifndef HORMONEDOSE_H
 #define HORMONEDOSE_H
 
-#include "HormoneType.h"
+class HormoneDose {
+	
+public:
+	enum hormoneType {Basal_Insulin, Bolus_Insulin, Glucagon};
 
-class HormoneDose
-{
-	private:
-		const double hormoneAmount;
-		const HormoneType hormoneType;
-	public:
-		HormoneDose(const HormoneType hormoneType, const double amount);
-		const HormoneType getHormoneType() const;
-		const double getHormoneAmount() const;
+    HormoneDose();
+	HormoneDose(hormoneType, double);
+	~HormoneDose();
+
+	const hormoneType getHormoneType() const;
+	const double getHormoneAmount() const;
+	void setHormoneType(const hormoneType);
+	void setHormoneAmount(const double);
+
+private:
+	double hormoneAmount;
+	hormoneType type;
+
 };
 
 #endif
