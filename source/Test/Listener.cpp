@@ -21,13 +21,7 @@ int main()
         exit(EXIT_FAILURE); 
     } 
        
-    // Forcefully attaching socket to the port 8080 
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, 
-                                                  &opt, sizeof(opt))) 
-    { 
-        perror("setsockopt"); 
-        exit(EXIT_FAILURE); 
-    } 
+
     address.sin_family = AF_INET; 
     address.sin_addr.s_addr = INADDR_ANY; 
     address.sin_port = htons( 3307 ); 
@@ -51,7 +45,7 @@ int main()
         exit(EXIT_FAILURE); 
     } 
 
-    while((valread = recv( new_socket , buffer, sizeof(buffer - valread), 0)) > 0)
+    while((valread = recv( new_socket , buffer, sizeof(buffer), 0)) > 0)
     {
         printf("%s", buffer);
     }
