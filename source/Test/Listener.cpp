@@ -20,8 +20,7 @@ int main()
 
     listen(socketId, 5);
 
-    int                         finished    = 1;
-    while(!finished)
+    while(true)
     {
         struct  sockaddr_storage    serverStorage;
         socklen_t                   addr_size   = sizeof serverStorage;
