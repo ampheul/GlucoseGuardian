@@ -45,7 +45,7 @@ int main()
         exit(EXIT_FAILURE); 
     } 
 
-    while((valread = read( new_socket , buffer, sizeof(buffer))) > 0)
+    while((valread = read( new_socket , buffer, sizeof(buffer))) >= 0)
     {
         printf("%s", buffer);
     }
