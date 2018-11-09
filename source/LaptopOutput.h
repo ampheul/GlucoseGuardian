@@ -12,7 +12,7 @@
 #include <unistd.h>
 #include <string.h>
 
-class LaptopOutput : public InsulinPump
+class LaptopOutput
 {
 private:
 	int sock, connectionStatus;
@@ -26,5 +26,5 @@ private:
 public:
 	LaptopOutput(const std::string, const int);
 	~LaptopOutput();
-	void sendInstruction(const HormoneDose *) const;
+	void sendInstruction(const HormoneDose *);
 };
