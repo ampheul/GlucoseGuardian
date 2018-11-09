@@ -50,7 +50,11 @@ int main()
         perror("accept"); 
         exit(EXIT_FAILURE); 
     } 
-    valread = read( new_socket , buffer, 1024); 
-    printf("%s", buffer);
+
+    while(true)
+    {
+        valread = read( new_socket , buffer, 1024); 
+        printf("%s", buffer);
+    }
     return 0; 
 }
