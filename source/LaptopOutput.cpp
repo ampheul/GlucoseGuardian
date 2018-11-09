@@ -53,7 +53,7 @@ LaptopOutput::~LaptopOutput()
 }
 
 //transmit message
-void LaptopOutput::sendInstruction(const HormoneDose * hormone) const
+void LaptopOutput::sendInstruction(const HormoneDose * hormone)
 {
 	if (sock == -1)
 	{

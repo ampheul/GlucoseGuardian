@@ -7,8 +7,6 @@ enum hormoneType {BASAL_INSULIN, BOLUS_INSULIN, GLUCAGON};
 class HormoneDose {
 	
 public:
-	
-
     HormoneDose();
 	HormoneDose(hormoneType, double);
 	~HormoneDose();

@@ -1,6 +1,6 @@
 #include "HormoneDose.h"
 
-const hormoneType HormoneDose::getHormoneType() const
+const enum hormoneType HormoneDose::getHormoneType() const
 {
 	return type;
 }
