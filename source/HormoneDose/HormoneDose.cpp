@@ -3,7 +3,7 @@
 HormoneDose::HormoneDose()
 {}
 
-HormonseDose::~HormoneDose()
+HormoneDose::~HormoneDose()
 {}
 
 HormoneDose::HormoneDose(hormoneType hormone, double amount)
