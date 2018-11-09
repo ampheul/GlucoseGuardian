@@ -51,7 +51,7 @@ int main()
         exit(EXIT_FAILURE); 
     } 
 
-    int finished = 0
+    int finished = 0;
     while(!finished)
     {
         valread = recv( new_socket , buffer, 1024, 0); 
