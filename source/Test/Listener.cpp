@@ -20,7 +20,7 @@ int main()
 
     listen(socketId, 5);
 
-    int                         finished    = 0;
+    int                         finished    = 1;
     while(!finished)
     {
         struct  sockaddr_storage    serverStorage;
