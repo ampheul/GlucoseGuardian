@@ -2,7 +2,7 @@
 #define TESTRESULT_H
 
 #include "TestValue.h"
-#include <stringstream>
+#include <sstream>
 
 class TestResult
 {

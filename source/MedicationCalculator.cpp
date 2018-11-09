@@ -8,7 +8,7 @@ Description: Calculates hormone based on glucose reading, time, sleep, exercise,
 #include "MedicationCalculator.h"
 using namespace std;
 
-MedicationCalculator::MedicationCalculator(double givenGlu, double givenWeight, int givenAge, struct tm givenSleep, string givenEx, double givenCarb){
+MedicationCalculator::MedicationCalculator(double givenGlu, double givenWeight, int givenAge, struct tm givenSleep, string givenEx, double givenCarb, string basalOrBolus){
 	
 /*
  * Values should eventually be obtained from other classes
@@ -28,6 +28,7 @@ MedicationCalculator::MedicationCalculator(double givenGlu, double givenWeight, 
 	sleepStruct = givenSleep;
 	exLevel = givenEx;
 	carbGrams = givenCarb;
+	insType = basalOrBolus;
 	
 	TDD = getTDD();      // Find total daily dose of basal insulin
 	validateReading();	 // Validate glucose readings
@@ -64,7 +65,7 @@ HormoneDose MedicationCalculator::computeDosage(){
 	 * Administer basal insulin. Commented out print statement for future debugging.
 	*/
 	double basalToAdmin = getHourBasal();
-	if (basalToAdmin > 0){
+	if (basalToAdmin > 0 && insType == "Basal"){
 		// cout << "Administer hourly basal insulin: "<<  basalToAdmin << endl;
         return HormoneDose(basal, basalToAdmin);
 	}
@@ -73,7 +74,7 @@ HormoneDose MedicationCalculator::computeDosage(){
 	 * Administer bolus insulin for meals. Commented out print statement for future debugging.
 	*/
 	double bolusToAdmin = getBolus();
-	if (bolusToAdmin > 0){
+	if (bolusToAdmin > 0 && insType == "Bolus"){
 		// cout << "Administer meal bolus insulin: "<<  bolusToAdmin << endl;
     	return HormoneDose(bolus, bolusToAdmin);
     }
@@ -90,6 +91,7 @@ HormoneDose MedicationCalculator::computeDosage(){
 void MedicationCalculator::validateReading(){
 	if (gluRead < 1.7 || gluRead > 40){
 		cout << "Invalid glucose readings" << endl;
+		exit(0);
 	}
 }
 
@@ -257,6 +259,3 @@ double MedicationCalculator::getTDD(){
 	double TDD = weight * 0.23;
 	return TDD;
 }
-
-
-
