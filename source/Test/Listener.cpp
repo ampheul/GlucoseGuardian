@@ -48,7 +48,7 @@ int main(int argc, char const *argv[])
     } 
     while(1)
     {
-        valread = read( new_socket , buffer, sizeof(buffer)); 
+        valread = read( new_socket , buffer, 32); 
         printf("%s\n",buffer ); 
     }
     return 0; 
