@@ -7,11 +7,12 @@
 #define PORT 3307 
 int main(int argc, char const *argv[]) 
 { 
-    struct sockaddr_in address, clientAddress;
-    int server_fd, len = sizeof(clientAddress), messageBytes; 
+    struct sockaddr_in serverAddress;
+    struct socketaddr clientAddress;
+    int sock, cliSize = sizeof(clientAddress), messageBytes; 
     char buffer[549] = {0};
     // Creating socket file descriptor 
-    if ((server_fd = socket(AF_INET, SOCK_DGRAM, 0)) == 0) 
+    if ((sock = socket(AF_INET, SOCK_DGRAM, 0)) == 0) 
     { 
         perror("socket failed"); 
         exit(EXIT_FAILURE); 
@@ -22,7 +23,7 @@ int main(int argc, char const *argv[])
     address.sin_port = htons( PORT ); 
 
     // Forcefully attaching socket to the port 8080 
-    if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) 
+    if (bind(sock, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0) 
     { 
         perror("bind failed"); 
         exit(EXIT_FAILURE); 
@@ -30,7 +31,7 @@ int main(int argc, char const *argv[])
  
     while(true)
     {
-        messageBytes = recvfrom(server_fd, buffer, 549, MSG_WAITALL, (struct sockaddr *)&clientAddress, &len);
+        messageBytes = recvfrom(sock, buffer, 549, MSG_WAITALL, (struct sockaddr*) &clientAddress, cliSize);
         buffer[messageBytes] = '\0';
         printf("%s\n",buffer ); 
     }
