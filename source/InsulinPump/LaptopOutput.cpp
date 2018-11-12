@@ -87,7 +87,7 @@ void LaptopOutput::sendInstruction(const HormoneDose * hormone) const
 		message << type << "," << amount;
 		strMessage = message.str();
 		charArrayMessage = strMessage.c_str();
-		if((send(sock, charArrayMessage, 20, 0)) < 0)
+		if((send(sock, charArrayMessage, 32, 0)) < 0)
 		{
 			std::cout << "Error: failed to send message" << std::endl;
 		}
