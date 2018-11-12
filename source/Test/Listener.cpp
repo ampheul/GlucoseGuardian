@@ -7,8 +7,8 @@
 #define PORT 3307 
 int main(int argc, char const *argv[]) 
 { 
-    int server_fd, new_socket, valread; 
-    struct sockaddr_in address; 
+    int server_fd, len, messageBytes; 
+    struct sockaddr_in address, clientAddress; 
     int opt = 1; 
     int addrlen = sizeof(address); 
     char buffer[549] = {0}; 
@@ -18,18 +18,12 @@ int main(int argc, char const *argv[])
     { 
         perror("socket failed"); 
         exit(EXIT_FAILURE); 
-    } 
-       
-    // Forcefully attaching socket to the port 8080 
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)))
-    { 
-        perror("setsockopt"); 
-        exit(EXIT_FAILURE); 
-    } 
+    }
+
     address.sin_family = AF_INET; 
     address.sin_addr.s_addr = INADDR_ANY; 
     address.sin_port = htons( PORT ); 
-       
+
     // Forcefully attaching socket to the port 8080 
     if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) 
     { 
@@ -39,7 +33,8 @@ int main(int argc, char const *argv[])
  
     while(true)
     {
-        recv(server_fd, buffer, 549, MSG_WAITALL);
+        messageBytes = recvfrom(server_fd, buffer, 549, MSG_WAITALL, (struct sockaddr_in *), &len);
+        buffer[messageBytes] = "\0";
         printf("%s\n",buffer ); 
     }
     return 0;
