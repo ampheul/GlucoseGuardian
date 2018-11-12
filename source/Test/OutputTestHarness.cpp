@@ -10,6 +10,8 @@ int main(void)
 
 	h->setHormoneType(BASAL_INSULIN);
 	h->setHormoneAmount(9.0);
+
+	lo->sendInstruction(h);
 	
 	delete(h);
 	delete(lo);
