@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
  
     while(true)
     {
-        messageBytes = recvfrom(server_fd, buffer, 549, MSG_WAITALL, (struct sockaddr_in *)&clientAddress, &len);
+        messageBytes = recvfrom(server_fd, buffer, 549, MSG_WAITALL, (struct sockaddr *)&clientAddress, &len);
         buffer[messageBytes] = '\0';
         printf("%s\n",buffer ); 
     }
