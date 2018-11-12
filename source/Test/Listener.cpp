@@ -7,12 +7,9 @@
 #define PORT 3307 
 int main(int argc, char const *argv[]) 
 { 
-    int server_fd, len, messageBytes; 
-    struct sockaddr_in address, clientAddress; 
-    int opt = 1; 
-    int addrlen = sizeof(address); 
-    char buffer[549] = {0}; 
-       
+    struct sockaddr_in address, clientAddress;
+    int server_fd, len = sizeof(clientAddress), messageBytes; 
+    char buffer[549] = {0};
     // Creating socket file descriptor 
     if ((server_fd = socket(AF_INET, SOCK_DGRAM, 0)) == 0) 
     { 
