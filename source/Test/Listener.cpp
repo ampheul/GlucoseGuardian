@@ -8,7 +8,7 @@
 int main(int argc, char const *argv[]) 
 { 
     struct sockaddr_in serverAddress;
-    struct socketaddr clientAddress;
+    struct sockaddr clientAddress;
     int sock, cliSize = sizeof(clientAddress), messageBytes; 
     char buffer[549] = {0};
     // Creating socket file descriptor 
@@ -18,9 +18,9 @@ int main(int argc, char const *argv[])
         exit(EXIT_FAILURE); 
     }
 
-    address.sin_family = AF_INET; 
-    address.sin_addr.s_addr = INADDR_ANY; 
-    address.sin_port = htons( PORT ); 
+    serverAddress.sin_family = AF_INET; 
+    serverAddress.sin_addr.s_addr = INADDR_ANY; 
+    serverAddress.sin_port = htons( PORT ); 
 
     // Forcefully attaching socket to the port 8080 
     if (bind(sock, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0) 
