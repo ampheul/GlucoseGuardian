@@ -7,6 +7,9 @@ int main(void)
 
 	LaptopOutput * lo = new LaptopOutput("127.0.0.1", 3307);
 	lo->sendInstruction(h);
+
+	h->setHormoneType(BASAL_INSULIN);
+	h->setHormoneAmount(9.0);
 	
 	delete(h);
 	delete(lo);
