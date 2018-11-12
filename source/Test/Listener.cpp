@@ -11,10 +11,10 @@ int main(int argc, char const *argv[])
     struct sockaddr_in address; 
     int opt = 1; 
     int addrlen = sizeof(address); 
-    char buffer[1024] = {0}; 
+    char buffer[549] = {0}; 
        
     // Creating socket file descriptor 
-    if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) 
+    if ((server_fd = socket(AF_INET, SOCK_DGRAM, 0)) == 0) 
     { 
         perror("socket failed"); 
         exit(EXIT_FAILURE); 
@@ -36,20 +36,11 @@ int main(int argc, char const *argv[])
         perror("bind failed"); 
         exit(EXIT_FAILURE); 
     } 
-    if (listen(server_fd, 3) < 0) 
-    { 
-        perror("listen"); 
-        exit(EXIT_FAILURE); 
-    } 
-    if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen)) < 0) 
-    { 
-        perror("accept"); 
-        exit(EXIT_FAILURE); 
-    } 
-    while(1)
+ 
+    while(true)
     {
-        valread = read( new_socket , buffer, 32); 
+        recv(server_fd, buffer, 549, MSG_WAITALL);
         printf("%s\n",buffer ); 
     }
-    return 0; 
+    return 0;
 } 
