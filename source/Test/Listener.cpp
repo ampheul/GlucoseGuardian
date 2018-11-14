@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
     clientSize = sizeof(clientAddress); 
     while(true)
     {
-        messageBytes = recvfrom(sock, buffer, 549, MSG_WAITALL, (struct sockaddr*) &clientAddress, &clientSize);
+        messageBytes = recv(sock, buffer, 549, 0);
         buffer[messageBytes] = '\0';
         printf("%s\n",buffer ); 
     }
