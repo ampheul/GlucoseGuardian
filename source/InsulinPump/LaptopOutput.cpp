@@ -67,7 +67,7 @@ void LaptopOutput::sendInstruction(const HormoneDose * hormone) const
 		}
 
 		amount = std::to_string(hormone->getHormoneAmount());
-		message = "";
+		message.str(std::string());
 		message << type << "," << amount;
 		strMessage = message.str();
 		charArrayMessage = strMessage.c_str();
