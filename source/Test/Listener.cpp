@@ -40,7 +40,7 @@ int main(int argc, char const *argv[])
     while(true)
     {
         messageBytes = recv(sock, buffer, 549, 0);
-        //buffer[messageBytes] = '\0';
+        buffer[messageBytes] = '\0';
         input.str(std::string(buffer));
         getline(input, medication, ',');
         getline(input, amount, '\n');
