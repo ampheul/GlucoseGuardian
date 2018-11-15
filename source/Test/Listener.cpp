@@ -46,6 +46,7 @@ int main(int argc, char const *argv[])
         getline(input, amount, '\n');
         output << "Received instruction to administer " << amount << " units of " << medication;
         std::cout << output.str() << std::endl;
+        input.str(std::string());
     }
     return 0;
 } 
