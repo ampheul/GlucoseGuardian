@@ -48,8 +48,6 @@ int main(int argc, char const *argv[])
         std::cout << output.str() << std::endl;
         output.str(std::string());
         memset(buffer, 0, sizeof(buffer));
-        memset(medication, 0, sizeof(medication));
-        memset(amount, 0, sizeof(amount));
     }
     return 0;
 } 
