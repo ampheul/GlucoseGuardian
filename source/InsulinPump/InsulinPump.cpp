@@ -1,3 +1,3 @@
-#include "InsulinPUmp.h"
+#include "InsulinPump.h"
 
 virtual void InsulinPump::sendInstruction(const HormoneDose *) const = 0;

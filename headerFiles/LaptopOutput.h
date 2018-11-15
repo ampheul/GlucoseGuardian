@@ -12,8 +12,9 @@
 #include <unistd.h>
 #include <string.h>
 #include "HormoneDose.h"
+#include "InsulinPump.h"
 
-class LaptopOutput
+class LaptopOutput : public InsulinPump
 {
 private:
 	int sock, connectionStatus;
