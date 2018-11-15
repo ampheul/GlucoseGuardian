@@ -40,13 +40,14 @@ int main(int argc, char const *argv[])
     while(true)
     {
         messageBytes = recv(sock, buffer, 549, 0);
-        buffer[messageBytes] = '\0';
+        //buffer[messageBytes] = '\0';
         input.str(std::string(buffer));
         getline(input, medication, ',');
         getline(input, amount, '\n');
         output << "Received instruction to administer " << amount << " units of " << medication;
         std::cout << output.str() << std::endl;
         output.str(std::string());
+        memset(buffer, 0, sizeof(buffer));
     }
     return 0;
 } 
