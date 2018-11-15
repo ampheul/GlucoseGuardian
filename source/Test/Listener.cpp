@@ -1,9 +1,9 @@
-#include <unistd.h> 
-#include <stdio.h> 
-#include <sys/socket.h> 
-#include <stdlib.h> 
-#include <netinet/in.h> 
-#include <string.h> 
+#include <unistd.h>
+#include <stdio.h>
+#include <sys/socket.h>
+#include <stdlib.h>
+#include <netinet/in.h>
+#include <string.h>
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -28,8 +28,9 @@ int main(int argc, char const *argv[])
 
     serverAddress.sin_family = AF_INET; 
     serverAddress.sin_addr.s_addr = INADDR_ANY; 
-    serverAddress.sin_port = htons( PORT ); 
+    serverAddress.sin_port = htons(PORT); 
 
+    //bind to socket
     if (bind(sock, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0) 
     { 
         perror("bind failed"); 
@@ -39,7 +40,6 @@ int main(int argc, char const *argv[])
     while(true)
     {
         messageBytes = recv(sock, buffer, 549, 0);
-        //buffer[messageBytes] = '\0';
         input.str(std::string(buffer));
         getline(input, medication, ',');
         getline(input, amount, '\n');
@@ -52,4 +52,4 @@ int main(int argc, char const *argv[])
         amount.clear();
     }
     return 0;
-} 
+}
