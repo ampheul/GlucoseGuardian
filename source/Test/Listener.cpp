@@ -4,7 +4,12 @@
 #include <stdlib.h> 
 #include <netinet/in.h> 
 #include <string.h> 
+#include <string>
+#include <iostream>
+#include <sstream>
+
 #define PORT 3307 
+
 int main(int argc, char const *argv[]) 
 { 
     struct sockaddr_in serverAddress;
@@ -12,7 +17,9 @@ int main(int argc, char const *argv[])
     int sock, messageBytes; 
     socklen_t clientSize;
     char buffer[549] = {0};
-    // Creating socket file descriptor 
+    std::stringstream input, output;
+    std::string medication, amount;
+
     if ((sock = socket(AF_INET, SOCK_DGRAM, 0)) == 0) 
     { 
         perror("socket failed"); 
@@ -34,7 +41,12 @@ int main(int argc, char const *argv[])
     {
         messageBytes = recv(sock, buffer, 549, 0);
         buffer[messageBytes] = '\0';
-        printf("%s\n",buffer ); 
+        input.str(std::string(buffer));
+        getline(input, medication, ',');
+        getline(input, amount, '\n');
+        output << "Received instruction to administer " << amount << " units of " << medication;
+        std::cout << output.str() << std::endl;
+        input.str(std::string());
     }
     return 0;
 } 
