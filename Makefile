@@ -1,13 +1,18 @@
+TEST = false
 
-SDIR = "source"
-ODIR = "bin"
-test: TestTest.cpp Test.o
-	g++ -o $(ODIR)/TestTest TestTest.cpp $(ODIR)/Test.o
+CFLAGS = -iquote source
+CC = g++
 
-$(ODIR)/Test.o:
-	g++ $(SDIR)/Test.cpp -c $(ODIR)/Test.o
-$(ODIR)/Test.o
+TestTest: Test.o
+
+Test.o: TestResult.o
+	$(CC) -o source/Test.cpp TestResult.o
+TestResult.o:
+	$(CC) -c source/TestResult.cpp
+
 clean: cleanDocs
+
+%:
 
 cleanDocs:
 	rm -rf docs/latex docs/html
