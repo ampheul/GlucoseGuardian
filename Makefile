@@ -1,13 +1,22 @@
+TEST = false
 
-SDIR = "source"
-ODIR = "bin"
-test: TestTest.cpp Test.o
-	g++ -o $(ODIR)/TestTest TestTest.cpp $(ODIR)/Test.o
+CFLAGS = -iquote headerFiles
+CC = g++
 
-$(ODIR)/Test.o:
-	g++ $(SDIR)/Test.cpp -c $(ODIR)/Test.o
-$(ODIR)/Test.o
+%:
+	echo "asdfasdf"
+%Q:
+	echo $@
+
+TestTest: Test.o
+
+Test.o: TestResult.o
+	$(CC) -o source/Test.cpp TestResult.o
+TestResult.o:
+	$(CC) -c $(CFLAGS) source/TestResult.cpp
+
 clean: cleanDocs
+
 
 cleanDocs:
 	rm -rf docs/latex docs/html
