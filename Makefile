@@ -1,22 +1,29 @@
 TEST = false
-
+TSDIR = tests
+ODIR = bin
+ODIR_SHARED = $(ODIR)/shared
 CFLAGS = -iquote headerFiles
 CC = g++
+TEST_PREREQS = $(patsubst %.cpp, %.o, $(wildcard $(TSDIR)/* ))
 
-%:
-	echo "asdfasdf"
-%Q:
-	echo $@
+none:
+	echo $(TEST)
 
-TestTest: Test.o
+tests/%.o:
+	g++ -c $(ODIR)/$(patsubst tests/%, )
 
-Test.o: TestResult.o
-	$(CC) -o source/Test.cpp TestResult.o
-TestResult.o:
-	$(CC) -c $(CFLAGS) source/TestResult.cpp
+$(ODIR)/shared/%.o: CFLAGS += -fPIC
+
+	
+$(ODIR)/Test.o: 
+	g++ $(CFLAGS) -fPIC -o $(ODIR)/Test.o $(SDIR)/Test/Test.cpp
+
+tests: Test.o TestResult.o 
+
+libTest: Test.o TestResult.o
+	g++ -c -shared 
 
 clean: cleanDocs
-
 
 cleanDocs:
 	rm -rf docs/latex docs/html
