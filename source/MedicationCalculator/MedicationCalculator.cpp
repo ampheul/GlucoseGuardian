@@ -83,8 +83,6 @@ HormoneDose MedicationCalculator::computeDosage(){
 }
 
 
-
-
 /* Validate glucose readings
    Reference: 5
 */

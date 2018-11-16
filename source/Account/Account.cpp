@@ -5,7 +5,6 @@
 */
 
 #include "Account.h"
-#include <iostream>
 
 using namespace std;
 
@@ -14,8 +13,12 @@ using namespace std;
 	Description: constructor
 	@param string password - password that will be used to verify the identity of the user.
 */
-Account::Account(string password)
+Account::Account()
 {
+	string password;
+	cout << "Please enter a password: " << endl;
+	getline(cin, password);
+	
 	// check if accounts.txt file exists locally. If it does not, then the account needs to be initialized, else, continue the verification process.
 	ifstream accountStream(ACCOUNT_INFO);
 	if (accountStream.is_open())
@@ -48,18 +51,7 @@ Account::~Account() {};
 */
 void Account::AccountOptions()
 {
-	if (accountType == PATIENT) 
-	{
-		cout << "Patient user verified, please choose an option: " << endl;
-	}
-	else if (accountType == GUEST)
-	{
-		cout << "Guest user verified, please choose an option: " << endl;
-	}
-	else
-	{
-		cout << "Stranger danger, you're not supposed to be here." << endl;
-	}
+	accountType.PrintOptions();
 };
 
 /*!
@@ -98,17 +90,17 @@ void Account::VerifyPassword(ifstream& hashStream, string password)
 	if (patientHash == hashToCheck)
 	{
 		cout << "patient signed in" << endl;
-		accountType = PATIENT;
+		accountType = new PatientAccount();
 	}
 	else if (guestHash == hashToCheck)
 	{
 		cout << "guest signed in" << endl;
-		accountType = GUEST;
+		accountType = new GuestAcount();
 	}
 	else
 	{
 		cout << "unknown attempt to sign in" << endl;
-		accountType = UNKNOWN;
+		accountType = new UnknownAccount();
 	}
 };
 

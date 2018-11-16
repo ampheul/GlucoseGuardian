@@ -12,13 +12,13 @@
 #include <unistd.h>
 #include <string.h>
 #include "HormoneDose.h"
+#include "InsulinPump.h"
 
-class LaptopOutput
+class LaptopOutput : public InsulinPump
 {
 private:
-	int sock, connectionStatus;
+	int sock;
 	struct sockaddr_in server;
-	socklen_t serverSize;
 	bool connectToPump(const std::string, const int);
 	mutable std::string type, amount, strMessage;
 	mutable std::stringstream message;
