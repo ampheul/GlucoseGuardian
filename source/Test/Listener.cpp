@@ -13,7 +13,6 @@
 int main(int argc, char const *argv[]) 
 { 
     struct sockaddr_in serverAddress;
-    struct sockaddr clientAddress;
     int sock, messageBytes; 
     socklen_t clientSize;
     char buffer[549] = {0};
