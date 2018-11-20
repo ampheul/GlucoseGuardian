@@ -1,6 +1,5 @@
 #include <iostream>
-#include "../../header files/Contacts/Contact.h"
-// #include "ContactType.h"
+#include "Contact.h"
 
 using namespace std;
 

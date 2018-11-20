@@ -1,8 +1,13 @@
+#ifndef PATIENT_H
+#define PATIENT_H
+
 #include <iostream>
 #include "DeviceRecord.h"
 #include "Patient.h"
 #include "Contact.h"
 using namespace std;
+
+// TODO: move into implementation file
 
 public static class Patient {
 private:
@@ -96,3 +101,5 @@ public:
 		return password.equals(givenPassword);
 	}
 };
+
+#endif

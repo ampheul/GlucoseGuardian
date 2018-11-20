@@ -16,4 +16,3 @@ static void ReportMaker::testHarness()
     return;
 }
 
-#endif

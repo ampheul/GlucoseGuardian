@@ -17,10 +17,20 @@ RULES_DIR = makeRules
 RULEFILES := $(patsubst $(SDIR)/%.cpp, $(RULES_DIR)/%.mk, $(shell find $(SDIR) -name "*.cpp"))
 percent := %
 
+all: directories rules 
+
+# rule to make a directory ending in "/"
+%/:
+	mkdir -p $@
+.PHONY: ./
+
+
 # make all the rule files 
+.PHONY: rules
 rules: $(RULEFILES)
-$(RULES_DIR)/%.mk: $(dir $(RULES_DIR)/%.mk) $(SDIR)/%.cpp
-	g++ $(CFLAGS) -MM $(SDIR)/$*.cpp -MT $(ODIR)/$*.o > $@
+
+#$(RULES_DIR)/%.mk: $(dir $(RULES_DIR)/%.mk) $(SDIR)/%.cpp
+#	g++ $(CFLAGS) -MM $(SDIR)/$*.cpp -MT $(ODIR)/$*.o > $@
 
 .SECONDEXPANSION:
 $(TEST_ODIR)/%.o: $$(wordlist 2,1000, \
@@ -30,36 +40,35 @@ $(TEST_ODIR)/%.o: $$(wordlist 2,1000, \
 $(SHARED_ODIR)/%.o:	$(SDIR)/%.cpp
 	$(CC) -c $(CFLAGS) -fPIC $^ -o $@
 
-#rules: $(patsubst $(SDIR)/%.cpp, $(RULESDIR)/%.mk, $(shell find $(SDIR) -name "*.cpp" -print0))
 
-directorys: $(shell find . -name "*.cpp")
-	echo "asdf"
+SOURCE_DIRS := $(dir $(shell find $(SDIR) -name "*.cpp" -print))
+OBJECT_DIRS := $(patsubst $(SDIR)/%, $(ODIR)/%, $(SOURCE_DIRS))
+SHARED_OBJECT_DIRS := $(patsubst $(SDIR)/%, $(SHARED_ODIR)/%, $(SOURCE_DIRS))
+MAKERULES_DIRS := $(patsubst $(SDIR)/%, $(RULES_DIR)/%, $(SOURCE_DIRS))
+
+directories: $(SOURCE_DIRS) $(OBJECT_DIRS) $(MAKERULES_DIRS)
 
 meta:
 	echo $(MAKEFILE_LIST)
-tests: $(LIBRARY_ODIR)/libTest.so $(TEST_PREREQS)
-
-
-# rule to make a directory ending in "/"
-%/:
-	mkdir -p $@
-.PHONY: ./
-
-
+libs: $(LIBRARY_ODIR)/libTest.so
 
 .SECONDEXPANSION:
 $(LIBRARY_ODIR)/lib%.so: $$(LIBRARY_ODIR)/
 $(LIBRARY_ODIR)/lib%.so: $$(patsubst $$(SDIR)/$$(percent).cpp, $$(SHARED_ODIR)/$$(percent).o, \
 		$$(shell find $$(SDIR)/$$* -name "*.cpp" -print) )
 	echo $@ $^
-#	$(CC) $(CFLAGS) -c $^ -o $@
+	$(CC) $(CFLAGS) -shared -c $^ -o $@
 
-
+.PHONY: clean
 clean: cleanDocs
-#%.mk:
 
+$(RULES_DIR)/%.mk: $(dir %)
+	$(CC) $(CFLAGS) -MM $(SDIR)/$*.cpp -MQ $(ODIR)/$*.o  > $@
+
+.PHONY: cleanDocs
 cleanDocs:
-	rm -rf docs/latex docs/html
+	rm -rf docs/latex docs/html $(RULES_DIR) \
+		$(ODIR) $(SHARED_ODIR) $(LIBRARY_ODIR)\
 
 
-#include $(shell find $(MAKERULES) -name "*.mk" -print0)
+include $(shell find $(MAKERULES) -name "*.mk" -print)
