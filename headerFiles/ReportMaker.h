@@ -11,7 +11,6 @@ afsadsafds
 class ReportMaker
 {
     public:
-        static void testHarness();
         void makeReport();
     private:
         GraphMaker graphMaker;

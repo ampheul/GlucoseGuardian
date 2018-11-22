@@ -1,74 +1,79 @@
 # Author:	Thomas Vandeven
 # Date:		November 15th 2018
 
-ODIR = bin
-SDIR = source
+ODIR := bin
+SDIR := source
+
+SOURCES := $(shell find $(SDIR) -type f -name "*.cpp" -print)
+OBJECTS := $(patsubst $(SDIR)/%.cpp, $(ODIR)/%.o, $(SOURCES))
+
+DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
+
+
 # output for shared binaries (Position independent code for shared libraries)
-SHARED_ODIR = $(ODIR)/shared
-TEST_SDIR = tests
-TEST_ODIR = $(TEST_SDIR)/bin
+SHARED_ODIR := $(ODIR)/shared
+TEST_SDIR := tests
+TEST_ODIR := $(TEST_SDIR)/bin
 # Directory for shared libraries
-LIBRARY_SDIR = $(SDIR)/lib
-LIBRARY_ODIR = $(ODIR)/lib
-CFLAGS = -iquote headerFiles
+
+LIBRARY_SDIR := $(SDIR)/lib
+LIBRARY_ODIR := $(ODIR)/lib
+CFLAGS = -iquote headerFiles #-L $(LIBRARY_ODIR)
 CC = g++
 #TEST_PREREQS = $(patsubst $(TEST_SDIR)/%.cpp, $(TEST_ODIR)/%.o, $(shell find $(TEST_SDIR) -name "$()*.cpp"))
-RULES_DIR = makeRules
-RULEFILES := $(patsubst $(SDIR)/%.cpp, $(RULES_DIR)/%.mk, $(shell find $(SDIR) -name "*.cpp"))
+RULES_DIR := makeRules
+RULEFILES := $(patsubst $(SDIR)/%.cpp, $(RULES_DIR)/%.mk, $(SOURCES))
+
 percent := %
 
-all: directories rules 
+
+DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$@.Td
+DEPDIR := .dependencies
+$(shell mkdir -p $(DEPDIR) >/dev/null)
+
+COMPILE = $(CC) $(DEPFLAGS) $(CFLAGS) -c $^ -o $@
+POSTCOMPILE = mv -f $(DEPDIR)/$@.Td $(DEPDIR)/$@.d && touch $@
+
+
+all: directories $(OBJECTS)
 
 # rule to make a directory ending in "/"
-%/:
+%/ %/./ %/.//: $(dir %)/
 	mkdir -p $@
-.PHONY: ./
+.PHONY: ./ .//
 
+$(ODIR)/main.o:
+$(ODIR)/main.o: $(OBJECTS)
+	$(COMPILE) $(OBJECTS)
+	$(POSTCOMPILE)
 
-# make all the rule files 
-.PHONY: rules
-rules: $(RULEFILES)
-
-#$(RULES_DIR)/%.mk: $(dir $(RULES_DIR)/%.mk) $(SDIR)/%.cpp
-#	g++ $(CFLAGS) -MM $(SDIR)/$*.cpp -MT $(ODIR)/$*.o > $@
-
-.SECONDEXPANSION:
-$(TEST_ODIR)/%.o: $$(wordlist 2,1000, \
-		$$(shell $$(CC) $$(CFLAGS) -MM (TEST_SDIR)/$$*.cpp ))
-#	$(CC) -c $(CFLAGS) $^ -o $@
-	echo $^
+$(SHARED_ODIR)/%.o: CFLAGS+=-fPIC
 $(SHARED_ODIR)/%.o:	$(SDIR)/%.cpp
-	$(CC) -c $(CFLAGS) -fPIC $^ -o $@
+	$(COMPILE)
+	$(POSTCOMPILE)
 
+$(ODIR)/%.o:
+$(ODIR)/%.o: $(SDIR)/%.cpp
+	$(COMPILE)
+	$(POSTCOMPILE)
 
-SOURCE_DIRS := $(dir $(shell find $(SDIR) -name "*.cpp" -print))
-OBJECT_DIRS := $(patsubst $(SDIR)/%, $(ODIR)/%, $(SOURCE_DIRS))
-SHARED_OBJECT_DIRS := $(patsubst $(SDIR)/%, $(SHARED_ODIR)/%, $(SOURCE_DIRS))
-MAKERULES_DIRS := $(patsubst $(SDIR)/%, $(RULES_DIR)/%, $(SOURCE_DIRS))
+directories: $(DEPDIR) $(dir $(OBJECTS)) $(patsubst %, $(DEPDIR)/%, $(dir $(OBJECTS)))
 
-directories: $(SOURCE_DIRS) $(OBJECT_DIRS) $(MAKERULES_DIRS)
-
-meta:
-	echo $(MAKEFILE_LIST)
 libs: $(LIBRARY_ODIR)/libTest.so
 
 .SECONDEXPANSION:
-$(LIBRARY_ODIR)/lib%.so: $$(LIBRARY_ODIR)/
-$(LIBRARY_ODIR)/lib%.so: $$(patsubst $$(SDIR)/$$(percent).cpp, $$(SHARED_ODIR)/$$(percent).o, \
-		$$(shell find $$(SDIR)/$$* -name "*.cpp" -print) )
-	echo $@ $^
-	$(CC) $(CFLAGS) -shared -c $^ -o $@
+$(LIBRARY_ODIR)/lib%.so: directories
+$(LIBRARY_ODIR)/lib%.so: $$(wildcard $$(SHARED_ODIR)/$$*/*.o )
+	echo $(wildcard $(SHARED_ODIR)/$*/*.o)
+	$(CC) $(CFLAGS) -shared -c $(wildcard $(SHARED_ODIR)/$*/*.o) -o $@
 
 .PHONY: clean
 clean: cleanDocs
 
-$(RULES_DIR)/%.mk: $(dir %)
-	$(CC) $(CFLAGS) -MM $(SDIR)/$*.cpp -MQ $(ODIR)/$*.o  > $@
-
 .PHONY: cleanDocs
 cleanDocs:
 	rm -rf docs/latex docs/html $(RULES_DIR) \
-		$(ODIR) $(SHARED_ODIR) $(LIBRARY_ODIR)\
+		$(ODIR) $(SHARED_ODIR) $(LIBRARY_ODIR) $(DEPDIR)
 
 
-include $(shell find $(MAKERULES) -name "*.mk" -print)
+ include $(shell find $(DEPDIR) -type f -name "*.d" -print0)

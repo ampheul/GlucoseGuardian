@@ -16,13 +16,15 @@
 #include <cstdio>
 #include <iostream>
 #include <ctime>
+#include <vector>
 
 class GraphMaker
 {
     public:
         GraphMaker(
             std::pair<double,double> xrange, 
-            std::vector<std::pair<double, double>> data);
+            std::pair<double,double> yrange,
+            std::vector<std::pair<std::time_t, double>> data);
         void makeGraph();
     private:
         std::pair<double, double> xrange; // range (a,b), a < b

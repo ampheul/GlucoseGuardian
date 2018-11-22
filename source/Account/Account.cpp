@@ -61,7 +61,7 @@ void Account::AccountOptions()
 */
 string Account::GetAccountType() 
 {
-	return accountType;
+	return this->accountType;
 };
 
 /*!

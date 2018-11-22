@@ -7,7 +7,7 @@
 
 using namespace std;
 
-public class PatientAccount : AccountType
+class PatientAccount : public AccountType
 {
 	public void PrintOptions()
 	{

@@ -7,10 +7,10 @@ Contact::Contact(string name) {
 	Contact::name = name;
 }
 
-string getName() {
-	return Contact::name;
+string Contact::getName() {
+	return this->name;
 }
 
-void setName(string name) {
-	Contact::name = name;
+void Contact::setName(string name) {
+	this->name = name;
 }

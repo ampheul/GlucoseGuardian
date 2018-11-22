@@ -5,7 +5,7 @@ MonitorRecord::MonitorRecord(
         :   DeviceRecord(time), reading(reading)
 {}
 
-const GlucoseReading MonitorRecord::getReading() const
+GlucoseReading MonitorRecord::getReading() const
 {
     return this->reading;
 }

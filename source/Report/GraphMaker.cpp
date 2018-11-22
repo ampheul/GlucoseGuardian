@@ -6,9 +6,9 @@ GraphMaker::GraphMaker(
     std::vector<std::pair<std::time_t,double>> data)
 {
     if (xrange.first > xrange.second)
-        xrange.swap();
+        return;
     if (yrange.first > yrange.second)
-        yrange.swap();
+        return;
     this->xrange = xrange;
     this->yrange = yrange;
     this->data = data;
@@ -27,8 +27,8 @@ void GraphMaker::makeGraph()
 
     if (pid == 0)
     {
-        dup2(STDIN_FILENO, pipeOut[0]);
-        dup2(STDOUT_FILENO, gnuPlot)
+        dup2(STDIN_FILENO, toGnuPlot[0]);
+        dup2(STDOUT_FILENO, fromGnuPlot[1]);
         // this is the forked program
         execlp("gnuplot", "gnuplot", "-", NULL);
     }

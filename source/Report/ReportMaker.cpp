@@ -11,8 +11,5 @@ void ReportMaker::makeReport()
     return;
 }
 
-static void ReportMaker::testHarness()
-{
-    return;
-}
 
+    

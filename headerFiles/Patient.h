@@ -9,7 +9,7 @@ using namespace std;
 
 // TODO: move into implementation file
 
-public static class Patient {
+class Patient {
 private:
 	double weight;
 	double height;
