@@ -6,8 +6,7 @@
 #include <string>
 /** Test class
 
-Test Class is meant to be subclassed where the user overrides runTest
-There is a runAllTests
+    Test Class is meant to be subclassed where the user overrides runTest
 */
 class Test 
 {

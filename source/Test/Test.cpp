@@ -3,7 +3,7 @@
 
 TestResult Test::runAndPrint()
 {
-    TestResult tr = runTest();
+    TestResult tr = this->runTest();
     
     std::cout << "Running Test: " << this->name << std::endl;
     std::cout << tr.toString() << std::endl;

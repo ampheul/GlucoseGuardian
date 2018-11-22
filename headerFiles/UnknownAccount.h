@@ -11,12 +11,12 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include "UnknownAccount.h"
+#include "AccountType.h"
 
-class UnknownAccount
+class UnknownAccount : public AccountType
 {	
 public:	
-	void PrintOptions();
+	void printOptions();
 };
 
 #endif

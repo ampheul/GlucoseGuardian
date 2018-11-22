@@ -1,14 +1,12 @@
-#include <iostream>
-
-#include "Account.h"
+#include "main.h"
 
 using namespace std;
 
-int main() 
+int main(int argc, char **argv) 
 {
-	Account account = new Account();	
+	Account account;	
 	
-	account.PrintOptions();
+	account.accountOptions();
 
 	return 0;
 }

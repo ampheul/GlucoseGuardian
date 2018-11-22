@@ -21,8 +21,8 @@ class Account
 public:	
 	Account();
 	~Account();
-	void AccountOptions();
-	std::string GetAccountType();
+	void accountOptions();
+	AccountType getAccountType();
 
 private:
 	const std::string ACCOUNT_INFO_PATH = "/accountInfo/accountInfo.txt"; 	//! path to directory for storing accountInfo.txt

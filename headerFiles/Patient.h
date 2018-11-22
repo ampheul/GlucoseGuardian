@@ -30,7 +30,7 @@ public:
 	}
 
 	void setWeight(double weight) {
-		this.weight = weight;
+		this->weight = weight;
 	}
 
 	double getHeight() {
@@ -38,15 +38,15 @@ public:
 	}
 
 	void setHeight(double height) {
-		this.height = height;
+		this->height = height;
 	}
 
 	double getAge() {
-		return age;
+		return this->age;
 	}
 
 	void setAge(double age) {
-		this.age = age;
+		this->age = age;
 	}
 
 	string getSex() {
@@ -54,7 +54,7 @@ public:
 	}
 
 	void setSex(string sex) {
-		this.sex = sex;
+		this->sex = sex;
 	}
 
 	vector<DeviceRecord> getRecordEntries() {
@@ -70,7 +70,7 @@ public:
 	}
 
 	void setPassword(string password) {
-		this.password = password;
+		this->password = password;
 	}
 
 	void SetupPatientInfo() {
@@ -94,11 +94,11 @@ public:
 		string emergContactName;
 		cin >> emergContactName;
 
-		Contact emergContact = new Contact(emergContactName);
+		Contact emergContact(emergContactName);
 	}
 
 	bool verifyPassword(string givenPassword) {
-		return password.equals(givenPassword);
+		return this->password == givenPassword;
 	}
 };
 

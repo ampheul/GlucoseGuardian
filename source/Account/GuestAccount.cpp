@@ -7,14 +7,12 @@
 
 using namespace std;
 
-class GuestAccount : public AccountType
+
+void GuestAccount::printOptions()
 {
-	public:
-	void PrintOptions()
-	{
-		cout << "Guest user verified, please choose an option: " << endl;
-		cout << "1 - Medical History";
-		string option;
-		getline(cin, option);
-	}
-};
+	cout << "Guest user verified, please choose an option: " << endl;
+	cout << "1 - Medical History";
+	string option;
+	getline(cin, option);
+}
+

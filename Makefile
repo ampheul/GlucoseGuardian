@@ -1,26 +1,30 @@
 # Author:	Thomas Vandeven
 # Date:		November 15th 2018
-
+HEADER = headerFiles
 ODIR := bin
+STATIC_ODIR = $(ODIR)/static
 SDIR := source
+
+TEST_SDIR := tests
+TEST_ODIR := $(TEST_SDIR)/bin
 
 SOURCES := $(shell find $(SDIR) -type f -name "*.cpp" -print)
 OBJECTS := $(patsubst $(SDIR)/%.cpp, $(ODIR)/%.o, $(SOURCES))
 
-DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
+TEST_SOURCES := $(shell find $(TESTDIR) -type f -name "*.cpp" -print)
+TEST_OBJECTS := $(patsubst $(TEST_SDIR)/%.cpp, $(TEST_ODIR)/%.o, $(TESTSOURCES))
 
-
-# output for shared binaries (Position independent code for shared libraries)
 SHARED_ODIR := $(ODIR)/shared
-TEST_SDIR := tests
-TEST_ODIR := $(TEST_SDIR)/bin
+
 # Directory for shared libraries
 
 LIBRARY_SDIR := $(SDIR)/lib
 LIBRARY_ODIR := $(ODIR)/lib
-CFLAGS = -iquote headerFiles #-L $(LIBRARY_ODIR)
+
+DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
+CFLAGS = -iquote headerFiles -L $(LIBRARY_ODIR) -Wall
 CC = g++
-#TEST_PREREQS = $(patsubst $(TEST_SDIR)/%.cpp, $(TEST_ODIR)/%.o, $(shell find $(TEST_SDIR) -name "$()*.cpp"))
+
 RULES_DIR := makeRules
 RULEFILES := $(patsubst $(SDIR)/%.cpp, $(RULES_DIR)/%.mk, $(SOURCES))
 
@@ -31,41 +35,46 @@ DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$@.Td
 DEPDIR := .dependencies
 $(shell mkdir -p $(DEPDIR) >/dev/null)
 
-COMPILE = $(CC) $(DEPFLAGS) $(CFLAGS) -c $^ -o $@
+COMPILE = $(CC) $(DEPFLAGS) $(CFLAGS) $^ -o $@
 POSTCOMPILE = mv -f $(DEPDIR)/$@.Td $(DEPDIR)/$@.d && touch $@
+ARCHIVE = ar rcs $@ $^
 
+DIRECTORIES := $(DEPDIR) $(dir $(OBJECTS)) $(patsubst %, $(DEPDIR)/%, $(dir $(OBJECTS)))
 
-all: directories $(OBJECTS)
+all: $(DIRECTORIES) $(OBJECTS) libs
+libs: $(LIBRARY_ODIR)/libPancreas.a 
+.PHONY: libs
 
 # rule to make a directory ending in "/"
 %/ %/./ %/.//: $(dir %)/
-	mkdir -p $@
+	@mkdir -p $@
 .PHONY: ./ .//
 
-$(ODIR)/main.o:
-$(ODIR)/main.o: $(OBJECTS)
-	$(COMPILE) $(OBJECTS)
-	$(POSTCOMPILE)
-
-$(SHARED_ODIR)/%.o: CFLAGS+=-fPIC
-$(SHARED_ODIR)/%.o:	$(SDIR)/%.cpp
+MAINOBJECTS := $(filter-out $(ODIR)/main.o, $(OBJECTS))
+$(ODIR)/main.o: $(HEADER)/main.h $(LIBRARY_ODIR)/libPancreas.a
+$(ODIR)/main.o: $(SDIR)/main.cpp 
 	$(COMPILE)
 	$(POSTCOMPILE)
 
+$(LIBRARY_ODIR)/libPancreas.a: $(MAINOBJECTS)
+	$(ARCHIVE)
+
+$(HEADER)/main.h: $(HEADER)
+	@echo \#ifndef MAIN_H\\n\#define MAIN_H\\n > $@;\
+	for f in $(HEADER)/*; \
+	do echo \#include \"$$(basename $$f)\" >> $@; done; \
+	echo "\n#endif\n" >> $@ && touch $@
+.PHONY: $(HEADER)
+
+SHAREDOBJECTS = $(patsubst /)
 $(ODIR)/%.o:
 $(ODIR)/%.o: $(SDIR)/%.cpp
-	$(COMPILE)
+	$(COMPILE) -c
 	$(POSTCOMPILE)
 
-directories: $(DEPDIR) $(dir $(OBJECTS)) $(patsubst %, $(DEPDIR)/%, $(dir $(OBJECTS)))
 
-libs: $(LIBRARY_ODIR)/libTest.so
 
-.SECONDEXPANSION:
-$(LIBRARY_ODIR)/lib%.so: directories
-$(LIBRARY_ODIR)/lib%.so: $$(wildcard $$(SHARED_ODIR)/$$*/*.o )
-	echo $(wildcard $(SHARED_ODIR)/$*/*.o)
-	$(CC) $(CFLAGS) -shared -c $(wildcard $(SHARED_ODIR)/$*/*.o) -o $@
+
 
 .PHONY: clean
 clean: cleanDocs

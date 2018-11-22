@@ -7,10 +7,7 @@
 
 using namespace std;
 
-public class UnknownAccount : AccountType
+void UnknownAccount::printOptions()
 {
-	public void PrintOptions()
-	{
-		cout << "Stranger danger, you're not supposed to be here." << endl;
-	}
+	cout << "Stranger danger, you're not supposed to be here." << endl;
 }

@@ -5,6 +5,9 @@
 */
 
 #include "Account.h"
+#include "GuestAccount.h"
+#include "UnknownAccount.h"
+#include "PatientAccount.h"
 
 using namespace std;
 
@@ -49,9 +52,9 @@ Account::~Account() {};
 	Description: options that are available to the user. Depends on the type of the user.
 	@return	the hash value of the passed password
 */
-void Account::AccountOptions()
+void Account::accountOptions()
 {
-	accountType.PrintOptions();
+	accountType.printOptions();
 };
 
 /*!
@@ -59,7 +62,7 @@ void Account::AccountOptions()
 	Description: returns the type of the account
 	@return	the account type
 */
-string Account::GetAccountType() 
+AccountType Account::getAccountType() 
 {
 	return this->accountType;
 };
@@ -90,17 +93,17 @@ void Account::VerifyPassword(ifstream& hashStream, string password)
 	if (patientHash == hashToCheck)
 	{
 		cout << "patient signed in" << endl;
-		accountType = new PatientAccount();
+		accountType = PatientAccount();
 	}
 	else if (guestHash == hashToCheck)
 	{
 		cout << "guest signed in" << endl;
-		accountType = new GuestAcount();
+		accountType = GuestAccount();
 	}
 	else
 	{
 		cout << "unknown attempt to sign in" << endl;
-		accountType = new UnknownAccount();
+		accountType = UnknownAccount();
 	}
 };
 

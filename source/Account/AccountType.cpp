@@ -8,7 +8,7 @@
 
 using namespace std;
 
-public interface AccountType
+void AccountType::printOptions()
 {
-	public void PrintOptions();
+	cout << "No options for Base class AccountType." << endl;
 }

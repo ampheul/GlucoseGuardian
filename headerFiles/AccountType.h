@@ -14,7 +14,7 @@
 class AccountType
 {	
 public:	
-	void PrintOptions();
+	void printOptions();
 };
 
 #endif

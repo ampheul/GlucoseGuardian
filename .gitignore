@@ -6,3 +6,4 @@ docs/latex
 .vscode
 makeRules
 .dependencies
+bin

@@ -13,10 +13,10 @@
 
 #include "AccountType.h"
 
-class PatientAccount
+class PatientAccount : public AccountType
 {	
 public:	
-	void PrintOptions();
+	void printOptions();
 };
 
 #endif

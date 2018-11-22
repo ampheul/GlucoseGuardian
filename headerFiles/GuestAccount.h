@@ -3,8 +3,8 @@
 	Purpose: Header file for the Guest Account class
 */
 
-#ifndef GUEST_ACCOUNT_HEADER
-#define GUEST_ACCOUNT_HEADER
+#ifndef GUEST_ACCOUNT_H
+#define GUEST_ACCOUNT_H
 
 #include <string>
 #include <iostream>
@@ -13,10 +13,10 @@
 
 #include "AccountType.h"
 
-class GuestAccount : AccountType
+class GuestAccount : public AccountType
 {	
 public:	
-	void PrintOptions();
+	void printOptions();
 };
 
 #endif
