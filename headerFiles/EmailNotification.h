@@ -19,7 +19,7 @@ class EmailNotification
 public:	
 	EmailNotification(PatientInfo patientInfo);
 	~EmailNotification();
-	const std::string EMAIL_COMMAND = "curl --url \'smtps://smtp.gmail.com:465\' --ssl-reqd --mail-from \'noah123body@gmail.com\' --mail-rcpt \'receiver@gmail.com\' --upload-file email.txt --user \'noah123body@gmail.com:pass123word\'";
+	const std::string EMAIL_COMMAND = "curl --url \'smtps://smtp.gmail.com:465\' --ssl-reqd --mail-from \'noah123body@gmail.com\' --mail-rcpt \'receiver@gmail.com\' --upload-file email.txt --user \'noah123body@gmail.com:pass123word\'"
 
 private:
 	std::string senderEmail = patientInfo.getEmail();
