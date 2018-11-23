@@ -16,6 +16,7 @@
 #include "LaptopOutput.h"
 #include "MedicationCalculator.h"
 #include "MedicationRecord.h"
+#include "Menu.h"
 #include "MonitorRecord.h"
 #include "Patient.h"
 #include "PatientAccount.h"
@@ -30,4 +31,3 @@
 #include "runTests.h"
 
 #endif
-
