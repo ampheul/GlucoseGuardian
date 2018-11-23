@@ -37,9 +37,7 @@ DIRECTORIES := $(DEPDIR)/ $(dir $(OBJECTS)) $(patsubst %, $(DEPDIR)/%, $(dir $(O
 help:
 	@less help.txt
 
-.PHONY:
-%.run: $(TEST_ODIR)/%.run
-	echo asdf
+
 
 
 all: directories objects libs $(TEST_OBJECTS)
@@ -89,23 +87,17 @@ $(ODIR)/%.o: $(SDIR)/%.cpp
 
 RUNTESTS := $(patsubst %.o, %.run, $(TEST_OBJECTS) )
 
-.PHONY:
+.PHONY: $(TEST_ODIR)/%.run
 $(TEST_ODIR)/%.run: $(TEST_ODIR)/%.o
 	@echo "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n\
 	Running $*"; chmod +x $<; $<; echo
 
+.PHONY: %.run
+%.run: $(TEST_ODIR)/%.run
+	echo asdf
 
-
-
-runtests: tests $(RUNTESTS)
 .PHONY: runtests
-
-
-
-
-
-
-
+runtests: tests $(RUNTESTS)
 
 
 .PHONY: clean
