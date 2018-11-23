@@ -1,5 +1,4 @@
-#include "HormoneDose.h"
-#include "LaptopOutput.h"
+#include "main.h"
 
 int main(void)
 {

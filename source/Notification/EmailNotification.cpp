@@ -34,7 +34,13 @@ EmailNotification::~EmailNotification() {};
 */
 void EmailNotification::SendEmail(string senderEmail, string recipientEmail, string emailPassword)
 {
+<<<<<<< HEAD
 	cout << "Sending email to: " << recpientEmail << endl;
 	string command = "curl --url \'smtps://smtp.gmail.com:465\' --ssl-reqd --mail-from \'" + senderEmail + "\' --mail-rcpt \'" + recipientEmail + "\' --upload-file email.txt --user \'" + senderEmail + ":" + emailPassword + "\'";
 	sys(command);	
+=======
+	cout << "Sending email";
+	
+	"curl --url \'smtps://smtp.gmail.com:465\' --ssl-reqd --mail-from \'noah123body@gmail.com\' --mail-rcpt \'receiver@gmail.com\' --upload-file email.txt --user \'noah123body@gmail.com:pass123word\'";
+>>>>>>> 615d18b0b3b03fd2654db9ebd7646ca7652e08cd
 };

@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+<<<<<<< HEAD
 #include "Account.h"
 #include "AccountType.h"
 #include "Contact.h"
@@ -29,5 +30,8 @@
 #include "UnknownAccount.h"
 #include "main.h"
 #include "runTests.h"
+=======
+#include "libPancreas.h"
+>>>>>>> 615d18b0b3b03fd2654db9ebd7646ca7652e08cd
 
 #endif

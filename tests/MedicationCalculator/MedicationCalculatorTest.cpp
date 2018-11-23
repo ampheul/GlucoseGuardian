@@ -11,8 +11,7 @@ Description: tests medication calculator
 #include <string>
 #include <sstream>
 
-#include "MedicationCalculator.h"
-#include "HormoneDose.h"
+#include "libPancreas.h"
 using namespace std;
 
 /*
