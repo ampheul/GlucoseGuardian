@@ -1,7 +1,8 @@
 #include "GraphMaker.h"
 
+
 GraphMaker::GraphMaker(
-    std::pair<double,double> xrange,
+    std::pair<std::time_t,std::time_t> xrange,
     std::pair<double,double> yrange,
     std::vector<std::pair<std::time_t,double>> data)
 {
@@ -17,20 +18,24 @@ GraphMaker::GraphMaker(
 void GraphMaker::makeGraph()
 {
     
-    
     int toGnuPlot[2];
     int fromGnuPlot[2];
 
     pipe(fromGnuPlot);
     pipe(toGnuPlot);
-    pid_t pid = fork();
+    
+    dup2(STDOUT_FILENO, toGnuPlot[1]);
 
+    std::cout << makeGraphString(this->data);
+
+    pid_t pid = fork();
     if (pid == 0)
     {
         dup2(STDIN_FILENO, toGnuPlot[0]);
         dup2(STDOUT_FILENO, fromGnuPlot[1]);
         // this is the forked program
         execlp("gnuplot", "gnuplot", "-", NULL);
+        std::cerr << "EXEC gnuplot failed, this line should not have been reached." << std::endl;
     }
     else if (pid > 0)
     {
@@ -47,4 +52,10 @@ void GraphMaker::makeGraph()
     }
 
 
+}
+
+std::string GraphMaker::makeGraphString(GraphMaker::GraphDataSet data)
+{
+    std::ifstream plotFile("contours.7.gnu");
+    return "";
 }

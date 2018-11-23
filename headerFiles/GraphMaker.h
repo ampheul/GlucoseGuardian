@@ -17,19 +17,29 @@
 #include <iostream>
 #include <ctime>
 #include <vector>
+#include <sstream>
+#include <fstream>
 
 class GraphMaker
 {
+    typedef std::time_t GraphXType;
+    typedef double GraphYType;
+    typedef std::pair<GraphXType, GraphXType> GraphXRange;
+    typedef std::pair<GraphYType, GraphYType> GraphYRange;
+    typedef std::pair<GraphXType, GraphYType> GraphDataPoint;
+    typedef std::vector<GraphDataPoint> GraphDataSet;
+
     public:
         GraphMaker(
-            std::pair<double,double> xrange, 
-            std::pair<double,double> yrange,
-            std::vector<std::pair<std::time_t, double>> data);
+            GraphXRange xrange, 
+            GraphYRange yrange,
+            GraphDataSet data);
         void makeGraph();
     private:
-        std::pair<double, double> xrange; // range (a,b), a < b
-        std::pair<double, double> yrange; // same as xrange, but for y-axis
-        std::vector<std::pair<std::time_t,double>> data; // set of coordinates (x,y)
+        GraphXRange xrange; // range (a,b), a < b
+        GraphYRange yrange; // same as xrange, but for y-axis
+        GraphDataSet data; // set of coordinates (x,y)
+        static std::string makeGraphString(GraphDataSet data); // internal use. Makes a string for a gnuplot file.
 };
 
 #endif

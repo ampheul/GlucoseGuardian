@@ -11,8 +11,7 @@ Description: tests medication calculator
 #include <sstream>
 #include <vector>
 
-#include "MedicationCalculator.h"
-#include "HormoneDose.h"
+#include "main.h"
 
 using namespace std;
 

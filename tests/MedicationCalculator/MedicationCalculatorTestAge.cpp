@@ -10,8 +10,7 @@ Description: tests medication calculator
 #include <string>
 #include <sstream>
 
-#include "MedicationCalculator.h"
-#include "HormoneDose.h"
+#include "main.h"
 using namespace std;
 
 void TestAge()
