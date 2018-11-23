@@ -37,17 +37,25 @@ DIRECTORIES := $(DEPDIR)/ $(dir $(OBJECTS)) $(patsubst %, $(DEPDIR)/%, $(dir $(O
 help:
 	@less help.txt
 
-all: directories objects libs tests
+.PHONY:
+%.run: $(TEST_ODIR)/%.run
+	echo asdf
+
+
+all: directories objects libs $(TEST_OBJECTS)
 directories: $(DIRECTORIES)
 objects: $(OBJECTS)
-libs: $(LIBRARY_ODIR)/libPancreas.a
-tests: $(TEST_OBJECTS)
-.PHONY: directories objects libs tests
+libs: libPancreas
+libPancreas: $(LIBRARY_ODIR)/libPancreas.a
+tests: libPancreas $(TEST_OBJECTS)
+.PHONY: directories objects libs libPancreas tests
 
 # rule to make a directory ending in "/"
 %/ %/./ %/.//: $(dir %)/
 	@mkdir -p $@
 .PHONY: ./ .//
+
+
 
 MAINOBJECTS := $(filter-out $(ODIR)/main.o, $(OBJECTS))
 $(ODIR)/main.o: $(INCLUDE)/libPancreas.h $(LIBRARY_ODIR)/libPancreas.a
@@ -60,7 +68,9 @@ $(LIBRARY_ODIR)/libPancreas.a: $(MAINOBJECTS) $(INCLUDE)/libPancreas.h
 	@$(ARCHIVE)
 
 HEADERFILES := $(shell find $(HEADER) -maxdepth 1 -type f -name "*.h")
-$(INCLUDE)/libPancreas.h: $(filter-out $(INCLUDE)/libPancreas.h, $(HEADERFILES))
+LIBPANCREASFILES := $(filter-out $(INCLUDE)/libPancreas.h, $(HEADERFILES))
+
+$(INCLUDE)/libPancreas.h: $(filter-out $(INCLUDE)/libPancreas.h, $(LIBPANCREASFILES))
 	@echo remaking libPancreas.h $^
 	@echo \#ifndef LIBPANCREAS_H\\n\#define LIBPANCREAS_H\\n > $@;\
 	for f in $^; \
@@ -68,15 +78,34 @@ $(INCLUDE)/libPancreas.h: $(filter-out $(INCLUDE)/libPancreas.h, $(HEADERFILES))
 	echo "\n#endif\n" >> $@ && touch $@
 .PHONY: $(HEADER)
 
+$(TEST_ODIR)/%.o: $(TEST_SDIR)/%.cpp $(LIBRARY_ODIR)/libPancreas.a 
+	@$(COMPILE)
+	@$(POSTCOMPILE)
+
 $(ODIR)/%.o:
 $(ODIR)/%.o: $(SDIR)/%.cpp
 	@$(COMPILE) -c
 	@$(POSTCOMPILE)
 
-$(TEST_ODIR)/%.o:
-$(TEST_ODIR)/%.o: $(TEST_SDIR)/%.cpp $(HEADER)/main.h $(LIBRARY_ODIR)/libPancreas.a 
-	@$(COMPILE)
-	@$(POSTCOMPILE)
+RUNTESTS := $(patsubst %.o, %.run, $(TEST_OBJECTS) )
+
+.PHONY:
+$(TEST_ODIR)/%.run: $(TEST_ODIR)/%.o
+	@echo "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n\
+	Running $*"; chmod +x $<; $<; echo
+
+
+
+
+runtests: tests $(RUNTESTS)
+.PHONY: runtests
+
+
+
+
+
+
+
 
 
 .PHONY: clean
@@ -87,5 +116,6 @@ cleanDocs:
 	@rm -rf docs/latex docs/html $(RULES_DIR) \
 		$(ODIR) $(SHARED_ODIR) $(LIBRARY_ODIR) $(DEPDIR)
 
-
+test:
+	echo $(TEST_SOURCES)
  include $(shell find $(DEPDIR) -type f -name "*.d" -print0)
