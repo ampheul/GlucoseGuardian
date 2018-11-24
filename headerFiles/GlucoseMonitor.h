@@ -1,15 +1,24 @@
 #ifndef GLUCOSEMONITOR_H
 #define GLUCOSEMONITOR_H
 
-#include "MonitorRecord.h"
-#include "Publisher.h"
+#include <unistd.h>
+#include <sys/socket.h>
+#include <stdlib.h>
+#include <mutex>
+#include <netinet/in.h>
+#include "ArtificialPancreas.h"
 
-class GlucoseMonitor : Publisher<MonitorRecord>
-{
-    public:
-        void start();
+#define PORT 3306
+
+class GlucoseMonitor
     private:
-        virtual void background() = 0;
+        struct sockaddr_in serverAddress;
+        int sock;
+        socklen_t clientSize;
+        char buffer[549] = {0};
+    public:
+        void setup();
+        void listen(const ArtificialPancreas *);
 };
 
 #endif
