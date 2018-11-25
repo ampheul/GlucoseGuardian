@@ -103,6 +103,7 @@ double MedicationCalculator::getGlucagon(){
 	
 	if (gluRead < 2.8){
 		EmailNotification notify = EmailNotification(patientInformation);
+		notify.sendEmergencyContactEmail();
 		glucagon = 1;
 	}
 	
