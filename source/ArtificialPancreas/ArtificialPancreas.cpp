@@ -44,6 +44,6 @@ void ArtificialPancreas::manuallyEnterGlucose(const double gluToAdmin)
 
 void ArtificialPancreas::manuallyAdministerInsulin(const double insulinAmount)
 {
-	HormoneDose dose = new HormoneDose(BASAL_INSULIN, insulinAmount);
+	HormoneDose dose = new HormoneDose(BOLUS_INSULIN, insulinAmount);
 	output->sendInstruction(dose);
 }

@@ -17,4 +17,6 @@ class ArtificialPancreas
         void setPatient(const Patient *);
         Patient getPatient() const;
         void calculateMedication(const double);
+		void manuallyEnterGlucose(const double);
+		void manuallyAdministerInsulin(const double);
 };
