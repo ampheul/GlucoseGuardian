@@ -1,5 +1,5 @@
 /*
-	Group: 22
+	@author Veronica Witzig
 	Purpose: Header file for the EmailNotification class
 */
 
@@ -13,21 +13,26 @@
 #include <unistd.h>
 
 #include "EmailNotification.h"
+#include "PatientInfo.h"
 
 class EmailNotification
-{	
+{
 public:	
 	EmailNotification(PatientInfo patientInfo);
 	~EmailNotification();
-	const std::string EMAIL_COMMAND = "curl --url \'smtps://smtp.gmail.com:465\' --ssl-reqd --mail-from \'noah123body@gmail.com\' --mail-rcpt \'receiver@gmail.com\' --upload-file email.txt --user \'noah123body@gmail.com:pass123word\'"
+	void sendUnauthorizedAccessEmail();
+	void sendHypoglycemicEventEmail();
+	void sendEmergencyContactEmail();
 
 private:
-	std::string senderEmail = patientInfo.getEmail();
-	std::string emailPassword = patientInfo.getEmailPassword();
-	std::string recipientEmail = emergContact.getEmail();
+	const std::string UNAUTHORIZED_ACCESS_EMAIL_TEMPLATE = "unauthorized_email.txt";	//! email template for an unauthorized access
+	const std::string HYPOGLYCEMIC_EVENT_EMAIL_TEMPLATE = "hypoglycemic_email.txt";		//! email template for a hypoglycemic event
+	const std::string EMERGENCY_CONTACT_EMAIL_TEMPLATE = "emergency_email.txt";			//! email template for sending to an emergency contact
 
-	const std::string EMAIL_TEMPLATE = "email.txt";							//! email template file when sending emails
-
+	std::string senderEmail;
+	std::string emailPassword;
+	std::string recipientEmail;
+	
 	void SendEmail(std::string senderEmail, std::string recipientEmail, std::string emailPassword);
 };
 

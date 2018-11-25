@@ -14,21 +14,23 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include "AccountType.h"
-
 class Account
 {	
 public:	
 	Account();
 	~Account();
 	void accountOptions();
-	AccountType getAccountType();
+	std::string GetAccountType();
 
 private:
+	const std::string PATIENT_ACCOUNT = "Patient";							//! represents account type of Patient
+	const std::string GUEST_ACCOUNT = "Guest";								//! represents account type of Guest
+	const std::string UNKNOWN_ACCOUNT = "Unknown";							//! represents account type of Unknown
+	
 	const std::string ACCOUNT_INFO_PATH = "/accountInfo/accountInfo.txt"; 	//! path to directory for storing accountInfo.txt
 	const std::string ACCOUNT_INFO = "accountInfo.txt";						//! file name for storing account information
 
-	AccountType accountType;												//! the type of the account
+	std::string accountType;												//! the type of the account
 	DIR *accountDir;														//! pointer to accountInfo directory
 
 	void VerifyPassword(std::ifstream& hashStream, std::string password);

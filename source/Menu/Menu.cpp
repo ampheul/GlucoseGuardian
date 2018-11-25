@@ -9,10 +9,35 @@ using namespace std;
 
 /*!
 	Name: Menu
-	Description: constructor
+	Description: builds the menu items available for the user based on their account type
 */
-Menu::Menu()
+Menu::Menu(Account account)
 {
+	accountType = account.GetAccountType();
+	
+	if (accountType == Account::PATIENT_ACCOUNT)
+	{
+		cout << "Patient user verified, please choose an option: " << endl;
+		menuItems = new vector<string>(){
+			"1 - Exit Program"
+			"2 - Medical History",
+			"3 - Check Current Glucose Level",
+			"4 - Manual Glucose Entry",
+			"5 - Manual Insulin Administration"				
+		}
+	}
+	else if (accountType == Account::GUEST_ACCOUNT)
+	{
+		cout << "Guest user verified, please choose an option: " << endl;
+		menuItems = new vector<string>(){
+			"1 - Exit Program"
+			"2 - Medical History",
+		}
+	}
+	else if (accountType == Account::UNKNOWN_ACCOUNT)
+	{
+		cout << "Get out." << endl;
+	}
 };
 
 /*!
@@ -21,53 +46,69 @@ Menu::Menu()
 */
 Menu::~Menu() {};
 
-Menu::Menu(const std::string &name, const std::string &prompt,
-          const std::vector<std::pair<std::string, std::string> > &choices)
-: _name(name)
-  ,_prompt(prompt)
-  , _choices(choices)
+/*!
+	Name: PrintMenu
+	Description: prints the UI menu to the terminal for the user
+*/
+void Menu::PrintMenu()
 {
-}
-
-bool Menu::operator==(const std::string &name) const
-{
-  return name == _name;
-}
-
-const std::string& Menu::takeChoice() const
-{
-  if (_choices.size() == 0)
-  {
-    std::cout << _prompt;
-    return "END";
-  }
-  unsigned int choice;
-  int i;
-  do
-  {
-    std::cout << _prompt;
-    i = 1;
-    for (auto ch : _choices)
-    {
-      std::cout << i++ << ": " << ch.first << "\n";
-    }
-    std::cin >> choice;
-    choice--;
-  }
-  while(choice >= _choices.size());
-  return _choices[choice].second;
-}
+	for (const auto& item : menuItems)
+	{
+		cout << item << endl;
+	}
+};
 
 /*!
-	Name: getMenuItems
-	Description: gets the menu items for the user based on their account type
-	@param string senderEmail - sender's email address
-	@param string recipientEmail - password for the email account
-	@param string emailPassword - recpient's email address
+	Name: GetMenuSelection
+	Description: retrieves the option that the user has selected from the available menu items
 */
-void Menu::getMenuItems(string senderEmail, string recipientEmail, string emailPassword)
+int Menu::GetMenuSelection()
 {
-	cout << "Sending email to: " << recpientEmail << endl;
-	string command = "curl --url \'smtps://smtp.gmail.com:465\' --ssl-reqd --mail-from \'" + senderEmail + "\' --mail-rcpt \'" + recipientEmail + "\' --upload-file email.txt --user \'" + senderEmail + ":" + emailPassword + "\'";
-	sys(command);	
+	bool validSelection = false;
+	string userInput;
+	int optionInt = 0;
+	
+	while(!validSelection)
+	{
+		userInput = "";
+		optionInt = 0;
+		
+		cout << "Please select a corresponding number from the above selection: " << endl;
+		getline(cin, userInput);
+		validSelection = ValidateSelection(userInput);
+		
+		stringstream(userInput) >> optionInt;
+		
+		
+	}
+	
+	return optionInt;
+};
+
+/*!
+	Name: ValidateSelection
+	Description: verfies that the user entered value is valid
+*/
+bool Menu::ValidateSelection(string userInput)
+{
+	string userInput;
+	getline(cin, userInput);
+	
+	// ensure the input is an int
+	int asInt = 0;
+	stringstream(userInput) >> asInt;
+	if(asInt > 4 || asInt < 1)
+	{
+		cout << userInput + " is not a valid selection, please try again." << endl;
+		return false;
+	}
+	
+	// ensure the user is not trying to select an option they should not be able to
+	if (accountType != Account::PATIENT_ACCOUNT && asInt > 2)
+	{
+		cout << asInt + " is not a valid selection, please try again." << endl;
+		return false;
+	}
+	
+	return true;
 };

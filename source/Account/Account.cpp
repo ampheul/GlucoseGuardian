@@ -5,9 +5,6 @@
 */
 
 #include "Account.h"
-#include "GuestAccount.h"
-#include "UnknownAccount.h"
-#include "PatientAccount.h"
 
 using namespace std;
 
@@ -62,7 +59,7 @@ void Account::accountOptions()
 	Description: returns the type of the account
 	@return	the account type
 */
-AccountType Account::getAccountType() 
+string Account::GetAccountType() 
 {
 	return this->accountType;
 };
@@ -83,7 +80,6 @@ void Account::VerifyPassword(ifstream& hashStream, string password)
 	size_t guestHash;
 
 	// patient hash is on first line. guest/emergency contact hash is on second line
-
 	if (hashStream.is_open())
 	{
 		hashStream >> patientHash;
@@ -93,17 +89,17 @@ void Account::VerifyPassword(ifstream& hashStream, string password)
 	if (patientHash == hashToCheck)
 	{
 		cout << "patient signed in" << endl;
-		accountType = PatientAccount();
+		accountType = Account::PATIENT_ACCOUNT;
 	}
 	else if (guestHash == hashToCheck)
 	{
 		cout << "guest signed in" << endl;
-		accountType = GuestAccount();
+		accountType = Account::GUEST_ACCOUNT;
 	}
 	else
 	{
 		cout << "unknown attempt to sign in" << endl;
-		accountType = UnknownAccount();
+		accountType = Account::UNKNOWN_ACCOUNT;
 	}
 };
 
