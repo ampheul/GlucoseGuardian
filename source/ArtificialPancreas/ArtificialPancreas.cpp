@@ -29,7 +29,7 @@ void ArtificialPancreas::calculateMedication(const double reading)
 {
     //Need final patient implementation to complete
     //Update patient record with glucose measurement
-    calculator = new MedicationCalculator(amount, , , , , , );
+    calculator = new MedicationCalculator(amount, user, , , , );
     dose = calculator->computeDosage();
     //Update patient record with hormonedose
     output->sendInstruction(dose);
@@ -39,7 +39,7 @@ void ArtificialPancreas::calculateMedication(const double reading)
 
 void ArtificialPancreas::manuallyEnterGlucose(const double gluToAdmin)
 {
-	// calculator = new MedicationCalculator(.....);
+	// calculator = new MedicationCalculator(amount, user, ...);
 }
 
 void ArtificialPancreas::manuallyAdministerInsulin(const double insulinAmount)

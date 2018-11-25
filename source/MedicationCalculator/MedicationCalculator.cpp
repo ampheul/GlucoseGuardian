@@ -8,7 +8,7 @@ Description: Calculates hormone based on glucose reading, time, sleep, exercise,
 #include "MedicationCalculator.h"
 using namespace std;
 
-MedicationCalculator::MedicationCalculator(double givenGlu, double givenWeight, int givenAge, struct tm givenSleep, string givenEx, double givenCarb, string basalOrBolus){
+MedicationCalculator::MedicationCalculator(double givenGlu, PatientInfo patient, struct tm givenSleep, string givenEx, double givenCarb, string basalOrBolus){
 	
 /*
  * Values should eventually be obtained from other classes
@@ -22,9 +22,10 @@ MedicationCalculator::MedicationCalculator(double givenGlu, double givenWeight, 
 */
 
 	// Initialize variables
+	patientInformation = patient;
 	gluRead = givenGlu;
-	weight = givenWeight;
-	age = givenAge;
+	weight = patient.getWeight();
+	age = patient.getAge();
 	sleepStruct = givenSleep;
 	exLevel = givenEx;
 	carbGrams = givenCarb;
@@ -101,6 +102,7 @@ double MedicationCalculator::getGlucagon(){
 	double glucagon = 0;
 	
 	if (gluRead < 2.8){
+		EmailNotification notify = EmailNotification(patientInformation);
 		glucagon = 1;
 	}
 	

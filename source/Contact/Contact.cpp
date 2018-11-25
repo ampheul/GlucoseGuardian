@@ -3,14 +3,14 @@
 
 using namespace std;
 
-Contact::Contact(string name) {
-	Contact::name = name;
-}
-
 string Contact::getName() {
 	return this->name;
 }
 
-void Contact::setName(string name) {
-	this->name = name;
+string Contact::getEmail() {
+	return this->email;
+}
+
+Contact::Contact(string name, string email)
+{
 }

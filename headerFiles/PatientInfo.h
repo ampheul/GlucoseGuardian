@@ -11,16 +11,17 @@ class Patient {
 private:
 	double weight;
 	double height;
-	double age;
+	int age;
 	double bmi;
 	string sex;
+	string email;
+	string emailPassword;
 	vector<DeviceRecord> recordEntryList;
 	vector<Contact> emergencyContacts;
 	string password;
 
 public:
 	Patient();
-	~Patient();
 
 	double getWeight();
 

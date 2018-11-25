@@ -1,4 +1,4 @@
-using "PatientInfo.h"
+include "PatientInfo.h"
 
 PatientInfo::Patient() {
 	SetupPatientInfo();
@@ -23,7 +23,7 @@ void PatientInfo::setHeight(double height) {
 	this->height = height;
 }
 
-double PatientInfo::getAge() {
+int PatientInfo::getAge() {
 	return this->age;
 }
 
@@ -71,17 +71,26 @@ void PatientInfo::SetupPatientInfo() {
 	cout << "What would you like your password to be?";
 	cin >> password;
 
+	cout << "What is your email?"
+	cin >> email;
+
+	cout << "What is your email password?"
+	cin >> emailPassword;
+
 	// Set up emergency contact
 	cout << "What is the name of your emergency contact?";
 	string emergContactName;
+	string emergContactEmail;
 	cin >> emergContactName;
+	 
+	cout << "What is the email of your emergency contact?";
+	cin >> emergContactEmail;
 
-	Contact emergContact(emergContactName);
+	Contact emergContact(emergContactName, emergContactEmail);
 }
 
 bool PatientInfo::verifyPassword(string givenPassword) {
 	return this->password == givenPassword;
 }
-};
 
 #endif

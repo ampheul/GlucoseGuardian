@@ -9,10 +9,10 @@ using namespace std;
 class Contact {
 public:
 	string name;
-	// vector<ContactType> contactOptions;
-	Contact(std::string name);
+	string email;
+	Contact(string name, string email);
 	string getName();
-	void setName(string name);
+	string getEmail();
 };
 
 #endif

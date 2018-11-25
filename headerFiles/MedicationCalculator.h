@@ -19,6 +19,8 @@
 #include <ctime>
 #include <iomanip>
 #include "HormoneDose.h"
+#include "PatientInfo.h"
+#include "EmailNotification.h"
 
 // ??
 // #include "Patient.h"
@@ -33,8 +35,7 @@ class MedicationCalculator
       /**
        * \brief Constructor
        * \param givenGlu a double glucose reading
-       * \param givenWeight a double weight in lbs
-       * \param givenage a int age
+       * \param patient a patientInfo with weight and age data
        * \param givenSleep a time struct
        * \param givenEx a string exercise level 
        * \param givenCarb a double carbohydrate intake in grams
@@ -42,7 +43,7 @@ class MedicationCalculator
        *
        * Initializes values needed to calculate hormone dosages.
        */
-        MedicationCalculator(double glu, double weight, int age, struct tm sleep, std::string ex, double carb, std::string ins);
+        MedicationCalculator(double glu, PatientInfo patient, struct tm sleep, std::string ex, double carb, std::string ins);
         
 
       /**
@@ -70,6 +71,7 @@ class MedicationCalculator
         double gluRead;
         double weight;		
         double carbGrams;
+		PatientInfo patientInformation;
         double TDD; // Total Daily Dose of insulin
         int age;
         struct tm sleepStruct;
