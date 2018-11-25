@@ -36,3 +36,14 @@ void ArtificialPancreas::calculateMedication(const double reading)
     delete dose;
     delete calculator;
 }
+
+void ArtificialPancreas::manuallyEnterGlucose(const double gluToAdmin)
+{
+	// calculator = new MedicationCalculator(.....);
+}
+
+void ArtificialPancreas::manuallyAdministerInsulin(const double insulinAmount)
+{
+	HormoneDose dose = new HormoneDose(BASAL_INSULIN, insulinAmount);
+	output->sendInstruction(dose);
+}
