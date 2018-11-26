@@ -25,14 +25,21 @@ PatientInfo ArtificialPancreas::getPatientInfo() const
 
 void ArtificialPancreas::calculateMedication(const double reading)
 {
-    user->getRecordEntries.push_back(new MonitorRecord(std::chrono::system_clock::now(), reading));
-    //calculator = new MedicationCalculator(reading, user, ...);
-    dose = calculator->computeDosage();
-    //Update patient record with hormonedose
-    user->getRecordEntries.push_back(new MedicationRecord(std::chrono::system_clock::now(), dose));
-    output->sendInstruction(dose);
-    delete dose;
-    delete calculator;
+    if(reading > 1.7 && reading < 40)
+    {
+        user->getRecordEntries.push_back(new MonitorRecord(std::chrono::system_clock::now(), reading));        
+        if(reading < 2.8)
+        {
+            //email notification
+        }
+        //calculator = new MedicationCalculator(reading, user, ...);
+        dose = calculator->computeDosage();
+        user->getRecordEntries.push_back(new MedicationRecord(std::chrono::system_clock::now(), dose));
+        output->sendInstruction(dose);
+        delete dose;
+        delete calculator;
+    }
+    
 }
 
 //unnecessary?
