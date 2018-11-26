@@ -2,7 +2,6 @@
 
 ArtificialPancreas::ArtificialPancreas()
 {
-    //TODO: Need final implementation of patient file to construct patient and submit data to medicationcalculator
     user = new PatientInfo();
     output = new LaptopOutput("127.0.0.1", 3307);
 
@@ -16,7 +15,6 @@ ArtificialPancreas::~ArtificialPancreas()
 
 void ArtificialPancreas::setPatient(const PatientInfo *newPatient)
 {
-    //Need final implementation of patient to complete;
     user = newPatient();
 }
 
@@ -27,23 +25,31 @@ PatientInfo ArtificialPancreas::getPatientInfo() const
 
 void ArtificialPancreas::calculateMedication(const double reading)
 {
-    //Need final patient implementation to complete
-    //Update patient record with glucose measurement
-    calculator = new MedicationCalculator(amount, user, , , , );
+    user->getRecordEntries.push_back(new MonitorRecord(std::chrono::system_clock::now(), reading));
+    //calculator = new MedicationCalculator(reading, user, ...);
     dose = calculator->computeDosage();
     //Update patient record with hormonedose
+    user->getRecordEntries.push_back(new MedicationRecord(std::chrono::system_clock::now(), dose));
     output->sendInstruction(dose);
     delete dose;
     delete calculator;
 }
 
+//unnecessary?
 void ArtificialPancreas::manuallyEnterGlucose(const double gluToAdmin)
 {
-	// calculator = new MedicationCalculator(amount, user, ...);
+
+	//calculator = new MedicationCalculator(reading, user, ...)
+    dose = calculator->computeDosage();
+    user->getRecordEntries.push_back(new MedicationRecord(std::chrono::system_clock::now(), dose));
+    output->sendInstruction(dose);
+    delete dose;
+    delete calculator;
 }
 
 void ArtificialPancreas::manuallyAdministerInsulin(const double insulinAmount)
 {
 	HormoneDose dose = new HormoneDose(BOLUS_INSULIN, insulinAmount);
 	output->sendInstruction(dose);
+    delete dose;
 }

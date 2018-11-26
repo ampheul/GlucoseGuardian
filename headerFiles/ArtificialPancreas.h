@@ -1,11 +1,13 @@
 #ifndef ARTIFICIAL_PANCREAS_H
-#defined ARTIFICIAL_PANCREAS_H
+#define ARTIFICIAL_PANCREAS_H
 
 #include "MedicationCalculator.h"
 #include "PatientInfo.h"
 #include "InsulinPump.h"
 #include "LaptopOutput.h"
 #include "HormoneDose.h"
+#include "DeviceRecord.h"
+#include "GlucoseReading.h"
 
 class ArtificialPancreas
 {
