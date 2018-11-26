@@ -20,7 +20,7 @@ void ArtificialPancreas::setPatient(const PatientInfo *newPatient)
     user = newPatient();
 }
 
-PatientInfo ArtificialPancreas::getPatient() const
+PatientInfo ArtificialPancreas::getPatientInfo() const
 {
     return user;
 }
