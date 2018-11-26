@@ -1,3 +1,6 @@
+#ifndef ARTIFICIAL_PANCREAS_H
+#defined ARTIFICIAL_PANCREAS_H
+
 #include "MedicationCalculator.h"
 #include "PatientInfo.h"
 #include "InsulinPump.h"
@@ -20,3 +23,5 @@ class ArtificialPancreas
 		void manuallyEnterGlucose(const double);
 		void manuallyAdministerInsulin(const double);
 };
+
+#endif

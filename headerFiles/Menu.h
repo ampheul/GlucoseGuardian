@@ -21,13 +21,12 @@ class Menu
 public:	
 	Menu(Account account);
 	~Menu();
-	void printMenu();
+	void PrintMenu();
+	int GetMenuSelection();
 
 private:
 	std::string accountType;
 	std::vector<std::string> _items;
-	MenuItem* GetMenuItems();
-	int GetMenuSelection();
 	bool ValidateSelection();
 };
 

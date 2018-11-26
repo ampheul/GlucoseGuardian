@@ -3,6 +3,9 @@
 	author: Graeme Brabers
 */
 
+#ifndef LAPTOP_OUTPUT_H
+#define LAPTOP_OUTPUT_H
+
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -29,3 +32,5 @@ public:
 	~LaptopOutput();
 	void sendInstruction(const HormoneDose *) const;
 };
+
+#endif

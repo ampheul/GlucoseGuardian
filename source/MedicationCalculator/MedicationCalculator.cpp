@@ -94,6 +94,10 @@ void MedicationCalculator::validateReading(){
 	}
 }
 
+// Retrieve glucose reading
+double MedicationCalculator::getGlucoseReading() {
+	return gluRead;
+}
 
 /* Admininister 1 unit of glucagon if hypoglycemic
    Reference: 5

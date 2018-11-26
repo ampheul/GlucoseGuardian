@@ -11,12 +11,15 @@
 #define PORT 3306
 
 class GlucoseMonitor
+{
     private:
         struct sockaddr_in serverAddress;
         int sock;
         socklen_t clientSize;
         char buffer[549] = {0};
     public:
+		GlucoseMonitor();
+		~GlucoseMonitor();
         void setup();
         void listen(const ArtificialPancreas *);
 };

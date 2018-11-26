@@ -1,5 +1,11 @@
 #include "GlucoseMontor.h"
 
+GlucoseMonitor::GlucoseMonitor() {
+}
+
+GlucoseMonitor::~GlucoseMonitor() {
+}
+
 void GlucoseMonitor::setup()
 {
     if ((sock = socket(AF_INET, SOCK_DGRAM, 0)) == 0)

@@ -1,8 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <cstdlib>
+
 #include "Account.h"
-#include "AccountType.h"
 #include "Contact.h"
 #include "ContactType.h"
 #include "DeviceRecord.h"

@@ -4,16 +4,18 @@ using namespace std;
 
 void MedicalHistory()
 {
-	ReportMaker maker = ReportMaker();
+	ReportMaker maker = new ReportMaker();
 	maker.makeReport();
 }
 
 void CurrentGlucose()
 {
 	MedicationCalculator calc = artificialPancreas->calculator;
+
 	double glucoseReading = calc.gluRead;
+	auto glucoseToPrint = to_string(glucoseReading);
 	
-	cout << "Your current glucose reading is : " + glucoseReading + "mg/dL";
+	cout << "Your current glucose reading is : " + glucoseToPrint + "mg/dL";
 }
 
 void ManualGlucoseEntry()
@@ -32,13 +34,14 @@ void ManualGlucoseEntry()
 
 		// ensure the user input is a valid entry
 		stringstream(userInput) >> glucoseEntry;
-		if (glucoseEntry << 40 && glucoseEntry >> 1.7)
+		if (glucoseEntry < 40 && glucoseEntry > 1.7)
 		{
 			validEntry = true;
 		}
 		else
 		{
-			cout << glucoseEntry + " is not a valid glucose reading, please try again." << endl;
+			auto glucoseToPrint = to_string(glucoseEntry);
+			cout << glucoseToPrint + " is not a valid glucose reading, please try again." << endl;
 		}
 	}
 	
@@ -51,7 +54,7 @@ void MenuSwitch(int option)
 	switch (option)
 	{
 	case 1:
-		Exit();
+		exit(0);
 		break;
 	case 2:
 		MedicalHistory();
