@@ -1,11 +1,9 @@
 #ifndef LIBPANCREAS_H
 #define LIBPANCREAS_H
 
-#include "PatientAccount.h"
 #include "AccountType.h"
 #include "Test.h"
 #include "libPancreas.h"
-#include "GuestAccount.h"
 #include "GraphMaker.h"
 #include "MonitorRecord.h"
 #include "Publisher.h"
@@ -14,7 +12,6 @@
 #include "GlucoseReading.h"
 #include "Subscriber.h"
 #include "PatientInfo.h"
-#include "UnknownAccount.h"
 #include "Account.h"
 #include "HormoneDose.h"
 #include "HormoneType.h"
