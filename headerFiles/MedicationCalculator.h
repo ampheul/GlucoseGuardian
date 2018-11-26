@@ -45,7 +45,7 @@ class MedicationCalculator
         MedicationCalculator(double glu, PatientInfo patient, struct tm sleep, std::string ex, double carb, std::string ins);
         
 		// Retrieves glucose reading
-		double getGlucoseReading();
+		double GetGlucoseReading();
 
       /**
        * \brief Destructor

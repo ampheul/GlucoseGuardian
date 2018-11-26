@@ -3,8 +3,8 @@
 	Purpose: Header file for the Account class
 */
 
-#ifndef ACCOUNT_HEADER
-#define ACCOUNT_HEADER
+#ifndef ACCOUNT_H
+#define ACCOUNT_H
 
 #include <string>
 #include <iostream>

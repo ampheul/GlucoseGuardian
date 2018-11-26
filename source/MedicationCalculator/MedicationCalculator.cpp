@@ -83,7 +83,6 @@ HormoneDose MedicationCalculator::computeDosage(){
     return HormoneDose(bolus, 0);
 }
 
-
 /* Validate glucose readings
    Reference: 5
 */
@@ -95,7 +94,7 @@ void MedicationCalculator::validateReading(){
 }
 
 // Retrieve glucose reading
-double MedicationCalculator::getGlucoseReading() {
+double MedicationCalculator::GetGlucoseReading() {
 	return gluRead;
 }
 
