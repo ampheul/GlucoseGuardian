@@ -3,7 +3,7 @@
 ArtificialPancreas::ArtificialPancreas()
 {
     //TODO: Need final implementation of patient file to construct patient and submit data to medicationcalculator
-    user = new Patient();
+    user = new PatientInfo();
     output = new LaptopOutput("127.0.0.1", 3307);
 
 }
@@ -14,13 +14,13 @@ ArtificialPancreas::~ArtificialPancreas()
     delete output;
 }
 
-void ArtificialPancreas::setPatient(const Patient *newPatient)
+void ArtificialPancreas::setPatient(const PatientInfo *newPatient)
 {
     //Need final implementation of patient to complete;
     user = newPatient();
 }
 
-Patient ArtificialPancreas::getPatient() const
+PatientInfo ArtificialPancreas::getPatient() const
 {
     return user;
 }

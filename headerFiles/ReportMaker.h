@@ -2,7 +2,7 @@
 #define REPORTMAKER_H
 
 #include "GraphMaker.h"
-#include "Patient.h"
+#include "PatientInfo.h"
 
 /** Makes Reports
 
@@ -14,7 +14,7 @@ class ReportMaker
         void makeReport();
     private:
         GraphMaker graphMaker;
-        Patient patient;
+        PatientInfo patient;
 };
 
 #endif

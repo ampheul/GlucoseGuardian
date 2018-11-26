@@ -23,7 +23,6 @@
 #include "EmailNotification.h"
 
 // ??
-// #include "Patient.h"
 // #include "MonitorRecord.h"
 // #include "Context.h"
 // #include "HormoneDose.h"

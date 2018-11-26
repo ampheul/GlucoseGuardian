@@ -19,7 +19,7 @@
 #include "MedicationRecord.h"
 #include "Menu.h"
 #include "MonitorRecord.h"
-#include "Patient.h"
+#include "PatientInfo.h"
 #include "PatientAccount.h"
 #include "Publisher.h"
 #include "ReportMaker.h"

@@ -13,7 +13,7 @@
 #include "InsulinPump.h"
 #include "GlucoseReading.h"
 #include "Subscriber.h"
-#include "Patient.h"
+#include "PatientInfo.h"
 #include "UnknownAccount.h"
 #include "Account.h"
 #include "HormoneDose.h"

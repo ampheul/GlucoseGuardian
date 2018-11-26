@@ -1,10 +1,10 @@
 include "PatientInfo.h"
 
-PatientInfo::Patient() {
+PatientInfo::PatientInfo() {
 	SetupPatientInfo();
 }
 
-PatientInfo::~Patient() {
+PatientInfo::~PatientInfo() {
 }
 
 double PatientInfo::getWeight() {

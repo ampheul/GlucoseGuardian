@@ -1,13 +1,12 @@
-#ifndef PATIENT_H
-#define PATIENT_H
+#ifndef PATIENTINFO_H
+#define PATIENTINFO_H
 
 #include <iostream>
 #include "DeviceRecord.h"
-#include "Patient.h"
 #include "Contact.h"
 using namespace std;
 
-class Patient {
+class PatientInfo {
 private:
 	double weight;
 	double height;
@@ -21,7 +20,7 @@ private:
 	string password;
 
 public:
-	Patient();
+	PatientInfo();
 
 	double getWeight();
 
