@@ -56,10 +56,20 @@ void EmailNotification::sendEmergencyContactEmail()
 };
 
 /*!
+	Name: sendEmergencyContactEmail
+	Description: sends an email from the patient's email to their own email to notify them that a guardiam has
+				 requested to see their medical records
+*/
+void EmailNotification::sendMedicalRequestEmail()
+{
+	SendEmail(senderEmail, recipientEmail, emailPassword, REQUEST_MEDICAL_RECORDS_EMAIL_TEMPLATE);
+};
+
+/*!
 	Name: SendEmail
 	Description: sends an email from the sender's address to the recipient's address, assumes the sender has a gmail account
 	@param string senderEmail - sender's email address
-	@param string recipientEmail - recpient's email address
+	@param string recipientEmail - recipient's email address
 	@param string emailPassword - password for the email account
 */
 void EmailNotification::SendEmail(string senderEmail, string recipientEmail, string emailPassword, string emailTemplate)

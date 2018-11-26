@@ -77,9 +77,7 @@ int Menu::GetMenuSelection()
 		getline(cin, userInput);
 		validSelection = ValidateSelection(userInput);
 		
-		stringstream(userInput) >> optionInt;
-		
-		
+		stringstream(userInput) >> optionInt;		
 	}
 	
 	return optionInt;

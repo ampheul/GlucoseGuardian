@@ -16,14 +16,6 @@ void CurrentGlucose()
 	cout << "Your current glucose reading is : " + glucoseReading + "mg/dL";
 }
 
-void CurrentGlucose()
-{
-	MedicationCalculator calc = artificialPancreas->calculator;
-	double glucoseReading = calc.gluRead;
-	
-	cout << "Your current glucose reading is : " + glucoseReading + "mg/dL";
-}
-
 void ManualGlucoseEntry()
 {
 	bool validEntry = false;
