@@ -14,7 +14,7 @@ class ReportMaker
     public:
         /// the Constructor for ReportMaker
         ReportMaker(
-            Patient patient, ///< the patient whose data will be graphed
+            PatientInfo patient, ///< the patient whose data will be graphed
             GraphMaker graphMaker ///< the graphmaker which will be used to graph the patient data
             );
         void makeReport();
