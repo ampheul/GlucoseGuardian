@@ -31,6 +31,7 @@ private:
 	void CurrentGlucose();
 	void ManualGlucoseEntry();
 	void ManualInsulinAdministration();
+	void UpdateCarbsExerciseSleep();
 };
 
 #endif

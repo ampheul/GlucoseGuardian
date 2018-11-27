@@ -1,3 +1,7 @@
+/*
+	Purpose: header file for the PatientInfo class
+*/
+
 #ifndef PATIENTINFO_H
 #define PATIENTINFO_H
 
@@ -8,86 +12,73 @@
 #include "MonitorRecord.h"
 #include "MedicationRecord.h"
 #include "HormoneDose.h"
+
 using namespace std;
 
-class PatientInfo {
+class PatientInfo 
+{
+public:
+	PatientInfo();
+	~PatientInfo();
+
+	double getWeight();
+	void setWeight(double weight);
+	
+	double getHeight();
+	void setHeight(double height);
+	
+	int getAge();
+	void setAge(double age);
+	
+	string getSex();
+	void setSex(string sex);
+	
+	double getCarbs();
+	void setCarbs(double carbs);
+	
+	string getExercise();
+	void setExercise(string exercise);
+	
+	int getSleep();
+	void setSleep(int sleep);
+
+	vector<MonitorRecord> getMonitorRecords();
+	vector<MedicationRecord> getMedicationRecords();
+	vector<Contact> getEmergencyContacts();
+	void SetupPatientInfo();
+	void readFromFile();
+	void writeToFile();
+	
 private:
 	double weight;
 	double height;
-	int age;
 	double bmi;
 	double carbs;
-	string exercise;
+	double amount;
+	
+	int age;
 	int sleep;
+	
 	string sex;
 	string email;
 	string emailPassword;
+	string exercise;
+	
 	vector<MonitorRecord> monitorRecords;
 	vector<MedicationRecord> medicationRecords;
 	vector<Contact> emergencyContacts;
-	string password;
+	
 	fstream iofile;
 	string input, delimiter;
 	time_t time;
 	size_t pos;
 	HormoneDose *dose;
+	HormoneType type;
 	string toEnum;
-	hormoneType type;
-	double amount;
+	
 	GlucoseReading *tmpReading;
 	MonitorRecord *tmpMonitor;	
 	MedicationRecord *tmpRecord;
-
-public:
-	PatientInfo();
-
-	~PatientInfo();
-
-	double getWeight();
-
-	void setWeight(double weight);
-
-	double getHeight();
-
-	void setHeight(double height);
-
-	int getAge();
-
-	void setAge(double age);
-
-	string getSex();
-
-	double getCarbs();
-
-	void setCarbs(double carbs);
-
-	string getExercise();
-
-	void setExercise(string exercise);
-
-	int getSleep();
-
-	void setSleep(int sleep);
-
-	void setSex(string sex);
-
-	vector<MonitorRecord> getMonitorRecords();
-
-	vector<MedicationRecord> getMedicationRecords();
-
-	vector<Contact> getEmergencyContacts();
-
-	string getPassword();
-
-	void setPassword(string password);
-
-	void SetupPatientInfo();
-
-	bool verifyPassword(string givenPassword);
-
-	void readFromFile();
-
-	void writeToFile();
 };
 
 #endif
