@@ -26,7 +26,7 @@
 #include "Test.h"
 #include "TestResult.h"
 #include "TestValue.h"
-#include "main.h"
+#include "UserInputExecutor.h"
 #include "runTests.h"
 #include "libPancreas.h"
 
