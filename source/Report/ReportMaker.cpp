@@ -11,6 +11,7 @@ void ReportMaker::makeReport()
     /**
      * Method:
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Dynamically alter contents for use in latex by adding
      * a list of commands to include before the file.
      * */
@@ -31,28 +32,30 @@ void ReportMaker::makeReport()
 =======
      * pipe latex code into a latex file and use this to pipe into latex.
      * The file we pipe to will be included as input in the latex header
+=======
+     * Dynamically alter contents for use in latex by adding 
+>>>>>>> adding to report.
      * */
-    int toLatex[2];
-    pipe(toLatex);
-    FILE* latexWrite = fdopen(toLatex[1],"w");
+       
+    std::string commandDefinitions =  latexNewCommand("patient", "") 
+        + latexNewCommand("weight", std::to_string(patient.getWeight()))
+        + latexNewCommand("height", std::to_string(patient.getHeight()))
+        + latexNewCommand("age", std::to_string(patient.getAge())
+        + latexNewCommand("sex", patient.getSex()));
 
-    fprintf(latexWrite, "\\documentclass{article}");
-
+    std::string options = 
+        "-jobname " + std::to_string(std::time(NULL))
+        + "-output-directory " + "build/output/latex";
     
+    system("pdflatex " + options + " \"" + commandDefinitions+"\"");
+    
+<<<<<<< HEAD
 
 
 >>>>>>> added GraphMaker class, working on ReportMaker and its tests.
+=======
+>>>>>>> adding to report.
     return;
-}
-/** return a string for a latex command.
- * 
- * Returns a string for a latex command in the form 
- *      \newcommand{\[command]}{\[definition]}
- * where [command] and [definition] are replaced with the respective arguments.
- * */
-std::string latexNewCommand(std::string command, std::string definition)
-{
-    return "\\newcommand{\\" + command + "}[\\" + defintion + "}"
 }
 
 /** Returns a string for a latex command.
@@ -72,6 +75,26 @@ std::string latexHeader()
     return "\\documentclass{article}\n";
 }
 
+<<<<<<< HEAD
+/** Returns a string for a latex command.
+ * 
+ * Returns a string for a latex command in the form 
+ *      \newcommand{\[command]}{\[definition]}
+ * where [command] and [definition] are replaced with the respective arguments.
+ * */
+
+std::string latexNewCommand(std::string command, std::string definition)
+{
+    return "\\newcommand{\\" + command + "}[\\" + definition + "}";
+}
+
+std::string latexHeader()
+{
+    return "\\documentclass{article}\n";
+}
+
+=======
+>>>>>>> adding to report.
 std::string latexBegin(std::string environment)
 {
     return "\\begin{" + environment + "}";
