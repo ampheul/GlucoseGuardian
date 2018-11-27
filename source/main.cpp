@@ -4,7 +4,6 @@
 */
 
 #include "main.h"
-#include <thread>
 
 using namespace std;
 
