@@ -54,9 +54,9 @@ int main(){
 	cout << "Please enter intake of carbohydrates in grams or 0: ";
 	cin >> carbs;
 
-	cout << "Please enter a time of sleep in military time(hour:minute:seconds) or -1 for hour if not specified: ";
+	cout << "Please enter an hour of sleep in military time(hour) or -1 for hour if not specified: ";
 	getline(cin, sleepTime);
-	getline(cin,sleepTime,'\n');
+	getline(cin, sleepTime,'\n');
 
 	cout << "Please enter an exercise level (Low/Medium/High/None): ";
 	getline(cin, exerciseLevel);
@@ -64,14 +64,10 @@ int main(){
 	cout << "Please enter if a 'Basal' or 'Bolus' insulin dose is needed: ";
 	getline(cin, basalOrBolus);
 
-    // Creates time of sleep
-    struct tm tm;
-    strptime(sleepTime.c_str(), "%H:%M:%S", &tm);
-
     /* Make medication calculator
        Parameters are: (double glucoseReading, double weight, double age, double sleepTime, string exerciseLevel, double carbInGrams);
      */
-     MedicationCalculator calc (glucose, weight, age, tm, exerciseLevel, carbs, basalOrBolus);
+     MedicationCalculator calc (glucose, weight, age, sleepTime, exerciseLevel, carbs, basalOrBolus);
 
      // Compute Dosage to give
      HormoneDose hormone = calc.computeDosage();

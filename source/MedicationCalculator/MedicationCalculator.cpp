@@ -4,31 +4,19 @@ Date: Nov 5th, 2018
 Description: Calculates hormone based on glucose reading, time, sleep, exercise, and carbohydrate intake
 */
 
-// Make Doxygen style comments
 #include "MedicationCalculator.h"
 using namespace std;
 
-MedicationCalculator::MedicationCalculator(double givenGlu, PatientInfo patient, struct tm givenSleep, string givenEx, double givenCarb, string basalOrBolus){
+MedicationCalculator::MedicationCalculator(double givenGlu, PatientInfo patient, string basalOrBolus){
 	
-/*
- * Values should eventually be obtained from other classes
- *
-	gluRead = monitorRecord.getGlucoselevel();
-	weight = patient.getWeight();
-	age = patient.getAge();
-	sleepTime = context.getSleep();
-	exLevel = context.recentExercise();
-	carbGrams = context.carbs();
-*/
-
 	// Initialize variables
-	patientInformation = patient;
+	patientInfo = patient;
 	gluRead = givenGlu;
-	weight = patient.getWeight();
-	age = patient.getAge();
-	sleepStruct = givenSleep;
-	exLevel = givenEx;
-	carbGrams = givenCarb;
+	weight = patientInfo.getWeight();
+	age = patientInfo.getAge();
+	sleepHour = patientInfo.getSleep();
+	exLevel = patientInfo.getExercise();
+	carbGrams = patientInfo.getCarbs();
 	insType = basalOrBolus;
 	
 	TDD = getTDD();      // Find total daily dose of basal insulin
@@ -156,7 +144,6 @@ double MedicationCalculator::getBolus(){
 */
 double MedicationCalculator::calcSleep(double basal){
 	double sleepBasal = basal;
-	int sleepHour = sleepStruct.tm_hour;
 	int currentHour = findCurrentHour();
 
 	// Default is sleep at 11pm
@@ -208,6 +195,9 @@ double MedicationCalculator::calcEx(double basal){
    		exBasal = basal * 0.25;
    }
 
+   // Reset exercise to none 
+   patientInfo.setExercise("None");
+
    return (double) (int) (exBasal * 100 + 0.5) / 100;  
 }
 
@@ -218,6 +208,9 @@ double MedicationCalculator::calcEx(double basal){
 double MedicationCalculator::calcMeal(){
 	double CHOPerUnit = 450 / TDD;
 	double mealBolus = carbGrams / CHOPerUnit;
+
+	// Reset carbs to 0
+	patientInfo.setCarbs(0);
 
 	return (double) (int) (mealBolus * 100 + 0.5) / 100;  
 }

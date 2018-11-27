@@ -11,6 +11,11 @@ PatientInfo::PatientInfo() {
 		readFromFile();
 		iofile.close();
 	}
+
+	sleep = -1;
+	exercise = "None";
+	carbs = 0;
+
 }
 
 PatientInfo::~PatientInfo()
