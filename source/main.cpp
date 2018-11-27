@@ -1,3 +1,8 @@
+/*!
+	@author Group 22
+	Description: runs the artificial pancreas program
+*/
+
 #include "main.h"
 
 using namespace std;
@@ -12,9 +17,9 @@ int main(int argc, char **argv)
 	
 	while(running)
 	{
-		menu.PrintMenu();		
+		menu.printMenu();		
 		int optionToRetrieve = menu.getMenuSelection();
-		executor.MenuSwitch(optionToRetrieve);
+		executor.menuSwitch(optionToRetrieve);
 	}
 	
 	return 0;
