@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackagE{graphicx}
+
+\newcommand{\missingText}{\emph{*MISSING*}}
+
+\providecommand{\patientName}{\missingText}
+\providecommand{\patientSex}{\missingText}
+\providecommand{\patientHeight}{\missingText}
+\providecommand{\patientWeight}{\missingText}
+\providecommand{\patientBMI}{\missingText}
+
+\newcommand{\noRecommendation}{We have no reccomendation based on this information.}
+\providecommand{\patientReccomendation}{\noRecommendation}
+
+\providecommand{\pateintGlucoseGraph}{}
+\providecommand{\patientInsulinGraph}{}
+
+\begin{document}
+
+    \textbf{Name: }\patientName\\
+    \textbf{Age: }\patientName\\
+    \textbf{Sex: }\patientSex\\
+    \textbf{Name: }\patient\\
+    \textbf{Date: }\patientName\\
+    
+    \section{Glucose Readings}
+    \patientName{'s} glucose readings from the last week:
+    \[
+        \includegraphics{\patientGlucoseGraph}
+    \]
+    \patientName{'s} Insulin doses during the last week.
+    \[
+        \includegraphics{\patientInsulinGraph}
+    \]
+    \patientReccomendation
+\end{document}
