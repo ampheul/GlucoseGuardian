@@ -1,25 +1,37 @@
 /*!
-	Group: 22
-	Purpose: Responsible for executing the request made by the user
+	Author: Veronica Witzig
+	Purpose: Responsible for executing requests made by the user
 */
 
 #include "UserInputExecutor.h"
 
 using namespace std;
 
-void QuitProgram()
+/*!
+	Name: QuitProgram
+	Description: closes the artificialPancreas program
+*/
+UserInputExecutor::QuitProgram()
 {
 	ReportMaker maker = new ReportMaker();
 	maker.makeReport();
 }
 
-void MedicalHistory()
+/*!
+	Name: MedicalHistory
+	Description: displays a graph of the patient's medical history
+*/
+UserInputExecutor::MedicalHistory()
 {
 	ReportMaker maker = new ReportMaker();
 	maker.makeReport();
 }
 
-void CurrentGlucose()
+/*!
+	Name: CurrentGlucose
+	Description: queries the patient's glucose monitor to report their current glucose level
+*/
+UserInputExecutor::CurrentGlucose()
 {
 	MedicationCalculator calc = artificialPancreas.calculator;
 
@@ -29,22 +41,23 @@ void CurrentGlucose()
 	cout << "Your current glucose reading is : " + glucoseToPrint + "mg/dL";
 }
 
-void ManualGlucoseEntry()
+/*!
+	Name: ManualGlucoseEntry
+	Description: queries the user for a glucose entry and then sends the value to the artificial pancreas
+*/
+UserInputExecutor::ManualGlucoseEntry()
 {
 	bool validEntry = false;
-	string userInput;
 	int glucoseEntry = 0;
 
 	while(!validEntry) 
 	{
 		glucoseEntry = 0;
-		userInput = "";
 
 		cout << "Please enter the glucose reading: " << endl;
-		getline(cin, userInput);
 
 		// ensure the user input is a valid entry
-		stringstream(userInput) >> glucoseEntry;
+		cin >> glucoseEntry;
 		if (glucoseEntry < 40 && glucoseEntry > 1.7)
 		{
 			validEntry = true;
@@ -59,7 +72,11 @@ void ManualGlucoseEntry()
 	artificialPancreas.manuallyEnterGlucose(glucoseEntry);
 }
 
-void ManualInsulinAdministration()
+/*!
+	Name: ManualInsulinAdministration
+	Description: queries the user for a insulin amount to be administered
+*/
+UserInputExecutor::ManualInsulinAdministration()
 {
 	bool validEntry = false;
 	string userInput;
@@ -89,7 +106,11 @@ void ManualInsulinAdministration()
 	artificialPancreas.manuallyAdministerInsulin(insulinEntry);
 }
 
-void UpdateCarbsExerciseSleep()
+/*!
+	Name: UpdateCarbsExerciseSleep
+	Description: updates the patient's expected consumed carbs, exercise level, and sleep
+*/
+UserInputExecutor::UpdateCarbsExerciseSleep()
 {
 	cout << "Updating carbohydrates, exercise level, and sleep time" << endl;
 	
@@ -102,10 +123,14 @@ void UpdateCarbsExerciseSleep()
 	cout << "Update completed." << endl;
 }
 
-void UpdatePatientInfoCarbohydrates(PatientInfo patientInfo)
+/*!
+	Name: UpdatePatientInfoCarbs
+	Description: updates the patient's consumed carbs
+	@param patientInfo - the info to update
+*/
+UserInputExecutor::UpdatePatientInfoCarbs(PatientInfo patientInfo)
 {
 	bool validEntry = false;
-	string userInput;
 	double carbs = 0;
 	
 	while(!validEntry) 
@@ -114,11 +139,10 @@ void UpdatePatientInfoCarbohydrates(PatientInfo patientInfo)
 		userInput = "";
 
 		cout << "Please enter the number of carbs you expect to consume: " << endl;
-		getline(cin, userInput);
 
-		// ensure the user input is an int or double
+		// ensure the user input is an int or double and is within the allowable range
 		cin >> carbs;
-		if ((carbs > 0 || carbs < ) && !cin.fail())
+		if (!cin.fail() && (carbs > UserInputExecutor::MINIMUM_CARBS || carbs < UserInputExecutor::MAXIMUM_CARBS))
 		{
 			validEntry = true;
 		}
@@ -131,7 +155,12 @@ void UpdatePatientInfoCarbohydrates(PatientInfo patientInfo)
 	patientInfo.setCarbs(carbs);
 }
 
-void UpdatePatientInfoExercise(PatientInfo patientInfo)
+/*!
+	Name: UpdatePatientInfoExercise
+	Description: updates the patient's expected exercise level
+	@param patientInfo - the info to update
+*/
+UserInputExecutor::UpdatePatientInfoExercise(PatientInfo patientInfo)
 {
 	bool validEntry = false;
 	string exercise;
@@ -143,7 +172,7 @@ void UpdatePatientInfoExercise(PatientInfo patientInfo)
 		userInput = "";
 		optionInt = 0;
 
-		cout << "Please select the corresponding amount of exercise you expect to achieve: " << endl;
+		cout << "Please select the corresponding number for the amount of exercise you expect to achieve: " << endl;
 		cout << "1 - None 	- no activity" << endl;
 		cout << "2 - Low 	- 1 to 20 minutes of activity" << endl;
 		cout << "3 - Medium - 20 to 30 minutes of activity" << endl;
@@ -156,16 +185,20 @@ void UpdatePatientInfoExercise(PatientInfo patientInfo)
 			switch (optionInt)
 			{
 			case 1:
-				exercise = "";
+				exercise = "None";
+				validEntry = true;
 				break;
 			case 2:
-				OperatingSystemMenu();
+				exercise = "Low";
+				validEntry = true;
 				break;
 			case 3:
-				ProcessorMenu();
+				exercise = "High";
+				validEntry = true;
 				break;
 			case 4:
-				MemoryMenu();
+				exercise = "Medium";
+				validEntry = true;
 				break;
 			default:
 				cout << "That was not a valid option, please only enter a single int value." << endl;
@@ -180,13 +213,43 @@ void UpdatePatientInfoExercise(PatientInfo patientInfo)
 	patientInfo.setExercise(exercise);
 }
 
-void UpdatePatientInfoSleep(PatientInfo patientInfo)
+/*!
+	Name: UpdatePatientInfoSleep
+	Description: updates the patient's expected hours of sleep
+	@param patientInfo - the info to update
+*/
+UserInputExecutor::UpdatePatientInfoSleep(PatientInfo patientInfo)
 {
+	bool validEntry = false;
+	int sleepHours;
 	
-	patientInfo.setSleep();
+	while(!validEntry) 
+	{
+		sleepHours = 0;
+
+		cout << "Please enter your hours of expected sleep between 0 to 24 hours: " << endl;
+
+		// ensure the user input is a valid entry
+		cin >> sleepHours;
+		if (!cin.fail() || sleepHours > 24 || sleepHours < 0)
+		{			
+			validEntry = true;
+		}
+		else
+		{
+			cout << "Not a valid entry, please try again." << endl;
+		}
+	}
+
+	patientInfo.setSleep(sleepHours);
 }
 
-void MenuSwitch(int option)
+/*!
+	Name: MenuSwitch
+	Description: determines which UI menu should be presented to the user depending on the menu item they selected
+	@param option - represents the menu item selected by the user
+*/
+UserInputExecutor::MenuSwitch(int option)
 {
 	cout << "---------" << endl;
 	switch (option)
@@ -210,7 +273,7 @@ void MenuSwitch(int option)
 		UpdateCarbsExerciseSleep();
 		break;
 	default:
-		cout << "This shouldn't have happened." << endl;
+		cout << "Not a valid selection, please try again." << endl;
 	}
 	cout << "---------\n" << endl;
 }

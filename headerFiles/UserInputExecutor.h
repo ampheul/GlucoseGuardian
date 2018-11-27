@@ -25,13 +25,20 @@ public:
 	void MenuSwitch();
 	
 private:
+	const int MINIMUM_CARBS = 0;				//! The minimum number of carbs allowed for user input
+	const int MAXIMUM_CARBS = 1250;				//! The maximum number of carbs allowed for user input
+
 	ArtificialPancreas artificialPancreas;
 	void QuitProgram();
 	void MedicalHistory();
 	void CurrentGlucose();
 	void ManualGlucoseEntry();
 	void ManualInsulinAdministration();
+
 	void UpdateCarbsExerciseSleep();
+	void UpdatePatientInfoCarbs(PatientInfo patientInfo);
+	void UpdatePatientInfoExercise(PatientInfo patientInfo);
+	void UpdatePatientInfoSleep(PatientInfo patientInfo);
 };
 
 #endif
