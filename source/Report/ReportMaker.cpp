@@ -12,6 +12,7 @@ void ReportMaker::makeReport()
      * Method:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Dynamically alter contents for use in latex by adding
      * a list of commands to include before the file.
      * */
@@ -35,19 +36,24 @@ void ReportMaker::makeReport()
 =======
      * Dynamically alter contents for use in latex by adding 
 >>>>>>> adding to report.
+=======
+     * Dynamically alter contents for use in latex by adding
+     * a list of commands to include before the file.
+>>>>>>> still working on report maker.
      * */
        
-    std::string commandDefinitions =  latexNewCommand("patient", "") 
+    std::string commandDefinitions =  latexNewCommand("patient", patient.getName()) 
         + latexNewCommand("weight", std::to_string(patient.getWeight()))
         + latexNewCommand("height", std::to_string(patient.getHeight()))
         + latexNewCommand("age", std::to_string(patient.getAge())
         + latexNewCommand("sex", patient.getSex()));
-
+    
     std::string options = 
         "-jobname " + std::to_string(std::time(NULL))
         + "-output-directory " + "build/output/latex";
     
-    system("pdflatex " + options + " \"" + commandDefinitions+"\"");
+    std::string command = "pdflatex " + options + " \"" + commandDefinitions+"\""
+    system(command.c_str());
     
 <<<<<<< HEAD
 
