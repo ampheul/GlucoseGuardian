@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include <fstream>
-
 #include "DeviceRecord.h"
 #include "Contact.h"
 #include "MonitorRecord.h"
@@ -68,17 +67,18 @@ private:
 	vector<MonitorRecord> monitorRecords;
 	vector<MedicationRecord> medicationRecords;
 	vector<Contact> emergencyContacts;
-	
+
+	fstream iofile;
 	fstream iofile;
 	string input, delimiter;
 	time_t time;
 	size_t pos;
 	HormoneDose *dose;
-	HormoneType type;
+	hormoneType type;
 	string toEnum;
 	
 	GlucoseReading *tmpReading;
-	MonitorRecord *tmpMonitor;	
+	MonitorRecord *tmpMonitor;
 	MedicationRecord *tmpRecord;
 };
 
