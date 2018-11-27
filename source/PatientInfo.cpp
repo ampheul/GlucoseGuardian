@@ -2,7 +2,7 @@
 
 PatientInfo::PatientInfo() {
 	iofile.open("patient.txt", ios::in);
-	if(!iofile.is_open)
+	if(!iofile.is_open())
 	{
 		SetupPatientInfo();
 	}
@@ -15,13 +15,13 @@ PatientInfo::PatientInfo() {
 	sleep = -1;
 	exercise = "None";
 	carbs = 0;
-
 }
 
 PatientInfo::~PatientInfo()
 {
 	iofile.open("patient.txt", ios::out);
 	writeToFile();
+	iofile.close();
 }
 
 double PatientInfo::getWeight() {
@@ -60,7 +60,7 @@ double PatientInfo::getCarbs() {
 	return carbs;
 }
 
-double PatientInfo::setCarbs(double carbs) {
+void PatientInfo::setCarbs(double carbs) {
 	this->carbs = carbs;
 }
 
@@ -97,15 +97,10 @@ vector<Contact> PatientInfo::getEmergencyContacts() {
 	return emergencyContacts;
 }
 
-string PatientInfo::getPassword() {
-	return password;
-}
-
-void PatientInfo::setPassword(string password) {
-	this->password = password;
-}
-
 void PatientInfo::SetupPatientInfo() {
+	cout << "What is your name?";
+	cin >> name;
+
 	cout << "What is your weight?";
 	cin >> weight;
 
@@ -117,9 +112,6 @@ void PatientInfo::SetupPatientInfo() {
 
 	cout << "What is your sex?";
 	cin >> sex;
-
-	cout << "What would you like your password to be?";
-	cin >> password;
 
 	cout << "What is your email?";
 	cin >> email;
@@ -139,14 +131,10 @@ void PatientInfo::SetupPatientInfo() {
 	Contact emergContact(emergContactName, emergContactEmail);
 }
 
-bool PatientInfo::verifyPassword(string givenPassword) {
-	return this->password == givenPassword;
-}
-
 void PatientInfo::readFromFile()
 {
 	iofile.open("patient.txt", ios::in);
-	iofile >> weight >> height >> age >> bmi >> sex >> email >> emailPassword;
+	iofile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword;
 	delimiter = ",";
 	while(getline(iofile, input) && input != "-----")
 	{
@@ -186,6 +174,7 @@ void PatientInfo::readFromFile()
 void PatientInfo::writeToFile()
 {
 	iofile.open("patient.txt", ios::out);
+	iofile << name << endl;
 	iofile << weight << endl;
 	iofile << height << endl;
 	iofile << age << endl;
@@ -217,5 +206,4 @@ void PatientInfo::writeToFile()
 		}
 		iofile << it->getHormoneDose().getHormoneAmount() << endl;
 	}
-	iofile.close();
 }

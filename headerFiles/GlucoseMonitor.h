@@ -17,6 +17,7 @@ class GlucoseMonitor
         int sock;
         socklen_t clientSize;
         char buffer[549] = {0};
+        std::string input;
     public:
 		GlucoseMonitor();
 		~GlucoseMonitor();
