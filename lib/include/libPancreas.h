@@ -4,7 +4,6 @@
 #include "PatientAccount.h"
 #include "AccountType.h"
 #include "Test.h"
-#include "libPancreas.h"
 #include "GuestAccount.h"
 #include "GraphMaker.h"
 #include "MonitorRecord.h"
