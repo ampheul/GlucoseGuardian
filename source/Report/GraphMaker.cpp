@@ -1,10 +1,12 @@
+
+
 #include "GraphMaker.h"
 
-
-GraphMaker::GraphMaker(
-    std::pair<std::time_t,std::time_t> xrange,
-    std::pair<double,double> yrange,
-    std::vector<std::pair<std::time_t,double>> data)
+/** 
+ * Constructor for GraphMaker.
+ * 
+ * */
+GraphMaker::GraphMaker(XRange xrange, YRange yrange, DataSet data)
 {
     if (xrange.first > xrange.second)
         return;
@@ -17,45 +19,69 @@ GraphMaker::GraphMaker(
 
 void GraphMaker::makeGraph()
 {
-    
     int toGnuPlot[2];
-    int fromGnuPlot[2];
 
-    pipe(fromGnuPlot);
-    pipe(toGnuPlot);
+    if (pipe(toGnuPlot)!= 0)
+        std::exit(1);
     
-    dup2(STDOUT_FILENO, toGnuPlot[1]);
+    std::string graphFileName = "build/output/graphs/" + std::to_string(std::time(NULL)) + ".png";
+    this->graphFile = graphFileName;
+    FILE* pic = 
+        fdopen(graphFileName.c_str(), "w");
+    FILE * toGnuPlotFile = 
+        fdopen(toGnuPlot[1], "w");
 
-    std::cout << makeGraphString(this->data);
+    
+    for (DataSet::iterator it = this->data.begin();
+        it != this->data.end(); ++it)
+    {
+        fprintf(toGnuPlotFile, "%d %lf\n", (int)it->first, (double)it->second);
+    }
+    fclose(toGnuPlotFile);
+
 
     pid_t pid = fork();
+    
     if (pid == 0)
-    {
-        dup2(STDIN_FILENO, toGnuPlot[0]);
-        dup2(STDOUT_FILENO, fromGnuPlot[1]);
-        // this is the forked program
-        execlp("gnuplot", "gnuplot", "-", NULL);
-        std::cerr << "EXEC gnuplot failed, this line should not have been reached." << std::endl;
-    }
-    else if (pid > 0)
-    {
-        dup2(STDOUT_FILENO, toGnuPlot[1]);
-        std::cout << "set ouput " << std::time(NULL);
+    {   
+        dup2(toGnuPlot[0], STDIN_FILENO);
+        dup2(fileno(pic), STDOUT_FILENO);
         
-        close(toGnuPlot[1]);
-
-        dup2(STDOUT_FILENO, STDOUT_FILENO);
+        execlp("gnuplot", "gnuplot", "contours.7.gnu", NULL);
+        std::cerr << "this line should never be reached" << std::endl;
+        std::exit(1);
     }
     else
     {
-        std::cerr << "ERROR forking in GraphMaker" << std::endl;
+        dup2(STDOUT_FILENO, STDOUT_FILENO);
+        
+        wait(NULL); // wait for child to exit
+        
     }
 
+    close(toGnuPlot[0]);
+    fclose(pic);
 
 }
 
-std::string GraphMaker::makeGraphString(GraphMaker::GraphDataSet data)
+std::string GraphMaker::makeGraphString(DataSet data)
 {
     std::ifstream plotFile("contours.7.gnu");
-    return "";
+    
+    std::stringstream ss;
+    std::string s;
+
+    while ( !plotFile.eof() )
+    {
+        std::getline(plotFile, s);
+        ss << s << std::endl;
+    }
+    
+    for (auto & point : data)
+    {
+        ss << point.first <<" "<< point.second << std::endl;
+    }
+    ss << "EOF" << std::endl;
+
+    return ss.str();
 }
