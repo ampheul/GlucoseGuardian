@@ -13,7 +13,6 @@ void QuitProgram()
 	maker.makeReport();
 }
 
-
 void MedicalHistory()
 {
 	ReportMaker maker = new ReportMaker();
@@ -90,6 +89,103 @@ void ManualInsulinAdministration()
 	artificialPancreas.manuallyAdministerInsulin(insulinEntry);
 }
 
+void UpdateCarbsExerciseSleep()
+{
+	cout << "Updating carbohydrates, exercise level, and sleep time" << endl;
+	
+	PatientInfo patientInfo = artificialPancreas.getPatientInfo();
+	
+	UpdatePatientInfoCarbs(patientInfo);
+	UpdatePatientInfoExercise(patientInfo);
+	UpdatePatientInfoSleep(patientInfo);
+	
+	cout << "Update completed." << endl;
+}
+
+void UpdatePatientInfoCarbohydrates(PatientInfo patientInfo)
+{
+	bool validEntry = false;
+	string userInput;
+	double carbs = 0;
+	
+	while(!validEntry) 
+	{
+		carbs = 0;
+		userInput = "";
+
+		cout << "Please enter the number of carbs you expect to consume: " << endl;
+		getline(cin, userInput);
+
+		// ensure the user input is an int or double
+		cin >> carbs;
+		if ((carbs > 0 || carbs < ) && !cin.fail())
+		{
+			validEntry = true;
+		}
+		else
+		{
+			cout << "Not a valid carb entry, please try again." << endl;
+		}
+	}
+	
+	patientInfo.setCarbs(carbs);
+}
+
+void UpdatePatientInfoExercise(PatientInfo patientInfo)
+{
+	bool validEntry = false;
+	string exercise;
+	int optionInt;
+	
+	while(!validEntry) 
+	{
+		exercise = "";
+		userInput = "";
+		optionInt = 0;
+
+		cout << "Please select the corresponding amount of exercise you expect to achieve: " << endl;
+		cout << "1 - None 	- no activity" << endl;
+		cout << "2 - Low 	- 1 to 20 minutes of activity" << endl;
+		cout << "3 - Medium - 20 to 30 minutes of activity" << endl;
+		cout << "4 - High 	- 40 or more minutes of activity" << endl;
+
+		// ensure the user input is an int
+		cin >> optionInt;
+		if (!cin.fail())
+		{			
+			switch (optionInt)
+			{
+			case 1:
+				exercise = "";
+				break;
+			case 2:
+				OperatingSystemMenu();
+				break;
+			case 3:
+				ProcessorMenu();
+				break;
+			case 4:
+				MemoryMenu();
+				break;
+			default:
+				cout << "That was not a valid option, please only enter a single int value." << endl;
+			}
+		}
+		else
+		{
+			cout << "Not a valid entry, please try again." << endl;
+		}
+	}
+	
+	patientInfo.setExercise(exercise);
+}
+
+void UpdatePatientInfoSleep(PatientInfo patientInfo)
+{
+	
+	patientInfo.setSleep();
+}
+
 void MenuSwitch(int option)
 {
 	cout << "---------" << endl;
@@ -109,6 +205,9 @@ void MenuSwitch(int option)
 		break;
 	case 5:
 		ManualInsulinAdministration();
+		break;
+	case 6:
+		UpdateCarbsExerciseSleep();
 		break;
 	default:
 		cout << "This shouldn't have happened." << endl;
