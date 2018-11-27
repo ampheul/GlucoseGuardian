@@ -4,6 +4,10 @@
 #include "AccountType.h"
 #include "Test.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+#include "libPancreas.h"
+>>>>>>> added GraphMaker class, working on ReportMaker and its tests.
 =======
 #include "GuestAccount.h"
 >>>>>>> added GraphMaker class, working on ReportMaker and its tests.

@@ -10,6 +10,7 @@ void ReportMaker::makeReport()
 {
     /**
      * Method:
+<<<<<<< HEAD
      * Dynamically alter contents for use in latex by adding
      * a list of commands to include before the file.
      * */
@@ -27,7 +28,31 @@ void ReportMaker::makeReport()
     std::string command = "pdflatex " + options + " \"" + commandDefinitions+"\""
     system(command.c_str());
     
+=======
+     * pipe latex code into a latex file and use this to pipe into latex.
+     * The file we pipe to will be included as input in the latex header
+     * */
+    int toLatex[2];
+    pipe(toLatex);
+    FILE* latexWrite = fdopen(toLatex[1],"w");
+
+    fprintf(latexWrite, "\\documentclass{article}");
+
+    
+
+
+>>>>>>> added GraphMaker class, working on ReportMaker and its tests.
     return;
+}
+/** return a string for a latex command.
+ * 
+ * Returns a string for a latex command in the form 
+ *      \newcommand{\[command]}{\[definition]}
+ * where [command] and [definition] are replaced with the respective arguments.
+ * */
+std::string latexNewCommand(std::string command, std::string definition)
+{
+    return "\\newcommand{\\" + command + "}[\\" + defintion + "}"
 }
 
 /** Returns a string for a latex command.
