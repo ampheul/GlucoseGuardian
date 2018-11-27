@@ -51,6 +51,31 @@ void PatientInfo::setSex(string sex) {
 	this->sex = sex;
 }
 
+double PatientInfo::getCarbs() {
+	return carbs;
+}
+
+double PatientInfo::setCarbs(double carbs) {
+	this->carbs = carbs;
+}
+
+
+string PatientInfo::getExercise() {
+	return exercise;
+}
+
+void PatientInfo::setExercise(string exercise) {
+	this->exercise = exercise;
+}
+
+struct tm PatientInfo::getSleep() {
+	return sleep;
+}
+
+void PatientInfo::setSleep(struct tm sleep) {
+	this->sleep = sleep;
+}
+
 vector<MedicationRecord> PatientInfo::getMedicationRecords() {
 	return medicationRecords;
 }
