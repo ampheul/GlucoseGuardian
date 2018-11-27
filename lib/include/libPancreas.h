@@ -1,4 +1,4 @@
-#ifndef LIBPANCREAS_H
+#ifndetest:f LIBPANCREAS_H
 #define LIBPANCREAS_H
 
 #include "AccountType.h"

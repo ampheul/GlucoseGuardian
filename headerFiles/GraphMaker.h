@@ -37,15 +37,14 @@ class GraphMaker
     public:
 
         GraphMaker(XRange xrange, YRange yrange, DataSet data);
-        void makeGraph();
+        std::string makeGraph();
 
     private:
 
         XRange xrange; //! range (a,b), a < b
         YRange yrange; //! same as xrange, but for y-axis
         DataSet data; //! set of coordinates (x,y)
-        std::string graphFile; ///! The .gnu file to be used when creating the graph
-        static std::string makeGraphString(DataSet data); //! internal use. Makes a string for a gnuplot file.
+        std::string gnuFile; ///! The .gnu file to be used when creating the graph
 };
 
 #endif
