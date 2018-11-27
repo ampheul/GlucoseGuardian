@@ -39,8 +39,12 @@ void PatientInfo::setSex(string sex) {
 	this->sex = sex;
 }
 
-vector<DeviceRecord> PatientInfo::getRecordEntries() {
-	return recordEntryList;
+vector<MedicationRecord> PatientInfo::getMedicationRecords() {
+	return medicationRecords;
+}
+
+vector<MonitorRecord> PatientInfo::getMonitorRecords() {
+	return monitorRecords;
 }
 
 vector<Contact> PatientInfo::getEmergencyContacts() {

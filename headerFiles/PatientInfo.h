@@ -4,6 +4,8 @@
 #include <iostream>
 #include "DeviceRecord.h"
 #include "Contact.h"
+#include "MonitorRecord.h"
+#include "MedicationRecord.h"
 using namespace std;
 
 class PatientInfo {
@@ -15,7 +17,8 @@ private:
 	string sex;
 	string email;
 	string emailPassword;
-	vector<DeviceRecord> recordEntryList;
+	vector<MonitorRecord> monitorRecords;
+	vector<MedicationRecord> medicationRecords;
 	vector<Contact> emergencyContacts;
 	string password;
 
@@ -40,7 +43,9 @@ public:
 
 	void setSex(string sex);
 
-	vector<DeviceRecord> getRecordEntries();
+	vector<MonitorRecord> getMonitorRecords();
+
+	vector<MedicationRecord> getMedicationRecords();
 
 	vector<Contact> getEmergencyContacts();
 
