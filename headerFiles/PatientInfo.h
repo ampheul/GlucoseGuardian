@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <fstream>
+
 #include "DeviceRecord.h"
 #include "Contact.h"
 #include "MonitorRecord.h"
