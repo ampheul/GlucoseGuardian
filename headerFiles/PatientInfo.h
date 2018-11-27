@@ -72,7 +72,6 @@ private:
 	vector<Contact> emergencyContacts;
 
 	fstream iofile;
-	fstream iofile;
 	string input, delimiter;
 	time_t time;
 	size_t pos;

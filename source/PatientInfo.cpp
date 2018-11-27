@@ -2,7 +2,7 @@
 
 PatientInfo::PatientInfo() {
 	iofile.open("patient.txt", ios::in);
-	if(!iofile.is_open)
+	if(!iofile.is_open())
 	{
 		SetupPatientInfo();
 	}
