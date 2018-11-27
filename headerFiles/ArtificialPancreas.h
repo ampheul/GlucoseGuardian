@@ -19,8 +19,8 @@ class ArtificialPancreas
     public:
         ArtificialPancreas();
         ~ArtificialPancreas();
-        void setPatient(const PatientInfo *);
-        PatientInfo getPatientInfo() const;
+        void setPatient(PatientInfo *);
+        PatientInfo getPatientInfo();
         void calculateMedication(const double);
 		void manuallyEnterGlucose(const double);
 		void manuallyAdministerInsulin(const double);

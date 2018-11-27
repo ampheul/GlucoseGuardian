@@ -13,12 +13,12 @@ ArtificialPancreas::~ArtificialPancreas()
     delete output;
 }
 
-void ArtificialPancreas::setPatient(const PatientInfo *newPatient)
+void ArtificialPancreas::setPatient(PatientInfo *newPatient)
 {
     user = newPatient();
 }
 
-PatientInfo ArtificialPancreas::getPatientInfo() const
+PatientInfo ArtificialPancreas::getPatientInfo()
 {
     return user;
 }
