@@ -68,11 +68,11 @@ void PatientInfo::setExercise(string exercise) {
 	this->exercise = exercise;
 }
 
-struct tm PatientInfo::getSleep() {
+int PatientInfo::getSleep() {
 	return sleep;
 }
 
-void PatientInfo::setSleep(struct tm sleep) {
+void PatientInfo::setSleep(int sleep) {
 	this->sleep = sleep;
 }
 
