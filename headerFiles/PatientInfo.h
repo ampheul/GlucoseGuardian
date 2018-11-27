@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include "DeviceRecord.h"
 #include "Contact.h"
 #include "MonitorRecord.h"
@@ -64,7 +65,7 @@ private:
 	string email;
 	string emailPassword;
 	string exercise;
-	std::string name;
+	string name;
 
 	vector<MonitorRecord> monitorRecords;
 	vector<MedicationRecord> medicationRecords;

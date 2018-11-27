@@ -98,6 +98,9 @@ vector<Contact> PatientInfo::getEmergencyContacts() {
 }
 
 void PatientInfo::SetupPatientInfo() {
+	cout << "What is your name?";
+	cin >> name;
+
 	cout << "What is your weight?";
 	cin >> weight;
 
@@ -131,7 +134,7 @@ void PatientInfo::SetupPatientInfo() {
 void PatientInfo::readFromFile()
 {
 	iofile.open("patient.txt", ios::in);
-	iofile >> weight >> height >> age >> bmi >> sex >> email >> emailPassword;
+	iofile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword;
 	delimiter = ",";
 	while(getline(iofile, input) && input != "-----")
 	{
@@ -171,6 +174,7 @@ void PatientInfo::readFromFile()
 void PatientInfo::writeToFile()
 {
 	iofile.open("patient.txt", ios::out);
+	iofile << name << endl;
 	iofile << weight << endl;
 	iofile << height << endl;
 	iofile << age << endl;

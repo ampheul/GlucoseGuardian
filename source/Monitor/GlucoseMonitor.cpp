@@ -1,9 +1,13 @@
 #include "GlucoseMontor.h"
 
-GlucoseMonitor::GlucoseMonitor() {
+GlucoseMonitor::GlucoseMonitor()
+{
+    setup();
 }
 
-GlucoseMonitor::~GlucoseMonitor() {
+GlucoseMonitor::~GlucoseMonitor()
+{
+    
 }
 
 void GlucoseMonitor::setup()
