@@ -74,7 +74,7 @@ private:
 	time_t time;
 	size_t pos;
 	HormoneDose *dose;
-	HormoneType type;
+	hormoneType type;
 	string toEnum;
 	
 	GlucoseReading *tmpReading;
