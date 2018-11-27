@@ -18,7 +18,7 @@ private:
 	double bmi;
 	double carbs;
 	string exercise;
-	struct tm sleep;
+	int sleep;
 	string sex;
 	string email;
 	string emailPassword;
@@ -65,9 +65,9 @@ public:
 
 	void setExercise(string exercise);
 
-	struct tm getSleep();
+	int getSleep();
 
-	void setSleep(struct tm sleep);
+	void setSleep(int sleep);
 
 	void setSex(string sex);
 

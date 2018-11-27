@@ -11,6 +11,11 @@ PatientInfo::PatientInfo() {
 		readFromFile();
 		iofile.close();
 	}
+
+	sleep = -1;
+	exercise = "None";
+	carbs = 0;
+
 }
 
 PatientInfo::~PatientInfo()
@@ -68,11 +73,11 @@ void PatientInfo::setExercise(string exercise) {
 	this->exercise = exercise;
 }
 
-struct tm PatientInfo::getSleep() {
+int PatientInfo::getSleep() {
 	return sleep;
 }
 
-void PatientInfo::setSleep(struct tm sleep) {
+void PatientInfo::setSleep(int sleep) {
 	this->sleep = sleep;
 }
 

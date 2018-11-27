@@ -22,11 +22,6 @@
 #include "PatientInfo.h"
 #include "EmailNotification.h"
 
-// ??
-// #include "MonitorRecord.h"
-// #include "Context.h"
-// #include "HormoneDose.h"
-
 class MedicationCalculator
 {    
     public:
@@ -34,18 +29,15 @@ class MedicationCalculator
       /**
        * \brief Constructor
        * \param givenGlu a double glucose reading
-       * \param patient a patientInfo with weight and age data
-       * \param givenSleep a time struct
-       * \param givenEx a string exercise level 
-       * \param givenCarb a double carbohydrate intake in grams
+       * \param patient a patientInfo with weight, age, sleep time, exercise, carbohydrate intake data
        * \param basalOrBolus a string specifying basal or bolus insulin
        *
        * Initializes values needed to calculate hormone dosages.
        */
-        MedicationCalculator(double glu, PatientInfo patient, struct tm sleep, std::string ex, double carb, std::string ins);
+        MedicationCalculator(double glu, PatientInfo patient, std::string insType);
         
-		// Retrieves glucose reading
-		double GetGlucoseReading();
+		  // Retrieves glucose reading
+		  double GetGlucoseReading();
 
       /**
        * \brief Destructor
@@ -64,7 +56,7 @@ class MedicationCalculator
        * Bolus is given when patient specifies their carbohydrate intake and when blood glucose correction is needed (every 25 mins).
        * Reference: https://www.vitamonk.com/blogs/health/guide-to-blood-sugar-levels
        */
-		HormoneDose computeDosage();
+		  HormoneDose computeDosage();
 
     private:
         
@@ -72,10 +64,10 @@ class MedicationCalculator
         double gluRead;
         double weight;		
         double carbGrams;
-		PatientInfo patientInformation;
+		    PatientInfo patientInfo;
         double TDD; // Total Daily Dose of insulin
         int age;
-        struct tm sleepStruct;
+        int sleepHour;
         std::string exLevel;
         std::string insType;
 
