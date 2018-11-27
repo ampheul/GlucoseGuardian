@@ -19,13 +19,10 @@ class ReportMaker
             );
         void makeReport();
     private:
-<<<<<<< HEAD
-        GraphMaker graphMaker;
-        PatientInfo patient;
-=======
         GraphMaker graphMaker; ///< the graphmaker which will be used to graph the patient data
-        Patient patient; ///< the patient whose data will be graphed
->>>>>>> added GraphMaker class, working on ReportMaker and its tests.
+        PatientInfo patient; ///< the patient whose data will be graphed
+
+
 };
 
 #endif
