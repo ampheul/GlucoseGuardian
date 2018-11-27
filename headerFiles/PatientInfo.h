@@ -2,10 +2,12 @@
 #define PATIENTINFO_H
 
 #include <iostream>
+#include <fstream>
 #include "DeviceRecord.h"
 #include "Contact.h"
 #include "MonitorRecord.h"
 #include "MedicationRecord.h"
+#include "HormoneDose.h"
 using namespace std;
 
 class PatientInfo {
@@ -21,9 +23,22 @@ private:
 	vector<MedicationRecord> medicationRecords;
 	vector<Contact> emergencyContacts;
 	string password;
+	fstream iofile;
+	string input, delimiter;
+	time_t time;
+	size_t pos;
+	HormoneDose *dose;
+	string toEnum;
+	hormoneType type;
+	double amount;
+	GlucoseReading *tmpReading;
+	MonitorRecord *tmpMonitor;	
+	MedicationRecord *tmpRecord;
 
 public:
 	PatientInfo();
+
+	~PatientInfo();
 
 	double getWeight();
 
@@ -33,9 +48,7 @@ public:
 
 	void setHeight(double height);
 
-	double getAge() {
-		return this->age;
-	}
+	int getAge();
 
 	void setAge(double age);
 
@@ -56,6 +69,10 @@ public:
 	void SetupPatientInfo();
 
 	bool verifyPassword(string givenPassword);
+
+	void readFromFile();
+
+	void writeToFile();
 };
 
 #endif

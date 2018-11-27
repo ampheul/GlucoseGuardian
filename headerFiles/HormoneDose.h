@@ -9,7 +9,7 @@
 #define HORMONEDOSE_H
 
 /**
- * \breif Enum of hormone type.
+ * \brief Enum of hormone type.
  *
  * Hormone type is basal insulin, bolus insulin, or glucagon.
 */
