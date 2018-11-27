@@ -8,6 +8,7 @@
 #include "HormoneDose.h"
 #include "DeviceRecord.h"
 #include "GlucoseReading.h"
+#include "EmailNotification.h"
 
 class ArtificialPancreas
 {
@@ -16,6 +17,7 @@ class ArtificialPancreas
         MedicationCalculator *calculator;
         InsulinPump *output;
         HormoneDose *dose;
+        EmailNotification email;
     public:
         ArtificialPancreas();
         ~ArtificialPancreas();

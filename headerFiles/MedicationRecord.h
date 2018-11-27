@@ -3,9 +3,8 @@
 
 #include "DeviceRecord.h"
 #include "HormoneDose.h"
-#include "HormoneType.h"
 
-class MedicationRecord : DeviceRecord
+class MedicationRecord : public DeviceRecord
 {
     public:
         MedicationRecord(const std::time_t time, const HormoneDose dose);
