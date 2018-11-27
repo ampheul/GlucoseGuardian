@@ -1,4 +1,4 @@
-#include "GlucoseMontor.h"
+#include "GlucoseMonitor.h"
 
 GlucoseMonitor::GlucoseMonitor()
 {
