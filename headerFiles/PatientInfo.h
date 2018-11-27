@@ -21,7 +21,7 @@ class PatientInfo
 public:
 	PatientInfo();
 	~PatientInfo();
-
+	
 	double getWeight();
 	void setWeight(double weight);
 	
@@ -49,6 +49,7 @@ public:
 	void SetupPatientInfo();
 	void readFromFile();
 	void writeToFile();
+	std::string getName();
 	
 private:
 	double weight;
@@ -64,7 +65,8 @@ private:
 	string email;
 	string emailPassword;
 	string exercise;
-	
+	std::string name;
+
 	vector<MonitorRecord> monitorRecords;
 	vector<MedicationRecord> medicationRecords;
 	vector<Contact> emergencyContacts;

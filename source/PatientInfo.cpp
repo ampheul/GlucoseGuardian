@@ -64,6 +64,10 @@ double PatientInfo::setCarbs(double carbs) {
 	this->carbs = carbs;
 }
 
+std::string PatientInfo::getName()
+{
+	return this->name;
+}
 
 string PatientInfo::getExercise() {
 	return exercise;
