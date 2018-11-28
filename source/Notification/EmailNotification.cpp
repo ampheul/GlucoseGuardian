@@ -13,7 +13,7 @@ using namespace std;
 */
 EmailNotification::EmailNotification(PatientInfo *patientInfo)
 {
-	vector<> emergContact = patientInfo->getEmergencyContacts();
+	Contact emergContact = patientInfo->getEmergencyContacts();
 	senderEmail = patientInfo->getEmail();
 	emailPassword = patientInfo->getEmailPassword();
 	recipientEmail = emergContact->getEmail();
@@ -32,7 +32,7 @@ EmailNotification::~EmailNotification() {};
 */
 void EmailNotification::sendHypoglycemicEventEmail()
 {
-	SendEmail(senderEmail, senderEmail, emailPassword, UNAUTHORIZED_ACCESS_EMAIL_TEMPLATE);
+	EmailNotification::SendEmail(senderEmail, senderEmail, emailPassword, UNAUTHORIZED_ACCESS_EMAIL_TEMPLATE);
 };
 
 /*!
@@ -42,7 +42,7 @@ void EmailNotification::sendHypoglycemicEventEmail()
 */
 void EmailNotification::sendUnauthorizedAccessEmail()
 {
-	SendEmail(senderEmail, recipientEmail, emailPassword, HYPOGLYCEMIC_EVENT_EMAIL_TEMPLATE);
+	EmailNotification::SendEmail(senderEmail, recipientEmail, emailPassword, HYPOGLYCEMIC_EVENT_EMAIL_TEMPLATE);
 };
 
 /*!
@@ -52,7 +52,7 @@ void EmailNotification::sendUnauthorizedAccessEmail()
 */
 void EmailNotification::sendEmergencyContactEmail()
 {
-	SendEmail(senderEmail, recipientEmail, emailPassword, EMERGENCY_CONTACT_EMAIL_TEMPLATE);
+	EmailNotification::SendEmail(senderEmail, recipientEmail, emailPassword, EMERGENCY_CONTACT_EMAIL_TEMPLATE);
 };
 
 /*!
@@ -62,7 +62,7 @@ void EmailNotification::sendEmergencyContactEmail()
 */
 void EmailNotification::sendMedicalRequestEmail()
 {
-	SendEmail(senderEmail, recipientEmail, emailPassword, REQUEST_MEDICAL_RECORDS_EMAIL_TEMPLATE);
+	EmailNotification::SendEmail(senderEmail, recipientEmail, emailPassword, REQUEST_MEDICAL_RECORDS_EMAIL_TEMPLATE);
 };
 
 /*!

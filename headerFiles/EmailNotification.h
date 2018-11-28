@@ -35,7 +35,7 @@ private:
 	std::string emailPassword;
 	std::string recipientEmail;
 
-	void SendEmail(std::string senderEmail, std::string recipientEmail, std::string emailPassword);
+	void SendEmail(std::string senderEmail, std::string recipientEmail, std::string emailPassword, std::string emailTemplate);
 };
 
 #endif

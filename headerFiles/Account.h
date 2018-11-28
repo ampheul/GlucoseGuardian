@@ -18,7 +18,7 @@ class Account
 public:	
 	Account();
 	~Account();
-	std::string GetAccountType();
+	std::string getAccountType();
 
 private:
 	const std::string PATIENT_ACCOUNT = "Patient";							//! represents account type of Patient

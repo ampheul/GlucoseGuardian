@@ -1,5 +1,5 @@
 /*
-	Group: 22
+	@author Veronica Witzig
 	Purpose: Header file for the Menu class
 */
 
@@ -19,15 +19,15 @@
 class Menu
 {	
 public:	
-	Menu(Account account);
+	Menu(Account* account);
 	~Menu();
-	void PrintMenu();
-	int GetMenuSelection();
+	void printMenu();
+	int getMenuSelection();
 
 private:
 	std::string accountType;
 	std::vector<std::string> _items;
-	bool ValidateSelection();
+	bool validateSelection();
 };
 
 #endif

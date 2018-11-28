@@ -31,6 +31,9 @@ public:
 	int getAge();
 	void setAge(double age);
 	
+	std::string getEmail();
+	void setEmail(std::string email);
+	
 	std::string getEmailPassword();
 	void setEmailPassword(std::string password);
 
@@ -46,9 +49,12 @@ public:
 	int getSleep();
 	void setSleep(int sleep);
 
+	Contact* getEmergencyContact();
+	void setEmergencyContact(Contact* contact);
+	
 	vector<MonitorRecord> getMonitorRecords();
 	vector<MedicationRecord> getMedicationRecords();
-	vector<Contact> getEmergencyContacts();
+	
 	void SetupPatientInfo();
 	void readFromFile();
 	void writeToFile();
@@ -72,7 +78,7 @@ private:
 
 	vector<MonitorRecord> monitorRecords;
 	vector<MedicationRecord> medicationRecords;
-	vector<Contact> emergencyContacts;
+	Contact* emergencyContact;
 
 	fstream iofile;
 	string input, delimiter;

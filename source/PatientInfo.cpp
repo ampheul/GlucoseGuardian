@@ -91,8 +91,13 @@ vector<MonitorRecord> PatientInfo::getMonitorRecords() {
 	return monitorRecords;
 }
 
-vector<Contact> PatientInfo::getEmergencyContacts() {
-	return emergencyContacts;
+Contact* PatientInfo::getEmergencyContact() {
+	return emergencyContact;
+}
+
+void PatientInfo::setEmergencyContact(Contact* contact)
+{
+	this->emergencyContact = contact;
 }
 
 string PatientInfo::getEmailPassword() {
@@ -104,6 +109,14 @@ void PatientInfo::setEmailPassword(std::string emailPassword)
 	this->emailPassword = emailPassword;
 }
 
+string PatientInfo::getEmail() {
+	return this->email;
+}
+
+void PatientInfo::setEmail(std::string email)
+{
+	this->email = email;
+}
 
 void PatientInfo::SetupPatientInfo() {
 	cout << "What is your name?";

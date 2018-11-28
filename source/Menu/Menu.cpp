@@ -11,9 +11,9 @@ using namespace std;
 	Name: Menu
 	Description: builds the menu items available for the user based on their account type
 */
-Menu::Menu(Account account)
+Menu::Menu(Account* account)
 {
-	accountType = account.GetAccountType();
+	accountType = account->getAccountType();
 	
 	if (accountType == Account::PATIENT_ACCOUNT)
 	{
@@ -50,7 +50,7 @@ Menu::~Menu() {};
 	Name: PrintMenu
 	Description: prints the UI menu to the terminal for the user
 */
-void Menu::PrintMenu()
+void Menu::printMenu()
 {
 	for (const auto& item : menuItems)
 	{
@@ -62,7 +62,7 @@ void Menu::PrintMenu()
 	Name: GetMenuSelection
 	Description: retrieves the option that the user has selected from the available menu items
 */
-int Menu::GetMenuSelection()
+int Menu::getMenuSelection()
 {
 	bool validSelection = false;
 	string userInput;
@@ -75,7 +75,7 @@ int Menu::GetMenuSelection()
 		
 		cout << "Please select a corresponding number from the above selection: " << endl;
 		getline(cin, userInput);
-		validSelection = ValidateSelection(userInput);
+		validSelection = validateSelection(userInput);
 		
 		stringstream(userInput) >> optionInt;		
 	}
@@ -87,7 +87,7 @@ int Menu::GetMenuSelection()
 	Name: ValidateSelection
 	Description: verfies that the user entered value is valid
 */
-bool Menu::ValidateSelection(string userInput)
+bool Menu::validateSelection(string userInput)
 {
 	string userInput;
 	getline(cin, userInput);
