@@ -13,7 +13,7 @@ using namespace std;
 */
 EmailNotification::EmailNotification(PatientInfo *patientInfo)
 {
-	Contact emergContact = patientInfo->getEmergencyContacts();
+	Contact* emergContact = patientInfo->getEmergencyContact();
 	senderEmail = patientInfo->getEmail();
 	emailPassword = patientInfo->getEmailPassword();
 	recipientEmail = emergContact->getEmail();
@@ -32,7 +32,7 @@ EmailNotification::~EmailNotification() {};
 */
 void EmailNotification::sendHypoglycemicEventEmail()
 {
-	EmailNotification::SendEmail(senderEmail, senderEmail, emailPassword, UNAUTHORIZED_ACCESS_EMAIL_TEMPLATE);
+	EmailNotification::sendEmail(senderEmail, senderEmail, emailPassword, UNAUTHORIZED_ACCESS_EMAIL_TEMPLATE);
 };
 
 /*!
@@ -42,7 +42,7 @@ void EmailNotification::sendHypoglycemicEventEmail()
 */
 void EmailNotification::sendUnauthorizedAccessEmail()
 {
-	EmailNotification::SendEmail(senderEmail, recipientEmail, emailPassword, HYPOGLYCEMIC_EVENT_EMAIL_TEMPLATE);
+	EmailNotification::sendEmail(senderEmail, recipientEmail, emailPassword, HYPOGLYCEMIC_EVENT_EMAIL_TEMPLATE);
 };
 
 /*!
@@ -52,7 +52,7 @@ void EmailNotification::sendUnauthorizedAccessEmail()
 */
 void EmailNotification::sendEmergencyContactEmail()
 {
-	EmailNotification::SendEmail(senderEmail, recipientEmail, emailPassword, EMERGENCY_CONTACT_EMAIL_TEMPLATE);
+	EmailNotification::sendEmail(senderEmail, recipientEmail, emailPassword, EMERGENCY_CONTACT_EMAIL_TEMPLATE);
 };
 
 /*!
@@ -62,7 +62,7 @@ void EmailNotification::sendEmergencyContactEmail()
 */
 void EmailNotification::sendMedicalRequestEmail()
 {
-	EmailNotification::SendEmail(senderEmail, recipientEmail, emailPassword, REQUEST_MEDICAL_RECORDS_EMAIL_TEMPLATE);
+	EmailNotification::sendEmail(senderEmail, recipientEmail, emailPassword, REQUEST_MEDICAL_RECORDS_EMAIL_TEMPLATE);
 };
 
 /*!
@@ -74,8 +74,8 @@ void EmailNotification::sendMedicalRequestEmail()
 */
 void EmailNotification::sendEmail(string senderEmail, string recipientEmail, string emailPassword, string emailTemplate)
 {
-	cout << "Sending email to: " << recpientEmail << endl;
+	cout << "Sending email to: " << recipientEmail << endl;
 	string command = "curl --url \'smtps://smtp.gmail.com:465\' --ssl-reqd --mail-from \'" + senderEmail + "\' --mail-rcpt \'" + recipientEmail + "\' --upload-file" + emailTemplate + "--user \'" + senderEmail + ":" + emailPassword + "\'";
-	sys(command);
+	system(command);
 	cout << "Email sent" << endl;
 };
