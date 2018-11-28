@@ -95,6 +95,16 @@ vector<Contact> PatientInfo::getEmergencyContacts() {
 	return emergencyContacts;
 }
 
+string PatientInfo::getEmailPassword() {
+	return this->emailPassword;
+}
+
+void PatientInfo::setEmailPassword(std::string emailPassword)
+{
+	this->emailPassword = emailPassword;
+}
+
+
 void PatientInfo::SetupPatientInfo() {
 	cout << "What is your name?";
 	cin >> name;

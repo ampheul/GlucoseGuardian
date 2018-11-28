@@ -31,6 +31,9 @@ public:
 	int getAge();
 	void setAge(double age);
 	
+	std::string getEmailPassword();
+	void setEmailPassword(std::string password);
+
 	string getSex();
 	void setSex(string sex);
 	
