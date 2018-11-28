@@ -48,7 +48,7 @@ void ArtificialPancreas::calculateMedication(const double reading)
 
 void ArtificialPancreas::manuallyAdministerInsulin(const double insulinAmount)
 {
-	HormoneDose dose = new HormoneDose(BOLUS_INSULIN, insulinAmount);
+	dose = new HormoneDose(BOLUS_INSULIN, insulinAmount);
 	output->sendInstruction(dose);
     delete dose;
 }
