@@ -33,7 +33,7 @@ int main(int argc, char** argv)
 
     XRange xrange( currentTime - oneWeek, currentTime);
     YRange yrange(0,10.1);
-    PatientInfo * spaghetti = Spaghetti().makePatient();
+    /*PatientInfo * spaghetti = Spaghetti().makePatient();
         std::cerr <<"here"<<std::endl; 
 
     vector<MonitorRecord> *records = spaghetti->getMonitorRecords();
@@ -49,8 +49,8 @@ int main(int argc, char** argv)
             (YType)record.getReading().getAmount()));
         std::cout << data.back().first <<" " << data.back().second<<std::endl;
 
-    }
-    //DataSet data = gen_dataset(xrange,yrange);
+    }*/
+    DataSet data = gen_dataset(xrange,yrange);
     
     
     if (records->empty())
