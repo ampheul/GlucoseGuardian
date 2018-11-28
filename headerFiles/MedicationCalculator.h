@@ -64,7 +64,7 @@ class MedicationCalculator
         double gluRead;
         double weight;		
         double carbGrams;
-		    PatientInfo patientInfo;
+		    PatientInfo *patientInfo;
         double TDD; // Total Daily Dose of insulin
         int age;
         int sleepHour;

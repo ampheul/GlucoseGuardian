@@ -10,13 +10,13 @@ using namespace std;
 MedicationCalculator::MedicationCalculator(double givenGlu, PatientInfo *patient, string basalOrBolus){
 	
 	// Initialize variables
-	patientInfo = *patient;
+	patientInfo = patient;
 	gluRead = givenGlu;
-	weight = patientInfo.getWeight();
-	age = patientInfo.getAge();
-	sleepHour = patientInfo.getSleep();
-	exLevel = patientInfo.getExercise();
-	carbGrams = patientInfo.getCarbs();
+	weight = patient->getWeight();
+	age = patient->getAge();
+	sleepHour = patient->getSleep();
+	exLevel = patient->getExercise();
+	carbGrams = patient->getCarbs();
 	insType = basalOrBolus;
 	
 	TDD = getTDD();      // Find total daily dose of basal insulin
@@ -196,7 +196,7 @@ double MedicationCalculator::calcEx(double basal){
    }
 
    // Reset exercise to none 
-   patientInfo.setExercise("None");
+   patientInfo->setExercise("None");
 
    return (double) (int) (exBasal * 100 + 0.5) / 100;  
 }
@@ -210,7 +210,7 @@ double MedicationCalculator::calcMeal(){
 	double mealBolus = carbGrams / CHOPerUnit;
 
 	// Reset carbs to 0
-	patientInfo.setCarbs(0);
+	patientInfo->setCarbs(0);
 
 	return (double) (int) (mealBolus * 100 + 0.5) / 100;  
 }
