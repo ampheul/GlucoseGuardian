@@ -6,9 +6,10 @@
 #ifndef EMAIL_NOTIFICATION_HEADER
 #define EMAIL_NOTIFICATION_HEADER
 
-#include <string>
+#include <direct.h>
 #include <iostream>
 #include <stdio.h>
+#include <string>
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -48,6 +49,9 @@ private:
 	
 	/// email template used for sending medical records
 	const std::string REQUEST_MEDICAL_RECORDS_EMAIL_TEMPLATE = "request_records_email.txt";	//! email template for when a request for the patient's records has been made
+	
+	/// current working directory, needed for sending emails
+	std::string currentWorkingDirectory;
 
 	/// contains the email of the sender (the patient's email)
 	std::string senderEmail;
@@ -57,7 +61,7 @@ private:
 	
 	/// contains the email of the recipient (the emergency contact's email)
 	std::string recipientEmail;
-
+	
 	/// sends an email using the specified email template
 	void sendEmail(std::string senderEmail, std::string recipientEmail, std::string emailPassword, std::string emailTemplate);
 };

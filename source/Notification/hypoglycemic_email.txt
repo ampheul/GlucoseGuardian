@@ -1,6 +1,2 @@
-From: John Smith <john@example.com>
-To: Joe Smith <smith@example.com>
-Subject: an example.com example email
-Date: Mon, 7 Nov 2016 08:45:16
-
 Warning! Your glucose readings are not looking so great! You may be reaching a hypoglycemic event!
+We suggest you eat something high in sugar like a hard candy or drink some juice.
