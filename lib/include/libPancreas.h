@@ -31,6 +31,7 @@
 #include "EmailNotification.h"
 #include "runTests.h"
 #include "MedicationRecord.h"
+#include "LatexHelper.h"
 #include "DeviceRecord.h"
 #include "Menu.h"
 #include "LaptopOutput.h"

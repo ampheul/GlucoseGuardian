@@ -3,6 +3,7 @@
 
 #include "GraphMaker.h"
 #include "PatientInfo.h"
+#include "LatexHelper.h"
 
 /** \class ReportMaker
  * \brief Makes a pdf report documenting a patient's health over a week. 

@@ -1,5 +1,32 @@
 #include "PatientInfo.h"
 
+PatientInfo::PatientInfo(
+	double weight,
+	double height,
+	double bmi,
+	double carbs,
+	double amount,
+	int age,
+	int sleep,
+	string sex,
+	string email,
+	string emailPassword,
+	string exercise,
+	string name)
+	:
+	weight(weight),
+	height(height),
+	bmi(bmi),
+	carbs(carbs),
+	amount(amount),
+	age(age),
+	sleep(sleep),
+	sex(sex),
+	email(email),
+	exercise(exercise),
+	name(name)
+{}
+
 PatientInfo::PatientInfo() {
 	iofile.open("patient.txt", ios::in);
 	if(!iofile.is_open())

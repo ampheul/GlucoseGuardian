@@ -20,6 +20,19 @@ class PatientInfo
 {
 public:
 	PatientInfo();
+	PatientInfo(
+		double weight,
+		double height,
+		double bmi,
+		double carbs,
+		double amount,
+		int age,
+		int sleep,
+		std::string sex,
+		std::string email,
+		std::string emailPassword,
+		std::string exercise,
+		std::string name);
 	~PatientInfo();
 	
 	double getWeight();
@@ -45,6 +58,9 @@ public:
 	
 	int getSleep();
 	void setSleep(int sleep);
+
+	string getPassword();
+	void setPassword();
 
 	vector<MonitorRecord> getMonitorRecords();
 	vector<MedicationRecord> getMedicationRecords();

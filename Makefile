@@ -68,7 +68,7 @@ $(LIBRARY_ODIR)/libPancreas.a: $(MAINOBJECTS) $(INCLUDE)/libPancreas.h
 HEADERFILES := $(shell find $(HEADER) -maxdepth 1 -type f -name "*.h")
 LIBPANCREASFILES := $(filter-out $(INCLUDE)/libPancreas.h, $(HEADERFILES))
 
-$(INCLUDE)/libPancreas.h: $(filter-out $(INCLUDE)/libPancreas.h, $(LIBPANCREASFILES))
+$(INCLUDE)/libPancreas.h: $(filter-out $(INCLUDE)/libPancreas.h $(HEADER)/main.h, $(LIBPANCREASFILES))
 	@echo remaking libPancreas.h $^
 	@echo \#ifndef LIBPANCREAS_H\\n\#define LIBPANCREAS_H\\n > $@;\
 	for f in $^; \
