@@ -40,13 +40,13 @@ help:
 
 
 
-all: directories objects libs $(TEST_OBJECTS)
+all: install directories objects libs $(TEST_OBJECTS)
 directories: $(DIRECTORIES)
 objects: $(OBJECTS)
 libs: libPancreas
 libPancreas: $(LIBRARY_ODIR)/libPancreas.a
 tests: libPancreas $(TEST_OBJECTS)
-.PHONY: directories objects libs libPancreas tests
+.PHONY: all directories objects libs libPancreas tests
 
 # rule to make a directory ending in "/"
 %/ %/./ %/.//: $(dir %)/
@@ -59,8 +59,8 @@ MAINOBJECTS := $(filter-out $(ODIR)/main.o, $(OBJECTS))
 $(ODIR)/main.o: $(INCLUDE)/libPancreas.h $(LIBRARY_ODIR)/libPancreas.a
 $(ODIR)/main.o: $(SDIR)/main.cpp 
 	@echo remaking main.o
-	$(COMPILE)
-	$(POSTCOMPILE)
+	@$(COMPILE)
+	@$(POSTCOMPILE)
 
 $(LIBRARY_ODIR)/libPancreas.a: $(MAINOBJECTS) $(INCLUDE)/libPancreas.h
 	@$(ARCHIVE)
@@ -70,8 +70,8 @@ LIBPANCREASFILES := $(filter-out $(INCLUDE)/libPancreas.h, $(HEADERFILES))
 
 $(INCLUDE)/libPancreas.h: $(filter-out $(INCLUDE)/libPancreas.h, $(LIBPANCREASFILES))
 	@echo remaking libPancreas.h $^
-	@echo \#ifndef LIBPANCREAS_H\\n\#define LIBPANCREAS_H\\n > $@;\
-	for f in $^; \
+	@echo \#ifndetest:f LIBPANCREAS_H\\n\#define LIBPANCREAS_H\\n > $@;\
+	for f in $^; 	echo $(TEST_SOURCES)\
 	do echo \#include \"$$(basename $$f)\" >> $@; done; \
 	echo "\n#endif\n" >> $@ && touch $@
 .PHONY: $(HEADER)
@@ -85,6 +85,11 @@ $(ODIR)/%.o: $(SDIR)/%.cpp
 	@$(COMPILE) -c
 	@$(POSTCOMPILE)
 
+.PHONY: %.out
+%.out:
+%.out: $(ODIR)/%.o
+	echo $<
+
 RUNTESTS := $(patsubst %.o, %.run, $(TEST_OBJECTS) )
 
 .PHONY: $(TEST_ODIR)/%.run
@@ -94,7 +99,7 @@ $(TEST_ODIR)/%.run: $(TEST_ODIR)/%.o
 
 .PHONY: %.run
 %.run: $(TEST_ODIR)/%.run
-	echo asdf
+	@:
 
 .PHONY: runtests
 runtests: tests $(RUNTESTS)
@@ -108,6 +113,8 @@ cleanDocs:
 	@rm -rf docs/latex docs/html $(RULES_DIR) \
 		$(ODIR) $(SHARED_ODIR) $(LIBRARY_ODIR) $(DEPDIR)
 
-test:
-	echo $(TEST_SOURCES)
- include $(shell find $(DEPDIR) -type f -name "*.d" -print0)
+
+install:
+	sudo apt install gnuplot
+
+include $(shell find $(DEPDIR) -type f -name "*.d" -print0)
