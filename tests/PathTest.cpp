@@ -1,10 +1,11 @@
 #include "ArtificialPancreas.h"
+#include "GlucoseMonitor.h"
 #include <thread>
 
 int main()
 {
-    ArtificialPancreas artificialPancreas = new ArtificialPancreas();
-	GlucoseMonitor glucoseMonitor = new GlucoseMonitor();
+    ArtificialPancreas *artificialPancreas = new ArtificialPancreas();
+	GlucoseMonitor *glucoseMonitor = new GlucoseMonitor();
 
-	glucosemonitor->listen(artificialPancreas);
+	glucoseMonitor->listen(artificialPancreas);
 }
