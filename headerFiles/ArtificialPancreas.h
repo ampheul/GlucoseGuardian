@@ -23,8 +23,7 @@ class ArtificialPancreas
         ~ArtificialPancreas();
         void setPatient(PatientInfo *);
         PatientInfo * getPatientInfo();
-        void calculateMedication(const double);
-		void manuallyEnterGlucose(const double);
+        void calculateMedication(const double, std::string);
 		void manuallyAdministerInsulin(const double);
 		MedicationCalculator * getMedicationCalculator();
 };
