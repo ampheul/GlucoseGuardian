@@ -12,7 +12,7 @@ int main()
 	cout << "Please enter a password: " << endl;
 	getline(cin, password);
 
-	Account account = Account(password);
+	Account account = Account();
 
 	return 0;
 }
@@ -20,17 +20,18 @@ int main()
 bool PatientTestPass_CorrectPassword()
 {
 	const string password = "patient password";
-	Account account = Account(password);
+	Account account = Account();
 	string type = account.getAccountType();
-	type == account.PATIENT ? true : false;
+	type == account.PATIENT_ACCOUNT ? true : false;
 };
 
 bool PatientTestFail_IncorrectPassword()
 {
 	const string password = "not the password";
-	Account account = Account(password);
+	Account account = Account();
 	string type = account.getAccountType();
 	type == account.UNKNOWN ? true : false;
+	return type;
 }
 
 bool GuestTestPass_CorrectPassword()
@@ -38,13 +39,15 @@ bool GuestTestPass_CorrectPassword()
 	const string password = "guest password";
 	Account account = Account(password);
 	string type = account.getAccountType();
-	type == account.GUEST ? true : false;
+	type == account.GUEST_ACCOUNT ? true : false;
+	return type;
 };
 
 bool GuestTestFail_IncorrectPassword()
 {
 	const string password = "not the guest password";
-	Account account = Account(password);
+	Account account = Account();
 	string type = account.getAccountType();
-	type == account.UNKNOWN ? true : false;
+	type == account.UNKNOWN_ACCOUNT ? true : false;
+	return type;
 }
