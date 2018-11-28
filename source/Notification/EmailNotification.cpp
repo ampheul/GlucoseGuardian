@@ -19,7 +19,7 @@ EmailNotification::EmailNotification(PatientInfo *patientInfo)
 	recipientEmail = emergContact->getEmail();
 	
 	/// curl needs the direct path for the email template, grab it now
-	currentWorkingDirectory = GetCurrentWorkingDir();
+	currentWorkingDirectory = getcwd();
 };
 
 /**

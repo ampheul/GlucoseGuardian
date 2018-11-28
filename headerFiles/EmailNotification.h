@@ -6,6 +6,7 @@
 #ifndef EMAIL_NOTIFICATION_HEADER
 #define EMAIL_NOTIFICATION_HEADER
 
+#include <unistd.h>
 #include <iostream>
 #include <stdio.h>
 #include <string>
