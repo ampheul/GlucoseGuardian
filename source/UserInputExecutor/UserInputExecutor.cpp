@@ -39,7 +39,7 @@ void UserInputExecutor::quitProgram()
 void UserInputExecutor::medicalHistory()
 {
 	ReportMaker maker = new ReportMaker();
-	maker.makeReport();
+	maker->makeReport();
 }
 
 /*!
@@ -48,10 +48,18 @@ void UserInputExecutor::medicalHistory()
 */
 void UserInputExecutor::currentGlucose()
 {
-	MedicationCalculator* calc = artificialPancreas->getMedicationCalculator();
-
-	double glucoseReading = calc->GetGlucoseReading();
-	auto glucoseToPrint = to_string(glucoseReading);
+	vector *readings<MonitorRecord> = artificialPancreas->getPatientInfo()->getMonitorRecords();
+	time_t latest = 0
+	double reading = 0;
+	for(vector<MonitorRecord>::iterator it = readings->begin(); it != readings->end(); ++it)
+	{
+		if(it->getRecordTime() > latest)
+		{
+			latest = it->getRecordTieme();
+			reading = it->getAmount();
+	}
+	
+	auto glucoseToPrint = to_string(reading);
 	
 	cout << "Your current glucose reading is : " + glucoseToPrint + "mg/dL";
 }
@@ -63,7 +71,7 @@ void UserInputExecutor::currentGlucose()
 void UserInputExecutor::manualGlucoseEntry()
 {
 	bool validEntry = false;
-	int glucoseEntry = 0;
+	double glucoseEntry = 0;
 
 	while(!validEntry) 
 	{
@@ -84,7 +92,7 @@ void UserInputExecutor::manualGlucoseEntry()
 		}
 	}
 	
-	artificialPancreas->manuallyEnterGlucose(glucoseEntry);
+	artificialPancreas->calculateMedication(glucoseEntry, "Bolus");
 }
 
 /*!
@@ -95,7 +103,7 @@ void UserInputExecutor::manualInsulinAdministration()
 {
 	bool validEntry = false;
 	string userInput;
-	int insulinEntry = 0;
+	double insulinEntry = 0;
 
 	while(!validEntry) 
 	{
