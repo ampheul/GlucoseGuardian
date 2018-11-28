@@ -47,7 +47,7 @@ int main()
             std::cout << "Enter glucose measurement: ";
             std::cin >> input;
             std::cout << std::endl;
-            char *amount = input.c_str();
+            const char *amount = input.c_str();
             sendto(sock, amount, strlen(amount),
 			MSG_CONFIRM, (const struct sockaddr *) &server, sizeof(server));
         }
