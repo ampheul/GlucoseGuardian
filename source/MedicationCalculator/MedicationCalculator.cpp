@@ -77,7 +77,7 @@ HormoneDose * MedicationCalculator::computeDosage(){
 void MedicationCalculator::validateReading(){
 	if (gluRead < 1.7 || gluRead > 40){
 		cout << "Invalid glucose readings" << endl;
-		exit(0);
+		return NULL;
 	}
 }
 
