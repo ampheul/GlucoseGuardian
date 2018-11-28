@@ -77,7 +77,7 @@ class MedicationCalculator
          * Checks if glucose readings are within a valid range of 1.7 to 40 mmol/L.
          * Reference: https://www.vitamonk.com/blogs/health/guide-to-blood-sugar-levels
          */
-        void validateReading();
+        int validateReading();
 
         /** 
          * \brief Calculates glucagon dosage 

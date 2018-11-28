@@ -20,7 +20,6 @@ MedicationCalculator::MedicationCalculator(double givenGlu, PatientInfo *patient
 	insType = basalOrBolus;
 	
 	TDD = getTDD();      // Find total daily dose of basal insulin
-	validateReading();	 // Validate glucose readings
 }
 
 MedicationCalculator::~MedicationCalculator(){
@@ -39,6 +38,11 @@ HormoneDose * MedicationCalculator::computeDosage(){
     hormoneType gluc = GLUCAGON; 
     hormoneType basal = BASAL_INSULIN; 
     hormoneType bolus = BOLUS_INSULIN; 
+
+    int valid = validateReading();	 // Validate glucose readings, return null if invalid
+    if (valid > 0){
+	    return NULL;
+	}
 
 	/* 
 	 * Administer glucagon if hypoglycemic. Commented out print statement for future debugging.
@@ -74,11 +78,12 @@ HormoneDose * MedicationCalculator::computeDosage(){
 /* Validate glucose readings
    Reference: 5
 */
-void MedicationCalculator::validateReading(){
+int MedicationCalculator::validateReading(){
 	if (gluRead < 1.7 || gluRead > 40){
 		cout << "Invalid glucose readings" << endl;
-		return NULL;
+		return 1;
 	}
+	return 0;
 }
 
 // Retrieve glucose reading
