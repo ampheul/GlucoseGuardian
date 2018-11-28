@@ -12,7 +12,7 @@ using namespace std;
 	Description: constructor
 	@param artificialPancreas - the pancreas for sending manually entered glucose and insulin to
 */
-UserInputExecutor::userInputExecutor(ArtificialPancreas artificialPancreas)
+UserInputExecutor::UserInputExecutor(ArtificialPancreas artificialPancreas)
 {
 	this->artificialPancreas = artificialPancreas;
 };
@@ -21,7 +21,7 @@ UserInputExecutor::userInputExecutor(ArtificialPancreas artificialPancreas)
 	@name ~UserInputExecutor
 	Description: destructor
 */
-UserInputExecutor::~userInputExecutor() {};
+UserInputExecutor::~UserInputExecutor() {};
 
 /*!
 	@name quitProgram
