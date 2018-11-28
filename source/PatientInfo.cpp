@@ -19,9 +19,7 @@ PatientInfo::PatientInfo() {
 
 PatientInfo::~PatientInfo()
 {
-	iofile.open("patient.txt", ios::out);
 	writeToFile();
-	iofile.close();
 }
 
 double PatientInfo::getWeight() {
@@ -173,7 +171,7 @@ void PatientInfo::readFromFile()
 
 void PatientInfo::writeToFile()
 {
-	iofile.open("patient.txt", ios::out);
+	iofile.open("patient.txt", ios::out | ios::trunc);
 	iofile << name << endl;
 	iofile << weight << endl;
 	iofile << height << endl;
@@ -206,4 +204,5 @@ void PatientInfo::writeToFile()
 		}
 		iofile << it->getHormoneDose().getHormoneAmount() << endl;
 	}
+	iofile.close();
 }
