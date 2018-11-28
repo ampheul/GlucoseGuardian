@@ -18,7 +18,7 @@
 class EmailNotification
 {
 public:	
-	EmailNotification(PatientInfo patientInfo);
+	EmailNotification(PatientInfo *patientInfo);
 	~EmailNotification();
 	void sendUnauthorizedAccessEmail();
 	void sendHypoglycemicEventEmail();
