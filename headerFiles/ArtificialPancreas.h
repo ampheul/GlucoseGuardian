@@ -14,9 +14,7 @@ class ArtificialPancreas
 {
     private:
         PatientInfo *user;
-        MedicationCalculator *calculator;
         InsulinPump *output;
-        HormoneDose *dose;
         EmailNotification *email;
     public:
         ArtificialPancreas();
@@ -25,7 +23,6 @@ class ArtificialPancreas
         PatientInfo * getPatientInfo();
         void calculateMedication(const double, std::string);
 		void manuallyAdministerInsulin(const double);
-		MedicationCalculator * getMedicationCalculator();
 };
 
 #endif

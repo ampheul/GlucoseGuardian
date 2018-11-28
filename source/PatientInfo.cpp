@@ -103,11 +103,11 @@ void PatientInfo::setSleep(int sleep) {
 	this->sleep = sleep;
 }
 
-vector<MedicationRecord> PatientInfo::getMedicationRecords() {
+vector<MedicationRecord> * PatientInfo::getMedicationRecords() {
 	return medicationRecords;
 }
 
-vector<MonitorRecord> *PatientInfo::getMonitorRecords() {
+vector<MonitorRecord> * PatientInfo::getMonitorRecords() {
 	return monitorRecords;
 }
 
@@ -169,7 +169,8 @@ void PatientInfo::SetupPatientInfo() {
 	cout << "What is the email of your emergency contact?";
 	cin >> emergContactEmail;
 
-	Contact emergContact(emergContactName, emergContactEmail);
+	emergencyContact = new Contact(emergContactName, emergContactEmail);
+
 }
 
 void PatientInfo::readFromFile()
@@ -208,7 +209,7 @@ void PatientInfo::readFromFile()
 			dose = new HormoneDose(GLUCAGON, amount);
 		}
 		tmpRecord = new MedicationRecord(time, *dose);
-		medicationRecords.push_back(*tmpRecord);
+		medicationRecords->push_back(*tmpRecord);
 	}
 }
 
@@ -230,7 +231,7 @@ void PatientInfo::writeToFile()
 		iofile << it->getReading().getAmount() << endl;
 	}
 	iofile << "-----" << endl;
-	for(vector<MedicationRecord>::iterator it = medicationRecords.begin(); it != medicationRecords.end(); ++it)
+	for(vector<MedicationRecord>::iterator it = medicationRecords->begin(); it != medicationRecords->end(); ++it)
 	{
 		iofile << it->getRecordTime() << ",";
 		switch(it->getHormoneDose().getHormoneType())

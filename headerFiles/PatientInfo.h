@@ -171,13 +171,13 @@ public:
 	@name getMonitorRecords
 	Description: gets the patient's monitor records
     */
-	vector<MonitorRecord> *getMonitorRecords();
+	vector<MonitorRecord> * getMonitorRecords();
 
 	/*!
 	@name getMedicationRecords
 	Description: gets the patient's administered medication records
     */
-	vector<MedicationRecord> getMedicationRecords();
+	vector<MedicationRecord> * getMedicationRecords();
 	
 	/*!
 	@name SetupPatientInfo
@@ -221,7 +221,7 @@ private:
 	string name;
 
 	vector<MonitorRecord> *monitorRecords;
-	vector<MedicationRecord> medicationRecords;
+	vector<MedicationRecord> *medicationRecords;
 	Contact* emergencyContact;
 
 	fstream iofile;
