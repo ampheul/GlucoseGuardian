@@ -8,11 +8,11 @@
 
 using namespace std;
 
-/*!
-	@name Contact
-	@description constructor
-	@param name - the name of the contact
-	@param email - the email address of the contact
+/**
+*	\name Contact
+*	constructor
+*	\param name - the name of the contact
+*	\param email - the email address of the contact
 */
 Contact::Contact(string name, string email)
 {
@@ -20,25 +20,25 @@ Contact::Contact(string name, string email)
 	this->email = email;
 }
 
-/*!
-	@name ~Contact
-	@description destructor
+/**
+*	\name ~Contact
+*	destructor
 */
 Contact::~Contact() {}
 
-/*!
-	@name getName
-	@description returns the contact's name
-	@return the name
+/**
+*	\name getName
+*	returns the contact's name
+*	\return the name
 */
 string Contact::getName() {
 	return this->name;
 }
 
-/*!
-	@name getEmail
-	@description returns the contact's email
-	@return the email
+/**
+*	\name getEmail
+*	\description returns the contact's email
+*	\return the email
 */
 string Contact::getEmail() {
 	return this->email;

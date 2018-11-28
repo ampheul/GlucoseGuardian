@@ -1,6 +1,6 @@
-/*
-	@author Veronica Witzig
-	Purpose: Header file for the Menu class
+/**
+*	\author Veronica Witzig
+*	Header file for the Menu class
 */
 
 #ifndef MENU_HEADER
@@ -18,15 +18,27 @@
 
 class Menu
 {	
-public:	
+public:
+	/// constructor, expects a pointer to the account
 	Menu(Account* account);
+
+	/// destructor
 	~Menu();
+	
+	/// prints the menu to the terminal for the user to choose from
 	void printMenu();
+
+	/// determines which menu item the user selected
 	int getMenuSelection();
 
 private:
+	/// contains the type of the account
 	std::string accountType;
+
+	/// dynamically built list based on the account type containing menu items
 	std::vector<std::string> _items;
+
+	/// determines if the user input is valid
 	bool validateSelection();
 };
 
