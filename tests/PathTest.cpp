@@ -7,6 +7,6 @@ int main()
     ArtificialPancreas *artificialPancreas = new ArtificialPancreas();
 	GlucoseMonitor *glucoseMonitor = new GlucoseMonitor();
 
-	td::thread t1(glucoseMonitor->listen(artificialPancreas))
+	std::thread t1(glucoseMonitor->listen(artificialPancreas))
 	t1.join();
 }
