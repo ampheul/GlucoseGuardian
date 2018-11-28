@@ -35,8 +35,8 @@ void GlucoseMonitor::listen(const ArtificialPancreas * pancreas)
     while(true)
     {
         recv(sock, buffer, 549, 0);
-        input(buffer);
-        
+        input = buffer;
+        pancreas->calculateMedication(stod(input));
         memset(buffer, 0, sizeof(buffer));
         input.clear();
     }
