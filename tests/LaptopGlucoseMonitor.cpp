@@ -13,7 +13,7 @@
 
 int main()
 {
-    int port = 3306, sock;
+    int sock;
 	struct sockaddr_in server;
     std::string address = "127.0.0.1", input;
 
@@ -33,7 +33,7 @@ int main()
 	
 	//server settings
 	server.sin_family = AF_INET;
-	server.sin_port = htons(port);
+	server.sin_port = htons(3306);
 	server.sin_addr.s_addr = inet_addr(address.c_str());
 
     if (sock == -1)
