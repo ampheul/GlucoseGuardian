@@ -1,5 +1,5 @@
 /*!
-	Group: 22
+	Author: Naeem Budhwani and Graeme Brabers
 	Purpose: Contains statistics about the patient and his/her emergency contact information
 */
 
@@ -205,24 +205,49 @@ public:
 	std::string getName();
 	
 private:
+	/// patient's weight
 	double weight;
+
+	/// patient's height
 	double height;
+
+	/// patient's bmi
 	double bmi;
+
+	/// patient's carbs
 	double carbs;
+
+	/// patient's hormone dose
 	double amount;
 	
+	/// patient's age
 	int age;
+
+	/// patient's sleep
 	int sleep;
 	
+	/// patient's sex
 	string sex;
+
+	/// patient's email
 	string email;
+
+	/// patient's email password
 	string emailPassword;
+
+	/// patient's exercise
 	string exercise;
+
+	/// patient's name
 	string name;
 
+	/// monitor records for the patient
 	vector<MonitorRecord> *monitorRecords;
+
+	/// patient's emergency contact
 	vector<MedicationRecord> *medicationRecords;
 	Contact* emergencyContact;
+
 
 	fstream iofile;
 	string input, delimiter;
@@ -234,8 +259,13 @@ private:
 
 	string toEnum;
 	
+	/// glucose reading
 	GlucoseReading *tmpReading;
+
+	/// contains dose information for the patient
 	MonitorRecord *tmpMonitor;
+
+	/// medication record for the patient
 	MedicationRecord *tmpRecord;
 };
 
