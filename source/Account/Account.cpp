@@ -50,7 +50,7 @@ Account::~Account() {};
 */
 string Account::getAccountType() 
 {
-	return this->accountType;
+	return accountType;
 };
 
 /*!
@@ -61,7 +61,7 @@ string Account::getAccountType()
 */
 void Account::verifyPassword(ifstream& hashStream, string password)
 {
-	size_t hashToCheck = Account::HashPassword(password);
+	size_t hashToCheck = Account::hashPassword(password);
 
 	// retrieve the locally stored hash value and compare to the new hased value
 	string hashLine;
