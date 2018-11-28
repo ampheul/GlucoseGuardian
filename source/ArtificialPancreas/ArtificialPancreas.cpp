@@ -86,7 +86,7 @@ void ArtificialPancreas::manuallyAdministerInsulin(const double insulinAmount)
     delete dose;
 }
 
-*MedicationCalculator ArtificialPancreas::getCalculator()
+MedicationCalculator * ArtificialPancreas::getCalculator()
 {
-	return calculator
+	return calculator;
 }
