@@ -27,17 +27,16 @@ UserInputExecutor::~UserInputExecutor() {};
 	@name quitProgram
 	Description: closes the artificialPancreas program
 */
-UserInputExecutor::quitProgram()
+void UserInputExecutor::quitProgram()
 {
-	ReportMaker maker = new ReportMaker();
-	maker.makeReport();
+	exit();
 }
 
 /*!
 	@name medicalHistory
 	Description: displays a graph of the patient's medical history
 */
-UserInputExecutor::medicalHistory()
+void UserInputExecutor::medicalHistory()
 {
 	ReportMaker maker = new ReportMaker();
 	maker.makeReport();
@@ -47,7 +46,7 @@ UserInputExecutor::medicalHistory()
 	@name currentGlucose
 	Description: queries the patient's glucose monitor to report their current glucose level
 */
-UserInputExecutor::currentGlucose()
+void UserInputExecutor::currentGlucose()
 {
 	MedicationCalculator calc = artificialPancreas.calculator;
 
@@ -61,7 +60,7 @@ UserInputExecutor::currentGlucose()
 	@name manualGlucoseEntry
 	Description: queries the user for a glucose entry and then sends the value to the artificial pancreas
 */
-UserInputExecutor::manualGlucoseEntry()
+void UserInputExecutor::manualGlucoseEntry()
 {
 	bool validEntry = false;
 	int glucoseEntry = 0;
@@ -92,7 +91,7 @@ UserInputExecutor::manualGlucoseEntry()
 	@name manualInsulinAdministration
 	Description: queries the user for a insulin amount to be administered
 */
-UserInputExecutor::manualInsulinAdministration()
+void UserInputExecutor::manualInsulinAdministration()
 {
 	bool validEntry = false;
 	string userInput;
@@ -126,7 +125,7 @@ UserInputExecutor::manualInsulinAdministration()
 	@name updateCarbsExerciseSleep
 	Description: updates the patient's expected consumed carbs, exercise level, and sleep
 */
-UserInputExecutor::updateCarbsExerciseSleep()
+void UserInputExecutor::updateCarbsExerciseSleep()
 {
 	cout << "Updating carbohydrates, exercise level, and sleep time" << endl;
 	
@@ -144,7 +143,7 @@ UserInputExecutor::updateCarbsExerciseSleep()
 	Description: updates the patient's consumed carbs
 	@param patientInfo - the info to update
 */
-UserInputExecutor::updatePatientInfoCarbs(PatientInfo patientInfo)
+void UserInputExecutor::updatePatientInfoCarbs(PatientInfo patientInfo)
 {
 	bool validEntry = false;
 	double carbs = 0;
@@ -176,7 +175,7 @@ UserInputExecutor::updatePatientInfoCarbs(PatientInfo patientInfo)
 	Description: updates the patient's expected exercise level
 	@param patientInfo - the info to update
 */
-UserInputExecutor::updatePatientInfoExercise(PatientInfo patientInfo)
+void UserInputExecutor::updatePatientInfoExercise(PatientInfo patientInfo)
 {
 	bool validEntry = false;
 	string exercise;
@@ -234,7 +233,7 @@ UserInputExecutor::updatePatientInfoExercise(PatientInfo patientInfo)
 	Description: updates the patient's expected hours of sleep
 	@param patientInfo - the info to update
 */
-UserInputExecutor::updatePatientInfoSleep(PatientInfo patientInfo)
+void UserInputExecutor::updatePatientInfoSleep(PatientInfo patientInfo)
 {
 	bool validEntry = false;
 	int sleepHours;
@@ -265,7 +264,7 @@ UserInputExecutor::updatePatientInfoSleep(PatientInfo patientInfo)
 	Description: determines which UI menu should be presented to the user depending on the menu item they selected
 	@param option - represents the menu item selected by the user
 */
-UserInputExecutor::menuSwitch(int option)
+void UserInputExecutor::menuSwitch(int option)
 {
 	cout << "---------" << endl;
 	switch (option)
