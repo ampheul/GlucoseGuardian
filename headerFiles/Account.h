@@ -30,7 +30,7 @@ private:
 
 	std::string accountType;												//! the type of the account
 
-	string getAccountType();
+	std::string getAccountType();
 	void verifyPassword(std::ifstream& hashStream, std::string password);
 	std::size_t hashPassword(std::string password);
 	void initializeAccount(std::string password);
