@@ -48,20 +48,18 @@ void UserInputExecutor::medicalHistory()
 */
 void UserInputExecutor::currentGlucose()
 {
-	vector *readings<MonitorRecord> = artificialPancreas->getPatientInfo()->getMonitorRecords();
-	time_t latest = 0
-	double reading = 0;
-	for(vector<MonitorRecord>::iterator it = readings->begin(); it != readings->end(); ++it)
-	{
-		if(it->getRecordTime() > latest)
-		{
-			latest = it->getRecordTieme();
-			reading = it->getAmount();
+	// since monitor records are stored sequentially in time, we take the last entry
+	vector<MonitorRecord> readings = artificialPancreas->getPatientInfo()->getMonitorRecords();
+	if (readings.empty()) {
+		cout << "You do not have any stored glucose readings."
 	}
-	
-	auto glucoseToPrint = to_string(reading);
-	
-	cout << "Your current glucose reading is : " + glucoseToPrint + "mg/dL";
+	else {
+		MonitorRecord lastRecord = readings.back();
+		GlucoseReading reading = lastRecord.getReading();
+		double amount = reading.getAmount();
+		string amountToStr = to_string(amount);
+		cout << "Your current glucose reading is : " + amountToStr + "mg/dL";
+	}	
 }
 
 /*!

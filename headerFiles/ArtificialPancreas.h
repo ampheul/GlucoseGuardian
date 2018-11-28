@@ -10,6 +10,8 @@
 #include "GlucoseReading.h"
 #include "EmailNotification.h"
 
+using namespace std;
+
 class ArtificialPancreas
 {
     private:
