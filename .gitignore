@@ -7,4 +7,4 @@ docs/latex
 makeRules
 .dependencies
 bin
-contours.7.gnu
+build
