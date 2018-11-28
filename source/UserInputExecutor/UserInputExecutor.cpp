@@ -61,7 +61,7 @@ void UserInputExecutor::currentGlucose()
 	
 	auto glucoseToPrint = to_string(reading);
 	
-	cout << "Your current glucose reading is : " + glucoseToPrint + "mg/dL";
+	cout << "Your latest glucose reading is : " + glucoseToPrint + "mg/dL";
 }
 
 /*!
