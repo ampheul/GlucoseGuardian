@@ -72,7 +72,7 @@ void EmailNotification::sendMedicalRequestEmail()
 	@param string recipientEmail - recipient's email address
 	@param string emailPassword - password for the email account
 */
-void EmailNotification::SendEmail(string senderEmail, string recipientEmail, string emailPassword, string emailTemplate)
+void EmailNotification::sendEmail(string senderEmail, string recipientEmail, string emailPassword, string emailTemplate)
 {
 	cout << "Sending email to: " << recpientEmail << endl;
 	string command = "curl --url \'smtps://smtp.gmail.com:465\' --ssl-reqd --mail-from \'" + senderEmail + "\' --mail-rcpt \'" + recipientEmail + "\' --upload-file" + emailTemplate + "--user \'" + senderEmail + ":" + emailPassword + "\'";
