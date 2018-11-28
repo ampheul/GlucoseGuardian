@@ -39,7 +39,7 @@ void UserInputExecutor::quitProgram()
 void UserInputExecutor::medicalHistory()
 {
 	ReportMaker maker = new ReportMaker();
-	maker->makeReport();
+	maker.makeReport();
 }
 
 /*!
@@ -49,12 +49,12 @@ void UserInputExecutor::medicalHistory()
 void UserInputExecutor::currentGlucose()
 {
 	// since monitor records are stored sequentially in time, we take the last entry
-	vector<MonitorRecord> readings = artificialPancreas->getPatientInfo()->getMonitorRecords();
-	if (readings.empty()) {
-		cout << "You do not have any stored glucose readings."
+	vector<MonitorRecord>* readings = artificialPancreas->getPatientInfo()->getMonitorRecords();
+	if ((*readings).empty()) {
+		cout << "You do not have any stored glucose readings.";
 	}
 	else {
-		MonitorRecord lastRecord = readings.back();
+		MonitorRecord lastRecord = (*readings).back();
 		GlucoseReading reading = lastRecord.getReading();
 		double amount = reading.getAmount();
 		string amountToStr = to_string(amount);

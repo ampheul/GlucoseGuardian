@@ -21,33 +21,26 @@ bool PatientTestPass_CorrectPassword()
 {
 	const string password = "patient password";
 	Account account = Account();
-	string type = account.getAccountType();
-	type == account.PATIENT_ACCOUNT ? true : false;
+	return account.getAccountType() == account.PATIENT_ACCOUNT;
 };
 
 bool PatientTestFail_IncorrectPassword()
 {
 	const string password = "not the password";
 	Account account = Account();
-	string type = account.getAccountType();
-	type == account.UNKNOWN ? true : false;
-	return type;
+	return account.getAccountType() == account.UNKNOWN_ACCOUNT;
 }
 
 bool GuestTestPass_CorrectPassword()
 {
 	const string password = "guest password";
-	Account account = Account(password);
-	string type = account.getAccountType();
-	type == account.GUEST_ACCOUNT ? true : false;
-	return type;
+	Account account = Account();
+	return account.getAccountType() == account.GUEST_ACCOUNT;
 };
 
 bool GuestTestFail_IncorrectPassword()
 {
 	const string password = "not the guest password";
 	Account account = Account();
-	string type = account.getAccountType();
-	type == account.UNKNOWN_ACCOUNT ? true : false;
-	return type;
+	return account.getAccountType() == account.UNKNOWN_ACCOUNT;
 }
