@@ -11,7 +11,7 @@ using namespace std;
 	Name: Menu
 	Description: builds the menu items available for the user based on their account type
 */
-Menu::Menu(Account* account)
+Menu::Menu(Account *account)
 {
 	accountType = account->getAccountType();
 	
