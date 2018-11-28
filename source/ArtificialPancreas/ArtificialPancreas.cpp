@@ -15,7 +15,7 @@ ArtificialPancreas::~ArtificialPancreas()
 
 void ArtificialPancreas::setPatient(PatientInfo *newPatient)
 {
-    patient = newPatient;
+    user = newPatient;
 }
 
 PatientInfo * ArtificialPancreas::getPatientInfo()

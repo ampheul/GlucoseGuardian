@@ -9,7 +9,7 @@
 
 class InsulinPump
 {
-    protected:
+    public:
         virtual void sendInstruction(const HormoneDose *) const = 0;
 };
 
