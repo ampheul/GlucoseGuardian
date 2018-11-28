@@ -41,7 +41,7 @@ void ArtificialPancreas::setPatient(PatientInfo *newPatient)
 	@purpose gets the patient info
 	@return the patient info
 */
-PatientInfo ArtificialPancreas::getPatientInfo()
+PatientInfo * ArtificialPancreas::getPatientInfo()
 {
     return user;
 }
