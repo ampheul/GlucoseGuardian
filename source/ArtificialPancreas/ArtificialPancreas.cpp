@@ -27,14 +27,14 @@ void ArtificialPancreas::calculateMedication(const double reading)
 {
     if(reading > 1.7 && reading < 40)
     {
-        user->getRecordEntries.push_back(new MonitorRecord(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()), reading));        
+        //user->getRecordEntries.push_back(new MonitorRecord(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()), reading));        
         if(reading < 2.8)
         {
-            email->sendHypoglycemicEventEmail();
+            //email->sendHypoglycemicEventEmail();
         }
-        //calculator = new MedicationCalculator(reading, user, 
+        calculator = new MedicationCalculator(reading, user, "Basal");
         dose = calculator->computeDosage();
-        user->getRecordEntries.push_back(new MedicationRecord(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()), dose));
+        //user->getRecordEntries.push_back(new MedicationRecord(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()), dose));
         output->sendInstruction(dose);
         delete dose;
         delete calculator;
