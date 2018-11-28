@@ -95,7 +95,6 @@ vector<Contact> PatientInfo::getEmergencyContacts() {
 	return emergencyContacts;
 }
 
-<<<<<<< HEAD
 string PatientInfo::getEmailPassword() {
 	return this->emailPassword;
 }
@@ -106,8 +105,6 @@ void PatientInfo::setEmailPassword(std::string emailPassword)
 }
 
 
-=======
->>>>>>> 9332bcb5a238c4cd3fa4d82f7a469824a9df99bc
 void PatientInfo::SetupPatientInfo() {
 	cout << "What is your name?";
 	cin >> name;
@@ -142,13 +139,6 @@ void PatientInfo::SetupPatientInfo() {
 	Contact emergContact(emergContactName, emergContactEmail);
 }
 
-<<<<<<< HEAD
-bool PatientInfo::verifyPassword(string givenPassword) {
-	return (this->password == givenPassword);
-}
-
-=======
->>>>>>> 9332bcb5a238c4cd3fa4d82f7a469824a9df99bc
 void PatientInfo::readFromFile()
 {
 	iofile.open("patient.txt", ios::in);
