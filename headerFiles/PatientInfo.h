@@ -1,5 +1,5 @@
 /*!
-	Group: 22
+	Author: Naeem Budhwani and Graeme Brabers
 	Purpose: Contains statistics about the patient and his/her emergency contact information
 */
 
