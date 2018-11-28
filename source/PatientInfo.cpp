@@ -2,7 +2,7 @@
 
 PatientInfo::PatientInfo() {
 	iofile.open("patient.txt", ios::in);
-	if(!iofile.is_open)
+	if(!iofile.is_open())
 	{
 		SetupPatientInfo();
 	}
@@ -60,7 +60,7 @@ double PatientInfo::getCarbs() {
 	return carbs;
 }
 
-double PatientInfo::setCarbs(double carbs) {
+void PatientInfo::setCarbs(double carbs) {
 	this->carbs = carbs;
 }
 
@@ -97,13 +97,15 @@ vector<Contact> PatientInfo::getEmergencyContacts() {
 	return emergencyContacts;
 }
 
-string PatientInfo::getPassword() {
-	return password;
+string PatientInfo::getEmailPassword() {
+	return this->emailPassword;
 }
 
-void PatientInfo::setPassword(string password) {
-	this->password = password;
+void PatientInfo::setEmailPassword(std::string emailPassword)
+{
+	this->emailPassword = emailPassword;
 }
+
 
 void PatientInfo::SetupPatientInfo() {
 	cout << "What is your weight?";
@@ -140,7 +142,7 @@ void PatientInfo::SetupPatientInfo() {
 }
 
 bool PatientInfo::verifyPassword(string givenPassword) {
-	return this->password == givenPassword;
+	return (this->password == givenPassword);
 }
 
 void PatientInfo::readFromFile()
