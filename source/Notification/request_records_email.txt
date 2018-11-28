@@ -1,6 +1,1 @@
-From: John Smith <john@example.com>
-To: Joe Smith <smith@example.com>
-Subject: an example.com example email
-Date: Mon, 7 Nov 2016 08:45:16
-
-Warning! An unknown user has attempted to login to your artificial pancreas!
+Attention. The guest account for your artificial pancreas has requested access to your medical records.

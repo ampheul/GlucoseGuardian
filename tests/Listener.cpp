@@ -7,9 +7,6 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#include "main.h"
-
-#define PORT 3307 
 
 int main(int argc, char const *argv[]) 
 { 
@@ -28,7 +25,7 @@ int main(int argc, char const *argv[])
 
     serverAddress.sin_family = AF_INET; 
     serverAddress.sin_addr.s_addr = INADDR_ANY; 
-    serverAddress.sin_port = htons(PORT); 
+    serverAddress.sin_port = htons(3307); 
 
     //bind to socket
     if (bind(sock, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0) 

@@ -12,7 +12,7 @@ using namespace std;
 	Description: constructor
 	@param artificialPancreas - the pancreas for sending manually entered glucose and insulin to
 */
-UserInputExecutor::UserInputExecutor(ArtificialPancreas artificialPancreas)
+UserInputExecutor::UserInputExecutor(ArtificialPancreas* artificialPancreas)
 {
 	this->artificialPancreas = artificialPancreas;
 };
@@ -29,7 +29,7 @@ UserInputExecutor::~UserInputExecutor() {};
 */
 void UserInputExecutor::quitProgram()
 {
-	exit();
+	exit(0);
 }
 
 /*!
@@ -48,9 +48,9 @@ void UserInputExecutor::medicalHistory()
 */
 void UserInputExecutor::currentGlucose()
 {
-	MedicationCalculator calc = artificialPancreas.calculator;
+	MedicationCalculator* calc = artificialPancreas->getMedicationCalculator();
 
-	double glucoseReading = calc.GetGlucoseReading();
+	double glucoseReading = calc->GetGlucoseReading();
 	auto glucoseToPrint = to_string(glucoseReading);
 	
 	cout << "Your current glucose reading is : " + glucoseToPrint + "mg/dL";
@@ -84,7 +84,7 @@ void UserInputExecutor::manualGlucoseEntry()
 		}
 	}
 	
-	artificialPancreas.manuallyEnterGlucose(glucoseEntry);
+	artificialPancreas->manuallyEnterGlucose(glucoseEntry);
 }
 
 /*!
@@ -95,30 +95,30 @@ void UserInputExecutor::manualInsulinAdministration()
 {
 	bool validEntry = false;
 	string userInput;
-	int glucoseEntry = 0;
+	int insulinEntry = 0;
 
 	while(!validEntry) 
 	{
-		glucoseEntry = 0;
+		insulinEntry = 0;
 		userInput = "";
 
 		cout << "Please enter the insulin to be administered: " << endl;
 		getline(cin, userInput);
 
 		// ensure the user input is a valid entry
-		stringstream(userInput) >> glucoseEntry;
-		if (glucoseEntry < 0 && glucoseEntry > artificialPancreas.getPatientInfo.getWeight() / 4)
+		stringstream(userInput) >> insulinEntry;
+		if (insulinEntry < 0 && insulinEntry > artificialPancreas->getPatientInfo()->getWeight() / 4)
 		{
 			validEntry = true;
 		}
 		else
 		{
-			auto glucoseToPrint = to_string(glucoseEntry);
+			auto glucoseToPrint = to_string(insulinEntry);
 			cout << glucoseToPrint + " is not a valid glucose reading, please try again." << endl;
 		}
 	}
 	
-	artificialPancreas.manuallyAdministerInsulin(insulinEntry);
+	artificialPancreas->manuallyAdministerInsulin(insulinEntry);
 }
 
 /*!
@@ -129,7 +129,7 @@ void UserInputExecutor::updateCarbsExerciseSleep()
 {
 	cout << "Updating carbohydrates, exercise level, and sleep time" << endl;
 	
-	PatientInfo patientInfo = artificialPancreas.getPatientInfo();
+	PatientInfo* patientInfo = artificialPancreas->getPatientInfo();
 	
 	UserInputExecutor::updatePatientInfoCarbs(patientInfo);
 	UserInputExecutor::updatePatientInfoExercise(patientInfo);
@@ -143,7 +143,7 @@ void UserInputExecutor::updateCarbsExerciseSleep()
 	Description: updates the patient's consumed carbs
 	@param patientInfo - the info to update
 */
-void UserInputExecutor::updatePatientInfoCarbs(PatientInfo patientInfo)
+void UserInputExecutor::updatePatientInfoCarbs(PatientInfo* patientInfo)
 {
 	bool validEntry = false;
 	double carbs = 0;
@@ -151,7 +151,6 @@ void UserInputExecutor::updatePatientInfoCarbs(PatientInfo patientInfo)
 	while(!validEntry) 
 	{
 		carbs = 0;
-		userInput = "";
 
 		cout << "Please enter the number of carbs you expect to consume: " << endl;
 
@@ -167,7 +166,7 @@ void UserInputExecutor::updatePatientInfoCarbs(PatientInfo patientInfo)
 		}
 	}
 	
-	patientInfo.setCarbs(carbs);
+	patientInfo->setCarbs(carbs);
 }
 
 /*!
@@ -175,7 +174,7 @@ void UserInputExecutor::updatePatientInfoCarbs(PatientInfo patientInfo)
 	Description: updates the patient's expected exercise level
 	@param patientInfo - the info to update
 */
-void UserInputExecutor::updatePatientInfoExercise(PatientInfo patientInfo)
+void UserInputExecutor::updatePatientInfoExercise(PatientInfo* patientInfo)
 {
 	bool validEntry = false;
 	string exercise;
@@ -184,7 +183,6 @@ void UserInputExecutor::updatePatientInfoExercise(PatientInfo patientInfo)
 	while(!validEntry) 
 	{
 		exercise = "";
-		userInput = "";
 		optionInt = 0;
 
 		cout << "Please select the corresponding number for the amount of exercise you expect to achieve: " << endl;
@@ -225,7 +223,7 @@ void UserInputExecutor::updatePatientInfoExercise(PatientInfo patientInfo)
 		}
 	}
 	
-	patientInfo.setExercise(exercise);
+	patientInfo->setExercise(exercise);
 }
 
 /*!
@@ -233,7 +231,7 @@ void UserInputExecutor::updatePatientInfoExercise(PatientInfo patientInfo)
 	Description: updates the patient's expected hours of sleep
 	@param patientInfo - the info to update
 */
-void UserInputExecutor::updatePatientInfoSleep(PatientInfo patientInfo)
+void UserInputExecutor::updatePatientInfoSleep(PatientInfo* patientInfo)
 {
 	bool validEntry = false;
 	int sleepHours;
@@ -256,7 +254,7 @@ void UserInputExecutor::updatePatientInfoSleep(PatientInfo patientInfo)
 		}
 	}
 
-	patientInfo.setSleep(sleepHours);
+	patientInfo->setSleep(sleepHours);
 }
 
 /*!

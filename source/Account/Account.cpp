@@ -1,16 +1,17 @@
-/*!
-	Group: 22
-	Purpose: Represents the type of person that is logged in. Depending on the account type, 
-			 may have restricted capability.
+/**
+*	\author Veronica Witzig
+*	Represents the type of person that is logged in.
+*		Depending on the account type, may have restricted 
+*		capability.
 */
 
 #include "Account.h"
 
 using namespace std;
 
-/*!
-	@name Account
-	Description: constructor
+/**
+*	\name Account
+*	Constructor
 */
 Account::Account()
 {
@@ -18,7 +19,7 @@ Account::Account()
 	cout << "Please enter a password: " << endl;
 	getline(cin, password);
 	
-	// check if accounts.txt file exists locally. If it does not, then the account needs to be initialized, else, continue the verification process.
+	/// check if accounts.txt file exists locally. If it does not, then the account needs to be initialized, else, continue the verification process.
 	ifstream accountStream(ACCOUNT_INFO);
 	if (accountStream.is_open())
 	{
@@ -37,38 +38,38 @@ Account::Account()
 	}
 };
 
-/*!
-	@name ~Account
-	Description: destructor
+/**
+*	\name ~Account
+*	Destructor
 */
 Account::~Account() {};
 
-/*!
-	@name getAccountType
-	Description: returns the type of the account
-	@return	the account type as a string
+/**
+*	\name getAccountType
+*	returns the type of the account
+*	\return	the account type as a string
 */
 string Account::getAccountType() 
 {
 	return accountType;
 };
 
-/*!
-	@name verifyPassword
-	Description: verifies the password to a stored hash, sets the account type as either PATIENT, GUEST, or UNKNOWN
-	@param hashStream 	- stream for getting the hash
-	@param password 	- the password to verify
+/**
+*	\name verifyPassword
+*	verifies the password to a stored hash, sets the account type as either PATIENT, GUEST, or UNKNOWN
+*	\param hashStream 	- stream for getting the hash
+*	\param password 	- the password to verify
 */
 void Account::verifyPassword(ifstream& hashStream, string password)
 {
 	size_t hashToCheck = Account::hashPassword(password);
 
-	// retrieve the locally stored hash value and compare to the new hased value
+	/// retrieve the locally stored hash value and compare to the new hased value
 	string hashLine;
 	size_t patientHash;
 	size_t guestHash;
 
-	// patient hash is on first line. guest/emergency contact hash is on second line
+	/// patient hash is on first line. guest/emergency contact hash is on second line
 	if (hashStream.is_open())
 	{
 		hashStream >> patientHash;
@@ -92,11 +93,11 @@ void Account::verifyPassword(ifstream& hashStream, string password)
 	}
 };
 
-/*!
-	@name hashPassword
-	Description: hashes the received password from the user
-	@param password - the password to hash
-	@return hash value of the password
+/**
+*	\name hashPassword
+*	hashes the received password from the user
+*	\param password - the password to hash
+*	\return hash value of the password
 */
 size_t Account::hashPassword(string password)
 {
@@ -105,10 +106,10 @@ size_t Account::hashPassword(string password)
 	return hash;
 };
 
-/*!
-	@name initializeAccount
-	Description: initializes the patient's main account by setting a password for the user.
-	@param string password - the password to verify
+/**
+*	\name initializeAccount
+*	initializes the patient's main account by setting a password for the user.
+*	\param string password - the password to verify
 */
 void Account::initializeAccount(string password)
 {

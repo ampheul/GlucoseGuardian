@@ -51,27 +51,18 @@ PatientInfo * ArtificialPancreas::getPatientInfo()
 	@purpose calculates the medication needed for the patient based on their glucose reading
 	@param reading - the glucose reading
 */
-void ArtificialPancreas::calculateMedication(const double reading)
+void ArtificialPancreas::calculateMedication(const double reading, std::string bolusOrBasal)
 {
-    if(reading > 1.7 && reading < 40)
+    //user->getRecordEntries->push_back(new MonitorRecord(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()), reading));        
+    calculator = new MedicationCalculator(reading, user, bolusOrBasal);
+    dose = calculator->computeDosage();
+    //user->getRecordEntries->push_back(new MedicationRecord(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()), dose));
+    if(dose != NULL)
     {
-        //user->getRecordEntries.push_back(new MonitorRecord(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()), reading));        
-        if(reading < 2.8)
-        {
-            //email->sendHypoglycemicEventEmail();
-        }
-        calculator = new MedicationCalculator(reading, user, "Basal");
-        dose = calculator->computeDosage();
-        
-        //user->getRecordEntries.push_back(new MedicationRecord(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()), dose));
         output->sendInstruction(dose);
         delete dose;
-        delete calculator;
     }
-    else
-    {
-        std::cout << "Error: invalid glucose measurement submitted" << std::endl;
-    }
+    delete calculator;
 }
 
 /*!
@@ -84,4 +75,9 @@ void ArtificialPancreas::manuallyAdministerInsulin(const double insulinAmount)
 	dose = new HormoneDose(BOLUS_INSULIN, insulinAmount);
 	output->sendInstruction(dose);
     delete dose;
+}
+
+MedicationCalculator * ArtificialPancreas::getMedicationCalculator()
+{
+	return calculator;
 }
