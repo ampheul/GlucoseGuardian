@@ -1,5 +1,5 @@
 /*!
-	Author: Veronica Witzig
+	@author Veronica Witzig
 	Purpose: Responsible for executing requests made by the user
 */
 
@@ -8,30 +8,45 @@
 using namespace std;
 
 /*!
-	Name: QuitProgram
+	@name userInputExecutor
+	Description: constructor
+	@param artificialPancreas - the pancreas for sending manually entered glucose and insulin to
+*/
+UserInputExecutor::UserInputExecutor(ArtificialPancreas artificialPancreas)
+{
+	this->artificialPancreas = artificialPancreas;
+};
+
+/*!
+	@name ~UserInputExecutor
+	Description: destructor
+*/
+UserInputExecutor::~UserInputExecutor() {};
+
+/*!
+	@name quitProgram
 	Description: closes the artificialPancreas program
 */
-UserInputExecutor::QuitProgram()
+void UserInputExecutor::quitProgram()
 {
-	ReportMaker maker = new ReportMaker();
-	maker.makeReport();
+	exit();
 }
 
 /*!
-	Name: MedicalHistory
+	@name medicalHistory
 	Description: displays a graph of the patient's medical history
 */
-UserInputExecutor::MedicalHistory()
+void UserInputExecutor::medicalHistory()
 {
 	ReportMaker maker = new ReportMaker();
 	maker.makeReport();
 }
 
 /*!
-	Name: CurrentGlucose
+	@name currentGlucose
 	Description: queries the patient's glucose monitor to report their current glucose level
 */
-UserInputExecutor::CurrentGlucose()
+void UserInputExecutor::currentGlucose()
 {
 	MedicationCalculator calc = artificialPancreas.calculator;
 
@@ -42,10 +57,10 @@ UserInputExecutor::CurrentGlucose()
 }
 
 /*!
-	Name: ManualGlucoseEntry
+	@name manualGlucoseEntry
 	Description: queries the user for a glucose entry and then sends the value to the artificial pancreas
 */
-UserInputExecutor::ManualGlucoseEntry()
+void UserInputExecutor::manualGlucoseEntry()
 {
 	bool validEntry = false;
 	int glucoseEntry = 0;
@@ -73,10 +88,10 @@ UserInputExecutor::ManualGlucoseEntry()
 }
 
 /*!
-	Name: ManualInsulinAdministration
+	@name manualInsulinAdministration
 	Description: queries the user for a insulin amount to be administered
 */
-UserInputExecutor::ManualInsulinAdministration()
+void UserInputExecutor::manualInsulinAdministration()
 {
 	bool validEntry = false;
 	string userInput;
@@ -107,28 +122,28 @@ UserInputExecutor::ManualInsulinAdministration()
 }
 
 /*!
-	Name: UpdateCarbsExerciseSleep
+	@name updateCarbsExerciseSleep
 	Description: updates the patient's expected consumed carbs, exercise level, and sleep
 */
-UserInputExecutor::UpdateCarbsExerciseSleep()
+void UserInputExecutor::updateCarbsExerciseSleep()
 {
 	cout << "Updating carbohydrates, exercise level, and sleep time" << endl;
 	
 	PatientInfo patientInfo = artificialPancreas.getPatientInfo();
 	
-	UpdatePatientInfoCarbs(patientInfo);
-	UpdatePatientInfoExercise(patientInfo);
-	UpdatePatientInfoSleep(patientInfo);
+	UserInputExecutor::updatePatientInfoCarbs(patientInfo);
+	UserInputExecutor::updatePatientInfoExercise(patientInfo);
+	UserInputExecutor::updatePatientInfoSleep(patientInfo);
 	
 	cout << "Update completed." << endl;
 }
 
 /*!
-	Name: UpdatePatientInfoCarbs
+	@name updatePatientInfoCarbs
 	Description: updates the patient's consumed carbs
 	@param patientInfo - the info to update
 */
-UserInputExecutor::UpdatePatientInfoCarbs(PatientInfo patientInfo)
+void UserInputExecutor::updatePatientInfoCarbs(PatientInfo patientInfo)
 {
 	bool validEntry = false;
 	double carbs = 0;
@@ -156,11 +171,11 @@ UserInputExecutor::UpdatePatientInfoCarbs(PatientInfo patientInfo)
 }
 
 /*!
-	Name: UpdatePatientInfoExercise
+	@name updatePatientInfoExercise
 	Description: updates the patient's expected exercise level
 	@param patientInfo - the info to update
 */
-UserInputExecutor::UpdatePatientInfoExercise(PatientInfo patientInfo)
+void UserInputExecutor::updatePatientInfoExercise(PatientInfo patientInfo)
 {
 	bool validEntry = false;
 	string exercise;
@@ -214,11 +229,11 @@ UserInputExecutor::UpdatePatientInfoExercise(PatientInfo patientInfo)
 }
 
 /*!
-	Name: UpdatePatientInfoSleep
+	@name updatePatientInfoSleep
 	Description: updates the patient's expected hours of sleep
 	@param patientInfo - the info to update
 */
-UserInputExecutor::UpdatePatientInfoSleep(PatientInfo patientInfo)
+void UserInputExecutor::updatePatientInfoSleep(PatientInfo patientInfo)
 {
 	bool validEntry = false;
 	int sleepHours;
@@ -245,53 +260,35 @@ UserInputExecutor::UpdatePatientInfoSleep(PatientInfo patientInfo)
 }
 
 /*!
-	Name: MenuSwitch
+	@name menuSwitch
 	Description: determines which UI menu should be presented to the user depending on the menu item they selected
 	@param option - represents the menu item selected by the user
 */
-UserInputExecutor::MenuSwitch(int option)
+void UserInputExecutor::menuSwitch(int option)
 {
 	cout << "---------" << endl;
 	switch (option)
 	{
 	case 1:
-		QuitProgram();
+		UserInputExecutor::quitProgram();
 		break;
 	case 2:
-		MedicalHistory();
+		UserInputExecutor::medicalHistory();
 		break;
 	case 3:
-		CurrentGlucose();
+		UserInputExecutor::currentGlucose();
 		break;
 	case 4:
-		ManualGlucoseEntry();
+		UserInputExecutor::manualGlucoseEntry();
 		break;
 	case 5:
-		ManualInsulinAdministration();
+		UserInputExecutor::manualInsulinAdministration();
 		break;
 	case 6:
-		UpdateCarbsExerciseSleep();
+		UserInputExecutor::updateCarbsExerciseSleep();
 		break;
 	default:
 		cout << "Not a valid selection, please try again." << endl;
 	}
 	cout << "---------\n" << endl;
 }
-
-/*!
-	Name: UserInputExecutor
-	Description: constructor
-	@param artificialPancreas - 
-*/
-UserInputExecutor::UserInputExecutor(ArtificialPancreas artificialPancreas)
-{
-	this->artificialPancreas = artificialPancreas;
-};
-
-/*!
-	Name: ~UserInputExecutor
-	Description: destructor for the UserInputExecutor class
-*/
-UserInputExecutor::~UserInputExecutor() {};
-
-

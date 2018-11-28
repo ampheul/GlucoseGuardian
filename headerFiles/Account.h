@@ -1,4 +1,4 @@
-/*
+/*!
 	Group: 22
 	Purpose: Header file for the Account class
 */
@@ -10,7 +10,6 @@
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
-#include <dirent.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -19,7 +18,6 @@ class Account
 public:	
 	Account();
 	~Account();
-	void accountOptions();
 	std::string GetAccountType();
 
 private:
@@ -31,11 +29,11 @@ private:
 	const std::string ACCOUNT_INFO = "accountInfo.txt";						//! file name for storing account information
 
 	std::string accountType;												//! the type of the account
-	DIR *accountDir;														//! pointer to accountInfo directory
 
-	void VerifyPassword(std::ifstream& hashStream, std::string password);
-	std::size_t HashPassword(std::string password);
-	void InitializeAccount(std::string password);
+	std::string getAccountType();
+	void verifyPassword(std::ifstream& hashStream, std::string password);
+	std::size_t hashPassword(std::string password);
+	void initializeAccount(std::string password);
 };
 
 #endif

@@ -11,12 +11,12 @@ using namespace std;
 	Name: EmailNotification
 	Description: constructor
 */
-EmailNotification::EmailNotification(PatientInfo patientInfo)
+EmailNotification::EmailNotification(PatientInfo *patientInfo)
 {
-	vector<> emergContact = patientInfo.getEmergencyContacts();
-	senderEmail = patientInfo.getEmail();
-	emailPassword = patientInfo.getEmailPassword();
-	recipientEmail = emergContact.getEmail();
+	vector<> emergContact = patientInfo->getEmergencyContacts();
+	senderEmail = patientInfo->getEmail();
+	emailPassword = patientInfo->getEmailPassword();
+	recipientEmail = emergContact->getEmail();
 };
 
 /*!

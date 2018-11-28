@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <fstream>
-
+#include <vector>
 #include "DeviceRecord.h"
 #include "Contact.h"
 #include "MonitorRecord.h"
@@ -68,12 +68,12 @@ private:
 	string email;
 	string emailPassword;
 	string exercise;
-	std::string name;
+	string name;
 
 	vector<MonitorRecord> monitorRecords;
 	vector<MedicationRecord> medicationRecords;
 	vector<Contact> emergencyContacts;
-	
+
 	fstream iofile;
 	string input, delimiter;
 	time_t time;
@@ -83,7 +83,7 @@ private:
 	string toEnum;
 	
 	GlucoseReading *tmpReading;
-	MonitorRecord *tmpMonitor;	
+	MonitorRecord *tmpMonitor;
 	MedicationRecord *tmpRecord;
 };
 

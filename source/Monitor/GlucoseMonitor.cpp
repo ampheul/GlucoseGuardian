@@ -1,9 +1,13 @@
-#include "GlucoseMontor.h"
+#include "GlucoseMonitor.h"
 
-GlucoseMonitor::GlucoseMonitor() {
+GlucoseMonitor::GlucoseMonitor()
+{
+    setup();
 }
 
-GlucoseMonitor::~GlucoseMonitor() {
+GlucoseMonitor::~GlucoseMonitor()
+{
+    
 }
 
 void GlucoseMonitor::setup()
@@ -26,13 +30,13 @@ void GlucoseMonitor::setup()
     }
 }
 
-void GlucoseMonitor::listen(const ArtificialPancreas * pancreas)
+void GlucoseMonitor::listen(ArtificialPancreas * pancreas)
 {
     while(true)
     {
         recv(sock, buffer, 549, 0);
-        input.str(std::string(buffer));
-        
+        input = buffer;
+        pancreas->calculateMedication(stod(input));
         memset(buffer, 0, sizeof(buffer));
         input.clear();
     }

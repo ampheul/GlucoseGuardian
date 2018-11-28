@@ -7,16 +7,16 @@ Description: Calculates hormone based on glucose reading, time, sleep, exercise,
 #include "MedicationCalculator.h"
 using namespace std;
 
-MedicationCalculator::MedicationCalculator(double givenGlu, PatientInfo patient, string basalOrBolus){
+MedicationCalculator::MedicationCalculator(double givenGlu, PatientInfo *patient, string basalOrBolus){
 	
 	// Initialize variables
 	patientInfo = patient;
 	gluRead = givenGlu;
-	weight = patientInfo.getWeight();
-	age = patientInfo.getAge();
-	sleepHour = patientInfo.getSleep();
-	exLevel = patientInfo.getExercise();
-	carbGrams = patientInfo.getCarbs();
+	weight = patient->getWeight();
+	age = patient->getAge();
+	sleepHour = patient->getSleep();
+	exLevel = patient->getExercise();
+	carbGrams = patient->getCarbs();
 	insType = basalOrBolus;
 	
 	TDD = getTDD();      // Find total daily dose of basal insulin
@@ -35,7 +35,7 @@ MedicationCalculator::~MedicationCalculator(){
    Reference: 5
 */
 
-HormoneDose MedicationCalculator::computeDosage(){
+HormoneDose * MedicationCalculator::computeDosage(){
     hormoneType gluc = GLUCAGON; 
     hormoneType basal = BASAL_INSULIN; 
     hormoneType bolus = BOLUS_INSULIN; 
@@ -46,7 +46,7 @@ HormoneDose MedicationCalculator::computeDosage(){
 	double glucagonToAdmin = getGlucagon();
 	if (glucagonToAdmin > 0){
 		// cout << "Administer glucagon: "<< glucagonToAdmin << endl;
-	    return HormoneDose(gluc, glucagonToAdmin);
+	    return new HormoneDose(gluc, glucagonToAdmin);
 	}
 
 
@@ -56,7 +56,7 @@ HormoneDose MedicationCalculator::computeDosage(){
 	double basalToAdmin = getHourBasal();
 	if (basalToAdmin > 0 && insType == "Basal"){
 		// cout << "Administer hourly basal insulin: "<<  basalToAdmin << endl;
-        return HormoneDose(basal, basalToAdmin);
+        return new HormoneDose(basal, basalToAdmin);
 	}
 
 	/* 
@@ -65,10 +65,10 @@ HormoneDose MedicationCalculator::computeDosage(){
 	double bolusToAdmin = getBolus();
 	if (bolusToAdmin > 0 && insType == "Bolus"){
 		// cout << "Administer meal bolus insulin: "<<  bolusToAdmin << endl;
-    	return HormoneDose(bolus, bolusToAdmin);
+    	return new HormoneDose(bolus, bolusToAdmin);
     }
 
-    return HormoneDose(bolus, 0);
+    return new HormoneDose(bolus, 0);
 }
 
 /* Validate glucose readings
@@ -93,8 +93,8 @@ double MedicationCalculator::getGlucagon(){
 	double glucagon = 0;
 	
 	if (gluRead < 2.8){
-		EmailNotification notify = EmailNotification(patientInformation);
-		notify.sendEmergencyContactEmail();
+		//EmailNotification notify = EmailNotification(patientInfo);
+		//notify.sendEmergencyContactEmail();
 		glucagon = 1;
 	}
 	
@@ -196,7 +196,7 @@ double MedicationCalculator::calcEx(double basal){
    }
 
    // Reset exercise to none 
-   patientInfo.setExercise("None");
+   patientInfo->setExercise("None");
 
    return (double) (int) (exBasal * 100 + 0.5) / 100;  
 }
@@ -210,7 +210,7 @@ double MedicationCalculator::calcMeal(){
 	double mealBolus = carbGrams / CHOPerUnit;
 
 	// Reset carbs to 0
-	patientInfo.setCarbs(0);
+	patientInfo->setCarbs(0);
 
 	return (double) (int) (mealBolus * 100 + 0.5) / 100;  
 }

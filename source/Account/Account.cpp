@@ -9,9 +9,8 @@
 using namespace std;
 
 /*!
-	Name: Account
+	@name Account
 	Description: constructor
-	@param string password - password that will be used to verify the identity of the user.
 */
 Account::Account()
 {
@@ -23,56 +22,46 @@ Account::Account()
 	ifstream accountStream(ACCOUNT_INFO);
 	if (accountStream.is_open())
 	{
-		Account::VerifyPassword(accountStream, password);
+		Account::verifyPassword(accountStream, password);
 	}
 	else
 	{
 		cout << "An account has not been initialized on this machine. Performing setup..." << endl;
-		Account::InitializeAccount(password);
+		Account::initializeAccount(password);
 		cout << "The password you have entered has been set." << endl;
 
 		cout << "Now that your account has been initialized, please re-enter your password: ";
 		string newPassword;
 		getline(cin, newPassword);
-		Account::VerifyPassword(accountStream, newPassword);
+		Account::verifyPassword(accountStream, newPassword);
 	}
 };
 
 /*!
-	Name: ~Account
-	Description: destructor for the Account class
+	@name ~Account
+	Description: destructor
 */
 Account::~Account() {};
 
 /*!
-	Name: accountOptions
-	Description: options that are available to the user. Depends on the type of the user.
-	@return	the hash value of the passed password
-*/
-void Account::accountOptions()
-{
-	accountType.printOptions();
-};
-
-/*!
-	Name: GetAccountType
+	@name getAccountType
 	Description: returns the type of the account
-	@return	the account type
+	@return	the account type as a string
 */
-string Account::GetAccountType() 
+string Account::getAccountType() 
 {
-	return this->accountType;
+	return accountType;
 };
 
 /*!
-	Name: VerifyPassword
+	@name verifyPassword
 	Description: verifies the password to a stored hash, sets the account type as either PATIENT, GUEST, or UNKNOWN
-	@param ifstream& hashStream - stream for getting the hash
-	@param string password - the password to verify
+	@param hashStream 	- stream for getting the hash
+	@param password 	- the password to verify
 */
-void Account::VerifyPassword(ifstream& hashStream, string password)
+void Account::verifyPassword(ifstream& hashStream, string password)
 {
-	size_t hashToCheck = Account::HashPassword(password);
+	size_t hashToCheck = Account::hashPassword(password);
 
 	// retrieve the locally stored hash value and compare to the new hased value
 	string hashLine;
@@ -104,12 +93,12 @@ void Account::VerifyPassword(ifstream& hashStream, string password)
 };
 
 /*!
-	Name: HashPassword
+	@name hashPassword
 	Description: hashes the received password from the user
-	@param string password - the password to hash
+	@param password - the password to hash
 	@return hash value of the password
 */
-size_t Account::HashPassword(string password)
+size_t Account::hashPassword(string password)
 {
 	hash<string> hasher;
 	size_t hash = hasher(password);
@@ -117,11 +106,11 @@ size_t Account::HashPassword(string password)
 };
 
 /*!
-	Name: InitializeAccount
+	@name initializeAccount
 	Description: initializes the patient's main account by setting a password for the user.
 	@param string password - the password to verify
 */
-void Account::InitializeAccount(string password)
+void Account::initializeAccount(string password)
 {
 	cout << "Would you like to use the password you entered for the main account (Y / N): ";
 	string yesOrNo = "";
@@ -132,7 +121,7 @@ void Account::InitializeAccount(string password)
 		getline(cin, password);
 	}
 
-	size_t hash = Account::HashPassword(password);
+	size_t hash = Account::hashPassword(password);
 	ofstream accountInfo(ACCOUNT_INFO);
 	accountInfo << hash << endl;
 
@@ -140,6 +129,6 @@ void Account::InitializeAccount(string password)
 	string guestPassword = "";
 	getline(cin, guestPassword);
 	guestPassword = "\n" + guestPassword;
-	hash = Account::HashPassword(guestPassword);
+	hash = Account::hashPassword(guestPassword);
 	accountInfo << hash << endl;
 };

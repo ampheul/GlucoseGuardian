@@ -34,7 +34,7 @@ class MedicationCalculator
        *
        * Initializes values needed to calculate hormone dosages.
        */
-        MedicationCalculator(double glu, PatientInfo patient, std::string insType);
+        MedicationCalculator(double glu, PatientInfo *patient, std::string insType);
         
 		  // Retrieves glucose reading
 		  double GetGlucoseReading();
@@ -56,7 +56,7 @@ class MedicationCalculator
        * Bolus is given when patient specifies their carbohydrate intake and when blood glucose correction is needed (every 25 mins).
        * Reference: https://www.vitamonk.com/blogs/health/guide-to-blood-sugar-levels
        */
-		  HormoneDose computeDosage();
+		  HormoneDose * computeDosage();
 
     private:
         
@@ -64,7 +64,7 @@ class MedicationCalculator
         double gluRead;
         double weight;		
         double carbGrams;
-		    PatientInfo patientInfo;
+		    PatientInfo *patientInfo;
         double TDD; // Total Daily Dose of insulin
         int age;
         int sleepHour;

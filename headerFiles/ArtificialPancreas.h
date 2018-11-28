@@ -17,12 +17,12 @@ class ArtificialPancreas
         MedicationCalculator *calculator;
         InsulinPump *output;
         HormoneDose *dose;
-        EmailNotification email;
+        EmailNotification *email;
     public:
         ArtificialPancreas();
         ~ArtificialPancreas();
         void setPatient(PatientInfo *);
-        PatientInfo getPatientInfo();
+        PatientInfo * getPatientInfo();
         void calculateMedication(const double);
 		void manuallyEnterGlucose(const double);
 		void manuallyAdministerInsulin(const double);

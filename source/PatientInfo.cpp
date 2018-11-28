@@ -15,12 +15,10 @@ PatientInfo::PatientInfo() {
 	sleep = -1;
 	exercise = "None";
 	carbs = 0;
-
 }
 
 PatientInfo::~PatientInfo()
 {
-	iofile.open("patient.txt", ios::out);
 	writeToFile();
 }
 
@@ -97,6 +95,7 @@ vector<Contact> PatientInfo::getEmergencyContacts() {
 	return emergencyContacts;
 }
 
+<<<<<<< HEAD
 string PatientInfo::getEmailPassword() {
 	return this->emailPassword;
 }
@@ -107,7 +106,12 @@ void PatientInfo::setEmailPassword(std::string emailPassword)
 }
 
 
+=======
+>>>>>>> 9332bcb5a238c4cd3fa4d82f7a469824a9df99bc
 void PatientInfo::SetupPatientInfo() {
+	cout << "What is your name?";
+	cin >> name;
+
 	cout << "What is your weight?";
 	cin >> weight;
 
@@ -119,9 +123,6 @@ void PatientInfo::SetupPatientInfo() {
 
 	cout << "What is your sex?";
 	cin >> sex;
-
-	cout << "What would you like your password to be?";
-	cin >> password;
 
 	cout << "What is your email?";
 	cin >> email;
@@ -141,14 +142,17 @@ void PatientInfo::SetupPatientInfo() {
 	Contact emergContact(emergContactName, emergContactEmail);
 }
 
+<<<<<<< HEAD
 bool PatientInfo::verifyPassword(string givenPassword) {
 	return (this->password == givenPassword);
 }
 
+=======
+>>>>>>> 9332bcb5a238c4cd3fa4d82f7a469824a9df99bc
 void PatientInfo::readFromFile()
 {
 	iofile.open("patient.txt", ios::in);
-	iofile >> weight >> height >> age >> bmi >> sex >> email >> emailPassword;
+	iofile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword;
 	delimiter = ",";
 	while(getline(iofile, input) && input != "-----")
 	{
@@ -187,7 +191,8 @@ void PatientInfo::readFromFile()
 
 void PatientInfo::writeToFile()
 {
-	iofile.open("patient.txt", ios::out);
+	iofile.open("patient.txt", ios::out | ios::trunc);
+	iofile << name << endl;
 	iofile << weight << endl;
 	iofile << height << endl;
 	iofile << age << endl;
