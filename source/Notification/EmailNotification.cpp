@@ -17,6 +17,9 @@ EmailNotification::EmailNotification(PatientInfo *patientInfo)
 	senderEmail = patientInfo->getEmail();
 	emailPassword = patientInfo->getEmailPassword();
 	recipientEmail = emergContact->getEmail();
+	
+	/// curl needs the direct path for the email template, grab it now
+	currentWorkingDirectory = GetCurrentWorkingDir();
 };
 
 /**
@@ -74,6 +77,9 @@ void EmailNotification::sendMedicalRequestEmail()
 */
 void EmailNotification::sendEmail(string senderEmail, string recipientEmail, string emailPassword, string emailTemplate)
 {
+	/// curl needs a direct path to point to the email template
+	emailTemplate = emailTemplate + currentWorkingDirectory;
+	
 	cout << "Sending email to: " << recipientEmail << endl;
 	string command = "curl --url \'smtps://smtp.gmail.com:465\' --ssl-reqd --mail-from \'" + senderEmail + "\' --mail-rcpt \'" + recipientEmail + "\' --upload-file" + emailTemplate + "--user \'" + senderEmail + ":" + emailPassword + "\'";
 	
