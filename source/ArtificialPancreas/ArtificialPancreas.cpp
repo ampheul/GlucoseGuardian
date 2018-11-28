@@ -63,6 +63,12 @@ void ArtificialPancreas::calculateMedication(const double reading, std::string b
         delete dose;
     }
     delete calculator;
+
+	for(vector<MonitorRecord>::iterator it = user->getMonitorRecords()->begin; it != user->getMonitorRecord()->end(); ++it)
+	{
+		std::cout << it.getRecordTime() << std::endl;
+		std::cout << it.getReading()->getAmount() << std::endl;
+	}
 }
 
 /*!
