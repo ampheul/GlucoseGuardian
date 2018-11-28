@@ -30,7 +30,7 @@ void GlucoseMonitor::setup()
     }
 }
 
-void GlucoseMonitor::listen(const ArtificialPancreas * pancreas)
+void GlucoseMonitor::listen(ArtificialPancreas * pancreas)
 {
     while(true)
     {

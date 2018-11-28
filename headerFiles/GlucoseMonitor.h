@@ -22,7 +22,7 @@ class GlucoseMonitor
 		GlucoseMonitor();
 		~GlucoseMonitor();
         void setup();
-        void listen(const ArtificialPancreas *);
+        void listen(ArtificialPancreas *);
 };
 
 #endif
