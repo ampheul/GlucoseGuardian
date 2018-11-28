@@ -67,11 +67,12 @@ int main(){
     /* Make medication calculator
        Parameters are: (double glucoseReading, double weight, double age, double sleepTime, string exerciseLevel, double carbInGrams);
      */
-     MedicationCalculator calc (glucose, weight, age, sleepTime, exerciseLevel, carbs, basalOrBolus);
+	PatientInfo patient("sally", 80, "F", 100, 100, "sally@gmail.com");
+     MedicationCalculator calc (glucose, patient, basalOrBolus);
 
-     // Compute Dosage to give
-     HormoneDose hormone = calc.computeDosage();
-     switch(hormone.getHormoneType()){
+    // Compute Dosage to give
+    HormoneDose *hormone = calc.computeDosage();
+    switch(hormone->getHormoneType()){
      	case 2:
      		cout << "----Administer glucagon----" << endl; 
      		break;
@@ -81,10 +82,10 @@ int main(){
      	case 0:
      		cout << "----Administer basal insulin----" << endl; 
      		break;
-     } 
+    } 
 
-     cout << "Units of hormone (100 units = 1 mL): " << hormone.getHormoneAmount() << endl;
+    cout << "Units of hormone (100 units = 1 mL): " << hormone->getHormoneAmount() << endl;
 
-
-     return 0;
+	delete hormone;
+    return 0;
 }

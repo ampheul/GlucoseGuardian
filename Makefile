@@ -53,7 +53,8 @@ tests: libPancreas $(TEST_OBJECTS)
 	@mkdir -p $@
 .PHONY: ./ .//
 
-
+main: $(ODIR)/main.o
+.PHONY: main
 
 MAINOBJECTS := $(filter-out $(ODIR)/main.o, $(OBJECTS))
 $(ODIR)/main.o: $(INCLUDE)/libPancreas.h $(LIBRARY_ODIR)/libPancreas.a

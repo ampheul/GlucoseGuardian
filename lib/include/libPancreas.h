@@ -12,6 +12,7 @@
 #include "PatientFactory.h"
 #include "Subscriber.h"
 #include "PatientInfo.h"
+#include "UserInputExecutor.h"
 #include "ArtificialPancreas.h"
 #include "Account.h"
 #include "HormoneDose.h"

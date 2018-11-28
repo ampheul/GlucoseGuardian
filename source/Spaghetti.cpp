@@ -26,8 +26,6 @@ PatientInfo* Spaghetti::makePatient()
         std::time_t time = (std::time_t)(timeSetting + hour*60*60);
 
         records->push_back(MonitorRecord(time, glucose));
-            std::cerr << "here" << std::endl;
-
     }
 
     return patient;

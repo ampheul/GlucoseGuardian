@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 	// construct data for graphMaker
 	DataSet data; 
 
-	for (auto& record : spaghetti->getMonitorRecords())
+	for (auto& record : *(spaghetti->getMonitorRecords()) )
 	{
 		data.push_back(
 			DataPoint(
