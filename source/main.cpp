@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 	ArtificialPancreas* artificialPancreas = new ArtificialPancreas();
 	GlucoseMonitor* glucoseMonitor = new GlucoseMonitor();
 
-	Thread t1 = new Thread(glucoseMonitor->listen(artificialPancreas));
+	Thread t1 = new Thread(&GlucoseMonitor::listen, glucoseMonitor, artificialPancreas);
 
 	Account* account = new Account();
 	Menu* menu = new Menu(account);
