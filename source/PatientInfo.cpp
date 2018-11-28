@@ -1,5 +1,25 @@
 #include "PatientInfo.h"
 
+PatientInfo::PatientInfo(
+	string name,
+	int age,
+	string sex,
+	double weight,
+	double height,
+	string email
+	)
+	:
+	name(name),
+	age(age),
+	sex(sex),
+	weight(weight),
+	height(height),
+	email(email)
+	
+{
+	this->monitorRecords = new vector<MonitorRecord>();
+}
+
 PatientInfo::PatientInfo() {
 	iofile.open("patient.txt", ios::in);
 	if(!iofile.is_open())
@@ -87,7 +107,7 @@ vector<MedicationRecord> PatientInfo::getMedicationRecords() {
 	return medicationRecords;
 }
 
-vector<MonitorRecord> PatientInfo::getMonitorRecords() {
+vector<MonitorRecord> *PatientInfo::getMonitorRecords() {
 	return monitorRecords;
 }
 
@@ -164,7 +184,7 @@ void PatientInfo::readFromFile()
 		input.erase(0, pos + delimiter.length());
 		tmpReading = new GlucoseReading(stod(input));
 		tmpMonitor = new MonitorRecord(time, *tmpReading);
-		monitorRecords.push_back(*tmpMonitor);
+		monitorRecords->push_back(*tmpMonitor);
 	}
 	while(getline(iofile, input) && input != "-----")
 	{
@@ -204,7 +224,7 @@ void PatientInfo::writeToFile()
 	iofile << email << endl;
 	iofile << emailPassword << endl;
 	iofile << "-----" << endl;
-	for(vector<MonitorRecord>::iterator it = monitorRecords.begin(); it != monitorRecords.end(); ++it)
+	for(vector<MonitorRecord>::iterator it = monitorRecords->begin(); it != monitorRecords->end(); ++it)
 	{
 		iofile << it->getRecordTime() << ",";
 		iofile << it->getReading().getAmount() << endl;
@@ -229,3 +249,4 @@ void PatientInfo::writeToFile()
 	}
 	iofile.close();
 }
+

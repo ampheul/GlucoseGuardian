@@ -26,11 +26,14 @@ public:
 	*/
 
 	PatientInfo();
-
-	/*!
-	@name ~PatientInfo
-	Description: destructor
-    */
+	PatientInfo(
+		std::string name,
+		int age,
+		std::string sex,
+		double weight,
+		double height,
+		std::string email
+		);
 	~PatientInfo();
 	
 	/*!
@@ -168,7 +171,7 @@ public:
 	@name getMonitorRecords
 	Description: gets the patient's monitor records
     */
-	vector<MonitorRecord> getMonitorRecords();
+	vector<MonitorRecord> *getMonitorRecords();
 
 	/*!
 	@name getMedicationRecords
@@ -217,7 +220,7 @@ private:
 	string exercise;
 	string name;
 
-	vector<MonitorRecord> monitorRecords;
+	vector<MonitorRecord> *monitorRecords;
 	vector<MedicationRecord> medicationRecords;
 	Contact* emergencyContact;
 
@@ -225,8 +228,10 @@ private:
 	string input, delimiter;
 	time_t time;
 	size_t pos;
+
 	HormoneDose *dose;
 	hormoneType type;
+
 	string toEnum;
 	
 	GlucoseReading *tmpReading;
