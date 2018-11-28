@@ -31,6 +31,7 @@
 #include "GlucoseMonitor.h"
 #include "ReportMaker.h"
 #include "ContactType.h"
+#include "UserInputExecutor.h"
 
 #endif
 
