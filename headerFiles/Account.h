@@ -24,10 +24,6 @@ public:
 	
 	/// returns the type of the account, either "Patient", "Guest", or "Unknown"
 	std::string getAccountType();
-<<<<<<< HEAD
-=======
-
->>>>>>> c43104b8c06e711ac788f12d65a1d84b01252bd5
 	/// represents account type of Patient
 	const std::string PATIENT_ACCOUNT = "Patient";
 
