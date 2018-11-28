@@ -1,15 +1,15 @@
-/*!
-	@author Veronica Witzig
-	Purpose: Responsible for displaying the UI menu
+/**
+*	\author Veronica Witzig
+*	Responsible for displaying the UI menu
 */
 
 #include "Menu.h"
 
 using namespace std;
 
-/*!
-	Name: Menu
-	Description: builds the menu items available for the user based on their account type
+/**
+*	\name Menu
+*	builds the menu items available for the user based on their account type
 */
 Menu::Menu(Account *account)
 {
@@ -40,15 +40,15 @@ Menu::Menu(Account *account)
 	}
 };
 
-/*!
-	Name: ~Menu
-	Description: destructor
+/**
+*	\name ~Menu
+*	destructor
 */
 Menu::~Menu() {};
 
-/*!
-	Name: PrintMenu
-	Description: prints the UI menu to the terminal for the user
+/**
+*	\name printMenu
+*	prints the UI menu to the terminal for the user
 */
 void Menu::printMenu()
 {
@@ -58,9 +58,10 @@ void Menu::printMenu()
 	}
 };
 
-/*!
-	Name: GetMenuSelection
-	Description: retrieves the option that the user has selected from the available menu items
+/**
+*	\name getMenuSelection
+*	retrieves the option that the user has selected from the available menu items
+*	\return int representing which menu item was selected
 */
 int Menu::getMenuSelection()
 {
@@ -75,24 +76,27 @@ int Menu::getMenuSelection()
 		
 		cout << "Please select a corresponding number from the above selection: " << endl;
 		getline(cin, userInput);
-		validSelection = validateSelection(userInput);
 		
+		/// ensure the user entered an int
+		validSelection = Menu::validateSelection(userInput);		
 		stringstream(userInput) >> optionInt;		
 	}
 	
 	return optionInt;
 };
 
-/*!
-	Name: ValidateSelection
-	Description: verfies that the user entered value is valid
+/**
+*	\name ValidateSelection
+*	verfies that the user entered value is valid
+*	\param userInput - value to verify
+*	\return true is the selection is valid, false otherwise
 */
 bool Menu::validateSelection(string userInput)
 {
 	string userInput;
 	getline(cin, userInput);
 	
-	// ensure the input is an int
+	/// ensure the input is an int
 	int asInt = 0;
 	stringstream(userInput) >> asInt;
 	if(asInt > 4 || asInt < 1)
@@ -101,7 +105,7 @@ bool Menu::validateSelection(string userInput)
 		return false;
 	}
 	
-	// ensure the user is not trying to select an option they should not be able to
+	/// ensure the user is not trying to select an option they should not be able to
 	if (accountType != Account::PATIENT_ACCOUNT && asInt > 2)
 	{
 		cout << asInt + " is not a valid selection, please try again." << endl;
