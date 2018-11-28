@@ -15,7 +15,7 @@ ArtificialPancreas::~ArtificialPancreas()
 
 void ArtificialPancreas::setPatient(PatientInfo *newPatient)
 {
-    user = new Patient();
+    patient = newPatient;
 }
 
 PatientInfo * ArtificialPancreas::getPatientInfo()
@@ -33,10 +33,11 @@ void ArtificialPancreas::calculateMedication(const double reading)
             //email->sendHypoglycemicEventEmail();
         }
         calculator = new MedicationCalculator(reading, user, "Basal");
-        HormoneDose dose = calculator->computeDosage();
+        dose = calculator->computeDosage();
         
         //user->getRecordEntries.push_back(new MedicationRecord(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()), dose));
         output->sendInstruction(dose);
+        delete dose;
         delete calculator;
     }
     else

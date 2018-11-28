@@ -46,7 +46,7 @@ HormoneDose * MedicationCalculator::computeDosage(){
 	double glucagonToAdmin = getGlucagon();
 	if (glucagonToAdmin > 0){
 		// cout << "Administer glucagon: "<< glucagonToAdmin << endl;
-	    return HormoneDose(gluc, glucagonToAdmin);
+	    return new HormoneDose(gluc, glucagonToAdmin);
 	}
 
 
@@ -56,7 +56,7 @@ HormoneDose * MedicationCalculator::computeDosage(){
 	double basalToAdmin = getHourBasal();
 	if (basalToAdmin > 0 && insType == "Basal"){
 		// cout << "Administer hourly basal insulin: "<<  basalToAdmin << endl;
-        return HormoneDose(basal, basalToAdmin);
+        return new HormoneDose(basal, basalToAdmin);
 	}
 
 	/* 
@@ -65,10 +65,10 @@ HormoneDose * MedicationCalculator::computeDosage(){
 	double bolusToAdmin = getBolus();
 	if (bolusToAdmin > 0 && insType == "Bolus"){
 		// cout << "Administer meal bolus insulin: "<<  bolusToAdmin << endl;
-    	return HormoneDose(bolus, bolusToAdmin);
+    	return new HormoneDose(bolus, bolusToAdmin);
     }
 
-    return HormoneDose(bolus, 0);
+    return new HormoneDose(bolus, 0);
 }
 
 /* Validate glucose readings
