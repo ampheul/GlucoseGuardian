@@ -26,7 +26,7 @@ class ArtificialPancreas
         void calculateMedication(const double);
 		void manuallyEnterGlucose(const double);
 		void manuallyAdministerInsulin(const double);
-		*MedicationCalculator getMedicationCalculator();
+		MedicationCalculator* getMedicationCalculator();
 };
 
 #endif

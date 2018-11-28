@@ -23,7 +23,7 @@
 #include "EmailNotification.h"
 
 class MedicationCalculator
-{    
+{
     public:
         
       /**

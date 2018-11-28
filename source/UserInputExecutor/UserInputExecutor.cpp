@@ -95,25 +95,25 @@ void UserInputExecutor::manualInsulinAdministration()
 {
 	bool validEntry = false;
 	string userInput;
-	int glucoseEntry = 0;
+	int insulinEntry = 0;
 
 	while(!validEntry) 
 	{
-		glucoseEntry = 0;
+		insulinEntry = 0;
 		userInput = "";
 
 		cout << "Please enter the insulin to be administered: " << endl;
 		getline(cin, userInput);
 
 		// ensure the user input is a valid entry
-		stringstream(userInput) >> glucoseEntry;
-		if (glucoseEntry < 0 && glucoseEntry > artificialPancreas->getPatientInfo.getWeight() / 4)
+		stringstream(userInput) >> insulinEntry;
+		if (insulinEntry < 0 && insulinEntry > artificialPancreas->getPatientInfo->getWeight() / 4)
 		{
 			validEntry = true;
 		}
 		else
 		{
-			auto glucoseToPrint = to_string(glucoseEntry);
+			auto glucoseToPrint = to_string(insulinEntry);
 			cout << glucoseToPrint + " is not a valid glucose reading, please try again." << endl;
 		}
 	}
@@ -143,7 +143,7 @@ void UserInputExecutor::updateCarbsExerciseSleep()
 	Description: updates the patient's consumed carbs
 	@param patientInfo - the info to update
 */
-void UserInputExecutor::updatePatientInfoCarbs(PatientInfo patientInfo)
+void UserInputExecutor::updatePatientInfoCarbs(PatientInfo* patientInfo)
 {
 	bool validEntry = false;
 	double carbs = 0;
@@ -174,7 +174,7 @@ void UserInputExecutor::updatePatientInfoCarbs(PatientInfo patientInfo)
 	Description: updates the patient's expected exercise level
 	@param patientInfo - the info to update
 */
-void UserInputExecutor::updatePatientInfoExercise(PatientInfo patientInfo)
+void UserInputExecutor::updatePatientInfoExercise(PatientInfo* patientInfo)
 {
 	bool validEntry = false;
 	string exercise;
@@ -231,7 +231,7 @@ void UserInputExecutor::updatePatientInfoExercise(PatientInfo patientInfo)
 	Description: updates the patient's expected hours of sleep
 	@param patientInfo - the info to update
 */
-void UserInputExecutor::updatePatientInfoSleep(PatientInfo patientInfo)
+void UserInputExecutor::updatePatientInfoSleep(PatientInfo* patientInfo)
 {
 	bool validEntry = false;
 	int sleepHours;

@@ -22,7 +22,7 @@ class UserInputExecutor
 public:	
 	UserInputExecutor(ArtificialPancreas* artificialPancreas);
 	~UserInputExecutor();
-	void menuSwitch();
+	void menuSwitch(int option);
 	
 private:
 	const int MINIMUM_CARBS = 0;				//! The minimum number of carbs allowed for user input
