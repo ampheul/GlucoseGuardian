@@ -29,19 +29,6 @@ void ReportMaker::makeReport()
     
     system(command.c_str());
     
-       
-    std::string commandDefinitions =  latexNewCommand("patient", patient.getName()) 
-        + latexNewCommand("weight", std::to_string(patient.getWeight()))
-        + latexNewCommand("height", std::to_string(patient.getHeight()))
-        + latexNewCommand("age", std::to_string(patient.getAge())
-        + latexNewCommand("sex", patient.getSex()));
-    
-    std::string options = 
-        "-jobname " + std::to_string(std::time(NULL))
-        + "-output-directory " + "build/output/latex";
-    
-    std::string command = "pdflatex " + options + " \"" + commandDefinitions+"\""
-    system(command.c_str());
     
     return;
 }
