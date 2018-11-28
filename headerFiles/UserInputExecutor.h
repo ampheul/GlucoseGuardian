@@ -20,15 +20,15 @@
 class UserInputExecutor
 {	
 public:	
-	UserInputExecutor(ArtificialPancreas artificialPancreas);
+	UserInputExecutor(ArtificialPancreas* artificialPancreas);
 	~UserInputExecutor();
-	void MenuSwitch();
+	void menuSwitch();
 	
 private:
 	const int MINIMUM_CARBS = 0;				//! The minimum number of carbs allowed for user input
 	const int MAXIMUM_CARBS = 1250;				//! The maximum number of carbs allowed for user input
 
-	ArtificialPancreas artificialPancreas;
+	ArtificialPancreas* artificialPancreas;
 	
 	void quitProgram();
 	void medicalHistory();
@@ -37,9 +37,9 @@ private:
 	void manualInsulinAdministration();
 
 	void updateCarbsExerciseSleep();
-	void updatePatientInfoCarbs(PatientInfo patientInfo);
-	void updatePatientInfoExercise(PatientInfo patientInfo);
-	void updatePatientInfoSleep(PatientInfo patientInfo);
+	void updatePatientInfoCarbs(PatientInfo* patientInfo);
+	void updatePatientInfoExercise(PatientInfo* patientInfo);
+	void updatePatientInfoSleep(PatientInfo* patientInfo);
 };
 
 #endif
