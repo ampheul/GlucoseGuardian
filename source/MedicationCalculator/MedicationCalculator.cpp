@@ -7,10 +7,10 @@ Description: Calculates hormone based on glucose reading, time, sleep, exercise,
 #include "MedicationCalculator.h"
 using namespace std;
 
-MedicationCalculator::MedicationCalculator(double givenGlu, PatientInfo patient, string basalOrBolus){
+MedicationCalculator::MedicationCalculator(double givenGlu, PatientInfo *patient, string basalOrBolus){
 	
 	// Initialize variables
-	patientInfo = patient;
+	patientInfo = *patient;
 	gluRead = givenGlu;
 	weight = patientInfo.getWeight();
 	age = patientInfo.getAge();
@@ -35,7 +35,7 @@ MedicationCalculator::~MedicationCalculator(){
    Reference: 5
 */
 
-HormoneDose MedicationCalculator::computeDosage(){
+HormoneDose * MedicationCalculator::computeDosage(){
     hormoneType gluc = GLUCAGON; 
     hormoneType basal = BASAL_INSULIN; 
     hormoneType bolus = BOLUS_INSULIN; 
