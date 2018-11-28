@@ -17,7 +17,7 @@ class ArtificialPancreas
         MedicationCalculator *calculator;
         InsulinPump *output;
         HormoneDose *dose;
-        EmailNotification email;
+        EmailNotification *email;
     public:
         ArtificialPancreas();
         ~ArtificialPancreas();
