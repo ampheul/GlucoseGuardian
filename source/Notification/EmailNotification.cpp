@@ -76,6 +76,6 @@ void EmailNotification::sendEmail(string senderEmail, string recipientEmail, str
 {
 	cout << "Sending email to: " << recipientEmail << endl;
 	string command = "curl --url \'smtps://smtp.gmail.com:465\' --ssl-reqd --mail-from \'" + senderEmail + "\' --mail-rcpt \'" + recipientEmail + "\' --upload-file" + emailTemplate + "--user \'" + senderEmail + ":" + emailPassword + "\'";
-	system(command);
+	system(command.c_str());
 	cout << "Email sent" << endl;
 };
