@@ -202,24 +202,51 @@ public:
 	std::string getName();
 	
 private:
+	/// patient's weight
 	double weight;
+
+	/// patient's height
 	double height;
+
+	/// patient's bmi
 	double bmi;
+
+	/// patient's carbs
 	double carbs;
+
+	/// patient's hormone dose
 	double amount;
 	
+	/// patient's age
 	int age;
+
+	/// patient's sleep
 	int sleep;
 	
+	/// patient's sex
 	string sex;
+
+	/// patient's email
 	string email;
+
+	/// patient's email password
 	string emailPassword;
+
+	/// patient's exercise
 	string exercise;
+
+	/// patient's name
 	string name;
 
+	/// monitor records for the patient
 	vector<MonitorRecord> monitorRecords;
+
+	/// medication records for the patient
 	vector<MedicationRecord> medicationRecords;
+
+	/// patient's emergency contact
 	Contact* emergencyContact;
+
 
 	fstream iofile;
 	string input, delimiter;
@@ -229,8 +256,13 @@ private:
 	hormoneType type;
 	string toEnum;
 	
+	/// glucose reading
 	GlucoseReading *tmpReading;
+
+	/// contains dose information for the patient
 	MonitorRecord *tmpMonitor;
+
+	/// medication record for the patient
 	MedicationRecord *tmpRecord;
 };
 
