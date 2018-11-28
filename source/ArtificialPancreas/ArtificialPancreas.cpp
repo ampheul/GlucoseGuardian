@@ -13,7 +13,7 @@ ArtificialPancreas::ArtificialPancreas()
 {
     user = new PatientInfo();
     output = new LaptopOutput("127.0.0.1", 3307);
-    //email = new EmailNotification(user);
+    email = new EmailNotification(user);
 }
 
 /*!
@@ -53,16 +53,22 @@ PatientInfo * ArtificialPancreas::getPatientInfo()
 */
 void ArtificialPancreas::calculateMedication(const double reading, std::string bolusOrBasal)
 {
-    //user->getRecordEntries->push_back(new MonitorRecord(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()), reading));        
-    calculator = new MedicationCalculator(reading, user, bolusOrBasal);
-    dose = calculator->computeDosage();
-    //user->getRecordEntries->push_back(new MedicationRecord(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()), dose));
+    user->getMonitorRecords()->push_back(new MonitorRecord(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()), reading));        
+    MedicationCalculator *calculator = new MedicationCalculator(reading, user, bolusOrBasal);
+    HormoneDose *dose = calculator->computeDosage();
+    user->getMedicationRecords()->push_back(new MedicationRecord(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()), dose));
     if(dose != NULL)
     {
         output->sendInstruction(dose);
         delete dose;
     }
     delete calculator;
+
+	for(vector<MonitorRecord>::iterator it = user->getMonitorRecords()->begin; it != user->getMonitorRecord()->end(); ++it)
+	{
+		std::cout << it.getRecordTime() << std::endl;
+		std::cout << it.getReading()->getAmount() << std::endl;
+	}
 }
 
 /*!
@@ -77,7 +83,3 @@ void ArtificialPancreas::manuallyAdministerInsulin(const double insulinAmount)
     delete dose;
 }
 
-MedicationCalculator * ArtificialPancreas::getMedicationCalculator()
-{
-	return calculator;
-}

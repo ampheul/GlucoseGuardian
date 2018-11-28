@@ -13,6 +13,7 @@ using namespace std;
 */
 Menu::Menu(Account *account)
 {
+	vector<string> menuitems;
 	accountType = account->getAccountType();
 	
 	if (accountType == Account::PATIENT_ACCOUNT)

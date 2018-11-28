@@ -48,12 +48,18 @@ void UserInputExecutor::medicalHistory()
 */
 void UserInputExecutor::currentGlucose()
 {
-	MedicationCalculator* calc = artificialPancreas->getMedicationCalculator();
-
-	double glucoseReading = calc->GetGlucoseReading();
-	auto glucoseToPrint = to_string(glucoseReading);
-	
-	cout << "Your current glucose reading is : " + glucoseToPrint + "mg/dL";
+	// since monitor records are stored sequentially in time, we take the last entry
+	vector<MonitorRecord>* readings = artificialPancreas->getPatientInfo()->getMonitorRecords();
+	if ((*readings).empty()) {
+		cout << "You do not have any stored glucose readings.";
+	}
+	else {
+		MonitorRecord lastRecord = (*readings).back();
+		GlucoseReading reading = lastRecord.getReading();
+		double amount = reading.getAmount();
+		string amountToStr = to_string(amount);
+		cout << "Your current glucose reading is : " + amountToStr + "mg/dL";
+	}	
 }
 
 /*!
@@ -63,7 +69,7 @@ void UserInputExecutor::currentGlucose()
 void UserInputExecutor::manualGlucoseEntry()
 {
 	bool validEntry = false;
-	int glucoseEntry = 0;
+	double glucoseEntry = 0;
 
 	while(!validEntry) 
 	{
@@ -84,7 +90,7 @@ void UserInputExecutor::manualGlucoseEntry()
 		}
 	}
 	
-	artificialPancreas->manuallyEnterGlucose(glucoseEntry);
+	artificialPancreas->calculateMedication(glucoseEntry, "Bolus");
 }
 
 /*!
@@ -95,7 +101,7 @@ void UserInputExecutor::manualInsulinAdministration()
 {
 	bool validEntry = false;
 	string userInput;
-	int insulinEntry = 0;
+	double insulinEntry = 0;
 
 	while(!validEntry) 
 	{

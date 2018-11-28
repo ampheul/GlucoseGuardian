@@ -24,6 +24,10 @@ public:
 	
 	/// returns the type of the account, either "Patient", "Guest", or "Unknown"
 	std::string getAccountType();
+<<<<<<< HEAD
+=======
+
+>>>>>>> c43104b8c06e711ac788f12d65a1d84b01252bd5
 	/// represents account type of Patient
 	const std::string PATIENT_ACCOUNT = "Patient";
 
@@ -33,6 +37,7 @@ public:
 	/// represents account type of Unknown
 	const std::string UNKNOWN_ACCOUNT = "Unknown";
 
+private:
 	/// path to directory for storing accountInfo.txt
 	const std::string ACCOUNT_INFO_PATH = "/accountInfo/accountInfo.txt";
 

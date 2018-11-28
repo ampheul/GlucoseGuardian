@@ -9,6 +9,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include <stdio.h>
 #include <dirent.h>
 #include <sys/stat.h>

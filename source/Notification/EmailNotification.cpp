@@ -19,9 +19,14 @@ EmailNotification::EmailNotification(PatientInfo *patientInfo)
 	recipientEmail = emergContact->getEmail();
 	
 	/// curl needs the direct path for the email template, grab it now
+<<<<<<< HEAD
 	// ... using commands that work on the pi.
 	// hint the working directory is usually just group22
 	currentWorkingDirectory = "";
+=======
+	char cwd[256];
+	currentWorkingDirectory = getcwd(cwd, sizeof(cwd));
+>>>>>>> c43104b8c06e711ac788f12d65a1d84b01252bd5
 };
 
 /**
@@ -80,7 +85,7 @@ void EmailNotification::sendMedicalRequestEmail()
 void EmailNotification::sendEmail(string senderEmail, string recipientEmail, string emailPassword, string emailTemplate)
 {
 	/// curl needs a direct path to point to the email template
-	emailTemplate = emailTemplate + currentWorkingDirectory;
+	emailTemplate = currentWorkingDirectory + emailTemplate;
 	
 	cout << "Sending email to: " << recipientEmail << endl;
 	string command = "curl --url \'smtps://smtp.gmail.com:465\' --ssl-reqd --mail-from \'" + senderEmail + "\' --mail-rcpt \'" + recipientEmail + "\' --upload-file" + emailTemplate + "--user \'" + senderEmail + ":" + emailPassword + "\'";
