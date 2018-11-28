@@ -21,18 +21,13 @@ class PatientInfo
 public:
 	PatientInfo();
 	PatientInfo(
+		std::string name,
+		int age,
+		std::string sex,
 		double weight,
 		double height,
-		double bmi,
-		double carbs,
-		double amount,
-		int age,
-		int sleep,
-		std::string sex,
-		std::string email,
-		std::string emailPassword,
-		std::string exercise,
-		std::string name);
+		std::string email
+		);
 	~PatientInfo();
 	
 	double getWeight();
@@ -62,9 +57,10 @@ public:
 	string getPassword();
 	void setPassword();
 
-	vector<MonitorRecord> getMonitorRecords();
+	vector<MonitorRecord>* getMonitorRecords();
 	vector<MedicationRecord> getMedicationRecords();
 	vector<Contact> getEmergencyContacts();
+
 	void SetupPatientInfo();
 	void readFromFile();
 	void writeToFile();
@@ -86,7 +82,7 @@ private:
 	string exercise;
 	string name;
 
-	vector<MonitorRecord> monitorRecords;
+	vector<MonitorRecord> *monitorRecords;
 	vector<MedicationRecord> medicationRecords;
 	vector<Contact> emergencyContacts;
 
@@ -94,8 +90,10 @@ private:
 	string input, delimiter;
 	time_t time;
 	size_t pos;
+
 	HormoneDose *dose;
 	hormoneType type;
+
 	string toEnum;
 	
 	GlucoseReading *tmpReading;

@@ -35,12 +35,16 @@ typedef std::vector<DataPoint> DataSet;
 class GraphMaker
 {
     public:
-
-        GraphMaker(XRange xrange, YRange yrange, DataSet data);
+        GraphMaker(
+            XRange xrange, 
+            YRange yrange,
+            DataSet data, 
+            std::string gnuFile = "base/graphing/basicgraph.gnu");
+        
         std::string makeGraph();
-
+        void setGnuFile(std::string file);
+        
     private:
-
         XRange xrange; //! range (a,b), a < b
         YRange yrange; //! same as xrange, but for y-axis
         DataSet data; //! set of coordinates (x,y)

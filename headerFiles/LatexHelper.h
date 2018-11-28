@@ -9,6 +9,7 @@ namespace LatexHelper
     std::string end(std::string environment);
     std::string begin(std::string environment);
     std::string header();
+    std::string input(std::string inputFile);
     /** Returns a string for a latex command.
      * 
      * Returns a string for a latex command in the form 

@@ -2,7 +2,7 @@
 
 std::string LatexHelper::newCommand(std::string command, std::string definition)
 {
-    return "\\newcommand{\\" + command + "}[\\" + definition + "}";
+    return "\\newcommand{\\" + command + "}{" + definition + "}";
 }
 
 std::string LatexHelper::header()
@@ -26,4 +26,9 @@ std::string LatexHelper::environment(std::string environment, std::string text)
         begin(environment) + "\n"
         + text + "\n"
         + end(environment);
+}
+
+std::string LatexHelper::input(std::string inputFile)
+{
+    return "\\input{" + inputFile + "}";
 }

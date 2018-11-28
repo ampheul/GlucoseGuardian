@@ -70,7 +70,7 @@ LIBPANCREASFILES := $(filter-out $(INCLUDE)/libPancreas.h, $(HEADERFILES))
 
 $(INCLUDE)/libPancreas.h: $(filter-out $(INCLUDE)/libPancreas.h $(HEADER)/main.h, $(LIBPANCREASFILES))
 	@echo remaking libPancreas.h $^
-	@echo \#ifndetest:f LIBPANCREAS_H\\n\#define LIBPANCREAS_H\\n > $@;\
+	@echo \#ifndef LIBPANCREAS_H\\n\#define LIBPANCREAS_H\\n > $@;\
 	for f in $^; \
 	do echo \#include \"$$(basename $$f)\" >> $@; done; \
 	echo "\n#endif\n" >> $@ && touch $@
