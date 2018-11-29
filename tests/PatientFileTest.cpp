@@ -9,8 +9,8 @@ int main()
     {
 
         p = fm->readFromFile();
-        //p->getMonitorRecords()->push_back(MonitorRecord(std::time(NULL), GlucoseReading(17.0)));
-        //p->getMedicationRecords()->push_back(MedicationRecord(std::time(NULL), HormoneDose(BASAL_INSULIN, 17)));
+        p->getMonitorRecords()->push_back(MonitorRecord(std::time(NULL), GlucoseReading(17.0)));
+        p->getMedicationRecords()->push_back(MedicationRecord(std::time(NULL), HormoneDose(BASAL_INSULIN, 17)));
     }
     else
     {

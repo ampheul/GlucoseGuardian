@@ -91,7 +91,7 @@ PatientInfo * FileManager::readFromFile()
 	delete medRecords;
 	delete emergencyContact;
 	inFile.close();
-	return new PatientInfo();
+	return user;
 }
 
 void FileManager::writeToFile(PatientInfo *user)
