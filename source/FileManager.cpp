@@ -85,7 +85,7 @@ PatientInfo * FileManager::readFromFile()
 		delete dose;
 		delete temp;
 	}
-	//PatientInfo *user = new PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact, monRecords, medRecords);
+	PatientInfo *user = new PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact);
 
     delete monRecords;
 	delete medRecords;

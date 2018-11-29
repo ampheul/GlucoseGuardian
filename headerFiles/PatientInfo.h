@@ -44,8 +44,7 @@ public:
 	 * \name PatientInfo
 	 * \brief constructor with full argument list
 	 * */
-	PatientInfo(string, double, double, int, string, string, string, Contact *,
-					vector<MonitorRecord> *, vector<MedicationRecord> *);
+	PatientInfo(string, double, double, int, string, string, string, Contact *);
 	
 	/// destructor
 	~PatientInfo();

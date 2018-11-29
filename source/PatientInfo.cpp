@@ -30,7 +30,7 @@ PatientInfo::PatientInfo()
 }
 
 PatientInfo::PatientInfo(string name, double height, double weight, int age, string sex, string email, string emailPassword,
-				Contact *emerg, vector<MonitorRecord> *monitor, vector<MedicationRecord> *medication)
+				Contact *emerg)
 {
 	this->name = name;
 	this->height = height;
@@ -40,9 +40,6 @@ PatientInfo::PatientInfo(string name, double height, double weight, int age, str
 	this->email = email;
 	this->emailPassword = emailPassword;
 	emergencyContact = emerg;
-	monitorRecords = monitor;
-	medicationRecords = medication;
-
 }
 
 /// constructor, expects patient info data
