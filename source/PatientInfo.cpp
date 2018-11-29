@@ -185,9 +185,12 @@ void PatientInfo::readFromFile()
 	delimiter = ",";
 	while(getline(iofile, input) && input != "-----")
 	{
+		std::cout << input << endl;
 		pos = input.find(delimiter);
 		time = (time_t)stol(input.substr(0, pos));
+		std::cout << time << endl;
 		input.erase(0, pos + delimiter.length());
+		std::cout << input << endl;
 		tmpReading = new GlucoseReading(stod(input));
 		tmpMonitor = new MonitorRecord(time, *tmpReading);
 		monitorRecords->push_back(*tmpMonitor);
@@ -216,6 +219,7 @@ void PatientInfo::readFromFile()
 		tmpRecord = new MedicationRecord(time, *dose);
 		medicationRecords->push_back(*tmpRecord);
 	}
+	iofile.close();
 }
 
 void PatientInfo::writeToFile()
