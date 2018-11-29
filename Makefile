@@ -119,7 +119,7 @@ cleanDocs:
 
 .PHONY: cleanFiles
 cleanFiles:
-	@rm -f build/output/*
+	@rm -f build/output/* lib/include/libPancreas.h
 
 
 install:
