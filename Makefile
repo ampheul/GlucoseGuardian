@@ -67,17 +67,22 @@ $(LIBRARY_ODIR)/libPancreas.a: $(MAINOBJECTS) $(INCLUDE)/libPancreas.h
 	@$(ARCHIVE)
 
 HEADERFILES := $(shell find $(HEADER) -maxdepth 1 -type f -name "*.h")
-LIBPANCREASFILES := $(filter-out $(INCLUDE)/libPancreas.h, $(HEADERFILES))
+LIBPANCREASFILES := $(filter-out $(INCLUDE)/libPancreas.h $(HEADER)/main.h, $(HEADERFILES))
 
-$(INCLUDE)/libPancreas.h: $(filter-out $(INCLUDE)/libPancreas.h $(HEADER)/main.h, $(LIBPANCREASFILES))
+.Phony: libPancreas.h
+libPancrease.h: $(INCLUDE)/libPancreas.h $(LIBPANCREASFILES) 
+
+
+$(INCLUDE)/libPancreas.h: $(LIBPANCREASFILES)
 	@echo remaking libPancreas.h
 	@echo \#ifndef LIBPANCREAS_H\\n\#define LIBPANCREAS_H\\n > $@;\
 	for f in $^; \
 	do echo \#include \"$$(basename $$f)\" >> $@; done; \
 	echo "\n#endif\n" >> $@ && touch $@
+
 .PHONY: $(HEADER)
 
-$(TEST_ODIR)/%.o: $(TEST_SDIR)/%.cpp $(LIBRARY_ODIR)/libPancreas.a 
+$(TEST_ODIR)/%.o: $(TEST_SDIR)/%.cpp $(LIBRARY_ODIR)/libPancreas.a $(INCLUDE)/libPancreas.h
 	@$(COMPILE)
 	@$(POSTCOMPILE)
 
