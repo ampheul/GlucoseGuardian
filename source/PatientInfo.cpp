@@ -181,7 +181,6 @@ void PatientInfo::readFromFile()
 	inFile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword >> emergName >> emergEmail;
 	emergencyContact = new Contact(emergName, emergEmail);
 	delimiter = ",";
-	getline(inFile, input);
 	while(getline(inFile, input) && input != "-----")
 	{
 		std::cout << input << endl;
@@ -190,9 +189,7 @@ void PatientInfo::readFromFile()
 		std::cout << time << endl;
 		input.erase(0, pos + delimiter.length());
 		std::cout << input << endl;
-		tmpReading = new GlucoseReading(stod(input));
-		tmpMonitor = new MonitorRecord(time, *tmpReading);
-		monitorRecords->push_back(*tmpMonitor);
+		monitorRecords->push_back(MonitorRecord(time, GlucoseReading(stod(input))));
 	}
 	while(getline(inFile, input))
 	{
