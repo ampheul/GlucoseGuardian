@@ -13,27 +13,27 @@ using namespace std;
 */
 Menu::Menu(Account *account)
 {
-	vector<string> menuitems;
+	_items;
 	accountType = account->getAccountType();
 	
-	if (accountType == Account::PATIENT_ACCOUNT)
+	if (accountType == (std::string)(Account::PATIENT_ACCOUNT))
 	{
 		cout << "Patient user verified, please choose an option: " << endl;
-		menuItems = new vector<string>(){
-			"1 - Exit Program"
+		_items = vector<string>({
+			"1 - Exit Program",
 			"2 - Medical History",
 			"3 - Check Current Glucose Level",
 			"4 - Manual Glucose Entry",
 			"5 - Manual Insulin Administration"				
-		}
+		});
 	}
 	else if (accountType == Account::GUEST_ACCOUNT)
 	{
 		cout << "Guest user verified, please choose an option: " << endl;
-		menuItems = new vector<string>(){
+		_items = vector<std::string>({
 			"1 - Exit Program"
 			"2 - Medical History",
-		}
+		});
 	}
 	else if (accountType == Account::UNKNOWN_ACCOUNT)
 	{
@@ -53,7 +53,7 @@ Menu::~Menu() {};
 */
 void Menu::printMenu()
 {
-	for (const auto& item : menuItems)
+	for (const auto& item : _items)
 	{
 		cout << item << endl;
 	}
@@ -80,7 +80,8 @@ int Menu::getMenuSelection()
 		
 		/// ensure the user entered an int
 		validSelection = Menu::validateSelection(userInput);		
-		stringstream(userInput) >> optionInt;		
+		stringstream ss(userInput, std::ios_base::in);
+		ss >> optionInt;		
 	}
 	
 	return optionInt;
@@ -93,13 +94,11 @@ int Menu::getMenuSelection()
 *	\return true is the selection is valid, false otherwise
 */
 bool Menu::validateSelection(string userInput)
-{
-	string userInput;
-	getline(cin, userInput);
-	
+{	
 	/// ensure the input is an int
 	int asInt = 0;
-	stringstream(userInput) >> asInt;
+	std::stringstream ss(userInput, std::ios_base::in);
+	ss >> asInt;
 	if(asInt > 4 || asInt < 1)
 	{
 		cout << userInput + " is not a valid selection, please try again." << endl;
