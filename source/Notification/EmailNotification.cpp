@@ -19,14 +19,8 @@ EmailNotification::EmailNotification(PatientInfo *patientInfo)
 	recipientEmail = emergContact->getEmail();
 	
 	/// curl needs the direct path for the email template, grab it now
-<<<<<<< HEAD
-	// ... using commands that work on the pi.
-	// hint the working directory is usually just group22
-	currentWorkingDirectory = "";
-=======
 	char cwd[256];
 	currentWorkingDirectory = getcwd(cwd, sizeof(cwd));
->>>>>>> c43104b8c06e711ac788f12d65a1d84b01252bd5
 };
 
 /**

@@ -1,7 +1,6 @@
 #ifndef LIBPANCREAS_H
 #define LIBPANCREAS_H
 
-#include "AccountType.h"
 #include "Test.h"
 #include "GraphMaker.h"
 #include "MonitorRecord.h"
@@ -32,7 +31,6 @@
 #include "GlucoseMonitor.h"
 #include "ReportMaker.h"
 #include "ContactType.h"
-#include "UserInputExecutor.h"
 
 #endif
 
