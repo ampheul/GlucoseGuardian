@@ -13,7 +13,7 @@ ArtificialPancreas::ArtificialPancreas()
 {
     user = new PatientInfo();
     output = new LaptopOutput("127.0.0.1", 3307);
-    //email = new EmailNotification(user);
+    email = new EmailNotification(user);
 }
 
 /*!
@@ -55,8 +55,9 @@ void ArtificialPancreas::calculateMedication(const double reading, std::string b
 {
     user->getMonitorRecords()->push_back(MonitorRecord(std::time(NULL), reading));        
     MedicationCalculator *calculator = new MedicationCalculator(reading, user, bolusOrBasal);
-    HormoneDose *dose = calculator->computeDosage();
-    user->getMedicationRecords()->push_back(MedicationRecord(std::time(NULL), *dose));
+    //HormoneDose *dose = calculator->computeDosage();
+    HormoneDose *dose = new HormoneDose(BOLUS_INSULIN, 15);
+	user->getMedicationRecords()->push_back(MedicationRecord(std::time(NULL), *dose));
     if(dose != NULL)
     {
         output->sendInstruction(dose);

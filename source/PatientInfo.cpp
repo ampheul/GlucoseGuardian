@@ -35,6 +35,7 @@ PatientInfo::PatientInfo() {
 	sleep = -1;
 	exercise = "None";
 	carbs = 0;
+
 }
 
 PatientInfo::~PatientInfo()
@@ -176,7 +177,9 @@ void PatientInfo::SetupPatientInfo() {
 void PatientInfo::readFromFile()
 {
 	iofile.open("patient.txt", ios::in);
-	iofile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword;
+	string emergName, emergEmail;
+	iofile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword >> emergName >> emergEmail;
+	emergencyContact = new Contact(emergName, emergEmail);
 	delimiter = ",";
 	while(getline(iofile, input) && input != "-----")
 	{
@@ -224,6 +227,7 @@ void PatientInfo::writeToFile()
 	iofile << sex << endl;
 	iofile << email << endl;
 	iofile << emailPassword << endl;
+	
 	iofile << "-----" << endl;
 	for(vector<MonitorRecord>::iterator it = monitorRecords->begin(); it != monitorRecords->end(); ++it)
 	{
