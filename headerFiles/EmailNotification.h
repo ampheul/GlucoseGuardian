@@ -40,6 +40,7 @@ public:
 	void sendMedicalRequestEmail();
 
 private:
+	const std::string TEMPLATE_PATH_ROOT = "base/email/";
 	/// email template used for unauthorized access attempt
 	const std::string UNAUTHORIZED_ACCESS_EMAIL_TEMPLATE = "unauthorized_email.txt";
 	
