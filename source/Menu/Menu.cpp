@@ -1,6 +1,6 @@
 /**
 *	\author Veronica Witzig
-*	Responsible for displaying the UI menu
+*	\brief Responsible for displaying the UI menu
 */
 
 #include "Menu.h"
@@ -9,7 +9,7 @@ using namespace std;
 
 /**
 *	\name Menu
-*	builds the menu items available for the user based on their account type
+*	\brief builds the menu items available for the user based on their account type
 */
 Menu::Menu(Account *account)
 {
@@ -49,7 +49,7 @@ Menu::~Menu() {};
 
 /**
 *	\name printMenu
-*	prints the UI menu to the terminal for the user
+*	\brief prints the UI menu to the terminal for the user
 */
 void Menu::printMenu()
 {
@@ -61,7 +61,7 @@ void Menu::printMenu()
 
 /**
 *	\name getMenuSelection
-*	retrieves the option that the user has selected from the available menu items
+*	\brief retrieves the option that the user has selected from the available menu items
 *	\return int representing which menu item was selected
 */
 int Menu::getMenuSelection()
@@ -89,7 +89,7 @@ int Menu::getMenuSelection()
 
 /**
 *	\name ValidateSelection
-*	verfies that the user entered value is valid
+*	\brief verfies that the user entered value is valid
 *	\param userInput - value to verify
 *	\return true is the selection is valid, false otherwise
 */

@@ -1,6 +1,6 @@
 /**
 *	\author Veronica Witzig
-*	Header file for the Menu class
+*	\brief Header file for the Menu class
 */
 
 #ifndef MENU_HEADER
