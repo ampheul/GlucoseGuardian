@@ -4,6 +4,9 @@ This is a software application which emulates the function of a human pancreas.
 The Glucose Guardian takes in insulin readings from an external device and sends an insulin dosage
 as a result. It can also store patient information to create reports and respond to emergency situations.
 
+NOTE: For testing purposes please use the provided test gmail account
+Email Address: noah123body@gmail.com
+Email Password: pass123word
 
 # Authors
 
@@ -12,6 +15,7 @@ Graeme Brabers
 Naeem Budhwani
 Thomas Vandeveen
 Veronica Witzig
+
 
 
 # How to build Glucose Guardian
@@ -30,34 +34,56 @@ Once the project has been built, you can run the program by executing the _____ 
 
 # How to run acceptance tests
 
+For ease of testing, we have included individual testing classes for certain features of the project: 
 
-For the completed tickets, here are the tests to run:
+-------------Account Security-----------
+We have included a layer of security to protect the patient and their medical information. To see a
+demonstration of an account being created during initialization, please run:
 
-	Error message will be displayed if tests fail
-	Nothing will be displayed if tests pass 
-	(In some cases, "Invalid glucose reading" prints as it should) 
+make AccountTest.run
 
-# Medication  Calculator Tests
-g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestAge.cpp -o AgeTest
-./AgeTest
+If you run the test again you can see how an account is logged into after the account has been made.
 
-g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestGluc.cpp -o GlucTest
-./GlucTest
+-------------Email Notifications-----------
+During certain actions an email notification may be sent to the user. These instances include:
+	- A warning email when a hypoglycemic event is imminent
+	- A security warning when a failed attempt to login to the artificial pancreas has been made
+	- An emergency email to the patient's emergency contact when the patient has entered into a hypoglycemic state
+	- A notification email when an authorized guest account has requested access to the patient's
+	medical records
+To see a demonstration of this use:
 
-g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestExercise.cpp -o ExerciseTest
-./ExerciseTest
+make EmailNotificationTest.run
 
-g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestMeal.cpp -o MealTest
-./MealTest
+Note: We have provided a test email you may use
+Email Address: noah123body@gmail.com
+Email Password: pass123word
 
-Please run this one at 10pm at night as it takes into consideration the current time and compares it to a user defined bed time:
-g++ HormoneDose.cpp MedicationCalculator.cpp MedicationCalculatorTestSleep.cpp -o SleepTest
-./SleepTest
+-------------UI Menu-------------
+Depending on whether the patient or an authorized guest has logged into Glucose Guardian, this will
+determine which menu items are available for the user to select from.
 
-# Account Tests
-The password for the patient account is password123
-The password for the guest account is guest123
-g++ Account.cpp AccountTestHarnesses.cpp
+If a patient is logged in, they are able to do:
+	- Manual Insulin Administration
+	- Manual Glucose Entries
+	- Make a report of their medical records
+	- Update their carbohydrate intake, expected hours of sleep, and exercise levels
 
-# Output Test
+If a guest is logged in, they are able to:
+	- Make a report of the patient's medical records
 
+To run this tests:
+
+make MenuTest.run
+
+-------------Report Maker-------------
+The user is able to make a graphical report of medical records. This medical record includes glucose readings and insulin administered including time. To see a demonstration of this run:
+
+make ReportMakerTest.run
+
+-------------Insulin Calculator-------------
+Glucose Guardian is able to automatically determine the correct insulin or glucagon to administer
+based on age, weight, height, carb intake, exercise level, diurnal pattern, and time of sleep.
+The test will prompt you for these while running:
+
+make MedicationCalculatorTest.run
