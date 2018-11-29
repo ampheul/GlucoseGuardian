@@ -1,7 +1,10 @@
-/*
-	Laptop connection header file
-	author: Graeme Brabers
-*/
+/**
+ * \brief connection implementation
+ * \author Graeme
+ * 
+ * This class implements laptop connections.
+ *
+ */
 
 #ifndef LAPTOP_OUTPUT_H
 #define LAPTOP_OUTPUT_H
@@ -19,18 +22,48 @@
 
 class LaptopOutput : public InsulinPump
 {
+
+public:
+	  /**
+       * \brief Constructor
+       * \param hostname a string
+       * \param port a port number
+       * 
+       * Force connection
+       */
+	LaptopOutput(const std::string, const int);
+
+	  /**
+       * \brief Destructor
+       *
+       */
+	~LaptopOutput();
+
+	  /**
+       * \brief Transmit message
+       * \param hormoneDose a dose of hormone
+       * 
+       * Implements virtual method to transmit message
+       */
+	void sendInstruction(const HormoneDose *) const;
+
 private:
 	int sock;
 	struct sockaddr_in server;
+
+      /**
+       * \brief Transmit message
+       * \param hostname a string
+       * \param port a port number
+       * \return true if connection established
+       * 
+       * Establishes socket and  clears memory for connection
+       */
 	bool connectToPump(const std::string, const int);
 	mutable std::string type, amount, strMessage;
 	mutable std::stringstream message;
 	mutable const char* charArrayMessage;
 	LaptopOutput();
-public:
-	LaptopOutput(const std::string, const int);
-	~LaptopOutput();
-	void sendInstruction(const HormoneDose *) const;
 };
 
 #endif
