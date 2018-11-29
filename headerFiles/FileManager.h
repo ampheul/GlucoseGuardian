@@ -1,5 +1,5 @@
-#ifndef FILEMANAGER_H
-#define FILEMANAGER_H
+#ifndef FMAN_H
+#define FMAN_H
 
 #include "PatientInfo.h"
 #include <iostream>
