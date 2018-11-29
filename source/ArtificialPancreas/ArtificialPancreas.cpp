@@ -11,7 +11,7 @@
 */
 ArtificialPancreas::ArtificialPancreas()
 {
-    user = new PatientInfo();
+    //user = new PatientInfo();
     output = new LaptopOutput("127.0.0.1", 3307);
     email = new EmailNotification(user);
 }
