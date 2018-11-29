@@ -180,7 +180,8 @@ void PatientInfo::readFromFile()
 {
 	iofile.open("patient.txt", ios::in);
 	string emergName, emergEmail;
-	iofile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword >> emergName >> emergEmail;
+	getline(iofile, name);
+	//iofile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword >> emergName >> emergEmail;
 	std::cout << name << std::endl;
 	std::cout << weight << std::endl;
 	std::cout << height << std::endl;
