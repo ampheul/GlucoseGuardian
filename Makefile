@@ -59,7 +59,7 @@ main: $(ODIR)/main.o
 MAINOBJECTS := $(filter-out $(ODIR)/main.o, $(OBJECTS))
 $(ODIR)/main.o: $(INCLUDE)/libPancreas.h $(LIBRARY_ODIR)/libPancreas.a
 $(ODIR)/main.o: $(SDIR)/main.cpp 
-	@echo remaking main.o
+	@echo making main.o
 	@$(COMPILE)
 	@$(POSTCOMPILE)
 
@@ -70,7 +70,7 @@ HEADERFILES := $(shell find $(HEADER) -maxdepth 1 -type f -name "*.h")
 LIBPANCREASFILES := $(filter-out $(INCLUDE)/libPancreas.h, $(HEADERFILES))
 
 $(INCLUDE)/libPancreas.h: $(filter-out $(INCLUDE)/libPancreas.h $(HEADER)/main.h, $(LIBPANCREASFILES))
-	@echo remaking libPancreas.h $^
+	@echo remaking libPancreas.h
 	@echo \#ifndef LIBPANCREAS_H\\n\#define LIBPANCREAS_H\\n > $@;\
 	for f in $^; \
 	do echo \#include \"$$(basename $$f)\" >> $@; done; \
@@ -105,12 +105,16 @@ runtests: tests $(RUNTESTS)
 
 
 .PHONY: clean
-clean: cleanDocs
+clean: cleanDocs cleanFiles
 
 .PHONY: cleanDocs
 cleanDocs:
 	@rm -rf docs/latex docs/html $(RULES_DIR) \
 		$(ODIR) $(SHARED_ODIR) $(LIBRARY_ODIR) $(DEPDIR)
+
+.PHONY: cleanFiles
+cleanFiles:
+	@rm -f build/output/*
 
 
 install:

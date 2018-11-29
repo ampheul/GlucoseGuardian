@@ -8,7 +8,7 @@
 
 std::string GraphMaker::makeGraph(XRange xrange, YRange yrange, DataSet data, std::string gnuFile)
 {
-    DataSet filteredData;
+    /*DataSet filteredData;
     for (auto& point : data)
     {
         // check if point is in the interval [a,b] defined by xrange
@@ -17,7 +17,8 @@ std::string GraphMaker::makeGraph(XRange xrange, YRange yrange, DataSet data, st
         {
             filteredData.push_back(point);
         }
-    }
+    }*/
+    DataSet filteredData = data;
     int toGnuPlot[2];
 
     if (pipe(toGnuPlot)!= 0)

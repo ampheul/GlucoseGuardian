@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
 
     serverAddress.sin_family = AF_INET; 
     serverAddress.sin_addr.s_addr = INADDR_ANY; 
-    serverAddress.sin_port = htons(3307); 
+    serverAddress.sin_port = htons(3307);
 
     //bind to socket
     if (bind(sock, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0) 
@@ -34,7 +34,7 @@ int main(int argc, char const *argv[])
         exit(EXIT_FAILURE); 
     } 
 
-    while(true)
+    while(!std::cin.eof())
     {
         messageBytes = recv(sock, buffer, 549, 0);
         input.str(std::string(buffer));

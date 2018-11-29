@@ -26,6 +26,9 @@ bool LaptopOutput::connectToPump(const std::string address, const int port)
 	server.sin_family = AF_INET;
 	server.sin_port = htons(port);
 	server.sin_addr.s_addr = inet_addr(address.c_str());
+
+	// return true once we obtain connection
+	return true;
 }
 
 //default constructor - not used
