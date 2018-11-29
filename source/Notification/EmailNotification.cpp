@@ -3,7 +3,7 @@
 *	Responsible for sending email notifications to gmail accounts
 */
 
-#include "EmailNotification.h"
+#include "../../headerFiles/EmailNotification.h"
 
 using namespace std;
 
@@ -17,6 +17,24 @@ EmailNotification::EmailNotification(PatientInfo *patientInfo)
 	senderEmail = patientInfo->getEmail();
 	emailPassword = patientInfo->getEmailPassword();
 	recipientEmail = emergContact->getEmail();
+	
+	/// curl needs the direct path for the email template, grab it now
+	char cwd[256];
+	currentWorkingDirectory = getcwd(cwd, sizeof(cwd));
+};
+
+/**
+*	\name EmailNotification
+*	constructor for testing
+*	\param email - patient's email
+*	\param password - patient's email
+*	\param recipientEmail - emergency contact's email
+*/
+EmailNotification::EmailNotification(string email, string password, string emergEmail)
+{
+	senderEmail = email;
+	emailPassword = password;
+	recipientEmail = emergEmail;
 	
 	/// curl needs the direct path for the email template, grab it now
 	char cwd[256];

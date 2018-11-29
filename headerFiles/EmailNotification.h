@@ -21,6 +21,9 @@ public:
 	/// constructor, expects a pointer to PatientInfo
 	EmailNotification(PatientInfo *patientInfo);
 	
+	/// constructor, expects strings, only to be used for testing
+	EmailNotification(std::string email, std::string password, std::string emergEmail);
+
 	/// destructor
 	~EmailNotification();
 	

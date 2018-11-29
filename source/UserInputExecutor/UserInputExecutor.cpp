@@ -1,40 +1,40 @@
-/*!
-	@author Veronica Witzig
-	Purpose: Responsible for executing requests made by the user
+/**
+*	\author Veronica Witzig
+*	\brief Responsible for executing requests made by the user
 */
 
 #include "UserInputExecutor.h"
 
 using namespace std;
 
-/*!
-	@name userInputExecutor
-	Description: constructor
-	@param artificialPancreas - the pancreas for sending manually entered glucose and insulin to
+/**
+*	\name userInputExecutor
+*	\brief constructor
+*	\param artificialPancreas - the pancreas for sending manually entered glucose and insulin to
 */
 UserInputExecutor::UserInputExecutor(ArtificialPancreas* artificialPancreas)
 {
 	this->artificialPancreas = artificialPancreas;
 };
 
-/*!
-	@name ~UserInputExecutor
-	Description: destructor
+/**
+*	\name ~UserInputExecutor
+*	\brief destructor
 */
 UserInputExecutor::~UserInputExecutor() {};
 
-/*!
-	@name quitProgram
-	Description: closes the artificialPancreas program
+/**
+*	\name quitProgram
+*	\brief closes the artificialPancreas program
 */
 void UserInputExecutor::quitProgram()
 {
 	exit(0);
 }
 
-/*!
-	@name medicalHistory
-	Description: displays a graph of the patient's medical history
+/**
+*	\name medicalHistory
+*	\brief displays a graph of the patient's medical history
 */
 void UserInputExecutor::medicalHistory()
 {
@@ -43,18 +43,20 @@ void UserInputExecutor::medicalHistory()
 	std::string reportFileName = reportMaker.makeReport(this->artificialPancreas->getPatientInfo(), graphMaker);
 }
 
-/*!
-	@name currentGlucose
-	Description: queries the patient's glucose monitor to report their current glucose level
+/**
+*	\name currentGlucose
+*	\brief queries the patient's glucose monitor to report their current glucose level
 */
 void UserInputExecutor::currentGlucose()
 {
-	// since monitor records are stored sequentially in time, we take the last entry
+	/// since monitor records are stored sequentially in time, we take the last entry
 	vector<MonitorRecord>* readings = artificialPancreas->getPatientInfo()->getMonitorRecords();
-	if ((*readings).empty()) {
-		cout << "You do not have any stored glucose readings.";
+	if ((*readings).empty())
+        {
+		cout << "You do not have any stored glucose readings." << endl;
 	}
-	else {
+	else
+        {
 		MonitorRecord lastRecord = (*readings).back();
 		GlucoseReading reading = lastRecord.getReading();
 		double amount = reading.getAmount();
@@ -63,9 +65,9 @@ void UserInputExecutor::currentGlucose()
 	}	
 }
 
-/*!
-	@name manualGlucoseEntry
-	Description: queries the user for a glucose entry and then sends the value to the artificial pancreas
+/**
+*	\name manualGlucoseEntry
+*	\brief queries the user for a glucose entry and then sends the value to the artificial pancreas
 */
 void UserInputExecutor::manualGlucoseEntry()
 {
@@ -94,9 +96,9 @@ void UserInputExecutor::manualGlucoseEntry()
 	artificialPancreas->calculateMedication(glucoseEntry, "Bolus");
 }
 
-/*!
-	@name manualInsulinAdministration
-	Description: queries the user for a insulin amount to be administered
+/**
+*	\name manualInsulinAdministration
+*	\brief queries the user for a insulin amount to be administered
 */
 void UserInputExecutor::manualInsulinAdministration()
 {
@@ -128,9 +130,9 @@ void UserInputExecutor::manualInsulinAdministration()
 	artificialPancreas->manuallyAdministerInsulin(insulinEntry);
 }
 
-/*!
-	@name updateCarbsExerciseSleep
-	Description: updates the patient's expected consumed carbs, exercise level, and sleep
+/**
+*	\name updateCarbsExerciseSleep
+*	\brief updates the patient's expected consumed carbs, exercise level, and sleep
 */
 void UserInputExecutor::updateCarbsExerciseSleep()
 {
@@ -145,10 +147,10 @@ void UserInputExecutor::updateCarbsExerciseSleep()
 	cout << "Update completed." << endl;
 }
 
-/*!
-	@name updatePatientInfoCarbs
-	Description: updates the patient's consumed carbs
-	@param patientInfo - the info to update
+/**
+*	\name updatePatientInfoCarbs
+*	\brief updates the patient's consumed carbs
+*	\param patientInfo - the info to update
 */
 void UserInputExecutor::updatePatientInfoCarbs(PatientInfo* patientInfo)
 {
@@ -176,10 +178,10 @@ void UserInputExecutor::updatePatientInfoCarbs(PatientInfo* patientInfo)
 	patientInfo->setCarbs(carbs);
 }
 
-/*!
-	@name updatePatientInfoExercise
-	Description: updates the patient's expected exercise level
-	@param patientInfo - the info to update
+/**
+*	\name updatePatientInfoExercise
+*	\brief updates the patient's expected exercise level
+*	\param patientInfo - the info to update
 */
 void UserInputExecutor::updatePatientInfoExercise(PatientInfo* patientInfo)
 {
@@ -233,10 +235,10 @@ void UserInputExecutor::updatePatientInfoExercise(PatientInfo* patientInfo)
 	patientInfo->setExercise(exercise);
 }
 
-/*!
-	@name updatePatientInfoSleep
-	Description: updates the patient's expected hours of sleep
-	@param patientInfo - the info to update
+/**
+*	\name updatePatientInfoSleep
+*	\brief updates the patient's expected hours of sleep
+*	\param patientInfo - the info to update
 */
 void UserInputExecutor::updatePatientInfoSleep(PatientInfo* patientInfo)
 {
@@ -264,10 +266,10 @@ void UserInputExecutor::updatePatientInfoSleep(PatientInfo* patientInfo)
 	patientInfo->setSleep(sleepHours);
 }
 
-/*!
-	@name menuSwitch
-	Description: determines which UI menu should be presented to the user depending on the menu item they selected
-	@param option - represents the menu item selected by the user
+/**
+*	\name menuSwitch
+*	\brief determines which UI menu should be presented to the user depending on the menu item they selected
+*	\param option - represents the menu item selected by the user
 */
 void UserInputExecutor::menuSwitch(int option)
 {
