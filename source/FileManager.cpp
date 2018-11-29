@@ -85,13 +85,13 @@ PatientInfo * FileManager::readFromFile()
 		delete dose;
 		delete temp;
 	}
-	PatientInfo *user = new PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact, monRecords, medRecords);
+	//PatientInfo *user = new PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact, monRecords, medRecords);
 
     delete monRecords;
 	delete medRecords;
 	delete emergencyContact;
 	inFile.close();
-	return user;
+	return new PatientInfo();
 }
 
 void FileManager::writeToFile(PatientInfo *user)

@@ -7,28 +7,14 @@ int main()
     FileManager *fm = new FileManager();
     if(fm->checkForPatientFile())
     {
-        try
-        {
+
         p = fm->readFromFile();
-        p->getMonitorRecords()->push_back(MonitorRecord(std::time(NULL), GlucoseReading(17.0)));
-        p->getMedicationRecords()->push_back(MedicationRecord(std::time(NULL), HormoneDose(BASAL_INSULIN, 17)));
-        }
-        catch(std::bad_alloc &ba)
-        {
-            std::cout << "1" << std::endl;
-        }
+        //p->getMonitorRecords()->push_back(MonitorRecord(std::time(NULL), GlucoseReading(17.0)));
+        //p->getMedicationRecords()->push_back(MedicationRecord(std::time(NULL), HormoneDose(BASAL_INSULIN, 17)));
     }
     else
     {
-        try
-        {
-            p = new PatientInfo();
-        }
-        catch(std::bad_alloc &ba)
-        {
-            std::cout << "2" << std::endl;
-        }
-        
+        p = new PatientInfo();        
     }
     fm->writeToFile(p);
     delete p;
