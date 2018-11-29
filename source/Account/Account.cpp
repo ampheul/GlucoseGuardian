@@ -137,7 +137,7 @@ void Account::initializeAccount(string password)
 	}
 
 	size_t hash = Account::hashPassword(password);
-	ofstream accountInfo(ACCOUNT_INFO);
+	ofstream accountInfo(Account::ACCOUNT_INFO);
 	accountInfo << hash << endl;
 
 	cout << "For your own safety, please provide a password for an emergency guest account: ";
