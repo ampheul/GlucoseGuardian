@@ -3,7 +3,7 @@
 *	Responsible for sending email notifications to gmail accounts
 */
 
-#include "../../headerFiles/EmailNotification.h"
+#include "EmailNotification.h"
 
 using namespace std;
 
@@ -97,13 +97,13 @@ void EmailNotification::sendMedicalRequestEmail()
 void EmailNotification::sendEmail(string senderEmail, string recipientEmail, string emailPassword, string emailTemplate)
 {
 	/// curl needs a direct path to point to the email template
-	emailTemplate = currentWorkingDirectory + emailTemplate;
+	emailTemplate = TEMPLATE_PATH_ROOT +emailTemplate;
 	
 	cout << "Sending email to: " << recipientEmail << endl;
 	string command = "curl --url \'smtps://smtp.gmail.com:465\' --ssl-reqd --mail-from \'" + senderEmail 
 		+ "\' --mail-rcpt \'" + recipientEmail 
-		+ "\' --upload-file" + emailTemplate 
-		+ "--user \'" + senderEmail + ":" + emailPassword + "\'";
+		+ "\' --upload-file " + emailTemplate 
+		+ " --user \'" + senderEmail + ":" + emailPassword + "\'";
 	
 	/// system() expects a const char[]*
 	const char* commandToChar = command.c_str();
