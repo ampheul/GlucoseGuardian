@@ -181,17 +181,16 @@ void PatientInfo::readFromFile()
 	inFile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword >> emergName >> emergEmail;
 	emergencyContact = new Contact(emergName, emergEmail);
 	delimiter = ",";
+	getline(inFile, input);
 	while(getline(inFile, input) && input != "-----")
 	{
-		std::cout << input << endl;
 		pos = input.find(delimiter);
 		time = (time_t)stol(input.substr(0, pos));
 		std::cout << time << endl;
 		input.erase(0, pos + delimiter.length());
-		std::cout << input << endl;
-		tmpReading = new GlucoseReading(stod(input));
-		tmpMonitor = new MonitorRecord(time, *tmpReading);
-		monitorRecords->push_back(*tmpMonitor);
+		MonitorRecord *temp = new MonitorRecord(time, stod(input));
+		monitorRecords->push_back(*temp);
+		delete temp;
 	}
 	while(getline(inFile, input))
 	{
@@ -214,8 +213,10 @@ void PatientInfo::readFromFile()
 		{
 			dose = new HormoneDose(GLUCAGON, amount);
 		}
-		tmpRecord = new MedicationRecord(time, *dose);
-		medicationRecords->push_back(*tmpRecord);
+		MedicationRecord *temp = new MedicationRecord(time, *dose);
+		medicationRecords->push_back(*temp);
+		delete dose;
+		delete temp;
 	}
 }
 
@@ -230,7 +231,7 @@ void PatientInfo::writeToFile()
 	outFile << sex << endl;
 	outFile << email << endl;
 	outFile << emailPassword << endl;
-	
+
 	for(vector<MonitorRecord>::iterator it = monitorRecords->begin(); it != monitorRecords->end(); ++it)
 	{
 		outFile << it->getRecordTime() << ",";

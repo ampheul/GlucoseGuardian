@@ -68,6 +68,13 @@ void ArtificialPancreas::calculateMedication(const double reading, std::string b
 		std::cout << it->getRecordTime() << std::endl;
 		std::cout << it->getReading().getAmount() << std::endl;
 	}
+	std::cout << "-----" << std::endl;
+	for(vector<MedicationRecord>::iterator it = user->getMedicationRecords()->begin(); it != user->getMedicationRecords()->end(); ++it)
+	{
+		std::cout << it->getRecordTime() << std::endl;
+		std::cout << it->getHormoneDose().getHormoneType() << std::endl;
+		std::cout << it->getHormoneDose().getHormoneAmount() << std::endl;
+	}
 }
 
 /*!
