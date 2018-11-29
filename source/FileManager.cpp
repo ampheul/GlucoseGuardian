@@ -83,7 +83,6 @@ PatientInfo * FileManager::readFromFile()
 	delete medRecords;
 	delete emergencyContact;
 	inFile.close();
-	std::cout << sizeof(*user) << std::endl;
 	return user;
 }
 
