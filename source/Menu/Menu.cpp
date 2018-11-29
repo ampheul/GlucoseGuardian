@@ -24,7 +24,8 @@ Menu::Menu(Account *account)
 			"2 - Medical History",
 			"3 - Check Current Glucose Level",
 			"4 - Manual Glucose Entry",
-			"5 - Manual Insulin Administration"				
+			"5 - Manual Insulin Administration",
+			"6 - Update carbohydrate intake, exercise, and sleep time"			
 		});
 	}
 	else if (accountType == "Guest")
@@ -62,7 +63,7 @@ void Menu::printMenu()
 /**
 *	\name getMenuSelection
 *	\brief retrieves the option that the user has selected from the available menu items
-*	\return int representing which menu item was selected
+*	\return int representing which menu item was selected, return 0 if invalid user
 */
 int Menu::getMenuSelection()
 {
@@ -70,6 +71,11 @@ int Menu::getMenuSelection()
 	string userInput;
 	int optionInt = 0;
 	
+	if(accountType == "Unknown")
+	{
+		return 0;
+	}
+
 	while(!validSelection)
 	{
 		userInput = "";
@@ -99,7 +105,13 @@ bool Menu::validateSelection(string userInput)
 	int asInt = 0;
 	std::stringstream ss(userInput, std::ios_base::in);
 	ss >> asInt;
-	if(asInt > 4 || asInt < 1)
+	
+	if(accountType == "Unknown")
+	{
+		return false;
+	}
+
+	if(asInt > 6 || asInt < 1)
 	{
 		cout << userInput + " is not a valid selection, please try again." << endl;
 		return false;

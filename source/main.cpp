@@ -21,10 +21,17 @@ int main(int argc, char **argv)
 	Menu *menu = new Menu(account);
 	UserInputExecutor *executor = new UserInputExecutor(artificialPancreas);
 	
+	bool running = true;
+
 	while(true)
 	{
 		menu->printMenu();
 		int optionToRetrieve = menu->getMenuSelection();
+
+		if(optionToRetrieve == 0 || optionToRetrieve == 1){
+			running = false;
+		}
+
 		executor->menuSwitch(optionToRetrieve);
 	}
 	
