@@ -59,10 +59,10 @@ int main(int argc, char** argv)
     }
     */
 
-    GraphMaker graph(xrange, yrange, data);
+    GraphMaker graph;
 
     // make the graph
-    std::string graphname = graph.makeGraph();
+    std::string graphname = graph.makeGraph(xrange, yrange, data);
     
     // tell us about it
     std::cout << "Made graph. Stored in:\t\v" << graphname << std::endl;

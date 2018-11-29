@@ -35,20 +35,16 @@ typedef std::vector<DataPoint> DataSet;
 class GraphMaker
 {
     public:
-        GraphMaker(
-            XRange xrange, 
+        /// Make a graph of patient data. date/time on the x-axis, float on the y-axis.
+        std::string makeGraph(
+            /// XRange to filter out data
+            XRange xrange,
+            /// YRange to filter out data from
             YRange yrange,
-            DataSet data, 
-            std::string gnuFile = "base/graphing/basicgraph.gnu");
-        
-        std::string makeGraph();
-        void setGnuFile(std::string file);
-        
-    private:
-        XRange xrange; //! range (a,b), a < b
-        YRange yrange; //! same as xrange, but for y-axis
-        DataSet data; //! set of coordinates (x,y)
-        std::string gnuFile; ///! The .gnu file to be used when creating the graph
+            /// the actual data which will be graphed
+            DataSet data,
+            /// datafile to customize gnuplot output of the graph.
+            std::string gnuFile = "base/graphing/basicgraph.gnu");    
 };
 
 #endif

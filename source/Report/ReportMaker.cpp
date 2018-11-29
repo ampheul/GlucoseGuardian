@@ -10,8 +10,19 @@ std::string ReportMaker::makeReport(
      * Dynamically alter contents for use in latex by adding
      * a list of commands to include before the file.
      * */
+    std::time_t oneWeek = 24*7*60*60;
+    std::time_t currentTime = std::time(NULL);
+    XRange xrange(currentTime, currentTime-oneWeek);
+    YRange yrange(0, 230);
+    DataSet data;
+    for (auto& record : *(patient->getMonitorRecords()) )
+    {
+        data.push_back(
+            DataPoint(record.getRecordTime(), 
+            record.getReading().getAmount()));
+    }
 
-    std::string graphName = graphMaker.makeGraph();
+    std::string graphName = graphMaker.makeGraph(xrange, yrange, data);
 
     std::string commandDefinitions =  
         LatexHelper::newCommand("patientName", patient->getName()) 

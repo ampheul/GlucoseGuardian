@@ -25,13 +25,13 @@ int main(int argc, char **argv)
 	XRange xrange(baseTime-oneWeek,baseTime);
 	YRange yrange(0,200);
 	// instantiate graphMaker
-	GraphMaker graphMaker(xrange, yrange, data);
+	GraphMaker graphMaker;
     
 	// instantiate reportMaker
-	ReportMaker reportMaker(spaghetti, graphMaker);
+	ReportMaker reportMaker;
 
 	// make the report
-	std::string reportLocation = reportMaker.makeReport();
+	std::string reportLocation = reportMaker.makeReport(spaghetti, graphMaker);
 
 	// talk about it.
 	std::cerr << "Done making report. Stored in:\t\v"<< reportLocation << std::endl;

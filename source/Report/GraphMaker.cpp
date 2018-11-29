@@ -1,38 +1,23 @@
-
+/**
+ * \file GraphMaker.h
+ * \author Thomas Vandeven
+ * */
 
 #include "GraphMaker.h"
 
-/** 
- * Constructor for GraphMaker.
- * 
- * */
-GraphMaker::GraphMaker(
-    XRange xrange, 
-    YRange yrange, 
-    DataSet data, 
-    std::string gnuFile)
+
+std::string GraphMaker::makeGraph(XRange xrange, YRange yrange, DataSet data, std::string gnuFile)
 {
-    this->xrange = xrange;
-    this->yrange = yrange;
+    DataSet filteredData;
     for (auto& point : data)
     {
         // check if point is in the interval [a,b] defined by xrange
         if (    std::difftime(point.first, xrange.first) >= 0 
             &&  std::difftime(xrange.second, point.first) >= 0)
         {
-            this->data.push_back(point);
+            filteredData.push_back(point);
         }
     }
-    this->gnuFile = gnuFile;
-}
-
-void GraphMaker::setGnuFile(std::string gnuFile) 
-{
-    this->gnuFile = gnuFile;
-}
-
-std::string GraphMaker::makeGraph()
-{
     int toGnuPlot[2];
 
     if (pipe(toGnuPlot)!= 0)
@@ -56,8 +41,8 @@ std::string GraphMaker::makeGraph()
     FILE* toGnuPlotFile = 
         fdopen(toGnuPlot[1], "w");
     
-    for (DataSet::iterator it = this->data.begin();
-        it != this->data.end(); ++it)
+    for (DataSet::iterator it = filteredData.begin();
+        it != filteredData.end(); ++it)
     {
         fprintf(toGnuPlotFile, "%d %lf\n", (int)it->first, (double)it->second);
     }
@@ -71,7 +56,7 @@ std::string GraphMaker::makeGraph()
         dup2(fileno(pic), STDOUT_FILENO);
         
         execlp("gnuplot", 
-            "gnuplot", "-e", commands.c_str(), this->gnuFile.c_str(), 
+            "gnuplot", "-e", commands.c_str(), gnuFile.c_str(), 
             NULL);
         std::cerr << "this line should never be reached" << std::endl;
         std::exit(1);
