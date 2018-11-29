@@ -17,7 +17,8 @@ PatientInfo::PatientInfo(
 	email(email)
 	
 {
-	this->monitorRecords = new vector<MonitorRecord>();
+	this->monitorRecords = new vector<MonitorRecord>;
+	this->medicationRecords = new vector<MedicationRecord>;
 }
 
 PatientInfo::PatientInfo() {

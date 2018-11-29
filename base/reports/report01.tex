@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \usepackage{graphicx}
+\usepackage{float}
 \graphicspath{ {../} }
 
 \newcommand{\missingText}{\emph{*MISSING*}}
@@ -17,21 +18,36 @@
 \providecommand{\patientGlucoseGraph}{}
 \providecommand{\patientInsulinGraph}{}
 
-\begin{document}
+\title{Patient Glucose Report}
+\author{}
+\date{\today}
 
-    \textbf{Name: }\patientName \\
-    \textbf{Age: }\patientAge \\
-    \textbf{Sex: }\patientSex \\
-    \textbf{Date: }\today\\
+\begin{document}
+    \maketitle
+
+
+    \begin{tabular}{llllll}
+        \textbf{Name: }&\patientName&
+        \textbf{Age: }&\patientAge&
+        \textbf{Sex: }&\patientSex
+    \end{tabular}
     
-    \section{Glucose Readings}
+
+    \section{Glucose Readings:}
     \patientName{'s} glucose readings from the last week:
-    \begin{figure}
-        \includegraphics[width=8cm, height=3cm]{\patientGlucoseGraph}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{\patientGlucoseGraph}
     \end{figure}
+    
+    {\section{Insuliun Readings:}
     \patientName{'s} Insulin doses during the last week.
-    \begin{figure}
-        \includegraphics[width=12cm, height=6cm]{\patientInsulinGraph}
-    \end{figure}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{\patientInsulinGraph}
+    \end{figure}}
+    
     \patientReccomendation
 \end{document}

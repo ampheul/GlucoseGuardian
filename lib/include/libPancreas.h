@@ -1,6 +1,7 @@
 #ifndef LIBPANCREAS_H
 #define LIBPANCREAS_H
 
+#include "ReportHelper.h"
 #include "Test.h"
 #include "GraphMaker.h"
 #include "MonitorRecord.h"

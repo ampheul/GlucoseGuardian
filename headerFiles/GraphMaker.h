@@ -21,6 +21,8 @@
 #include <cstdlib>
 #include <sys/wait.h>
 
+#include "ReportHelper.h"
+
 typedef std::time_t XType;
 typedef double YType;
 typedef std::pair<XType, XType> XRange;
@@ -43,6 +45,9 @@ class GraphMaker
             YRange yrange,
             /// the actual data which will be graphed
             DataSet data,
+            std::string title = "",
+            /// extra gnuplot options to add to the script. defaults to empty
+            std::string extraOptions = "",
             /// datafile to customize gnuplot output of the graph.
             std::string gnuFile = "base/graphing/basicgraph.gnu");    
 };

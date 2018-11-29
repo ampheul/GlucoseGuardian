@@ -6,23 +6,18 @@
 #include "GraphMaker.h"
 
 
-std::string GraphMaker::makeGraph(XRange xrange, YRange yrange, DataSet data, std::string gnuFile)
+std::string GraphMaker::makeGraph(
+    XRange xrange, 
+    YRange yrange, 
+    DataSet data, 
+    std::string title, 
+    std::string extraOptions, 
+    std::string gnuFile)
 {
-    /*DataSet filteredData;
-    for (auto& point : data)
-    {
-        // check if point is in the interval [a,b] defined by xrange
-        if (    std::difftime(point.first, xrange.first) >= 0 
-            &&  std::difftime(xrange.second, point.first) >= 0)
-        {
-            filteredData.push_back(point);
-        }
-    }*/
-    DataSet filteredData = data;
-    int toGnuPlot[2];
 
+    int toGnuPlot[2];
     if (pipe(toGnuPlot)!= 0)
-        std::exit(1);
+        return "";
     
     std::string commands = 
         "set xtics " 
@@ -31,21 +26,23 @@ std::string GraphMaker::makeGraph(XRange xrange, YRange yrange, DataSet data, st
             std::to_string(xrange.first) 
             + ":"
             + std::to_string(xrange.second) 
-        + "];";
+        + "];" + extraOptions + ";";
 
 
     std::string graphFileName = 
-        "build/output/graph" + std::to_string(std::time(NULL));
+        "build/output/graph" + 
+        (title != "" ? "_" + title + "_" : "") 
+        + std::to_string(std::time(NULL)) + std::to_string((int)data.back().second);
 
-    FILE* pic = 
-        fopen( (graphFileName + ".png").c_str(), "w");
-    FILE* toGnuPlotFile = 
-        fdopen(toGnuPlot[1], "w");
+    // open the picture file we will save the graph to
+    FILE* pic = fopen( (graphFileName + ".png").c_str(), "w");
+
+    // open the write end of the pipe as a FILE* stream
+    FILE* toGnuPlotFile = fdopen(toGnuPlot[1], "w");
     
-    for (DataSet::iterator it = filteredData.begin();
-        it != filteredData.end(); ++it)
+    for (auto& point : data)
     {
-        fprintf(toGnuPlotFile, "%d %lf\n", (int)it->first, (double)it->second);
+        std::fprintf(toGnuPlotFile, "%d %lf\n", (int)point.first, (double)point.second);
     }
     fclose(toGnuPlotFile);
     

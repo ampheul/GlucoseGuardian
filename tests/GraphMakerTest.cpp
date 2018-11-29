@@ -28,35 +28,42 @@ DataSet gen_dataset(XRange xrange, YRange yrange)
 
 int main(int argc, char** argv)
 {
-    std::time_t oneWeek = (std::time_t)7*24*60*60;
-    std::time_t currentTime = std::time(NULL);
+    PatientInfo* spaghetti = Spaghetti().makePatient();
 
-    XRange xrange( currentTime - oneWeek, currentTime);
-    YRange yrange(0,10.1);
-    /*PatientInfo * spaghetti = Spaghetti().makePatient();
-        std::cerr <<"here"<<std::endl; 
-
-    vector<MonitorRecord> *records = spaghetti->getMonitorRecords();
+    vector<MonitorRecord>* records = spaghetti->getMonitorRecords();
+    
+    // data to fill in
     DataSet data;
-    std::cerr <<"here"; 
+ 
+    
     for (auto& record: *records)
     {
-        std::cout << record.getReading().getAmount()
-            <<" " << record.getRecordTime() << std::endl;
-
         data.push_back(DataPoint(
             (XType)record.getRecordTime(), 
             (YType)record.getReading().getAmount()));
-        std::cout << data.back().first <<" " << data.back().second<<std::endl;
-
-    }*/
-    DataSet data = gen_dataset(xrange,yrange);
+    }
     
+    XType max = data.back().first;
+    XType min = data.back().first;
 
-    GraphMaker graph;
+    for (auto & point : data)
+    {
+        if ( max < point.first )
+        {
+            max = point.first;
+        }
+        else if (min > point.first)
+        {
+            min = point.first;
+        }
+    }
+
+    GraphMaker graphMaker;
 
     // make the graph
-    std::string graphname = graph.makeGraph(xrange, yrange, data);
+    XRange xrange(min, max);
+    YRange yrange(0,250);
+    std::string graphname = graphMaker.makeGraph(xrange, yrange, data);
     
     // tell us about it
     std::cout << "Made graph. Stored in:\t\v" << graphname << std::endl;

@@ -1,10 +1,12 @@
 #ifndef REPORTMAKER_H
 #define REPORTMAKER_H
 
+#include <string>
+
 #include "GraphMaker.h"
 #include "PatientInfo.h"
 #include "LatexHelper.h"
-
+#include "ReportHelper.h"
 /** \class ReportMaker
  * \brief Makes a pdf report documenting a patient's health over a week. 
  * 
