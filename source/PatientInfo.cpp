@@ -10,7 +10,18 @@ PatientInfo::PatientInfo()
 {
 	monitorRecords = new vector<MonitorRecord>;
 	medicationRecords = new vector<MedicationRecord>;
+
+	fileManager = new FileManager(this);
+	if(fileManager->checkForPatientFile())
+	{
+		fileManager->readFromFile();
+	}
+	else
+	{
+		SetupPatientInfo();
+	}
 	
+	/*
 	inFile.open("patient.txt");
 	if(!inFile.is_open())
 	{
@@ -20,6 +31,7 @@ PatientInfo::PatientInfo()
 	{
 		readFromFile();
 	}
+	*/
 
 	sleep = -1;
 	exercise = "None";
@@ -49,7 +61,8 @@ PatientInfo::PatientInfo(
 /// destructor
 PatientInfo::~PatientInfo()
 {
-	writeToFile();
+	fileManager->writeToFile();
+	delete fileManager;
 }
 
 /// gets the patient info weight
@@ -83,7 +96,7 @@ int PatientInfo::getAge()
 }
 
 /// sets the patient info age
-void PatientInfo::setAge(double age)
+void PatientInfo::setAge(int age)
 {
 	this->age = age;
 }
@@ -224,7 +237,7 @@ void PatientInfo::SetupPatientInfo()
 	emergencyContact = new Contact(emergContactName, emergContactEmail);
 
 }
-
+/*
 /// reads the patient info file
 void PatientInfo::readFromFile()
 {
@@ -310,3 +323,4 @@ void PatientInfo::writeToFile()
 	}
 	outFile.close();
 }
+*/
