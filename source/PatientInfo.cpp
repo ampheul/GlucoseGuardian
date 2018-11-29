@@ -181,6 +181,7 @@ void PatientInfo::readFromFile()
 	inFile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword >> emergName >> emergEmail;
 	emergencyContact = new Contact(emergName, emergEmail);
 	delimiter = ",";
+	getline(inFile, input);
 	while(getline(inFile, input) && input != "-----")
 	{
 		std::cout << input << endl;
@@ -230,7 +231,7 @@ void PatientInfo::writeToFile()
 	outFile << sex << endl;
 	outFile << email << endl;
 	outFile << emailPassword << endl;
-	
+
 	for(vector<MonitorRecord>::iterator it = monitorRecords->begin(); it != monitorRecords->end(); ++it)
 	{
 		outFile << it->getRecordTime() << ",";
