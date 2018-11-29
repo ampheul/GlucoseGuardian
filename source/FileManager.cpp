@@ -5,6 +5,12 @@ FileManager::FileManager(PatientInfo *patient)
     user = patient;
 }
 
+FileManager::~FileManager()
+{
+	inFile.close();
+	outFile.close();
+}
+
 bool FileManager::checkForPatientFile()
 {
     inFile.open("patient.txt");
