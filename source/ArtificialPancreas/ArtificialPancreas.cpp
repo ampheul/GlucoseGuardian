@@ -53,9 +53,7 @@ PatientInfo * ArtificialPancreas::getPatientInfo()
 */
 void ArtificialPancreas::calculateMedication(const double reading, std::string bolusOrBasal)
 {
-	MonitorRecord *monRecord = new MonitorRecord(std::time(NULL), reading);
-	//user->getMonitorRecords()->push_back(*monRecord);
-	delete monRecord;
+	user->getMonitorRecords()->push_back(*(new MonitorRecord(std::time(NULL), reading)));
     MedicationCalculator *calculator = new MedicationCalculator(reading, user, bolusOrBasal);
     HormoneDose *dose = calculator->computeDosage();
 	if(dose != NULL)
