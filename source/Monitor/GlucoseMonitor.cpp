@@ -37,7 +37,7 @@ void GlucoseMonitor::listen(ArtificialPancreas * pancreas)
     {
         recv(sock, buffer, 549, 0);
         input = buffer;
-        if(count % 5 = 0)
+        if(count % 5 == 0)
         {
             pancreas->calculateMedication(stod(input), "Basal");
         }
