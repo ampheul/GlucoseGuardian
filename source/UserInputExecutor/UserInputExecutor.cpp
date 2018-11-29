@@ -38,8 +38,9 @@ void UserInputExecutor::quitProgram()
 */
 void UserInputExecutor::medicalHistory()
 {
-	ReportMaker maker = new ReportMaker();
-	maker.makeReport();
+	ReportMaker reportMaker;
+	GraphMaker graphMaker;
+	std::string reportFileName = reportMaker.makeReport(this->user, graphMaker);
 }
 
 /*!

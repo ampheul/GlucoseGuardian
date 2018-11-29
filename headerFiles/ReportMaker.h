@@ -13,17 +13,13 @@
 class ReportMaker
 {
     public:
-        /// the Constructor for ReportMaker
-        ReportMaker(
-            PatientInfo* patient, ///< the patient whose data will be graphed
-            GraphMaker graphMaker, ///< the graphmaker which will be used to graph the patient data
-            std::string templateFile = "base/reports/report01" ///< latex template file to generate the doc with.
-            );
-        std::string makeReport();
-    private:
-        PatientInfo* patient; ///< the patient whose data will be graphed
-        GraphMaker graphMaker; ///< the graphmaker which will be used to graph the patient data
-        std::string templateFile;
+        std::string makeReport(
+            /// the patient whose data will be graphed
+            PatientInfo* patient, 
+            /// the graphmaker which will be used to graph the patient data
+            GraphMaker graphMaker, 
+            /// latex template file to generate the doc with.
+            std::string templateFile = "base/reports/report01");
 };
 
 #endif

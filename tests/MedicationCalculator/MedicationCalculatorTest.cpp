@@ -67,8 +67,8 @@ int main(){
     /* Make medication calculator
        Parameters are: (double glucoseReading, double weight, double age, double sleepTime, string exerciseLevel, double carbInGrams);
      */
-	PatientInfo patient("sally", 80, "F", 100, 100, "sally@gmail.com");
-     MedicationCalculator calc (glucose, patient, basalOrBolus);
+	PatientInfo *patient = new PatientInfo("sally", 80, "F", 100, 100, "sally@gmail.com");
+    MedicationCalculator calc(glucose, patient, basalOrBolus);
 
     // Compute Dosage to give
     HormoneDose *hormone = calc.computeDosage();

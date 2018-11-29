@@ -1,16 +1,9 @@
 #include "ReportMaker.h"
 
-ReportMaker::ReportMaker(
-    PatientInfo* patient, 
+std::string ReportMaker::makeReport(
+    PatientInfo *patient,
     GraphMaker graphMaker,
-    std::string templateFile) 
-    :
-        patient(patient),
-        graphMaker(graphMaker),
-        templateFile(templateFile)
-{}
-
-std::string ReportMaker::makeReport()
+    std::string templateFile)
 {
     /**
      * Method:
@@ -18,7 +11,7 @@ std::string ReportMaker::makeReport()
      * a list of commands to include before the file.
      * */
 
-    std::string graphName = this->graphMaker.makeGraph();
+    std::string graphName = graphMaker.makeGraph();
 
     std::string commandDefinitions =  
         LatexHelper::newCommand("patientName", patient->getName()) 
@@ -28,7 +21,7 @@ std::string ReportMaker::makeReport()
         + LatexHelper::newCommand("patientSex", patient->getSex())
         + LatexHelper::newCommand("patientGlucoseGraph", graphName)
         + LatexHelper::newCommand("patientInsulinGraph", graphName);
-    std::string inputCommand = LatexHelper::input(this->templateFile);
+    std::string inputCommand = LatexHelper::input(templateFile);
     std::string reportName = "report"+ std::to_string(std::time(NULL));
     std::string reportDirectory = "build/output";
     
