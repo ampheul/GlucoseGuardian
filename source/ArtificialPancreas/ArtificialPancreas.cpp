@@ -53,22 +53,34 @@ PatientInfo * ArtificialPancreas::getPatientInfo()
 */
 void ArtificialPancreas::calculateMedication(const double reading, std::string bolusOrBasal)
 {
-    user->getMonitorRecords()->push_back(MonitorRecord(std::time(NULL), reading));        
+	vector<MonitorRecord> *test = user->getMonitorRecords();
+	std::cout << "1" << std::endl;
+	GlucoseReading *gc = new GlucoseReading(reading);
+	std::cout << "2" << std::endl;
+	MonitorRecord *monRecord = new MonitorRecord(std::time(NULL), *gc);
+	std::cout << "3" << std::endl;
+	test.push_back(*monRecord);
+	std::cout << "4" << std::endl;
+	delete monRecord;
+	std::cout << "5" << std::endl;
     MedicationCalculator *calculator = new MedicationCalculator(reading, user, bolusOrBasal);
     HormoneDose *dose = calculator->computeDosage();
-    user->getMedicationRecords()->push_back(MedicationRecord(std::time(NULL), *dose));
-    if(dose != NULL)
+	if(dose != NULL)
     {
+		MedicationRecord *medRecord = new MedicationRecord(std::time(NULL), *dose);
+		//user->getMedicationRecords()->push_back(*medRecord);
+		delete medRecord;
         output->sendInstruction(dose);
         delete dose;
     }
     delete calculator;
-
+	/*
 	for(vector<MonitorRecord>::iterator it = user->getMonitorRecords()->begin(); it != user->getMonitorRecords()->end(); ++it)
 	{
 		std::cout << it->getRecordTime() << std::endl;
 		std::cout << it->getReading().getAmount() << std::endl;
 	}
+	*/
 }
 
 /*!
