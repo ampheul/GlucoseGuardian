@@ -21,6 +21,9 @@ PatientInfo::PatientInfo(
 }
 
 PatientInfo::PatientInfo() {
+	monitorRecords = new vector<MonitorRecord>;
+	medicationRecords = new vector<MedicationRecord>;
+	
 	iofile.open("patient.txt", ios::in);
 	if(!iofile.is_open())
 	{
@@ -35,7 +38,6 @@ PatientInfo::PatientInfo() {
 	sleep = -1;
 	exercise = "None";
 	carbs = 0;
-
 }
 
 PatientInfo::~PatientInfo()
