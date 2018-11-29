@@ -198,8 +198,6 @@ public:
 	 * 	\param string to set to atiennt's name
 	 * */
 	void setName(std::string name);
-	
-	
 
 	/**
 	*	\name SetupPatientInfo

@@ -1,10 +1,10 @@
-#ifndef FMAN_H
-#define FMAN_H
+#ifndef FILEMANAGER_H
+#define FILEMANAGER_H
 
-#include "PatientInfo.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include "PatientInfo.h"
 #include "Contact.h"
 #include "DeviceRecord.h"
 #include "HormoneDose.h"
@@ -13,16 +13,16 @@
 
 class FileManager
 {
-    private:
-        PatientInfo *user;
-        ifstream inFile;
-        ofstream outFile;
     public:
-        FileManager(PatientInfo *);
+        FileManager(PatientInfo*);
         ~FileManager();
         bool checkForPatientFile();
         void readFromFile();
         void writeToFile();
+    private:
+        PatientInfo *user;
+        ifstream inFile;
+        ofstream outFile;
 };
 
 #endif
