@@ -201,14 +201,9 @@ vector<MedicationRecord> * PatientInfo::getMedicationRecords()
 	return medicationRecords;
 }
 
-std::string PatientInfo::getName()
-{
-	return name;
-}
-
 void PatientInfo::setName(std::string newName)
 {
-	name - = newName;
+	name = newName;
 }
 
 /// fetches th patient info stored in patient.txt

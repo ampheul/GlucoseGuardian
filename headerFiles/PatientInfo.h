@@ -190,12 +190,7 @@ public:
 	*	\brief gets the patient's administered medication records
     	*/
 	vector<MedicationRecord> * getMedicationRecords();
-	
-	/**
-	 * \name getName
-	 * \brief returns patient's name
-	 * */
-	std::string PatientInfo::getName();
+
 	
 	/**
 	 * 	\name setName
