@@ -43,45 +43,54 @@ PatientInfo * FileManager::readFromFile()
     double amount;
     HormoneDose *dose;
 
-	vector<MonitorRecord> *monRecords = new vector<MonitorRecord>;
-	getline(inFile, input);
-	while(getline(inFile, input) && input != "-----")
+	try
 	{
-		pos = input.find(delimiter);
-		time = (time_t)stol(input.substr(0, pos));
-		input.erase(0, pos + delimiter.length());
-		GlucoseReading *tempGlucose = new GlucoseReading(stod(input));
-		MonitorRecord *tempMonitor = new MonitorRecord(time, *tempGlucose);
-		monRecords->push_back(*tempMonitor);
-		delete tempGlucose;
-		delete tempMonitor;
+		vector<MonitorRecord> *monRecords = new vector<MonitorRecord>;
+
+		getline(inFile, input);
+		while(getline(inFile, input) && input != "-----")
+		{
+			pos = input.find(delimiter);
+			time = (time_t)stol(input.substr(0, pos));
+			input.erase(0, pos + delimiter.length());
+			GlucoseReading *tempGlucose = new GlucoseReading(stod(input));
+			MonitorRecord *tempMonitor = new MonitorRecord(time, *tempGlucose);
+			monRecords->push_back(*tempMonitor);
+			delete tempGlucose;
+			delete tempMonitor;
+		}
+
+		vector<MedicationRecord> *medRecords = new vector<MedicationRecord>;
+		while(getline(inFile, input))
+		{
+			pos = input.find(delimiter);
+			time = (time_t)stol(input.substr(0, pos));
+			input.erase(0, pos + delimiter.length());
+			pos = input.find(delimiter);
+			toEnum = input.substr(0, pos);
+			input.erase(0, pos + delimiter.length());
+			amount = stod(input);
+			if(toEnum == "Bolus Insulin")
+			{
+				dose = new HormoneDose(BOLUS_INSULIN, amount);
+			}
+			else if(toEnum == "Basal Insulin")
+			{
+				dose = new HormoneDose(BASAL_INSULIN, amount);
+			}
+			else if(toEnum == "Glucacon")
+			{
+				dose = new HormoneDose(GLUCAGON, amount);
+			}
+			MedicationRecord *temp = new MedicationRecord(time, *dose);
+			medRecords->push_back(*temp);
+			delete dose;
+			delete temp;
+		}
 	}
-	vector<MedicationRecord> *medRecords = new vector<MedicationRecord>;
-	while(getline(inFile, input))
+	catch(std::bad_alloc &ba)
 	{
-		pos = input.find(delimiter);
-		time = (time_t)stol(input.substr(0, pos));
-		input.erase(0, pos + delimiter.length());
-		pos = input.find(delimiter);
-		toEnum = input.substr(0, pos);
-		input.erase(0, pos + delimiter.length());
-		amount = stod(input);
-		if(toEnum == "Bolus Insulin")
-		{
-			dose = new HormoneDose(BOLUS_INSULIN, amount);
-		}
-		else if(toEnum == "Basal Insulin")
-		{
-			dose = new HormoneDose(BASAL_INSULIN, amount);
-		}
-		else if(toEnum == "Glucacon")
-		{
-			dose = new HormoneDose(GLUCAGON, amount);
-		}
-		MedicationRecord *temp = new MedicationRecord(time, *dose);
-		medRecords->push_back(*temp);
-		delete dose;
-		delete temp;
+		std::cout << ba.what() << std::endl;
 	}
 	PatientInfo *user = new PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact, monRecords, medRecords);
     delete monRecords;
