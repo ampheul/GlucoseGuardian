@@ -7,13 +7,14 @@
 #ifndef PATIENTINFO_H
 #define PATIENTINFO_H
 
+#include <iostream>
+#include <string>
 #include <vector>
 #include "Contact.h"
 #include "DeviceRecord.h"
 #include "HormoneDose.h"
 #include "MedicationRecord.h"
 #include "MonitorRecord.h"
-#include "FileManager.h"
 
 using namespace std;
 
@@ -39,6 +40,13 @@ public:
 		std::string email
 		);
 
+	/**
+	 * \name PatientInfo
+	 * \brief constructor with full argument list
+	 * */
+	PatientInfo(string, double, double, int, string, string, string, Contact *,
+					vector<MonitorRecord> *, vector<MedicationRecord> *);
+	
 	/// destructor
 	~PatientInfo();
 	
@@ -261,12 +269,6 @@ private:
 	/// patient's emergency contact
 	Contact* emergencyContact;
 
-	/// needed for reading/writing to patient.txt
-	FileManager *fileManager;
-	ofstream outFile;
-	ifstream inFile;
-	string input, delimiter;
-
 	/// used for capturing the time when making monitor/medication records
 	time_t time;
 	size_t pos;
@@ -276,8 +278,6 @@ private:
 
 	/// type of the hormone being administered
 	hormoneType type;
-
-	string toEnum;
 };
 
 #endif

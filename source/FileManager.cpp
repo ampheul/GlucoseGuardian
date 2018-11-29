@@ -1,8 +1,7 @@
 #include "FileManager.h"
 
-FileManager::FileManager(PatientInfo *patient)
+FileManager::FileManager()
 {
-    user = patient;
 }
 
 FileManager::~FileManager()
@@ -29,29 +28,31 @@ bool FileManager::checkForPatientFile()
     return false;
 }
 
-void FileManager::readFromFile()
+PatientInfo * FileManager::readFromFile()
 {
     inFile.open("patient.txt");
 	std::string name, sex, email, emailPassword, emergName, emergEmail;
     double weight, height;
     int age;
 	inFile >> name >> weight >> height >> age  >> sex >> email >> emailPassword >> emergName >> emergEmail;
-    user->setName(name);
-    user->setWeight(weight);
-    user->setHeight(height);
-    user->setAge(age);
-    user->setSex(sex);
-    user->setEmail(email);
-    user->setEmailPassword(emailPassword);
 	Contact *emergencyContact = new Contact(emergName, emergEmail);
-    user->setEmergencyContact(emergencyContact);
 	
     std::string input, toEnum, delimiter = ",";
     time_t time;
     size_t pos;
     double amount;
     HormoneDose *dose;
+	vector<MonitorRecord> *monRecords;
+	vector<MedicationRecord> *medRecords;
 
+	try
+	{
+		monRecords = new vector<MonitorRecord>;
+	}
+	catch(std::bad_alloc &ba)
+	{
+		std::cout << "1" << std::endl;
+	}
 	getline(inFile, input);
 	while(getline(inFile, input) && input != "-----")
 	{
@@ -60,9 +61,18 @@ void FileManager::readFromFile()
 		input.erase(0, pos + delimiter.length());
 		GlucoseReading *tempGlucose = new GlucoseReading(stod(input));
 		MonitorRecord *tempMonitor = new MonitorRecord(time, *tempGlucose);
-		user->getMonitorRecords()->push_back(*tempMonitor);
+		monRecords->push_back(*tempMonitor);
 		delete tempGlucose;
 		delete tempMonitor;
+	}
+
+	try
+	{
+		medRecords = new vector<MedicationRecord>;
+	}
+	catch(std::bad_alloc &ba)
+	{
+		std::cout << "2" << std::endl;
 	}
 
 	while(getline(inFile, input))
@@ -87,14 +97,28 @@ void FileManager::readFromFile()
 			dose = new HormoneDose(GLUCAGON, amount);
 		}
 		MedicationRecord *temp = new MedicationRecord(time, *dose);
-		user->getMedicationRecords()->push_back(*temp);
+		medRecords->push_back(*temp);
 		delete dose;
 		delete temp;
 	}
-    inFile.close();
+	PatientInfo *user;
+	try
+	{
+		user = new PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact, monRecords, medRecords);
+	}
+	catch(std::bad_alloc &ba)
+	{
+		std::cout << "3" << std::endl;
+	}
+
+    delete monRecords;
+	delete medRecords;
+	delete emergencyContact;
+	inFile.close();
+	return user;
 }
 
-void FileManager::writeToFile()
+void FileManager::writeToFile(PatientInfo *user)
 {
 	outFile.open("patient.txt", ios::trunc);
 	outFile << user->getName() << std::endl;
@@ -107,13 +131,13 @@ void FileManager::writeToFile()
     outFile << user->getEmergencyContact()->getName() << std::endl;
     outFile << user->getEmergencyContact()->getEmail() << std::endl; 
 
-	for(vector<MonitorRecord>::iterator it = user->getMonitorRecords()->begin(); it != user->getMonitorRecords->end(); ++it)
+	for(vector<MonitorRecord>::iterator it = user->getMonitorRecords()->begin(); it != user->getMonitorRecords()->end(); ++it)
 	{
 		outFile << it->getRecordTime() << ",";
 		outFile << it->getReading().getAmount() << endl;
 	}
 	outFile << "-----" << endl;
-	for(vector<MedicationRecord>::iterator it = user->getMedicationRecords->begin(); it != user->getMedicationRecords->end(); ++it)
+	for(vector<MedicationRecord>::iterator it = user->getMedicationRecords()->begin(); it != user->getMedicationRecords()->end(); ++it)
 	{
 		outFile << it->getRecordTime() << ",";
 		switch(it->getHormoneDose().getHormoneType())

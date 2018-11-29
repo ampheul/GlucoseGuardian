@@ -10,12 +10,14 @@
 #include "GlucoseReading.h"
 #include <chrono>
 #include "EmailNotification.h"
+#include "FileManager.h"
 
 using namespace std;
 
 class ArtificialPancreas
 {
     private:
+        FileManager *fileManager;
         PatientInfo *user;
         InsulinPump *output;
         EmailNotification *email;
