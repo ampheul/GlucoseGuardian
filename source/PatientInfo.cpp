@@ -184,17 +184,14 @@ void PatientInfo::readFromFile()
 	getline(inFile, input);
 	while(getline(inFile, input) && input != "-----")
 	{
-		std::cout << input << endl;
 		pos = input.find(delimiter);
 		time = (time_t)stol(input.substr(0, pos));
 		std::cout << time << endl;
 		input.erase(0, pos + delimiter.length());
-		std::cout << input << endl;
 		monitorRecords->push_back(MonitorRecord(time, GlucoseReading(stod(input))));
 	}
 	while(getline(inFile, input))
 	{
-		std::cout << input << endl;
 		pos = input.find(delimiter);
 		time = (time_t)stol(input.substr(0, pos));
 		input.erase(0, pos + delimiter.length());
@@ -214,8 +211,7 @@ void PatientInfo::readFromFile()
 		{
 			dose = new HormoneDose(GLUCAGON, amount);
 		}
-		tmpRecord = new MedicationRecord(time, *dose);
-		medicationRecords->push_back(*tmpRecord);
+		medicationRecords->push_back(MedicationRecord(time, *dose));
 	}
 }
 
