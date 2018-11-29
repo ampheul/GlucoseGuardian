@@ -13,10 +13,12 @@ int main()
     }
     else
     {
-        p = new PatientInfo();
+        p = new PatientInfo();        
     }
     fm->writeToFile(p);
+    delete fm;
     delete p;
+
 
     return 0;
 }

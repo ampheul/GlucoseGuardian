@@ -42,7 +42,6 @@ PatientInfo::PatientInfo(string name, double height, double weight, int age, str
 	emergencyContact = emerg;
 	monitorRecords = monitor;
 	medicationRecords = medication;
-
 }
 
 /// constructor, expects patient info data

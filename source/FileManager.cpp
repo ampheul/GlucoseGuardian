@@ -38,47 +38,27 @@ PatientInfo * FileManager::readFromFile()
 	Contact *emergencyContact = new Contact(emergName, emergEmail);
 	
     std::string input, toEnum, delimiter = ",";
-    time_t time;
+    time_t inputTime;
     size_t pos;
     double amount;
     HormoneDose *dose;
-	vector<MonitorRecord> *monRecords;
-	vector<MedicationRecord> *medRecords;
+	vector<MonitorRecord> *monRecords = new vector<MonitorRecord>;
 
-	try
-	{
-		monRecords = new vector<MonitorRecord>;
-	}
-	catch(std::bad_alloc &ba)
-	{
-		std::cout << "1" << std::endl;
-	}
 	getline(inFile, input);
 	while(getline(inFile, input) && input != "-----")
 	{
 		pos = input.find(delimiter);
-		time = (time_t)stol(input.substr(0, pos));
+		inputTime = (time_t)stol(input.substr(0, pos));
 		input.erase(0, pos + delimiter.length());
-		GlucoseReading *tempGlucose = new GlucoseReading(stod(input));
-		MonitorRecord *tempMonitor = new MonitorRecord(time, *tempGlucose);
-		monRecords->push_back(*tempMonitor);
-		delete tempGlucose;
-		delete tempMonitor;
+		monRecords->push_back(MonitorRecord(inputTime, GlucoseReading(stod(input))));
 	}
 
-	try
-	{
-		medRecords = new vector<MedicationRecord>;
-	}
-	catch(std::bad_alloc &ba)
-	{
-		std::cout << "2" << std::endl;
-	}
+	vector<MedicationRecord> *medRecords = new vector<MedicationRecord>;
 
 	while(getline(inFile, input))
 	{
 		pos = input.find(delimiter);
-		time = (time_t)stol(input.substr(0, pos));
+		inputTime = (time_t)stol(input.substr(0, pos));
 		input.erase(0, pos + delimiter.length());
 		pos = input.find(delimiter);
 		toEnum = input.substr(0, pos);
@@ -86,30 +66,18 @@ PatientInfo * FileManager::readFromFile()
 		amount = stod(input);
 		if(toEnum == "Bolus Insulin")
 		{
-			dose = new HormoneDose(BOLUS_INSULIN, amount);
+			medRecords->push_back(MedicationRecord(inputTime, HormoneDose(BOLUS_INSULIN, amount)));
 		}
 		else if(toEnum == "Basal Insulin")
 		{
-			dose = new HormoneDose(BASAL_INSULIN, amount);
+			medRecords->push_back(MedicationRecord(inputTime, HormoneDose(BASAL_INSULIN, amount)));
 		}
 		else if(toEnum == "Glucacon")
 		{
-			dose = new HormoneDose(GLUCAGON, amount);
+			medRecords->push_back(MedicationRecord(inputTime, HormoneDose(GLUCAGON, amount)));
 		}
-		MedicationRecord *temp = new MedicationRecord(time, *dose);
-		medRecords->push_back(*temp);
-		delete dose;
-		delete temp;
 	}
-	PatientInfo *user;
-	try
-	{
-		user = new PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact, monRecords, medRecords);
-	}
-	catch(std::bad_alloc &ba)
-	{
-		std::cout << "3" << std::endl;
-	}
+	PatientInfo *user = new PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact, monRecords, medRecords);
 
     delete monRecords;
 	delete medRecords;
