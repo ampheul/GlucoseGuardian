@@ -103,13 +103,13 @@ void FileManager::writeToFile(PatientInfo *user)
     outFile << user->getEmergencyContact()->getName() << std::endl;
     outFile << user->getEmergencyContact()->getEmail() << std::endl; 
 
-	for(vector<MonitorRecord>::iterator it = user->getMonitorRecords()->begin(); it != user->getMonitorRecords->end(); ++it)
+	for(vector<MonitorRecord>::iterator it = user->getMonitorRecords()->begin(); it != user->getMonitorRecords()->end(); ++it)
 	{
 		outFile << it->getRecordTime() << ",";
 		outFile << it->getReading().getAmount() << endl;
 	}
 	outFile << "-----" << endl;
-	for(vector<MedicationRecord>::iterator it = user->getMedicationRecords->begin(); it != user->getMedicationRecords->end(); ++it)
+	for(vector<MedicationRecord>::iterator it = user->getMedicationRecords->begin(); it != user->getMedicationRecords()->end(); ++it)
 	{
 		outFile << it->getRecordTime() << ",";
 		switch(it->getHormoneDose().getHormoneType())
