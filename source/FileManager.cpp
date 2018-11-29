@@ -1,8 +1,7 @@
 #include "FileManager.h"
 
-FileManager::FileManager(PatientInfo *patient)
+FileManager::FileManager()
 {
-    user = patient;
 }
 
 FileManager::~FileManager()
@@ -29,22 +28,14 @@ bool FileManager::checkForPatientFile()
     return false;
 }
 
-void FileManager::readFromFile()
+PatientInfo * FileManager::readFromFile()
 {
     inFile.open("patient.txt");
 	std::string name, sex, email, emailPassword, emergName, emergEmail;
     double weight, height;
     int age;
 	inFile >> name >> weight >> height >> age  >> sex >> email >> emailPassword >> emergName >> emergEmail;
-    user->setName(name);
-    user->setWeight(weight);
-    user->setHeight(height);
-    user->setAge(age);
-    user->setSex(sex);
-    user->setEmail(email);
-    user->setEmailPassword(emailPassword);
 	Contact *emergencyContact = new Contact(emergName, emergEmail);
-    user->setEmergencyContact(emergencyContact);
 	
     std::string input, toEnum, delimiter = ",";
     time_t time;
@@ -52,6 +43,7 @@ void FileManager::readFromFile()
     double amount;
     HormoneDose *dose;
 
+	vector<MonitorRecord> *monRecords = new vector<MonitorRecord>;
 	getline(inFile, input);
 	while(getline(inFile, input) && input != "-----")
 	{
@@ -60,11 +52,11 @@ void FileManager::readFromFile()
 		input.erase(0, pos + delimiter.length());
 		GlucoseReading *tempGlucose = new GlucoseReading(stod(input));
 		MonitorRecord *tempMonitor = new MonitorRecord(time, *tempGlucose);
-		user->getMonitorRecords()->push_back(*tempMonitor);
+		monRecords->push_back(*tempMonitor);
 		delete tempGlucose;
 		delete tempMonitor;
 	}
-
+	vector<MedicationRecord> *medRecords = new vector<MedicationRecord>;
 	while(getline(inFile, input))
 	{
 		pos = input.find(delimiter);
@@ -87,14 +79,18 @@ void FileManager::readFromFile()
 			dose = new HormoneDose(GLUCAGON, amount);
 		}
 		MedicationRecord *temp = new MedicationRecord(time, *dose);
-		user->getMedicationRecords()->push_back(*temp);
+		medRecords->push_back(*temp);
 		delete dose;
 		delete temp;
 	}
-    inFile.close();
+	PatientInfo *user = new PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact, monRecords, medRecords);
+    delete monRecords;
+	delete medRecords;
+	inFile.close();
+	return user;
 }
 
-void FileManager::writeToFile()
+void FileManager::writeToFile(PatientInfo *user)
 {
 	outFile.open("patient.txt", ios::trunc);
 	outFile << user->getName() << std::endl;

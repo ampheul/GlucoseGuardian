@@ -11,16 +11,7 @@ PatientInfo::PatientInfo()
 	monitorRecords = new vector<MonitorRecord>;
 	medicationRecords = new vector<MedicationRecord>;
 
-	fileManager = new FileManager(this);
-	if(fileManager->checkForPatientFile())
-	{
-		fileManager->readFromFile();
-	}
-	else
-	{
-		SetupPatientInfo();
-	}
-	
+	SetupPatientInfo();
 	/*
 	inFile.open("patient.txt");
 	if(!inFile.is_open())
@@ -36,6 +27,22 @@ PatientInfo::PatientInfo()
 	sleep = -1;
 	exercise = "None";
 	carbs = 0;
+}
+
+PatientInfo(string name, double height, double weight, int age, string sex, string email, string emailPassword,
+				Contact *emerg, vector<MonitorRecord> *monitor, vector<MedicationRecord> *medication)
+{
+	this->name = name;
+	this->height = height;
+	this->weight = weight;
+	this->age = age;
+	this->sex = sex;
+	this->email = email;
+	this->emailPassword = emailPassword;
+	contact = emerg;
+	monitorRecords = monitor;
+	medicationRecords = medication;
+
 }
 
 /// constructor, expects patient info data

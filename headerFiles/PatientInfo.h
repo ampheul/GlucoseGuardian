@@ -7,13 +7,13 @@
 #ifndef PATIENTINFO_H
 #define PATIENTINFO_H
 
+#include <string>
 #include <vector>
 #include "Contact.h"
 #include "DeviceRecord.h"
 #include "HormoneDose.h"
 #include "MedicationRecord.h"
 #include "MonitorRecord.h"
-#include "FileManager.h"
 
 using namespace std;
 
@@ -39,6 +39,13 @@ public:
 		std::string email
 		);
 
+	/**
+	 * \name PatientInfo
+	 * \brief constructor with full argument list
+	 * */
+	PatientInfo(string, double, double, int, string, string, string, Contact *,
+					vector<MonitorRecord> *, vector<MedicationRecord> *);
+	
 	/// destructor
 	~PatientInfo();
 	
