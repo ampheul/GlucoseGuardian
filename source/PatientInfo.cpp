@@ -68,8 +68,6 @@ PatientInfo::PatientInfo(
 /// destructor
 PatientInfo::~PatientInfo()
 {
-	fileManager->writeToFile();
-	delete fileManager;
 }
 
 /// gets the patient info weight

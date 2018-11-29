@@ -277,8 +277,6 @@ private:
 
 	/// type of the hormone being administered
 	hormoneType type;
-
-	string toEnum;
 };
 
 #endif
