@@ -2,15 +2,13 @@
 #include <string>
 #include <sstream>
 
-#include "main.h"
+#include "libPancreas.h"
 
 using namespace std;
 
 int main()
 {
 	string password;
-	cout << "Please enter a password: " << endl;
-	getline(cin, password);
 
 	Account account = Account();
 
@@ -21,26 +19,26 @@ bool PatientTestPass_CorrectPassword()
 {
 	const string password = "patient password";
 	Account account = Account();
-	return account.getAccountType() == account.PATIENT_ACCOUNT;
+	return account.getAccountType() == "Patient";
 };
 
 bool PatientTestFail_IncorrectPassword()
 {
 	const string password = "not the password";
 	Account account = Account();
-	return account.getAccountType() == account.UNKNOWN_ACCOUNT;
+	return account.getAccountType() == "Unknown";
 }
 
 bool GuestTestPass_CorrectPassword()
 {
 	const string password = "guest password";
 	Account account = Account();
-	return account.getAccountType() == account.GUEST_ACCOUNT;
+	return account.getAccountType() == "Guest";
 };
 
 bool GuestTestFail_IncorrectPassword()
 {
 	const string password = "not the guest password";
 	Account account = Account();
-	return account.getAccountType() == account.UNKNOWN_ACCOUNT;
+	return account.getAccountType() == "Unknown";
 }
