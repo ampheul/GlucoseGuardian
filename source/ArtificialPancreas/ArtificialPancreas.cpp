@@ -11,7 +11,15 @@
 */
 ArtificialPancreas::ArtificialPancreas()
 {
-    user = new PatientInfo();
+	fileManager = new FileManager();
+	if(fileManager->checkForPatientFile())
+	{
+		user = fileManager->readFromFile();
+	}
+	else
+	{
+		user = new PatientInfo();
+	}
     output = new LaptopOutput("127.0.0.1", 3307);
     email = new EmailNotification(user);
 }
@@ -22,8 +30,11 @@ ArtificialPancreas::ArtificialPancreas()
 */
 ArtificialPancreas::~ArtificialPancreas()
 {
-    delete user;
+	fileManager->writeToFile(user);
+    delete fileManager;
+	delete user;
     delete output;
+	delete email;
 }
 
 /*!
