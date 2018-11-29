@@ -16,7 +16,7 @@ Menu::Menu(Account *account)
 	_items;
 	accountType = account->getAccountType();
 	
-	if (accountType == (std::string)(Account::PATIENT_ACCOUNT))
+	if (accountType == "Patient")
 	{
 		cout << "Patient user verified, please choose an option: " << endl;
 		_items = vector<string>({
@@ -27,7 +27,7 @@ Menu::Menu(Account *account)
 			"5 - Manual Insulin Administration"				
 		});
 	}
-	else if (accountType == Account::GUEST_ACCOUNT)
+	else if (accountType == "Guest")
 	{
 		cout << "Guest user verified, please choose an option: " << endl;
 		_items = vector<std::string>({
@@ -35,7 +35,7 @@ Menu::Menu(Account *account)
 			"2 - Medical History"
 		});
 	}
-	else if (accountType == Account::UNKNOWN_ACCOUNT)
+	else if (accountType == "Unknown")
 	{
 		cout << "Get out." << endl;
 	}
@@ -106,7 +106,7 @@ bool Menu::validateSelection(string userInput)
 	}
 	
 	/// ensure the user is not trying to select an option they should not be able to
-	if (accountType != Account::PATIENT_ACCOUNT && asInt > 2)
+	if (accountType != "Patient" && asInt > 2)
 	{
 		cout << asInt + " is not a valid selection, please try again." << endl;
 		return false;

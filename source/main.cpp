@@ -9,6 +9,7 @@ using namespace std;
 
 int main(int argc, char **argv) 
 {
+	cout << "starting" <<endl;
 	ArtificialPancreas* artificialPancreas = new ArtificialPancreas();
 	GlucoseMonitor* glucoseMonitor = new GlucoseMonitor();
 
