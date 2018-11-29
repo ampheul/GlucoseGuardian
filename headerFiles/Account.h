@@ -15,7 +15,16 @@
 
 class Account
 {	
-public:	
+public:
+	/// Types of accounts the user can have
+		/// represents account type of Patient
+	const static std::string PATIENT_ACCOUNT;
+
+	/// represents account type of Guest
+	const static std::string GUEST_ACCOUNT;
+
+	/// represents account type of Unknown
+	const static std::string UNKNOWN_ACCOUNT;
 	/// constructor
 	Account();
 	
@@ -24,24 +33,13 @@ public:
 	
 	/// returns the type of the account, either "Patient", "Guest", or "Unknown"
 	std::string getAccountType();
-	/// represents account type of Patient
-	const std::string PATIENT_ACCOUNT = "Patient";
-
-	/// represents account type of Guest
-	const std::string GUEST_ACCOUNT = "Guest";
-
-	/// represents account type of Unknown
-	const std::string UNKNOWN_ACCOUNT = "Unknown";
-
+	
 private:
 	/// path to directory for storing accountInfo.txt
 	const std::string ACCOUNT_INFO_PATH = "/accountInfo/accountInfo.txt";
 
 	/// file name for storing account information
-	const std::string ACCOUNT_INFO = "accountInfo.txt";	
-
-private:
-						
+	const std::string ACCOUNT_INFO = "accountInfo.txt";							
 
 	/// the type of the account
 	std::string accountType;

@@ -9,6 +9,11 @@
 
 using namespace std;
 
+
+const std::string Account::PATIENT_ACCOUNT 	= "Patient";
+const std::string Account::GUEST_ACCOUNT 		= "Guest";
+const std::string Account::UNKNOWN_ACCOUNT 	= "Unknown";
+
 /**
 *	\name Account
 *	Constructor

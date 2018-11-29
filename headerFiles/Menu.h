@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <vector>
+#include <sstream>
 
 #include "Menu.h"
 #include "Account.h"
@@ -39,7 +41,7 @@ private:
 	std::vector<std::string> _items;
 
 	/// determines if the user input is valid
-	bool validateSelection();
+	bool validateSelection(std::string);
 };
 
 #endif
