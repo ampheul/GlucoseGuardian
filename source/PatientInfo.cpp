@@ -181,7 +181,7 @@ void PatientInfo::readFromFile()
 	inFile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword >> emergName >> emergEmail;
 	emergencyContact = new Contact(emergName, emergEmail);
 	delimiter = ",";
-	while(getline(inFile, input) && input != "-----")
+	while(getline(inFile, input))
 	{
 		std::cout << input << endl;
 		pos = input.find(delimiter);
