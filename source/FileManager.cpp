@@ -109,7 +109,7 @@ void FileManager::writeToFile(PatientInfo *user)
 		outFile << it->getReading().getAmount() << endl;
 	}
 	outFile << "-----" << endl;
-	for(vector<MedicationRecord>::iterator it = user->getMedicationRecords->begin(); it != user->getMedicationRecords()->end(); ++it)
+	for(vector<MedicationRecord>::iterator it = user->getMedicationRecords()->begin(); it != user->getMedicationRecords()->end(); ++it)
 	{
 		outFile << it->getRecordTime() << ",";
 		switch(it->getHormoneDose().getHormoneType())
