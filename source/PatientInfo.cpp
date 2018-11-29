@@ -186,7 +186,6 @@ void PatientInfo::readFromFile()
 	{
 		pos = input.find(delimiter);
 		time = (time_t)stol(input.substr(0, pos));
-		std::cout << time << endl;
 		input.erase(0, pos + delimiter.length());
 		GlucoseReading *tempGlucose = new GlucoseReading(stod(input));
 		MonitorRecord *tempMonitor = new MonitorRecord(time, *tempGlucose);
