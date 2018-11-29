@@ -1,3 +1,6 @@
+#ifndef FILEMANAGER_H
+#define FILEMANAGER_H
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -11,7 +14,7 @@
 class FileManager
 {
     public:
-        FileManager(PatientInfo *);
+        FileManager(PatientInfo *patient);
         ~FileManager();
         bool checkForPatientFile();
         void readFromFile();
@@ -21,3 +24,5 @@ class FileManager
         ifstream inFile;
         ofstream outFile;
 };
+
+#endif

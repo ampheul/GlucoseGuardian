@@ -192,6 +192,21 @@ public:
 	vector<MedicationRecord> * getMedicationRecords();
 	
 	/**
+	 * \name getName
+	 * \brief returns patient's name
+	 * */
+	std::string PatientInfo::getName();
+	
+	/**
+	 * 	\name setName
+	 * 	\brief sets the patient's name
+	 * 	\param string to set to atiennt's name
+	 * */
+	void PatientInfo::setName(std::string name);
+	
+	
+
+	/**
 	*	\name SetupPatientInfo
 	*	\brief prompts user for all required bio-statistics
     	*/

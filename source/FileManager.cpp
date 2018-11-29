@@ -38,7 +38,7 @@ void FileManager::readFromFile()
 	inFile >> name >> weight >> height >> age  >> sex >> email >> emailPassword >> emergName >> emergEmail;
     user->setName(name);
     user->setWeight(weight);
-    user->setHei(height);
+    user->setHeight(height);
     user->setAge(age);
     user->setSex(sex);
     user->setEmail(email);
