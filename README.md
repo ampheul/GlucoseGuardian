@@ -1,10 +1,35 @@
-# Artificial Pancreas
+# Glucose Guardian: The Artificial Pancreas
 
 This is a software application which emulates the function of a human pancreas.
-The Artificial Pancreas takes in insulin readings from an external device and sends an insulin dosage
-as a result. It can also store patient information to enhance insulin dosage and respond to emergency situations.
+The Glucose Guardian takes in insulin readings from an external device and sends an insulin dosage
+as a result. It can also store patient information to create reports and respond to emergency situations.
 
--------------Stage 3 HOW TO RUN TESTS-------------------------
+
+# Authors
+
+Claire Dong
+Graeme Brabers
+Naeem Budhwani
+Thomas Vandeveen
+Veronica Witzig
+
+
+# How to build Glucose Guardian
+
+You will need 3 terminals for the full functionality of Glucose Guardian. 
+	- 1 terminal will be used for the monitor
+		- Monitor is the glucose monitor that provides blood glucose readings to the pi
+	- 1 terminal will be used for running main 
+		- Main is the UI for user interaction with the artifical pancreas
+	- 1 terminal will be used for the listener
+		- Listener is the insulin pump that waits for information from the pi and dispenses insulin
+
+make all 
+
+Once the project has been built, you can run the program by executing the _____ file. 
+
+# How to run acceptance tests
+
 
 For the completed tickets, here are the tests to run:
 
