@@ -29,7 +29,7 @@ PatientInfo::PatientInfo()
 	carbs = 0;
 }
 
-PatientInfo(string name, double height, double weight, int age, string sex, string email, string emailPassword,
+PatientInfo::PatientInfo(string name, double height, double weight, int age, string sex, string email, string emailPassword,
 				Contact *emerg, vector<MonitorRecord> *monitor, vector<MedicationRecord> *medication)
 {
 	this->name = name;
@@ -39,7 +39,7 @@ PatientInfo(string name, double height, double weight, int age, string sex, stri
 	this->sex = sex;
 	this->email = email;
 	this->emailPassword = emailPassword;
-	contact = emerg;
+	emergencyContact = emerg;
 	monitorRecords = monitor;
 	medicationRecords = medication;
 

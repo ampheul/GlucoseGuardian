@@ -7,6 +7,7 @@
 #ifndef PATIENTINFO_H
 #define PATIENTINFO_H
 
+#include <iostream>
 #include <string>
 #include <vector>
 #include "Contact.h"
