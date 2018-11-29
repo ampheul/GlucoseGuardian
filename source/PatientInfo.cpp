@@ -1,27 +1,13 @@
+/**
+*	\author Naeem Budwhani and Graeme Brabers
+*	\brief Contains statistics about the patient and his/her emergency contact information
+*/
+
 #include "PatientInfo.h"
 
-PatientInfo::PatientInfo(
-	string name,
-	int age,
-	string sex,
-	double weight,
-	double height,
-	string email
-	)
-	:
-	name(name),
-	age(age),
-	sex(sex),
-	weight(weight),
-	height(height),
-	email(email)
-	
+/// implicit constructor
+PatientInfo::PatientInfo()
 {
-	this->monitorRecords = new vector<MonitorRecord>;
-	this->medicationRecords = new vector<MedicationRecord>;
-}
-
-PatientInfo::PatientInfo() {
 	monitorRecords = new vector<MonitorRecord>;
 	medicationRecords = new vector<MedicationRecord>;
 	
@@ -40,108 +26,171 @@ PatientInfo::PatientInfo() {
 	carbs = 0;
 }
 
+/// constructor, expects patient info data
+PatientInfo::PatientInfo(
+	string name,
+	int age,
+	string sex,
+	double weight,
+	double height,
+	string email
+	):
+	name(name),
+	age(age),
+	sex(sex),
+	weight(weight),
+	height(height),
+	email(email)
+{
+	this->monitorRecords = new vector<MonitorRecord>;
+	this->medicationRecords = new vector<MedicationRecord>;
+}
+
+/// destructor
 PatientInfo::~PatientInfo()
 {
 	writeToFile();
 }
 
-double PatientInfo::getWeight() {
+/// gets the patient info weight
+double PatientInfo::getWeight()
+{
 	return weight;
 }
 
-void PatientInfo::setWeight(double Weight) {
+/// sets the patient info weight
+void PatientInfo::setWeight(double Weight)
+{
 	this->weight = weight;
 }
 
-double PatientInfo::getHeight() {
+/// gets the patient info height
+double PatientInfo::getHeight()
+{
 	return height;
 }
 
-void PatientInfo::setHeight(double height) {
+/// sets the patient info height
+void PatientInfo::setHeight(double height)
+{
 	this->height = height;
 }
 
-int PatientInfo::getAge() {
+/// gets the patient info age
+int PatientInfo::getAge()
+{
 	return age;
 }
 
-void PatientInfo::setAge(double age) {
+/// sets the patient info age
+void PatientInfo::setAge(double age)
+{
 	this->age = age;
 }
 
-string PatientInfo::getSex() {
+/// gets the patient info sex
+string PatientInfo::getSex()
+{
 	return sex;
 }
 
-void PatientInfo::setSex(string sex) {
+/// sets the patient info sex
+void PatientInfo::setSex(string sex)
+{
 	this->sex = sex;
 }
 
-double PatientInfo::getCarbs() {
+/// gets the patient info carb intake
+double PatientInfo::getCarbs()
+{
 	return carbs;
 }
 
-void PatientInfo::setCarbs(double carbs) {
+/// sets the patient info carb intake
+void PatientInfo::setCarbs(double carbs)
+{
 	this->carbs = carbs;
 }
 
-std::string PatientInfo::getName()
+/// gets the patient info exercise
+string PatientInfo::getExercise()
 {
-	return this->name;
-}
-
-string PatientInfo::getExercise() {
 	return exercise;
 }
 
-void PatientInfo::setExercise(string exercise) {
+/// sets the patient info exercise
+void PatientInfo::setExercise(string exercise)
+{
 	this->exercise = exercise;
 }
 
-int PatientInfo::getSleep() {
+/// gets the patient info sleep
+int PatientInfo::getSleep()
+{
 	return sleep;
 }
 
-void PatientInfo::setSleep(int sleep) {
+/// sets the patient info sleep
+void PatientInfo::setSleep(int sleep)
+{
 	this->sleep = sleep;
 }
 
-vector<MedicationRecord> * PatientInfo::getMedicationRecords() {
-	return medicationRecords;
-}
-
-vector<MonitorRecord> * PatientInfo::getMonitorRecords() {
-	return monitorRecords;
-}
-
-Contact* PatientInfo::getEmergencyContact() {
+/// gets the emergency contact of the patient
+Contact* PatientInfo::getEmergencyContact()
+{
 	return emergencyContact;
 }
 
+/// sets the emergency contact of the patient
 void PatientInfo::setEmergencyContact(Contact* contact)
 {
 	this->emergencyContact = contact;
 }
 
-string PatientInfo::getEmailPassword() {
-	return this->emailPassword;
-}
-
-void PatientInfo::setEmailPassword(std::string emailPassword)
+/// gets the patient info name
+std::string PatientInfo::getName()
 {
-	this->emailPassword = emailPassword;
+	return this->name;
 }
 
+/// gets the patient info email
 string PatientInfo::getEmail() {
 	return this->email;
 }
 
+/// sets the patient info email
 void PatientInfo::setEmail(std::string email)
 {
 	this->email = email;
 }
 
-void PatientInfo::SetupPatientInfo() {
+/// gets the patient info email password
+string PatientInfo::getEmailPassword() {
+	return this->emailPassword;
+}
+
+/// sets the patient info email password
+void PatientInfo::setEmailPassword(std::string emailPassword)
+{
+	this->emailPassword = emailPassword;
+}
+
+/// gets the monitor records
+vector<MonitorRecord> * PatientInfo::getMonitorRecords()
+{
+	return monitorRecords;
+}
+
+/// gets the medication records
+vector<MedicationRecord> * PatientInfo::getMedicationRecords()
+{
+	return medicationRecords;
+}
+
+/// fetches th patient info stored in patient.txt
+void PatientInfo::SetupPatientInfo()
+{
 	cout << "What is your name?";
 	cin >> name;
 
@@ -176,6 +225,7 @@ void PatientInfo::SetupPatientInfo() {
 
 }
 
+/// reads the patient info file
 void PatientInfo::readFromFile()
 {
 	string emergName, emergEmail;
@@ -222,6 +272,7 @@ void PatientInfo::readFromFile()
 	}
 }
 
+/// writes to the patient info file
 void PatientInfo::writeToFile()
 {
 	outFile.open("patient.txt", ios::trunc);
@@ -259,4 +310,3 @@ void PatientInfo::writeToFile()
 	}
 	outFile.close();
 }
-

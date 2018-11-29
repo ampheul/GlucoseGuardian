@@ -13,10 +13,10 @@ const std::string UNKNOWN_ACCOUNT = "Unknown";
 
 int main()
 {
-	/// test accounts
-	Account *patientAccount = new Account(PATIENT_ACCOUNT);
-	Account *guestAccount = new Account(GUEST_ACCOUNT);
-	Account *unknownAccount = new Account(UNKNOWN_ACCOUNT);
+	/// test accounts - TODO:
+	//Account *patientAccount = new Account(PATIENT_ACCOUNT);
+	//Account *guestAccount = new Account(GUEST_ACCOUNT);
+	//Account *unknownAccount = new Account(UNKNOWN_ACCOUNT);
 
 	UserInputExecutor executor = UserInputExecutor();
 

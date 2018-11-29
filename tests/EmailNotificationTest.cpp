@@ -1,5 +1,5 @@
-/*!
-	Test harness for the EmailNotification class
+/**
+*	\brief Test harness for the EmailNotification class
 */
 
 #include "libPancreas.h"

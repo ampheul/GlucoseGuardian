@@ -1,6 +1,7 @@
-/*!
-	Author: Naeem Budhwani and Graeme Brabers
-	Purpose: Contains statistics about the patient and his/her emergency contact information
+/**
+*	\author Naeem Budhwani and Graeme Brabers
+*	\brief Header file for the PatientInfo class
+*	Contains statistics about the patient and his/her emergency contact information
 */
 
 #ifndef PATIENTINFO_H
@@ -9,23 +10,28 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "DeviceRecord.h"
+
 #include "Contact.h"
-#include "MonitorRecord.h"
-#include "MedicationRecord.h"
+#include "DeviceRecord.h"
 #include "HormoneDose.h"
+#include "MedicationRecord.h"
+#include "MonitorRecord.h"
 
 using namespace std;
 
 class PatientInfo 
 {
 public:
-	/*!
-		@name PatientInfo
-		Description: constructor
+	/**
+	*	\name PatientInfo
+	*	\brief implicit constructor
 	*/
-
 	PatientInfo();
+
+	/**
+	*	\name PatientInfo
+	*	\brief constructor, expects patient info
+	*/
 	PatientInfo(
 		std::string name,
 		int age,
@@ -34,175 +40,177 @@ public:
 		double height,
 		std::string email
 		);
+
+	/// destructor
 	~PatientInfo();
 	
-	/*!
-	@name getWeight
-	Description: gets the patient's weight
-    */
+	/**
+	*	\name getWeight
+	*	\brief gets the patient's weight
+    	*/
 	double getWeight();
 
-	/*!
-	@name setWeight
-	Description: sets the patient's weight
-	@param Weight - patient's weight to set
-    */
+	/**
+	*	\name setWeight
+	*	\brief sets the patient's weight
+	*	\param Weight - patient's weight to set
+    	*/
 	void setWeight(double weight);
 	
-	/*!
-	@name getHeight
-	Description: gets the patient's height
-    */
+	/**
+	*	\name getHeight
+	*	\brief gets the patient's height
+    	*/
 	double getHeight();
 
-	/*!
-	@name setHeight
-	Description: sets the patient's height
-	@param height - patient's height to set
+	/**
+	*	\name setHeight
+	*	\brief sets the patient's height
+	*	\param height - patient's height to set
 	*/
 	void setHeight(double height);
 	
-	/*!
-	@name getAge
-	Description: gets the patient's age
-    */
+	/**
+	*	\name getAge
+	*	\brief gets the patient's age
+    	*/
 	int getAge();
 
-	/*!
-	@name setAge
-	Description: sets the patient's age
-	@param Weight - patient's age to set
+	/**
+	*	\name setAge
+	*	\brief sets the patient's age
+	*	\param Weight - patient's age to set
 	*/
 	void setAge(double age);
-	
-	/*!
-	@name getEmail
-	Description: gets the patient's email
-    */
-	std::string getEmail();
 
-	/*!
-	@name setEmail
-	Description: sets the patient's email
-	@param email - patient's email to set
-	*/
-	void setEmail(std::string email);
-	
-	/*!
-	@name getEmailPassword
-	Description: gets the patient's email's password
-    */
-	std::string getEmailPassword();
-
-	/*!
-	@name setEmailPassword
-	Description: sets the patient's email password for the purpose of 
-	sending emails.
-	@param password - patient's email to set
-	*/
-	void setEmailPassword(std::string password);
-
-	/*!
-	@name getSex
-	Description: gets the patient's sex as a string
-    */
+	/**
+	*	\name getSex
+	*	\brief gets the patient's sex as a string
+   	*/
 	string getSex();
 
-	/*!
-	@name setSex
-	Description: sets the patient's sex
-	@param sex - patient's sex to set
+	/**
+	*	\name setSex
+	*	\brief sets the patient's sex
+	*	\param sex - patient's sex to set
 	*/
 	void setSex(string sex);
 	
-	/*!
-	@name getCarbs
-	Description: gets the grams of carbs the patient has eaten in his/her last meal
-    */
+	/**
+	*	\name getCarbs
+	*	\brief gets the grams of carbs the patient has eaten in his/her last meal
+    	*/
 	double getCarbs();
 
-	/*!
-	@name setCarbs
-	Description: sets the patient's carbs
-	@param carbs - patient's email to set
+	/**
+	*	\name setCarbs
+	*	\brief sets the patient's carbs
+	*	\param carbs - patient's email to set
 	*/
 	void setCarbs(double carbs);
 	
-	/*!
-	@name getExercise
-	Description: gets the patient's exercise (low, medium, or high)
-    */
+	/**
+	*	\name getExercise
+	*	\brief gets the patient's exercise (low, medium, or high)
+    	*/
 	string getExercise();
 
-	/*!
-	@name setExercise
-	Description: sets the patient's exercise (low, medium or high)
-	@param exercise - patient's exercise to set
+	/**
+	*	\name setExercise
+	*	\brief sets the patient's exercise (low, medium or high)
+	*	\param exercise - patient's exercise to set
 	*/
 	void setExercise(string exercise);
 	
-	/*!
-	@name getSleep
-	Description: gets the patient's sleep in hours
-    */
+	/**
+	*	\name getSleep
+	*	\brief gets the patient's sleep in hours
+    	*/
 	int getSleep();
 
-	/*!
-	@name setSleep
-	Description: sets the patient's sleep in hours
-	@param sleep - patient's sleep to set
+	/**
+	*	\name setSleep
+	*	\brief sets the patient's sleep in hours
+	*	\param sleep - patient's sleep to set
 	*/
 	void setSleep(int sleep);
 
-	/*!
-	@name getEmergencyContact
-	Description: gets the patient's emergency contact as a Contact type
-    */
+	/**
+	*	\name getEmergencyContact
+	*	\brief gets the patient's emergency contact as a Contact type
+    	*/
 	Contact* getEmergencyContact();
 
-	/*!
-	@name setEmergencyContact
-	Description: sets the patient's emergency contact
-	@param contact - patient's contact set
+	/**
+	*	\name setEmergencyContact
+	*	\brief sets the patient's emergency contact
+	*	\param contact - patient's contact set
 	*/
 	void setEmergencyContact(Contact* contact);
+
+	/**
+	*	\name getName
+	*	\brief gets the patient's name
+    	*/
+	std::string getName();
 	
-	/*!
-	@name getMonitorRecords
-	Description: gets the patient's monitor records
-    */
+	/**
+	*	\name getEmail
+	*	\brief gets the patient's email
+   	*/
+	std::string getEmail();
+
+	/**
+	*	\name setEmail
+	*	\brief sets the patient's email
+	*	\param email - patient's email to set
+	*/
+	void setEmail(std::string email);
+	
+	/**
+	*	\name getEmailPassword
+	*	\brief gets the patient's email's password
+  	*/
+	std::string getEmailPassword();
+
+	/**
+	*	\name setEmailPassword
+	*	\brief sets the patient's email password for the purpose of 
+	*	sending emails.
+	*	\param password - patient's email to set
+	*/
+	void setEmailPassword(std::string password);
+	
+	/**
+	*	\name getMonitorRecords
+	*	\brief gets the patient's monitor records
+    	*/
 	vector<MonitorRecord> * getMonitorRecords();
 
-	/*!
-	@name getMedicationRecords
-	Description: gets the patient's administered medication records
-    */
+	/**
+	*	\name getMedicationRecords
+	*	\brief gets the patient's administered medication records
+    	*/
 	vector<MedicationRecord> * getMedicationRecords();
 	
-	/*!
-	@name SetupPatientInfo
-	Description: prompts user for all required bio-statistics
-    */
+	/**
+	*	\name SetupPatientInfo
+	*	\brief prompts user for all required bio-statistics
+    	*/
 	void SetupPatientInfo();
 
-	/*!
-	@name readFromFile
-	Description: deserializes patient.txt data obtained from previous artificial
-	pancreas sessions and stores it in the current session
-    */
+	/**
+	*	\name readFromFile
+	*	\brief deserializes patient.txt data obtained from previous artificial
+	*	pancreas sessions and stores it in the current session
+    	*/
 	void readFromFile();
 
-	/*!
-	@name writeToFile
-	Description: serializes the monitor and medication records into the patient.txt file
-    */
+	/**
+	*	\name writeToFile
+	*	\brief serializes the monitor and medication records into the patient.txt file
+    	*/
 	void writeToFile();
-
-	/*!
-	@name getName
-	Description: gets the patient's name
-    */
-	std::string getName();
 	
 private:
 	/// patient's weight
@@ -244,18 +252,25 @@ private:
 	/// monitor records for the patient
 	vector<MonitorRecord> *monitorRecords;
 
-	/// patient's emergency contact
+	/// medication records for the patient
 	vector<MedicationRecord> *medicationRecords;
+
+	/// patient's emergency contact
 	Contact* emergencyContact;
 
-
+	/// needed for reading/writing to patient.txt
 	ofstream outFile;
 	ifstream inFile;
 	string input, delimiter;
+
+	/// used for capturing the time when making monitor/medication records
 	time_t time;
 	size_t pos;
 
+	/// dose of the hormone being administered
 	HormoneDose *dose;
+
+	/// type of the hormone being administered
 	hormoneType type;
 
 	string toEnum;
