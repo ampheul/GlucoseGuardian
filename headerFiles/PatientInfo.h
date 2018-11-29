@@ -259,15 +259,6 @@ private:
 	hormoneType type;
 
 	string toEnum;
-	
-	/// glucose reading
-	GlucoseReading *tmpReading;
-
-	/// contains dose information for the patient
-	MonitorRecord *tmpMonitor;
-
-	/// medication record for the patient
-	MedicationRecord *tmpRecord;
 };
 
 #endif
