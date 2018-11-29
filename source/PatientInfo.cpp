@@ -177,7 +177,6 @@ void PatientInfo::SetupPatientInfo() {
 
 void PatientInfo::readFromFile()
 {
-	inFile.open("patient.txt");
 	string emergName, emergEmail;
 	inFile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword >> emergName >> emergEmail;
 	std::cout << name << std::endl;
