@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 	
 	while(true)
 	{
-		menu->printMenu();	
+		menu->printMenu();
 		int optionToRetrieve = menu->getMenuSelection();
 		executor->menuSwitch(optionToRetrieve);
 	}

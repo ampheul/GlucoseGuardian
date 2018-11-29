@@ -42,7 +42,7 @@ int main()
 	}
 	else
 	{
-		while(true)
+		while(!std::cin.eof())
         {
             std::cout << "Enter glucose measurement: ";
             std::cin >> input;

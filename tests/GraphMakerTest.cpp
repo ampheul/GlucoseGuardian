@@ -52,12 +52,6 @@ int main(int argc, char** argv)
     }*/
     DataSet data = gen_dataset(xrange,yrange);
     
-    /*
-    if (records->empty())
-    {
-        std::cerr << "AAAAAHHHH input empty\n";
-    }
-    */
 
     GraphMaker graph;
 

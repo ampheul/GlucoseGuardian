@@ -12,7 +12,7 @@ std::string ReportMaker::makeReport(
      * */
     std::time_t oneWeek = 24*7*60*60;
     std::time_t currentTime = std::time(NULL);
-    XRange xrange(currentTime, currentTime-oneWeek);
+    XRange xrange((XType)currentTime - oneWeek, (XType)currentTime);
     YRange yrange(0, 230);
     DataSet data;
     for (auto& record : *(patient->getMonitorRecords()) )
