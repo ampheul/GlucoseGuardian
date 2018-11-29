@@ -31,8 +31,8 @@ Menu::Menu(Account *account)
 	{
 		cout << "Guest user verified, please choose an option: " << endl;
 		_items = vector<std::string>({
-			"1 - Exit Program"
-			"2 - Medical History",
+			"1 - Exit Program",
+			"2 - Medical History"
 		});
 	}
 	else if (accountType == Account::UNKNOWN_ACCOUNT)
