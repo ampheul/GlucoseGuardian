@@ -14,13 +14,13 @@
 class FileManager
 {
     public:
-        FileManager(PatientInfo*);
+        FileManager(const PatientInfo*);
         ~FileManager();
         bool checkForPatientFile();
         void readFromFile();
         void writeToFile();
     private:
-        PatientInfo *user;
+        const PatientInfo *user;
         ifstream inFile;
         ofstream outFile;
 };
