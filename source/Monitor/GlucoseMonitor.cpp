@@ -32,11 +32,20 @@ void GlucoseMonitor::setup()
 
 void GlucoseMonitor::listen(ArtificialPancreas * pancreas)
 {
+    int count = 1;
     while(true)
     {
         recv(sock, buffer, 549, 0);
         input = buffer;
-        pancreas->calculateMedication(stod(input), "Bolus");
+        if(count % 5 = 0)
+        {
+            pancreas->calculateMedication(stod(input), "Basal");
+        }
+        else
+        {
+            pancreas->calculateMedication(stod(input), "Bolus");
+        }
+        count++;
         memset(buffer, 0, sizeof(buffer));
         input.clear();
     }
