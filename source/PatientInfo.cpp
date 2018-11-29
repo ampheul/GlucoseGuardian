@@ -181,6 +181,16 @@ void PatientInfo::readFromFile()
 	iofile.open("patient.txt", ios::in);
 	string emergName, emergEmail;
 	iofile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword >> emergName >> emergEmail;
+	std::cout << name << std::endl;
+	std::cout << weight << std::endl;
+	std::cout << height << std::endl;
+	std::cout << age << std::endl;
+	std::cout << bmi << std::endl;
+	std::cout << sex << std::endl;
+	std::cout << email << std::endl;
+	std::cout << emailPassword << std::endl;
+	std::cout << emergName << std::endl;
+	std::cout << emergEmail << std::endl;
 	emergencyContact = new Contact(emergName, emergEmail);
 	delimiter = ",";
 	while(getline(iofile, input) && input != "-----")
