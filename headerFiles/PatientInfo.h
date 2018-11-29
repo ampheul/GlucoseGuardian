@@ -7,10 +7,7 @@
 #ifndef PATIENTINFO_H
 #define PATIENTINFO_H
 
-#include <iostream>
-#include <fstream>
 #include <vector>
-
 #include "Contact.h"
 #include "DeviceRecord.h"
 #include "HormoneDose.h"

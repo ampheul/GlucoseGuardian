@@ -1,6 +1,6 @@
 #include "FileManager.h"
 
-FileManager::FileManager(const PatientInfo *patient)
+FileManager::FileManager(PatientInfo *patient)
 {
     user = patient;
 }
