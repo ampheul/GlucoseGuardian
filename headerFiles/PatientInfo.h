@@ -197,9 +197,7 @@ public:
 	 * 	\brief sets the patient's name
 	 * 	\param string to set to atiennt's name
 	 * */
-	void PatientInfo::setName(std::string name);
-	
-	
+	void setName(std::string name);
 
 	/**
 	*	\name SetupPatientInfo

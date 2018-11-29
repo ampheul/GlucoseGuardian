@@ -46,7 +46,7 @@ void FileManager::readFromFile()
 	Contact *emergencyContact = new Contact(emergName, emergEmail);
     user->setEmergencyContact(emergencyContact);
 	
-    std::string input, toEnum, delmiiter = ",";
+    std::string input, toEnum, delimiter = ",";
     time_t time;
     size_t pos;
     double amount;
@@ -104,8 +104,8 @@ void FileManager::writeToFile()
 	outFile << user->getSex() << std::endl;
 	outFile << user->getEmail() << std::endl;
 	outFile << user->getEmailPassword() << std::endl;
-    outfile << user->getEmergencyContact()->getName() << std::endl;
-    outfile << user->getEmergencyContact()->getEmail() << std::endl; 
+    outFile << user->getEmergencyContact()->getName() << std::endl;
+    outFile << user->getEmergencyContact()->getEmail() << std::endl; 
 
 	for(vector<MonitorRecord>::iterator it = user->getMonitorRecords()->begin(); it != user->getMonitorRecords->end(); ++it)
 	{

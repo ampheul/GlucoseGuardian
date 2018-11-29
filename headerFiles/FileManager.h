@@ -14,7 +14,7 @@
 class FileManager
 {
     public:
-        FileManager(PatientInfo *patient);
+        FileManager(PatientInfo*);
         ~FileManager();
         bool checkForPatientFile();
         void readFromFile();
