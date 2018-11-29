@@ -20,15 +20,19 @@ public:
 		/// represents account type of Patient
 	const static std::string PATIENT_ACCOUNT;
 
-	/// represents account type of Guest
+		/// represents account type of Guest
 	const static std::string GUEST_ACCOUNT;
 
-	/// represents account type of Unknown
+		/// represents account type of Unknown
 	const static std::string UNKNOWN_ACCOUNT;
+
 	/// constructor
 	Account();
+
+	/// constructor, expects a given account type, used for testing
+	Account(std::string type);
 	
-	/// desrtuctor
+	/// destructor
 	~Account();
 	
 	/// returns the type of the account, either "Patient", "Guest", or "Unknown"

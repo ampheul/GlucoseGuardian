@@ -1,6 +1,6 @@
 /**
 *	\author Veronica Witzig
-*	Represents the type of person that is logged in.
+*	\brief Represents the type of person that is logged in.
 *		Depending on the account type, may have restricted 
 *		capability.
 */
@@ -9,14 +9,13 @@
 
 using namespace std;
 
-
-const std::string Account::PATIENT_ACCOUNT 	= "Patient";
-const std::string Account::GUEST_ACCOUNT 		= "Guest";
-const std::string Account::UNKNOWN_ACCOUNT 	= "Unknown";
+const std::string Account::PATIENT_ACCOUNT = "Patient";
+const std::string Account::GUEST_ACCOUNT = "Guest";
+const std::string Account::UNKNOWN_ACCOUNT = "Unknown";
 
 /**
 *	\name Account
-*	Constructor
+*	\brief Constructor
 */
 Account::Account()
 {
@@ -44,14 +43,24 @@ Account::Account()
 };
 
 /**
+*	\name Account
+*	\brief Constructor, used for testing
+*	\param type - the type to assign the account
+*/
+Account::Account(string type)
+{
+	accountType = type;
+};
+
+/**
 *	\name ~Account
-*	Destructor
+*	\brief Destructor
 */
 Account::~Account() {};
 
 /**
 *	\name getAccountType
-*	returns the type of the account
+*	\brief returns the type of the account
 *	\return	the account type as a string
 */
 string Account::getAccountType() 
@@ -61,7 +70,7 @@ string Account::getAccountType()
 
 /**
 *	\name verifyPassword
-*	verifies the password to a stored hash, sets the account type as either PATIENT, GUEST, or UNKNOWN
+*	\brief verifies the password to a stored hash, sets the account type as either PATIENT, GUEST, or UNKNOWN
 *	\param hashStream 	- stream for getting the hash
 *	\param password 	- the password to verify
 */
@@ -100,7 +109,7 @@ void Account::verifyPassword(ifstream& hashStream, string password)
 
 /**
 *	\name hashPassword
-*	hashes the received password from the user
+*	\brief hashes the received password from the user
 *	\param password - the password to hash
 *	\return hash value of the password
 */
@@ -113,7 +122,7 @@ size_t Account::hashPassword(string password)
 
 /**
 *	\name initializeAccount
-*	initializes the patient's main account by setting a password for the user.
+*	\brief initializes the patient's main account by setting a password for the user.
 *	\param string password - the password to verify
 */
 void Account::initializeAccount(string password)
