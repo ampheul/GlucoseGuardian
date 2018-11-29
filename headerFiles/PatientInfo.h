@@ -249,7 +249,8 @@ private:
 	Contact* emergencyContact;
 
 
-	fstream iofile;
+	ofstream outFile;
+	ifstream inFile;
 	string input, delimiter;
 	time_t time;
 	size_t pos;

@@ -24,15 +24,14 @@ PatientInfo::PatientInfo() {
 	monitorRecords = new vector<MonitorRecord>;
 	medicationRecords = new vector<MedicationRecord>;
 	
-	iofile.open("patient.txt", ios::in);
-	if(!iofile.is_open())
+	inFile.open("patient.txt");
+	if(!inFile.is_open())
 	{
 		SetupPatientInfo();
 	}
 	else
 	{
 		readFromFile();
-		iofile.close();
 	}
 
 	sleep = -1;
@@ -178,21 +177,23 @@ void PatientInfo::SetupPatientInfo() {
 
 void PatientInfo::readFromFile()
 {
-	iofile.open("patient.txt", ios::in);
 	string emergName, emergEmail;
-	iofile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword >> emergName >> emergEmail;
+	inFile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword >> emergName >> emergEmail;
 	emergencyContact = new Contact(emergName, emergEmail);
 	delimiter = ",";
-	while(getline(iofile, input) && input != "-----")
+	while(getline(inFile, input) && input != "-----")
 	{
+		std::cout << input << endl;
 		pos = input.find(delimiter);
 		time = (time_t)stol(input.substr(0, pos));
+		std::cout << time << endl;
 		input.erase(0, pos + delimiter.length());
+		std::cout << input << endl;
 		tmpReading = new GlucoseReading(stod(input));
 		tmpMonitor = new MonitorRecord(time, *tmpReading);
 		monitorRecords->push_back(*tmpMonitor);
 	}
-	while(getline(iofile, input) && input != "-----")
+	while(getline(inFile, input))
 	{
 		pos = input.find(delimiter);
 		time = (time_t)stol(input.substr(0, pos));
@@ -220,40 +221,39 @@ void PatientInfo::readFromFile()
 
 void PatientInfo::writeToFile()
 {
-	iofile.open("patient.txt", ios::out | ios::trunc);
-	iofile << name << endl;
-	iofile << weight << endl;
-	iofile << height << endl;
-	iofile << age << endl;
-	iofile << bmi << endl;
-	iofile << sex << endl;
-	iofile << email << endl;
-	iofile << emailPassword << endl;
+	outFile.open("patient.txt", ios::trunc);
+	outFile << name << endl;
+	outFile << weight << endl;
+	outFile << height << endl;
+	outFile << age << endl;
+	outFile << bmi << endl;
+	outFile << sex << endl;
+	outFile << email << endl;
+	outFile << emailPassword << endl;
 	
-	iofile << "-----" << endl;
 	for(vector<MonitorRecord>::iterator it = monitorRecords->begin(); it != monitorRecords->end(); ++it)
 	{
-		iofile << it->getRecordTime() << ",";
-		iofile << it->getReading().getAmount() << endl;
+		outFile << it->getRecordTime() << ",";
+		outFile << it->getReading().getAmount() << endl;
 	}
-	iofile << "-----" << endl;
+	outFile << "-----" << endl;
 	for(vector<MedicationRecord>::iterator it = medicationRecords->begin(); it != medicationRecords->end(); ++it)
 	{
-		iofile << it->getRecordTime() << ",";
+		outFile << it->getRecordTime() << ",";
 		switch(it->getHormoneDose().getHormoneType())
 		{
 			case BOLUS_INSULIN:
-				iofile << "Bolus Insulin,";
+				outFile << "Bolus Insulin,";
 				break;
 			case BASAL_INSULIN:
-				iofile << "Basal Insulin,";
+				outFile << "Basal Insulin,";
 				break;
 			case GLUCAGON:
-				iofile << "Glucagon,";
+				outFile << "Glucagon,";
 				break;
 		}
-		iofile << it->getHormoneDose().getHormoneAmount() << endl;
+		outFile << it->getHormoneDose().getHormoneAmount() << endl;
 	}
-	iofile.close();
+	outFile.close();
 }
 
