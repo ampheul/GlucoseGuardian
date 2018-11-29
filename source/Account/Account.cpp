@@ -24,7 +24,7 @@ Account::Account()
 	getline(cin, password);
 	
 	/// check if accounts.txt file exists locally. If it does not, then the account needs to be initialized, else, continue the verification process.
-	ifstream accountStream(ACCOUNT_INFO);
+	ifstream accountStream("accountInfo.txt");
 	if (accountStream.is_open())
 	{
 		Account::verifyPassword(accountStream, password);
@@ -33,11 +33,13 @@ Account::Account()
 	{
 		cout << "An account has not been initialized on this machine. Performing setup..." << endl;
 		Account::initializeAccount(password);
-		cout << "The password you have entered has been set." << endl;
+		cout << "\nThe password you have entered is being set." << endl;
 
+		sleep(3);
 		cout << "Now that your account has been initialized, please re-enter your password: ";
 		string newPassword;
 		getline(cin, newPassword);
+		ifstream accountStream("accountInfo.txt");
 		Account::verifyPassword(accountStream, newPassword);
 	}
 };
@@ -78,7 +80,7 @@ void Account::verifyPassword(ifstream& hashStream, string password)
 {
 	size_t hashToCheck = Account::hashPassword(password);
 
-	/// retrieve the locally stored hash value and compare to the new hased value
+	/// retrieve the locally stored hash value and compare to the new hashed value based on the passed password
 	string hashLine;
 	size_t patientHash;
 	size_t guestHash;
@@ -137,7 +139,7 @@ void Account::initializeAccount(string password)
 	}
 
 	size_t hash = Account::hashPassword(password);
-	ofstream accountInfo(Account::ACCOUNT_INFO);
+	ofstream accountInfo("accountInfo.txt");
 	accountInfo << hash << endl;
 
 	cout << "For your own safety, please provide a password for an emergency guest account: ";
@@ -146,4 +148,7 @@ void Account::initializeAccount(string password)
 	guestPassword = "\n" + guestPassword;
 	hash = Account::hashPassword(guestPassword);
 	accountInfo << hash << endl;
+
+	/// close accountInfo.txt
+	accountInfo.close();
 };
