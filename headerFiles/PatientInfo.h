@@ -7,15 +7,13 @@
 #ifndef PATIENTINFO_H
 #define PATIENTINFO_H
 
-#include <iostream>
-#include <fstream>
 #include <vector>
-
 #include "Contact.h"
 #include "DeviceRecord.h"
 #include "HormoneDose.h"
 #include "MedicationRecord.h"
 #include "MonitorRecord.h"
+#include "FileManager.h"
 
 using namespace std;
 
@@ -81,7 +79,7 @@ public:
 	*	\brief sets the patient's age
 	*	\param Weight - patient's age to set
 	*/
-	void setAge(double age);
+	void setAge(int age);
 
 	/**
 	*	\name getSex
@@ -219,9 +217,6 @@ private:
 	/// patient's height
 	double height;
 
-	/// patient's bmi
-	double bmi;
-
 	/// patient's carbs
 	double carbs;
 
@@ -259,6 +254,7 @@ private:
 	Contact* emergencyContact;
 
 	/// needed for reading/writing to patient.txt
+	FileManager *fileManager;
 	ofstream outFile;
 	ifstream inFile;
 	string input, delimiter;
