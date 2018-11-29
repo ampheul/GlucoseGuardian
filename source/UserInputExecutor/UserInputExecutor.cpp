@@ -40,7 +40,7 @@ void UserInputExecutor::medicalHistory()
 {
 	ReportMaker reportMaker;
 	GraphMaker graphMaker;
-	std::string reportFileName = reportMaker.makeReport(this->user, graphMaker);
+	std::string reportFileName = reportMaker.makeReport(this->artificialPancreas->getPatientInfo(), graphMaker);
 }
 
 /*!

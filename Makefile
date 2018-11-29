@@ -87,9 +87,7 @@ $(ODIR)/%.o: $(SDIR)/%.cpp
 	@$(POSTCOMPILE)
 
 .PHONY: %.out
-%.out:
 %.out: $(ODIR)/%.o
-	echo $<
 
 RUNTESTS := $(patsubst %.o, %.run, $(TEST_OBJECTS) )
 
