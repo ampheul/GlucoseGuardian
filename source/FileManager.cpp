@@ -1,14 +1,21 @@
 #include "FileManager.h"
 
-FileManager::FileManager(PatientInfo *patient)
+FileManager::FileManager(const PatientInfo *patient)
 {
     user = patient;
 }
 
 FileManager::~FileManager()
 {
-	inFile.close();
-	outFile.close();
+	if(inFile.is_open())
+	{
+		inFile.close();
+	}
+	
+	if(outFile.is_open())
+	{
+		outFile.close();
+	}
 }
 
 bool FileManager::checkForPatientFile()
