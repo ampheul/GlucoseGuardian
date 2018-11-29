@@ -1,4 +1,4 @@
-/*
+/**
 	Laptop connection implementation
 	author: Graeme Brabers
 */
