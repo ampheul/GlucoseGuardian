@@ -20,10 +20,13 @@ namespace ReportHelper
     /// and each of the distinct gnuplot files
     namespace Graph
     {
+        /// base direcotry where gnuplot files are stored
         const std::string ROOT_PATH = "base/graphing/";
-
+        /// path to the basicgraph
         const std::string BASIC     = ROOT_PATH + "basicgraph.gnu";
+        /// path to the glucose graph file
         const std::string GLUCOSE   = ROOT_PATH + "glucosegraph.gnu";
+        /// path to the Insulin graph file
         const std::string INSULIN   = ROOT_PATH + "insulingraph.gnu";
     }
     
