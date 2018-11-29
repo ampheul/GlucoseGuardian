@@ -55,7 +55,7 @@ void ArtificialPancreas::calculateMedication(const double reading, std::string b
 {
 	MonitorRecord *monRecord = new MonitorRecord(std::time(NULL), reading);
 	user->getMonitorRecords()->push_back(*monRecord);
-	delete record;     
+	delete monRecord;     
     MedicationCalculator *calculator = new MedicationCalculator(reading, user, bolusOrBasal);
     HormoneDose *dose = calculator->computeDosage();
 	if(dose != NULL)
