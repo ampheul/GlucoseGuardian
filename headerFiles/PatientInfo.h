@@ -268,12 +268,6 @@ private:
 	/// patient's emergency contact
 	Contact* emergencyContact;
 
-	/// needed for reading/writing to patient.txt
-	FileManager *fileManager;
-	ofstream outFile;
-	ifstream inFile;
-	string input, delimiter;
-
 	/// used for capturing the time when making monitor/medication records
 	time_t time;
 	size_t pos;
