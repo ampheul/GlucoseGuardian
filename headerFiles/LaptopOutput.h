@@ -1,8 +1,8 @@
 /**
  * \brief connection implementation
- * \author Graeme
+ * \author Graeme Brabers
  * 
- * This class implements laptop connections.
+ * This class defines laptop insulin pump program
  *
  */
 
