@@ -42,17 +42,8 @@ PatientInfo * FileManager::readFromFile()
     size_t pos;
     double amount;
     HormoneDose *dose;
-	vector<MonitorRecord> *monRecords;
-	vector<MedicationRecord> *medRecords;
+	vector<MonitorRecord> *monRecords = new vector<MonitorRecord>;
 
-	try
-	{
-		monRecords = new vector<MonitorRecord>;
-	}
-	catch(std::bad_alloc &ba)
-	{
-		std::cout << "1" << std::endl;
-	}
 	getline(inFile, input);
 	while(getline(inFile, input) && input != "-----")
 	{
@@ -66,14 +57,7 @@ PatientInfo * FileManager::readFromFile()
 		delete tempMonitor;
 	}
 
-	try
-	{
-		medRecords = new vector<MedicationRecord>;
-	}
-	catch(std::bad_alloc &ba)
-	{
-		std::cout << "2" << std::endl;
-	}
+	vector<MedicationRecord> *medRecords = new vector<MedicationRecord>;
 
 	while(getline(inFile, input))
 	{
@@ -101,15 +85,7 @@ PatientInfo * FileManager::readFromFile()
 		delete dose;
 		delete temp;
 	}
-	PatientInfo *user;
-	try
-	{
-		user = new PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact, monRecords, medRecords);
-	}
-	catch(std::bad_alloc &ba)
-	{
-		std::cout << "3" << std::endl;
-	}
+	PatientInfo *user = new PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact, monRecords, medRecords);
 
     delete monRecords;
 	delete medRecords;
