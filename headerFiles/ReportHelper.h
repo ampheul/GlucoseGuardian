@@ -1,3 +1,11 @@
+/**
+ * \brief Helper for report maker
+ * \author Group 22
+ * 
+ * This class helps make reports
+ *
+ */
+
 #ifndef REPORTHELPER_H
 #define REPORTHELPER_H
 

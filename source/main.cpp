@@ -1,6 +1,8 @@
-/*!
-	@author Group 22
-	Description: runs the artificial pancreas program
+/**
+	\brief Runs the artificial pancreas program
+	\author Group 22
+	
+	Main for the artificial pancreas program
 */
 
 #include "main.h"
