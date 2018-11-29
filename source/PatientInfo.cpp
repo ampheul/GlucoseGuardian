@@ -179,18 +179,9 @@ void PatientInfo::readFromFile()
 {
 	string emergName, emergEmail;
 	inFile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword >> emergName >> emergEmail;
-	std::cout << name << std::endl;
-	std::cout << weight << std::endl;
-	std::cout << height << std::endl;
-	std::cout << age << std::endl;
-	std::cout << bmi << std::endl;
-	std::cout << sex << std::endl;
-	std::cout << email << std::endl;
-	std::cout << emailPassword << std::endl;
-	std::cout << emergName << std::endl;
-	std::cout << emergEmail << std::endl;
 	emergencyContact = new Contact(emergName, emergEmail);
 	delimiter = ",";
+	getline(inFile, input);
 	while(getline(inFile, input) && input != "-----")
 	{
 		std::cout << input << endl;
@@ -203,7 +194,8 @@ void PatientInfo::readFromFile()
 		tmpMonitor = new MonitorRecord(time, *tmpReading);
 		monitorRecords->push_back(*tmpMonitor);
 	}
-	while(getline(inFile, input) && input != "-----")
+	getline(inFile, input);
+	while(inFile.good() && getline(inFile, input))
 	{
 		pos = input.find(delimiter);
 		time = (time_t)stol(input.substr(0, pos));
