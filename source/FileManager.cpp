@@ -77,13 +77,13 @@ PatientInfo * FileManager::readFromFile()
 			medRecords->push_back(MedicationRecord(inputTime, HormoneDose(GLUCAGON, amount)));
 		}
 	}
-	PatientInfo *user = new PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact, monRecords, medRecords);
+	PatientInfo user = PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact, monRecords, medRecords);
 
     delete monRecords;
 	delete medRecords;
 	delete emergencyContact;
 	inFile.close();
-	return user;
+	return &user;
 }
 
 void FileManager::writeToFile(PatientInfo *user)

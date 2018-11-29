@@ -3,7 +3,7 @@
 
 int main()
 {
-    PatientInfo *p = new PatientInfo();
+    PatientInfo *p;
     FileManager *fm = new FileManager();
     if(fm->checkForPatientFile())
     {
