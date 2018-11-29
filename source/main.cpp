@@ -28,9 +28,19 @@ int main(int argc, char **argv)
 		menu->printMenu();
 		int optionToRetrieve = menu->getMenuSelection();
 
-		if(optionToRetrieve == 0 || optionToRetrieve == 1){
+		if(optionToRetrieve == 0)
+		{
+			PatientInfo* patient = artificialPancreas->getPatientInfo();
+			EmailNotification notify = EmailNotification(patient);
+			notify.sendUnauthorizedAccessEmail();
 			running = false;
 		}
+
+		if(optionToRetrieve == 1)
+		{
+			running = false;
+		}
+
 
 		executor->menuSwitch(optionToRetrieve);
 	}
