@@ -1,8 +1,7 @@
 #include "FileManager.h"
 
-FileManager::FileManager(PatientInfo *patient)
+FileManager::FileManager()
 {
-    user = patient;
 }
 
 FileManager::~FileManager()
@@ -29,22 +28,14 @@ bool FileManager::checkForPatientFile()
     return false;
 }
 
-void FileManager::readFromFile()
+PatientInfo * FileManager::readFromFile()
 {
     inFile.open("patient.txt");
 	std::string name, sex, email, emailPassword, emergName, emergEmail;
     double weight, height;
     int age;
 	inFile >> name >> weight >> height >> age  >> sex >> email >> emailPassword >> emergName >> emergEmail;
-    user->setName(name);
-    user->setWeight(weight);
-    user->setHeight(height);
-    user->setAge(age);
-    user->setSex(sex);
-    user->setEmail(email);
-    user->setEmailPassword(emailPassword);
 	Contact *emergencyContact = new Contact(emergName, emergEmail);
-    user->setEmergencyContact(emergencyContact);
 	
     std::string input, toEnum, delimiter = ",";
     time_t time;
@@ -52,49 +43,64 @@ void FileManager::readFromFile()
     double amount;
     HormoneDose *dose;
 
-	getline(inFile, input);
-	while(getline(inFile, input) && input != "-----")
+	try
 	{
-		pos = input.find(delimiter);
-		time = (time_t)stol(input.substr(0, pos));
-		input.erase(0, pos + delimiter.length());
-		GlucoseReading *tempGlucose = new GlucoseReading(stod(input));
-		MonitorRecord *tempMonitor = new MonitorRecord(time, *tempGlucose);
-		user->getMonitorRecords()->push_back(*tempMonitor);
-		delete tempGlucose;
-		delete tempMonitor;
-	}
+		vector<MonitorRecord> *monRecords = new vector<MonitorRecord>;
 
-	while(getline(inFile, input))
-	{
-		pos = input.find(delimiter);
-		time = (time_t)stol(input.substr(0, pos));
-		input.erase(0, pos + delimiter.length());
-		pos = input.find(delimiter);
-		toEnum = input.substr(0, pos);
-		input.erase(0, pos + delimiter.length());
-		amount = stod(input);
-		if(toEnum == "Bolus Insulin")
+		getline(inFile, input);
+		while(getline(inFile, input) && input != "-----")
 		{
-			dose = new HormoneDose(BOLUS_INSULIN, amount);
+			pos = input.find(delimiter);
+			time = (time_t)stol(input.substr(0, pos));
+			input.erase(0, pos + delimiter.length());
+			GlucoseReading *tempGlucose = new GlucoseReading(stod(input));
+			MonitorRecord *tempMonitor = new MonitorRecord(time, *tempGlucose);
+			monRecords->push_back(*tempMonitor);
+			delete tempGlucose;
+			delete tempMonitor;
 		}
-		else if(toEnum == "Basal Insulin")
+
+		vector<MedicationRecord> *medRecords = new vector<MedicationRecord>;
+		while(getline(inFile, input))
 		{
-			dose = new HormoneDose(BASAL_INSULIN, amount);
+			pos = input.find(delimiter);
+			time = (time_t)stol(input.substr(0, pos));
+			input.erase(0, pos + delimiter.length());
+			pos = input.find(delimiter);
+			toEnum = input.substr(0, pos);
+			input.erase(0, pos + delimiter.length());
+			amount = stod(input);
+			if(toEnum == "Bolus Insulin")
+			{
+				dose = new HormoneDose(BOLUS_INSULIN, amount);
+			}
+			else if(toEnum == "Basal Insulin")
+			{
+				dose = new HormoneDose(BASAL_INSULIN, amount);
+			}
+			else if(toEnum == "Glucacon")
+			{
+				dose = new HormoneDose(GLUCAGON, amount);
+			}
+			MedicationRecord *temp = new MedicationRecord(time, *dose);
+			medRecords->push_back(*temp);
+			delete dose;
+			delete temp;
 		}
-		else if(toEnum == "Glucacon")
-		{
-			dose = new HormoneDose(GLUCAGON, amount);
-		}
-		MedicationRecord *temp = new MedicationRecord(time, *dose);
-		user->getMedicationRecords()->push_back(*temp);
-		delete dose;
-		delete temp;
 	}
-    inFile.close();
+	catch(std::bad_alloc &ba)
+	{
+		std::cout << ba.what() << std::endl;
+	}
+	PatientInfo *user = new PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact, monRecords, medRecords);
+    delete monRecords;
+	delete medRecords;
+	delete emergencyContact;
+	inFile.close();
+	return user;
 }
 
-void FileManager::writeToFile()
+void FileManager::writeToFile(PatientInfo *user)
 {
 	outFile.open("patient.txt", ios::trunc);
 	outFile << user->getName() << std::endl;
@@ -107,13 +113,13 @@ void FileManager::writeToFile()
     outFile << user->getEmergencyContact()->getName() << std::endl;
     outFile << user->getEmergencyContact()->getEmail() << std::endl; 
 
-	for(vector<MonitorRecord>::iterator it = user->getMonitorRecords()->begin(); it != user->getMonitorRecords->end(); ++it)
+	for(vector<MonitorRecord>::iterator it = user->getMonitorRecords()->begin(); it != user->getMonitorRecords()->end(); ++it)
 	{
 		outFile << it->getRecordTime() << ",";
 		outFile << it->getReading().getAmount() << endl;
 	}
 	outFile << "-----" << endl;
-	for(vector<MedicationRecord>::iterator it = user->getMedicationRecords->begin(); it != user->getMedicationRecords->end(); ++it)
+	for(vector<MedicationRecord>::iterator it = user->getMedicationRecords()->begin(); it != user->getMedicationRecords()->end(); ++it)
 	{
 		outFile << it->getRecordTime() << ",";
 		switch(it->getHormoneDose().getHormoneType())
