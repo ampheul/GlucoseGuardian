@@ -79,9 +79,6 @@ PatientInfo * FileManager::readFromFile()
 	}
 	PatientInfo *user = new PatientInfo(name, height, weight, age, sex, email, emailPassword, emergencyContact, monRecords, medRecords);
 
-    delete monRecords;
-	delete medRecords;
-	delete emergencyContact;
 	inFile.close();
 	return user;
 }
@@ -97,7 +94,7 @@ void FileManager::writeToFile(PatientInfo *user)
 	outFile << user->getEmail() << std::endl;
 	outFile << user->getEmailPassword() << std::endl;
     outFile << user->getEmergencyContact()->getName() << std::endl;
-    outFile << user->getEmergencyContact()->getEmail() << std::endl; 
+    outFile << user->getEmergencyContact()->getEmail() << std::endl;
 
 	for(vector<MonitorRecord>::iterator it = user->getMonitorRecords()->begin(); it != user->getMonitorRecords()->end(); ++it)
 	{
