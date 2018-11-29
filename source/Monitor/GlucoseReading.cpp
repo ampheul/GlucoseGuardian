@@ -1,4 +1,4 @@
-#include "../GlucoseReading.h"
+#include "GlucoseReading.h"
 
 GlucoseReading::GlucoseReading(const double glucoseAmount) 
     :   amount(glucoseAmount)
