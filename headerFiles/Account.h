@@ -16,8 +16,9 @@
 class Account
 {	
 public:
-	/// Types of accounts the user can have
-		/// represents account type of Patient
+	// Types of accounts the user can have
+	
+	/// represents account type of Patient
 	const static std::string PATIENT_ACCOUNT;
 
 		/// represents account type of Guest

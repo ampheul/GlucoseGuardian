@@ -35,10 +35,7 @@ DIRECTORIES := $(DEPDIR)/ $(dir $(OBJECTS)) $(patsubst %, $(DEPDIR)/%, $(dir $(O
 	$(dir $(TEST_OBJECTS)) $(INCLUDE)/
 
 help:
-	@less help.txt
-
-
-
+	@less base/help.txt
 
 all: install directories objects libs $(TEST_OBJECTS)
 directories: $(DIRECTORIES)
@@ -115,7 +112,7 @@ clean: cleanDocs cleanFiles
 .PHONY: cleanDocs
 cleanDocs:
 	@rm -rf docs/latex docs/html $(RULES_DIR) \
-		$(ODIR) $(SHARED_ODIR) $(LIBRARY_ODIR) $(DEPDIR)
+		$(ODIR) $(SHARED_ODIR) $(DEPDIR)
 
 .PHONY: cleanFiles
 cleanFiles:
