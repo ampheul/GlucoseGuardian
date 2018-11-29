@@ -1,5 +1,5 @@
 /**
-*	\author Naeem Budwhani and Graeme Brabers
+*	\author Naeem Budwhani
 *	\brief Contains statistics about the patient and his/her emergency contact information
 */
 
@@ -246,90 +246,3 @@ void PatientInfo::SetupPatientInfo()
 	emergencyContact = new Contact(emergContactName, emergContactEmail);
 
 }
-/*
-/// reads the patient info file
-void PatientInfo::readFromFile()
-{
-	string emergName, emergEmail;
-	inFile >> name >> weight >> height >> age >> bmi >> sex >> email >> emailPassword >> emergName >> emergEmail;
-	emergencyContact = new Contact(emergName, emergEmail);
-	delimiter = ",";
-	getline(inFile, input);
-	while(getline(inFile, input) && input != "-----")
-	{
-		pos = input.find(delimiter);
-		time = (time_t)stol(input.substr(0, pos));
-		input.erase(0, pos + delimiter.length());
-		GlucoseReading *tempGlucose = new GlucoseReading(stod(input));
-		MonitorRecord *tempMonitor = new MonitorRecord(time, *tempGlucose);
-		monitorRecords->push_back(*tempMonitor);
-		delete tempGlucose;
-		delete tempMonitor;
-	}
-	while(getline(inFile, input))
-	{
-		pos = input.find(delimiter);
-		time = (time_t)stol(input.substr(0, pos));
-		input.erase(0, pos + delimiter.length());
-		pos = input.find(delimiter);
-		toEnum = input.substr(0, pos);
-		input.erase(0, pos + delimiter.length());
-		amount = stod(input);
-		if(toEnum == "Bolus Insulin")
-		{
-			dose = new HormoneDose(BOLUS_INSULIN, amount);
-		}
-		else if(toEnum == "Basal Insulin")
-		{
-			dose = new HormoneDose(BASAL_INSULIN, amount);
-		}
-		else if(toEnum == "Glucacon")
-		{
-			dose = new HormoneDose(GLUCAGON, amount);
-		}
-		MedicationRecord *temp = new MedicationRecord(time, *dose);
-		medicationRecords->push_back(*temp);
-		delete dose;
-		delete temp;
-	}
-}
-
-/// writes to the patient info file
-void PatientInfo::writeToFile()
-{
-	outFile.open("patient.txt", ios::trunc);
-	outFile << name << endl;
-	outFile << weight << endl;
-	outFile << height << endl;
-	outFile << age << endl;
-	outFile << bmi << endl;
-	outFile << sex << endl;
-	outFile << email << endl;
-	outFile << emailPassword << endl;
-
-	for(vector<MonitorRecord>::iterator it = monitorRecords->begin(); it != monitorRecords->end(); ++it)
-	{
-		outFile << it->getRecordTime() << ",";
-		outFile << it->getReading().getAmount() << endl;
-	}
-	outFile << "-----" << endl;
-	for(vector<MedicationRecord>::iterator it = medicationRecords->begin(); it != medicationRecords->end(); ++it)
-	{
-		outFile << it->getRecordTime() << ",";
-		switch(it->getHormoneDose().getHormoneType())
-		{
-			case BOLUS_INSULIN:
-				outFile << "Bolus Insulin,";
-				break;
-			case BASAL_INSULIN:
-				outFile << "Basal Insulin,";
-				break;
-			case GLUCAGON:
-				outFile << "Glucagon,";
-				break;
-		}
-		outFile << it->getHormoneDose().getHormoneAmount() << endl;
-	}
-	outFile.close();
-}
-*/

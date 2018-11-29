@@ -1,5 +1,5 @@
 /**
-*	\author Naeem Budhwani and Graeme Brabers
+*	\author Naeem Budhwani
 *	\brief Header file for the PatientInfo class
 *	Contains statistics about the patient and his/her emergency contact information
 */
@@ -269,15 +269,7 @@ private:
 	/// patient's emergency contact
 	Contact* emergencyContact;
 
-	/// used for capturing the time when making monitor/medication records
-	time_t time;
-	size_t pos;
 
-	/// dose of the hormone being administered
-	HormoneDose *dose;
-
-	/// type of the hormone being administered
-	hormoneType type;
 };
 
 #endif
