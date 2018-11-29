@@ -18,6 +18,12 @@ UserInputExecutor::UserInputExecutor(ArtificialPancreas* artificialPancreas)
 };
 
 /**
+*	\name userInputExecutor
+*	\brief constructor, used for testing
+*/
+UserInputExecutor::UserInputExecutor() {};
+
+/**
 *	\name ~UserInputExecutor
 *	\brief destructor
 */

@@ -1,6 +1,6 @@
-/*!
-	@author Veronica Witzig
-	Purpose: Header file for the UserInputExecutor class
+/**
+*	\author Veronica Witzig
+*	\brief Header file for the UserInputExecutor class
 */
 
 #ifndef USER_INPUT_EXECUTOR_H
@@ -21,13 +21,24 @@
 class UserInputExecutor
 {	
 public:	
+	/// constructor, expects an artifical pancreas
 	UserInputExecutor(ArtificialPancreas* artificialPancreas);
+
+	/// constructor, expects an artifical pancreas, used for testing
+	UserInputExecutor();
+
+	/// destructor
 	~UserInputExecutor();
+
+	/// determines which option the user has selected based on the menu presented
 	void menuSwitch(int option);
 	
 private:
-	const int MINIMUM_CARBS = 0;				//! The minimum number of carbs allowed for user input
-	const int MAXIMUM_CARBS = 1250;				//! The maximum number of carbs allowed for user input
+	/// The minimum number of carbs allowed for user input
+	const int MINIMUM_CARBS = 0;
+
+	/// The maximum number of carbs allowed for user input
+	const int MAXIMUM_CARBS = 1250;
 
 	ArtificialPancreas* artificialPancreas;
 	
