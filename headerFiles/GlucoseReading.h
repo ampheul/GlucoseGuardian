@@ -6,7 +6,7 @@
  *
  */
 
- #ifndef GLUCOSEREADING_H
+#ifndef GLUCOSEREADING_H
 #define GLUCOSEREADING_H
 
 class GlucoseReading
