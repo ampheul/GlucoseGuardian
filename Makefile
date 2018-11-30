@@ -11,6 +11,8 @@ TEST_ODIR := bin/tests
 SOURCES := $(shell find $(SDIR) -type f -name "*.cpp" -print)
 OBJECTS := $(patsubst $(SDIR)/%.cpp, $(ODIR)/%.o, $(SOURCES))
 
+BUILD := build/output
+
 TEST_SOURCES := $(shell find $(TEST_SDIR) -type f -name "*.cpp" -print)
 TEST_OBJECTS := $(patsubst $(TEST_SDIR)/%.cpp, $(TEST_ODIR)/%.o, $(TEST_SOURCES))
 
@@ -31,7 +33,7 @@ POSTCOMPILE = mv -f $(DEPDIR)/$@.Td $(DEPDIR)/$@.d && touch $@
 ARCHIVE = ar rcs $@ $^
 
 DIRECTORIES := $(DEPDIR)/ $(dir $(OBJECTS)) $(patsubst %, $(DEPDIR)/%, $(dir $(OBJECTS) $(TEST_OBJECTS))) $(LIBRARY_ODIR)/ \
-	$(dir $(TEST_OBJECTS)) $(INCLUDE)/
+	$(dir $(TEST_OBJECTS)) $(INCLUDE)/ $(BUILD)/
 
 help:
 	@less base/help.txt
@@ -120,6 +122,6 @@ cleanFiles:
 
 
 install:
-	sudo apt install gnuplot
+	sudo apt update; sudo apt install gnuplot texlive-latex-base
 
 include $(shell find $(DEPDIR) -type f -name "*.d" -print0)
