@@ -202,34 +202,34 @@ void PatientInfo::setName(std::string newName)
 /// fetches th patient info stored in patient.txt
 void PatientInfo::SetupPatientInfo()
 {
-	cout << "What is your name?";
+	cout << "What is your name? ";
 	cin >> name;
 
-	cout << "What is your weight?";
+	cout << "What is your weight? ";
 	cin >> weight;
 
-	cout << "What is your height?";
+	cout << "What is your height? ";
 	cin >> height;
 
-	cout << "What is your age?";
+	cout << "What is your age? ";
 	cin >> age;
 
-	cout << "What is your sex?";
+	cout << "What is your sex? ";
 	cin >> sex;
 
-	cout << "What is your email?";
+	cout << "What is your email? ";
 	cin >> email;
 
-	cout << "What is your email password?";
+	cout << "What is your email password? ";
 	cin >> emailPassword;
 
 	// Set up emergency contact
-	cout << "What is the name of your emergency contact?";
+	cout << "What is the name of your emergency contact? ";
 	string emergContactName;
 	string emergContactEmail;
 	cin >> emergContactName;
 	 
-	cout << "What is the email of your emergency contact?";
+	cout << "What is the email of your emergency contact? ";
 	cin >> emergContactEmail;
 
 	emergencyContact = new Contact(emergContactName, emergContactEmail);

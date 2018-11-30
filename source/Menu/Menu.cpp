@@ -79,6 +79,8 @@ int Menu::getMenuSelection()
 		userInput = "";
 		optionInt = 0;
 		
+		cin.clear();
+		cin.ignore(256, '\n');
 		cout << "Please select a corresponding number from the above selection: " << endl;
 		getline(cin, userInput);
 		

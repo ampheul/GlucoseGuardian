@@ -25,7 +25,7 @@ FileManager::~FileManager()
 
 bool FileManager::checkForPatientFile()
 {
-    inFile.open("patient.txt");
+    inFile.open("../base/patient.txt");
     if(inFile.is_open())
     {
         inFile.close();
@@ -36,7 +36,7 @@ bool FileManager::checkForPatientFile()
 
 PatientInfo * FileManager::readFromFile()
 {
-    inFile.open("patient.txt");
+    inFile.open("../base/patient.txt");
 	std::string name, sex, email, emailPassword, emergName, emergEmail;
     double weight, height;
     int age;
@@ -91,7 +91,7 @@ PatientInfo * FileManager::readFromFile()
 
 void FileManager::writeToFile(PatientInfo *user)
 {
-	outFile.open("patient.txt", ios::trunc);
+	outFile.open("../base/patient.txt", ios::trunc);
 	outFile << user->getName() << std::endl;
 	outFile << user->getWeight() << std::endl;
 	outFile << user->getHeight() << std::endl;
