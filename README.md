@@ -35,7 +35,7 @@ make all
 Once the project has been built, you can run the program by executing the runGlucoseGuardian file:  
 
 ```c++
-./runGlucoseGuardian
+./runGlucoseGuardian.sh
 ```
 
 **Please ensure a user is set up with accurate weight and personal information before inputting glucose readings.**  
