@@ -10,11 +10,11 @@ Email Password: pass123word
 
 ### Authors
 
-Claire Dong
-Graeme Brabers
-Naeem Budhwani
-Thomas Vandeveen
-Veronica Witzig
+Claire Dong  
+Graeme Brabers  
+Naeem Budhwani  
+Thomas Vandeveen  
+Veronica Witzig  
 
 # How to build Glucose Guardian
 
@@ -66,9 +66,9 @@ To see a demonstration of this use:
 make EmailNotificationTest.run
 ```
 
-**Note: We have provided a test email you may use**
-Email Address: noah123body@gmail.com
-Email Password: pass123word
+**Note: We have provided a test email you may use**  
+Email Address: noah123body@gmail.com  
+Email Password: pass123word  
 
 ### UI Menu
 Depending on whether the patient or an authorized guest has logged into Glucose Guardian, this will
