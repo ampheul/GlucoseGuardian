@@ -16,19 +16,19 @@ Naeem Budhwani
 Thomas Vandeveen
 Veronica Witzig
 
-
-
 # How to build Glucose Guardian
 
 You will need 3 terminals for the full functionality of Glucose Guardian. 
 	- 1 terminal will be used for the monitor
-		- Monitor is the glucose monitor that provides blood glucose readings to the pi
+	  - Monitor is the glucose monitor that provides blood glucose readings to the pi
 	- 1 terminal will be used for running main 
-		- Main is the UI for user interaction with the artifical pancreas
+	  - Main is the UI for user interaction with the artifical pancreas
 	- 1 terminal will be used for the listener
-		- Listener is the insulin pump that waits for information from the pi and dispenses insulin
+	  - Listener is the insulin pump that waits for information from the pi and dispenses insulin
 
+```c++
 make all 
+```
 
 Once the project has been built, you can run the program by executing the _____ file. 
 Please ensure a user is set up with accurate weight and personal information before inputting glucose readings.
@@ -37,15 +37,17 @@ Please ensure a user is set up with accurate weight and personal information bef
 
 For ease of testing, we have included individual testing classes for certain features of the project: 
 
--------------Account Security-----------
+## Account Security
 We have included a layer of security to protect the patient and their medical information. To see a
 demonstration of an account being created during initialization, please run:
 
+```c++
 make AccountTest.run
+```
 
 If you run the test again you can see how an account is logged into after the account has been made.
 
--------------Email Notifications-----------
+## Email Notifications
 During certain actions an email notification may be sent to the user. These instances include:
 	- A warning email when a hypoglycemic event is imminent
 	- A security warning when a failed attempt to login to the artificial pancreas has been made
@@ -54,13 +56,15 @@ During certain actions an email notification may be sent to the user. These inst
 	medical records
 To see a demonstration of this use:
 
+```c++
 make EmailNotificationTest.run
+```
 
-Note: We have provided a test email you may use
+*Note: We have provided a test email you may use*
 Email Address: noah123body@gmail.com
 Email Password: pass123word
 
--------------UI Menu-------------
+## UI Menu
 Depending on whether the patient or an authorized guest has logged into Glucose Guardian, this will
 determine which menu items are available for the user to select from.
 
@@ -75,16 +79,22 @@ If a guest is logged in, they are able to:
 
 To run this tests:
 
+```c++
 make MenuTest.run
+```
 
--------------Report Maker-------------
+## Report Maker
 The user is able to make a graphical report of medical records. This medical record includes glucose readings and insulin administered including time. To see a demonstration of this run:
 
+```c++
 make ReportMakerTest.run
+```
 
--------------Insulin Calculator-------------
+## Insulin Calculator
 Glucose Guardian is able to automatically determine the correct insulin or glucagon to administer
 based on age, weight, height, carb intake, exercise level, diurnal pattern, and time of sleep.
 The test will prompt you for these while running:
 
+```c++
 make MedicationCalculatorTest.run
+```
