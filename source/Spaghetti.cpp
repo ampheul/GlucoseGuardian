@@ -14,7 +14,8 @@ PatientInfo* Spaghetti::makePatient()
     std::vector<MonitorRecord> *glucoseRecords = patient->getMonitorRecords();
     std::vector<MedicationRecord> *insulinRecords = patient->getMedicationRecords();
 
-    std::ifstream glucoseDataStream("base/patientData/glucose23340.dat");
+    std::ifstream glucoseDataStream;
+        glucoseDataStream.open("base/patientData/glucose23340.dat");
     std::ifstream insulinDataStream("base/patientData/insulin23340.dat");
     std::time_t timeSetting = std::time(NULL) -24*60*60;
 

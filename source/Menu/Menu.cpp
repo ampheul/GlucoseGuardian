@@ -18,7 +18,6 @@ Menu::Menu(Account *account)
 	
 	if (accountType == "Patient")
 	{
-		cout << "Patient user verified, please choose an option: " << endl;
 		_items = vector<string>({
 			"1 - Exit Program",
 			"2 - Medical History",
@@ -30,7 +29,6 @@ Menu::Menu(Account *account)
 	}
 	else if (accountType == "Guest")
 	{
-		cout << "Guest user verified, please choose an option: " << endl;
 		_items = vector<std::string>({
 			"1 - Exit Program",
 			"2 - Medical History"

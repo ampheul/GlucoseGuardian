@@ -29,7 +29,7 @@ int main(){
 	double glucose;
 	double weight;
 	double age;
-	string sleepTime;
+	int sleepTime;
 	string exerciseLevel;
 	double carbs;
 	string basalOrBolus;
@@ -63,8 +63,7 @@ int main(){
 			cin >> carbs;
 
 			cout << "Please enter an hour of sleep in military time(hour) or -1 for hour if not specified: ";
-			getline(cin, sleepTime);
-			getline(cin, sleepTime,'\n');
+			cin >>sleepTime;
 
 			cout << "Please enter an exercise level (Low/Medium/High/None): ";
 			getline(cin, exerciseLevel);
@@ -77,7 +76,7 @@ int main(){
 			patient->setAge(age);
 			patient->setWeight(weight);
 			patient->setCarbs(carbs);
-			patient->setExercise(exercise);
+			patient->setExercise(exerciseLevel);
 			patient->setSleep(sleepTime);
 
 			MedicationCalculator calc(glucose, patient, basalOrBolus);

@@ -255,7 +255,7 @@ void UserInputExecutor::updatePatientInfoSleep(PatientInfo* patientInfo)
 	{
 		sleepHours = 0;
 
-		cout << "Please enter your hours of expected sleep between 0 to 24 hours: " << endl;
+		cout << "Please enter your time of expected sleep in military hours (0 to 24): " << endl;
 
 		// ensure the user input is a valid entry
 		cin >> sleepHours;

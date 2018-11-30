@@ -21,7 +21,7 @@ namespace LatexHelper
        * \param environment the environment
        * \return the end portion
        *
-       * Sets up end portion to use
+       * tag to end a latex environment
        */
     std::string end(std::string environment);
 
@@ -30,24 +30,27 @@ namespace LatexHelper
        * \param environment the environment
        * \return the starting portion
        *
-       * Sets up beginning portion to use
+       * tag to begin a latex environment
        */
     std::string begin(std::string environment);
 
 
      /**
        * \brief Returns header for latex
-       * \return the header
+       * \return the header, "\documentclass{article}"
        *
-       * Sets up header portion to use
+       * writes out the string "\documentclass{article}". 
+       * Has use in generating latex file manually.
        */
     std::string header();
 
       /**
-       * \brief Returns input file info
-       * \return the input file info
-       *
-       * Sets up input info portion to use
+       * \brief returns a latex \input command
+       * \return the string "\input{[inputFile]}"
+       * 
+       * Returns the string "\input{[inputFile]}".
+       * This is a command to the tex compiler to include.
+       * 
        */
     std::string input(std::string inputFile);
     

@@ -15,13 +15,12 @@ TEST_SOURCES := $(shell find $(TEST_SDIR) -type f -name "*.cpp" -print)
 TEST_OBJECTS := $(patsubst $(TEST_SDIR)/%.cpp, $(TEST_ODIR)/%.o, $(TEST_SOURCES))
 
 SHARED_ODIR := $(ODIR)/shared
-
 LIBRARY_SDIR := $(SDIR)/lib
 LIBRARY_ODIR := lib/bin
 INCLUDE := lib/include
 
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$@.Td
-CFLAGS = -iquote $(HEADER) -iquote $(INCLUDE) -iquote . -L $(LIBRARY_ODIR) -Wall
+CFLAGS = -iquote $(HEADER) -iquote $(INCLUDE) -iquote . -L $(LIBRARY_ODIR) -Wall $(LIBS)
 CC = g++
 
 DEPDIR := .dependencies
@@ -54,6 +53,7 @@ main: $(ODIR)/main.o
 .PHONY: main
 
 MAINOBJECTS := $(filter-out $(ODIR)/main.o, $(OBJECTS))
+$(ODIR)/main.o: CFLAGS += -pthread
 $(ODIR)/main.o: $(INCLUDE)/libPancreas.h $(LIBRARY_ODIR)/libPancreas.a
 $(ODIR)/main.o: $(SDIR)/main.cpp 
 	@echo making main.o
@@ -78,7 +78,7 @@ $(INCLUDE)/libPancreas.h: $(LIBPANCREASFILES)
 	echo "\n#endif\n" >> $@ && touch $@
 
 .PHONY: $(HEADER)
-
+$(TEST_ODIR)/%.o: LIBS +=-pthread
 $(TEST_ODIR)/%.o: $(TEST_SDIR)/%.cpp $(LIBRARY_ODIR)/libPancreas.a $(INCLUDE)/libPancreas.h
 	@$(COMPILE)
 	@$(POSTCOMPILE)

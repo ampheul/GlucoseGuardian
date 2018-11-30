@@ -13,12 +13,16 @@ const std::string UNKNOWN_ACCOUNT = "Unknown";
 
 int main()
 {
-	/// test accounts - TODO:
-	//Account *patientAccount = new Account(PATIENT_ACCOUNT);
-	//Account *guestAccount = new Account(GUEST_ACCOUNT);
-	//Account *unknownAccount = new Account(UNKNOWN_ACCOUNT);
+	/// test accounts
+	Account *patientAccount = new Account(PATIENT_ACCOUNT);
+	Account *guestAccount = new Account(GUEST_ACCOUNT);
+	Account *unknownAccount = new Account(UNKNOWN_ACCOUNT);
 
-	UserInputExecutor executor = UserInputExecutor();
+	ArtificialPancreas* pancreas = new ArtificialPancreas();
+
+	PatientInfo* patient = pancreas->getPatientInfo();
+
+	UserInputExecutor executor = UserInputExecutor(pancreas);
 
 	bool testing = true;
 	int selection = 0;
@@ -41,23 +45,23 @@ int main()
 		{
 			case 1:
 				cout << "\nTesting the medical history option: " << endl;
-				//executor.menuSwitch(selection + 1);
+				executor.menuSwitch(selection + 1);
 				break;
 			case 2:
 				cout << "\nTesting the current glucose option: " << endl;
-				//executor.menuSwitch(selection + 1);
+				executor.menuSwitch(selection + 1);
 				break;
 			case 3:
 				cout << "\nTesting the manual glucose entry option: " << endl;
-				//executor.menuSwitch(selection + 1);
+				executor.menuSwitch(selection + 1);
 				break;
 			case 4:
 				cout << "\nTesting the manual insulin administration: " << endl;
-				//executor.menuSwitch(selection + 1);
+				executor.menuSwitch(selection + 1);
 				break;
 			case 5:
 				cout << "\nTesting the patient info update option: " << endl;
-				//executor.menuSwitch(selection + 1);
+				executor.menuSwitch(selection + 1);
 				break;
 			case 6:
 				cout << "\nQUITTING" << endl;

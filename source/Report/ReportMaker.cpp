@@ -35,7 +35,11 @@ std::string ReportMaker::makeReport(
 			glucoseTMax = point.first;
 		}
 	}
-    
+    if (glucoseTMax - glucoseTMin < 100)
+    {
+        std::cerr << "need longer sample time" << std::endl;
+        return "";
+    }
     XRange xrange(glucoseTMin, glucoseTMax);
     YRange yrange(0, 230);
     
