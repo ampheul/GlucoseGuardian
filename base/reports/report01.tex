@@ -1,7 +1,7 @@
 \documentclass{article}
 
 \usepackage{graphicx}
-\usepackage{float}
+
 \graphicspath{ {../} }
 
 \newcommand{\missingText}{\emph{*MISSING*}}
@@ -12,8 +12,8 @@
 \providecommand{\patientWeight}{\missingText}
 \providecommand{\patientBMI}{\missingText}
 
-\newcommand{\noRecommendation}{We have no reccomendation based on this information.}
-\providecommand{\patientReccomendation}{\noRecommendation}
+%\newcommand{\noRecommendation}{We have no reccomendation based on this information.}
+%\providecommand{\patientReccomendation}{\noRecommendation}
 
 \providecommand{\patientGlucoseGraph}{}
 \providecommand{\patientInsulinGraph}{}
@@ -36,7 +36,7 @@
     \section{Glucose Readings:}
     \patientName{'s} glucose readings from the last week:
     
-    \begin{figure}[H]
+    \begin{figure}[h!]
         \centering
         \includegraphics[width=\linewidth]{\patientGlucoseGraph}
     \end{figure}
@@ -44,10 +44,10 @@
     {\section{Insuliun Readings:}
     \patientName{'s} Insulin doses during the last week.
     
-    \begin{figure}[H]
+    \begin{figure}[h!]
         \centering
         \includegraphics[width=\linewidth]{\patientInsulinGraph}
     \end{figure}}
     
-    \patientReccomendation
+    %\patientReccomendation
 \end{document}
