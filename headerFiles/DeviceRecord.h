@@ -26,6 +26,7 @@ class DeviceRecord
        */
         std::time_t getRecordTime() const;
     private:
+        /// the time that the record was created
         const std::time_t recordTime;
 };
 

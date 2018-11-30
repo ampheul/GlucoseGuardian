@@ -1,3 +1,8 @@
+/**
+	Laptop program to emulate insulin pump
+	\author Graeme Brabers
+*/
+
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/socket.h>
@@ -17,6 +22,7 @@ int main(int argc, char const *argv[])
     std::stringstream input, output;
     std::string medication, amount;
 
+    //establish socket
     if ((sock = socket(AF_INET, SOCK_DGRAM, 0)) == 0) 
     { 
         perror("socket failed"); 
@@ -34,6 +40,7 @@ int main(int argc, char const *argv[])
         exit(EXIT_FAILURE); 
     } 
 
+    //Listen for messages
     while(!std::cin.eof())
     {
         messageBytes = recv(sock, buffer, 549, 0);

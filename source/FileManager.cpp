@@ -1,3 +1,9 @@
+/**
+*	\author Graeme Brabers
+*	\brief Implementation file for the FileManager class
+*	Contains File I/O information for serialization of PatientInfo objects
+*/
+
 #include "FileManager.h"
 
 FileManager::FileManager()

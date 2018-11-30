@@ -38,6 +38,15 @@ class GraphMaker
 {
     public:
         /// Make a graph of patient data. date/time on the x-axis, float on the y-axis.
+        ///
+        /// Makes double/time graphs, used to create the graphs in reportmaker 
+        /// such as the graph of insulin doses over time and glucose measurements over time.
+        /// execs gnuplot and pipes in a custom graph file, which can be customized.
+        /// uses Xrange and Yrange to set corresponding values in the graph,
+        /// for example, to make the range as some particular week in the life of the patient.
+        ///
+        /// If more customized graph printing is needed, you can create a custom gnuplot file,
+        /// adding it to the base directory and calling it by name.
         std::string makeGraph(
             /// XRange to filter out data
             XRange xrange,
@@ -45,11 +54,12 @@ class GraphMaker
             YRange yrange,
             /// the actual data which will be graphed
             DataSet data,
+            /// title for the graph, used in the file name.
             std::string title = "",
             /// extra gnuplot options to add to the script. defaults to empty
             std::string extraOptions = "",
             /// datafile to customize gnuplot output of the graph.
-            std::string gnuFile = "base/graphing/basicgraph.gnu");    
-};
+            std::string gnuFile = "base/graphing/basicgraph.gnu"); 
+}
 
 #endif
