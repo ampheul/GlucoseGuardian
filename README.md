@@ -34,7 +34,9 @@ make all -i
 
 Once the project has been built, you can run the program by executing the runGlucoseGuardian file:  
 
+```c++
 ./runGlucoseGuardian
+```
 
 **Please ensure a user is set up with accurate weight and personal information before inputting glucose readings.**  
 **Before reporting medical records you will need to wait for 2 min and have entered glucose readings through the monitor**
