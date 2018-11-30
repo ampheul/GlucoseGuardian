@@ -8,7 +8,7 @@ NOTE: For testing purposes please use the provided test gmail account
 Email Address: noah123body@gmail.com
 Email Password: pass123word
 
-# Authors
+### Authors
 
 Claire Dong
 Graeme Brabers
@@ -37,7 +37,7 @@ Please ensure a user is set up with accurate weight and personal information bef
 
 For ease of testing, we have included individual testing classes for certain features of the project: 
 
-## Account Security
+### Account Security
 We have included a layer of security to protect the patient and their medical information. To see a
 demonstration of an account being created during initialization, please run:
 
@@ -47,7 +47,7 @@ make AccountTest.run
 
 If you run the test again you can see how an account is logged into after the account has been made.
 
-## Email Notifications
+### Email Notifications
 During certain actions an email notification may be sent to the user. These instances include:
 	- A warning email when a hypoglycemic event is imminent
 	- A security warning when a failed attempt to login to the artificial pancreas has been made
@@ -64,7 +64,7 @@ make EmailNotificationTest.run
 Email Address: noah123body@gmail.com
 Email Password: pass123word
 
-## UI Menu
+### UI Menu
 Depending on whether the patient or an authorized guest has logged into Glucose Guardian, this will
 determine which menu items are available for the user to select from.
 
@@ -83,14 +83,14 @@ To run this tests:
 make MenuTest.run
 ```
 
-## Report Maker
+### Report Maker
 The user is able to make a graphical report of medical records. This medical record includes glucose readings and insulin administered including time. To see a demonstration of this run:
 
 ```c++
 make ReportMakerTest.run
 ```
 
-## Insulin Calculator
+### Insulin Calculator
 Glucose Guardian is able to automatically determine the correct insulin or glucagon to administer
 based on age, weight, height, carb intake, exercise level, diurnal pattern, and time of sleep.
 The test will prompt you for these while running:
