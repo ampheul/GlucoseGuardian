@@ -24,14 +24,20 @@ You will need 3 terminals for the full functionality of Glucose Guardian.
 - 1 terminal will be used for running main 
   - Main is the UI for user interaction with the artifical pancreas
 - 1 terminal will be used for the listener
-  - Listener is the insulin pump that waits for information from the pi and dispenses insulin
+  - Listener is the insulin pump that waits for information from the pi and dispenses insulin  
+
+First you need to build the project, to do this run this command in the terminal:
 
 ```c++
-make all 
+make all -i  
 ```
 
-Once the project has been built, you can run the program by executing the _____ file.  
-Please ensure a user is set up with accurate weight and personal information before inputting glucose readings.
+Once the project has been built, you can run the program by executing the runGlucoseGuardian file:  
+
+./runGlucoseGuardian
+
+**Please ensure a user is set up with accurate weight and personal information before inputting glucose readings.**  
+**Before reporting medical records you will need to wait for 2 min and have entered glucose readings through the monitor**
 
 # How to run acceptance tests
 
@@ -60,7 +66,7 @@ To see a demonstration of this use:
 make EmailNotificationTest.run
 ```
 
-*Note: We have provided a test email you may use*
+**Note: We have provided a test email you may use**
 Email Address: noah123body@gmail.com
 Email Password: pass123word
 
@@ -77,7 +83,7 @@ If a patient is logged in, they are able to do:
 If a guest is logged in, they are able to:  
 - Make a report of the patient's medical records
 
-To run this tests:
+To run this test:
 
 ```c++
 make MenuTest.run
