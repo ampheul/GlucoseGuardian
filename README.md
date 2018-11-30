@@ -31,6 +31,7 @@ You will need 3 terminals for the full functionality of Glucose Guardian.
 make all 
 
 Once the project has been built, you can run the program by executing the _____ file. 
+Please ensure a user is set up with accurate weight and personal information before inputting glucose readings.
 
 # How to run acceptance tests
 
