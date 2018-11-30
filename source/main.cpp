@@ -13,15 +13,16 @@ int main(int argc, char **argv)
 {
 	cout << "starting" <<endl;
 
-	Account *account = new Account();
-	Menu *menu = new Menu(account);
-
 	ArtificialPancreas* artificialPancreas = new ArtificialPancreas();
 	GlucoseMonitor* glucoseMonitor = new GlucoseMonitor();
 
 	std::thread t1(&GlucoseMonitor::listen, glucoseMonitor, artificialPancreas);
 
 	UserInputExecutor *executor = new UserInputExecutor(artificialPancreas);
+	
+	
+	Account *account = new Account();
+	Menu *menu = new Menu(account);
 	
 	bool running = true;
 
