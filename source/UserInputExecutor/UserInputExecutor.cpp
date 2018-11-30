@@ -122,14 +122,14 @@ void UserInputExecutor::manualInsulinAdministration()
 
 		// ensure the user input is a valid entry
 		stringstream(userInput) >> insulinEntry;
-		if (insulinEntry < 0 && insulinEntry > artificialPancreas->getPatientInfo()->getWeight() / 4)
+		if (insulinEntry < 0 && insulinEntry < artificialPancreas->getPatientInfo()->getWeight() / 4)
 		{
 			validEntry = true;
 		}
 		else
 		{
 			auto glucoseToPrint = to_string(insulinEntry);
-			cout << glucoseToPrint + " is not a valid glucose reading, please try again." << endl;
+			cout << glucoseToPrint + " is not a valid insulin reading, please try again." << endl;
 		}
 	}
 	
