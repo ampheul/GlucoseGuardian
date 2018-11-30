@@ -1,8 +1,8 @@
 # Glucose Guardian: The Artificial Pancreas
 
-This is a software application which emulates the function of a human pancreas.
-The Glucose Guardian takes in insulin readings from an external device and sends an insulin dosage
-as a result. It can also store patient information to create reports and respond to emergency situations.
+This is a software application which emulates the function of a human pancreas.  
+The Glucose Guardian takes in insulin readings from an external device and sends an insulin dosage  
+as a result. It can also store patient information to create reports and respond to emergency situations.  
 
 NOTE: For testing purposes please use the provided test gmail account  
 Email Address: noah123body@gmail.com  
@@ -73,7 +73,7 @@ Email Address: noah123body@gmail.com
 Email Password: pass123word  
 
 ### UI Menu
-Depending on whether the patient or an authorized guest has logged into Glucose Guardian, this will
+Depending on whether the patient or an authorized guest has logged into Glucose Guardian, this will  
 determine which menu items are available for the user to select from.
 
 If a patient is logged in, they are able to do:  
@@ -92,14 +92,15 @@ make MenuTest.run
 ```
 
 ### Report Maker
-The user is able to make a graphical report of medical records. This medical record includes glucose readings and insulin administered including time. To see a demonstration of this run:
+The user is able to make a graphical report of medical records. This medical record includes glucose readings  
+and insulin administered measured over time. To see a demonstration of this run:
 
 ```c++
 make ReportMakerTest.run
 ```
 
 ### Insulin Calculator
-Glucose Guardian is able to automatically determine the correct insulin or glucagon to administer
+Glucose Guardian is able to automatically determine the correct insulin or glucagon to administer  
 based on age, weight, height, carb intake, exercise level, diurnal pattern, and time of sleep.
 The test will prompt you for these while running:
 
