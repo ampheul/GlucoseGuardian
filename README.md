@@ -29,7 +29,7 @@ You will need 3 terminals for the full functionality of Glucose Guardian.
 First you need to build the project, to do this run this command in the terminal:
 
 ```c++
-make all -i  
+make all  
 ```
 
 Once the project has been built, you can run the program by executing the runGlucoseGuardian file:  
