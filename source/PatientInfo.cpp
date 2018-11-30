@@ -12,17 +12,6 @@ PatientInfo::PatientInfo()
 	medicationRecords = new vector<MedicationRecord>;
 
 	SetupPatientInfo();
-	/*
-	inFile.open("patient.txt");
-	if(!inFile.is_open())
-	{
-		SetupPatientInfo();
-	}
-	else
-	{
-		readFromFile();
-	}
-	*/
 
 	sleep = -1;
 	exercise = "None";
