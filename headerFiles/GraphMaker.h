@@ -60,6 +60,6 @@ class GraphMaker
             std::string extraOptions = "",
             /// datafile to customize gnuplot output of the graph.
             std::string gnuFile = "base/graphing/basicgraph.gnu"); 
-}
+};
 
 #endif

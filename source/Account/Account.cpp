@@ -94,7 +94,7 @@ void Account::verifyPassword(ifstream& hashStream, string password)
 
 	if (patientHash == hashToCheck)
 	{
-		cout << "patient signed in" << endl;
+		cout << "patient signed in " << endl;
 		accountType = Account::PATIENT_ACCOUNT;
 	}
 	else if (guestHash == hashToCheck)

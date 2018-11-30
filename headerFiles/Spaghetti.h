@@ -3,6 +3,7 @@
 
 #include "PatientFactory.h"
 #include <iostream>
+#include <fstream>
 
 class Spaghetti : public PatientFactory
 {

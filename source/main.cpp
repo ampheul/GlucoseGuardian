@@ -12,13 +12,15 @@ using namespace std;
 int main(int argc, char **argv) 
 {
 	cout << "starting" <<endl;
+
+	Account *account = new Account();
+	Menu *menu = new Menu(account);
+
 	ArtificialPancreas* artificialPancreas = new ArtificialPancreas();
 	GlucoseMonitor* glucoseMonitor = new GlucoseMonitor();
 
 	std::thread t1(&GlucoseMonitor::listen, glucoseMonitor, artificialPancreas);
 
-	Account *account = new Account();
-	Menu *menu = new Menu(account);
 	UserInputExecutor *executor = new UserInputExecutor(artificialPancreas);
 	
 	bool running = true;
