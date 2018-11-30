@@ -2,7 +2,7 @@
 *	\brief Test harness for the EmailNotification class
 */
 
-#include "libPancreas.h"
+#include "EmailNotification.h"
 
 using namespace std;
 
