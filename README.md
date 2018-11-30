@@ -101,7 +101,7 @@ make ReportMakerTest.run
 
 ### Insulin Calculator
 Glucose Guardian is able to automatically determine the correct insulin or glucagon to administer  
-based on age, weight, height, carb intake, exercise level, diurnal pattern, and time of sleep.
+based on age, weight, height, carb intake, exercise level, diurnal pattern, and time of sleep.  
 The test will prompt you for these while running:
 
 ```c++
