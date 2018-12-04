@@ -122,7 +122,7 @@ void UserInputExecutor::manualInsulinAdministration()
 
 		// ensure the user input is a valid entry
 		stringstream(userInput) >> insulinEntry;
-		if (insulinEntry < 0 && insulinEntry < artificialPancreas->getPatientInfo()->getWeight() / 4)
+		if (insulinEntry > 0 && insulinEntry < artificialPancreas->getPatientInfo()->getWeight() / 4)
 		{
 			validEntry = true;
 		}

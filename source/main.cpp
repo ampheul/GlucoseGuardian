@@ -42,6 +42,7 @@ int main(int argc, char **argv)
 		if(optionToRetrieve == 1)
 		{
 			running = false;
+			delete artificialPancreas;
 		}
 
 

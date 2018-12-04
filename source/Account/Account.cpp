@@ -20,8 +20,9 @@ const std::string Account::UNKNOWN_ACCOUNT = "Unknown";
 Account::Account()
 {
 	string password;
-	cout << "Please enter a password: " << endl;
-	getline(cin, password);
+	cout << "Please enter a password: ";
+	cin.ignore(1, '\n');
+	cin >> password;
 	
 	/// check if accounts.txt file exists locally. If it does not, then the account needs to be initialized, else, continue the verification process.
 	ifstream accountStream("accountInfo.txt");
@@ -131,6 +132,7 @@ void Account::initializeAccount(string password)
 {
 	cout << "Would you like to use the password you entered for the main account (Y / N): ";
 	string yesOrNo = "";
+	cin.ignore(1, '\n');
 	getline(cin, yesOrNo);
 
 	if (yesOrNo == "N") {
