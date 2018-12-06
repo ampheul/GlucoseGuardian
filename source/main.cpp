@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 	
 	bool running = true;
 
-	while(true)
+	while(running)
 	{
 		menu->printMenu();
 		int optionToRetrieve = menu->getMenuSelection();

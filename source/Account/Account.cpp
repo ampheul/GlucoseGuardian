@@ -21,7 +21,7 @@ Account::Account()
 {
 	string password;
 	cout << "Please enter a password: ";
-	cin.ignore(1, '\n');
+	cin.ignore(0, '\n');
 	cin >> password;
 	
 	/// check if accounts.txt file exists locally. If it does not, then the account needs to be initialized, else, continue the verification process.
@@ -147,7 +147,7 @@ void Account::initializeAccount(string password)
 	cout << "For your own safety, please provide a password for an emergency guest account: ";
 	string guestPassword = "";
 	getline(cin, guestPassword);
-	guestPassword = "\n" + guestPassword;
+	guestPassword = guestPassword;
 	hash = Account::hashPassword(guestPassword);
 	accountInfo << hash << endl;
 
